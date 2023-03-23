@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android
+package com.flaringapp.ligretto.android.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.Greeting
+import com.flaringapp.ligretto.android.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
