@@ -1,0 +1,2 @@
+package com.flaringapp.ligretto
+

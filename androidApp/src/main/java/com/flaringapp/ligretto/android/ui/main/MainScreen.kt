@@ -6,7 +6,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.flaringapp.ligretto.Greeting
 
 @Composable
 fun MainScreen() {
@@ -14,11 +13,11 @@ fun MainScreen() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
-        GreetingView(Greeting().greet())
+        GreetingView()
     }
 }
 
 @Composable
-private fun GreetingView(text: String) {
-    Text(text = text)
+private fun GreetingView() {
+    Text(text = "Hello")
 }
