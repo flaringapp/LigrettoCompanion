@@ -33,7 +33,7 @@ androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name =
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 # Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinCore" }
