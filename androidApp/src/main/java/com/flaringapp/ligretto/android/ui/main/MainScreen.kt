@@ -19,7 +19,7 @@ fun MainScreen() {
             modifier = Modifier.padding(padding),
             navController = navController,
             startDestination = HomeDestination.screenId,
-            builder = { appNavGraph() },
+            builder = { appNavGraph(navController) },
         )
     }
 }
