@@ -1,23 +1,25 @@
 package com.flaringapp.ligretto.android.ui.main
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.flaringapp.ligretto.android.ui.feature.home.HomeDestination
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        GreetingView()
-    }
-}
+    val navController = rememberNavController()
 
-@Composable
-private fun GreetingView() {
-    Text(text = "Hello")
+    Scaffold { padding ->
+        NavHost(
+            modifier = Modifier.padding(padding),
+            navController = navController,
+            startDestination = HomeDestination.screenId,
+            builder = { appNavGraph() },
+        )
+    }
 }
