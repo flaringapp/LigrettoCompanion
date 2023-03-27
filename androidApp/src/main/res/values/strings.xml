@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="players_title">Players</string>
+    <string name="players_player_placeholder">Player name</string>
+    <string name="players_player_remove">Remove player %1$s</string>
+    <string name="players_add_player">Add player</string>
+    <string name="players_empty">Add your players to start the game!</string>
+    <string name="players_start_game">Start game</string>
+</resources>

@@ -1,13 +1,12 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.flaringapp.ligretto.android.ui.feature.game.start.screen.GameStartScreenContent
+import com.flaringapp.ligretto.android.ui.mvi.ConsumeEffects
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
+import org.koin.androidx.compose.getViewModel
 
 object GameStartDestination : ScreenDestinationWithoutArguments() {
 
@@ -17,13 +16,18 @@ object GameStartDestination : ScreenDestinationWithoutArguments() {
 @Composable
 fun GameStartScreen(
     openScores: () -> Unit,
+    store: GameStartViewModel = getViewModel(),
 ) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Button(onClick = openScores) {
-            Text(text = "Open scores")
+    val state by store.observeState().collectAsState()
+
+    ConsumeEffects(store.observeEffect()) { effect ->
+        when (effect) {
+            GameStartEffect.StartGame -> openScores()
         }
     }
+
+    GameStartScreenContent(
+        state = state,
+        dispatch = store::dispatch,
+    )
 }
