@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+
     <string name="players_title">Players</string>
     <string name="players_player_placeholder">Player name</string>
     <string name="players_player_remove">Remove player %1$s</string>
@@ -9,4 +12,15 @@
 
     <string name="scores_title">Scores</string>
     <string name="scores_start_next_lap">Start next lap</string>
+
+    <string name="lap_title">Lap cards</string>
+    <string name="lap_cards_left">Cards left</string>
+    <string name="lap_increment_cards_left">Increment cards left for player %1$s</string>
+    <string name="lap_decrement_cards_left">Decrement cards left for player %1$s</string>
+    <string name="lap_cards_on_table">Cards on table</string>
+    <string name="lap_increment_cards_on_table">Increment cards on table for player %1$s</string>
+    <string name="lap_decrement_cards_on_table">Decrement cards on table for player %1$s</string>
+    <string name="lap_end_lap">End current lap</string>
+    <string name="lap_end_lap_confirmation_title">End lap</string>
+    <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
 </resources>

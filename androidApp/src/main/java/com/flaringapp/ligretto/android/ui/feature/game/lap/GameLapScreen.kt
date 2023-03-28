@@ -1,14 +1,12 @@
 package com.flaringapp.ligretto.android.ui.feature.game.lap
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.flaringapp.ligretto.android.ui.feature.game.lap.screen.GameLapScreenContent
+import com.flaringapp.ligretto.android.ui.mvi.ConsumeEffects
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
+import org.koin.androidx.compose.getViewModel
 
 object GameLapDestination : ScreenDestinationWithoutArguments() {
 
@@ -18,18 +16,18 @@ object GameLapDestination : ScreenDestinationWithoutArguments() {
 @Composable
 fun GameLapScreen(
     openScores: () -> Unit,
-    openEnd: () -> Unit,
+    store: GameLapViewModel = getViewModel(),
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Button(onClick = openScores) {
-            Text(text = "End lap")
-        }
-        Button(onClick = openEnd) {
-            Text(text = "End game")
+    val state by store.observeState().collectAsState()
+
+    ConsumeEffects(store.observeEffect()) { effect ->
+        when (effect) {
+            GameLapEffect.OpenScores -> openScores()
         }
     }
+
+    GameLapScreenContent(
+        state = state,
+        dispatch = store::dispatch,
+    )
 }
