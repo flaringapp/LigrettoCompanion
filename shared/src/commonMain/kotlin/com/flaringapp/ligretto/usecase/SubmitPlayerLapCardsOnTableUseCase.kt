@@ -12,7 +12,7 @@ interface SubmitPlayerLapCardsOnTableUseCase {
 @Single
 internal class SubmitPlayerLapCardsOnTableUseCaseImpl(
     private val gameStorage: GameStorage,
-) : SubmitPlayerLapCardsLeftUseCase {
+) : SubmitPlayerLapCardsOnTableUseCase {
 
     override fun invoke(player: Player, count: Int) {
         val lap = requireNotNull(gameStorage.lapFlow.value)
