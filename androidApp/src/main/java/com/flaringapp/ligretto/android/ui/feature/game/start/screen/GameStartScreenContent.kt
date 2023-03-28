@@ -1,6 +1,5 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,14 +22,14 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.android.ui.AppTheme
 import com.flaringapp.ligretto.android.R
+import com.flaringapp.ligretto.android.ui.AppTheme
 import com.flaringapp.ligretto.android.ui.common.HeaderText
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartIntent
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartState
 import com.flaringapp.ligretto.android.ui.feature.game.start.screen.preview.GameStartStateProvider
+import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
 private const val CONTENT_TYPE_PLAYER = "player"
@@ -177,22 +176,6 @@ private fun StartGameButton(
             painter = rememberVectorPainter(Icons.Rounded.KeyboardArrowRight),
             contentDescription = stringResource(R.string.players_start_game),
         )
-    }
-}
-
-private class SnapLastItemToBottomArrangement : Arrangement.Vertical {
-
-    override fun Density.arrange(totalSize: Int, sizes: IntArray, outPositions: IntArray) {
-        val lastIndex = sizes.lastIndex
-        var currentOffset = 0
-        sizes.forEachIndexed { index, size ->
-            if (index == lastIndex) {
-                outPositions[index] = totalSize - size
-            } else {
-                outPositions[index] = currentOffset
-                currentOffset += size
-            }
-        }
     }
 }
 
