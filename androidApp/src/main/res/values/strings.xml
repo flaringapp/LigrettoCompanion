@@ -6,4 +6,7 @@
     <string name="players_add_player">Add player</string>
     <string name="players_empty">Add your players to start the game!</string>
     <string name="players_start_game">Start game</string>
+
+    <string name="scores_title">Scores</string>
+    <string name="scores_start_next_lap">Start next lap</string>
 </resources>
