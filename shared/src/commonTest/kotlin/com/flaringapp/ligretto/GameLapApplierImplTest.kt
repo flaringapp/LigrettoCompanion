@@ -1,23 +1,19 @@
-package com.flaringapp.ligretto.usecase
+package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.GameScoreCalculatorImpl
-import com.flaringapp.ligretto.GameStorageImpl
-import com.flaringapp.ligretto.model.*
+import com.flaringapp.ligretto.model.Game
+import com.flaringapp.ligretto.model.GameId
+import com.flaringapp.ligretto.model.Lap
+import com.flaringapp.ligretto.model.Player
+import com.flaringapp.ligretto.model.Score
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
 
-internal class EndLapUseCaseImplTest {
+internal class GameLapApplierImplTest {
 
     @Test
-    fun `Lap with scores are properly calculated and saved`() {
-        val storage = GameStorageImpl()
+    fun `Lap with scores is properly applied to a game`() {
         val calculator = GameScoreCalculatorImpl()
-        val useCase = EndLapUseCaseImpl(
-            gameStorage = storage,
-            scoreCalculator = calculator,
-        )
+        val applier = GameLapApplierImpl(calculator)
 
         val playerOne = Player(1, "Andrii")
         val playerTwo = Player(2, "Mario")
@@ -48,22 +44,13 @@ internal class EndLapUseCaseImplTest {
             cardsOnTable = cardsOnTable,
         )
 
-        storage.gameFlow.value = initialGame
-        storage.lapFlow.value = lap
-
-        useCase.invoke()
-
-        val actualGame = storage.gameFlow.value
-        val actualLap = storage.lapFlow.value
+        val actualGame = applier.apply(initialGame, lap)
 
         val expectedScores = mapOf(
             playerOne to Score(35),
             playerTwo to Score(28),
         )
         val expectedLaps = listOf(lap)
-
-        assertNotNull(actualGame)
-        assertNull(actualLap)
 
         assertEquals(expectedScores, actualGame.scores)
         assertEquals(expectedLaps, actualGame.completedLaps)
