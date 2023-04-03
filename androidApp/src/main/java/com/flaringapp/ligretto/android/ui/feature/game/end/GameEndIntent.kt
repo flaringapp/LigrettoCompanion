@@ -4,6 +4,7 @@ import com.flaringapp.ligretto.android.ui.mvi.UiIntent
 
 sealed interface GameEndIntent : UiIntent {
 
+    object LoadData : GameEndIntent
     data class InitData(
         val winners: GameEndState.Winners,
     ) : GameEndIntent

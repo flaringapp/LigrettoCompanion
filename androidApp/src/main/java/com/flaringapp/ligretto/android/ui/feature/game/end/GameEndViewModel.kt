@@ -15,19 +15,20 @@ class GameEndViewModel(
 ) : MviViewModel<GameEndState, GameEndIntent, GameEndEffect>(GameEndState()) {
 
     init {
-        loadGame()
+        dispatch { GameEndIntent.LoadData }
     }
 
     override fun reduce(
         state: GameEndState,
         intent: GameEndIntent,
     ): GameEndState = when (intent) {
+        GameEndIntent.LoadData -> loadData()
         is GameEndIntent.InitData -> initData(intent.winners)
         GameEndIntent.Finish -> finish()
     }
 
-    private fun loadGame() {
-        val game = getCurrentGameUseCase().value ?: return
+    private fun loadData() = state.also {
+        val game = getCurrentGameUseCase().value ?: return@also
         val leaders = game.scores.entries.asSequence()
             .sortedByDescending { (_, score) -> score.value }
             .take(3)
@@ -35,7 +36,7 @@ class GameEndViewModel(
 
         val firstPlace = leaders.firstOrNull()?.let { (player, score) ->
             mapToUi(player, score)
-        } ?: return
+        } ?: return@also
         val secondPlace = leaders.getOrNull(1)?.let { (player, score) ->
             mapToUi(player, score)
         }

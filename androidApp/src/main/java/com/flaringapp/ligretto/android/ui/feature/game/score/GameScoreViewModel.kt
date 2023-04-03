@@ -14,19 +14,20 @@ class GameScoreViewModel(
 ) : MviViewModel<GameScoreState, GameScoreIntent, GameScoreEffect>(GameScoreState()) {
 
     init {
-        loadScores()
+        dispatch { GameScoreIntent.LoadData }
     }
 
     override fun reduce(
         state: GameScoreState,
         intent: GameScoreIntent,
     ): GameScoreState = when (intent) {
+        GameScoreIntent.LoadData -> loadData()
         is GameScoreIntent.InitData -> initData(intent.scores)
         GameScoreIntent.StartNextLap -> startNewLap()
     }
 
-    private fun loadScores() {
-        val game = getCurrentGameUseCase().value ?: return
+    private fun loadData() = state.also {
+        val game = getCurrentGameUseCase().value ?: return@also
         val scores = game.players.map { player ->
             val score = game.scores[player] ?: Score.Zero
             GameScoreState.PlayerScore(

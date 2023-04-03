@@ -6,6 +6,7 @@ import com.flaringapp.ligretto.model.Player
 
 sealed interface GameLapIntent : UiIntent {
 
+    object InitDataUpdates : GameLapIntent
     data class UpdateData(
         val lap: Lap,
         val playersCards: List<GameLapState.PlayerCards>,

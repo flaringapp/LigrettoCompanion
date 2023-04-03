@@ -23,13 +23,14 @@ class GameLapViewModel(
 ) : MviViewModel<GameLapState, GameLapIntent, GameLapEffect>(GameLapState()) {
 
     init {
-        loadData()
+        dispatch { GameLapIntent.InitDataUpdates }
     }
 
     override fun reduce(
         state: GameLapState,
         intent: GameLapIntent,
     ): GameLapState = when (intent) {
+        GameLapIntent.InitDataUpdates -> initDataUpdates()
         is GameLapIntent.UpdateData -> updateData(intent)
         is GameLapIntent.IncrementCardsLeft -> incrementCardsLeft(intent.player)
         is GameLapIntent.DecrementCardsLeft -> decrementCardsLeft(intent.player)
@@ -40,7 +41,7 @@ class GameLapViewModel(
         GameLapIntent.EndLapConfirmed -> endLapConfirmed()
     }
 
-    private fun loadData() {
+    private fun initDataUpdates() = state.also {
         viewModelScope.launch {
             getCurrentGameWithLapUseCase().filterNotNull().collect { game ->
                 val lap = game.lastLap ?: return@collect
