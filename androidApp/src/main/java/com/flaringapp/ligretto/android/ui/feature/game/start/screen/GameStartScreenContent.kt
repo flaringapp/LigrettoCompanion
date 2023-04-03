@@ -94,7 +94,7 @@ private fun ActualContent(
                 modifier = Modifier.then(paddingModifier),
                 name = player.name,
                 isFocused = player.id == state.focusedPlayerId,
-                onNameChanged = { name ->
+                onNameChange = { name ->
                     dispatch(GameStartIntent.ChangePlayerName(player.id, name))
                 },
                 onFocusChanged = { isFocused ->

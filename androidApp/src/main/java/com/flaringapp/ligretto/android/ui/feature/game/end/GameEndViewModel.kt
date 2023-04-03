@@ -2,8 +2,7 @@ package com.flaringapp.ligretto.android.ui.feature.game.end
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
-import com.flaringapp.ligretto.model.Player
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.usecase.EndGameUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
 import org.koin.android.annotation.KoinViewModel
@@ -29,33 +28,27 @@ class GameEndViewModel(
 
     private fun loadData() = state.also {
         val game = getCurrentGameUseCase().value ?: return@also
-        val leaders = game.scores.entries.asSequence()
-            .sortedByDescending { (_, score) -> score.value }
-            .take(3)
-            .toList()
-
-        val firstPlace = leaders.firstOrNull()?.let { (player, score) ->
-            mapToUi(player, score)
-        } ?: return@also
-        val secondPlace = leaders.getOrNull(1)?.let { (player, score) ->
-            mapToUi(player, score)
-        }
-        val thirdPlace = leaders.getOrNull(2)?.let { (player, score) ->
-            mapToUi(player, score)
-        }
-        val winners = GameEndState.Winners(
-            firstPlace = firstPlace,
-            secondPlace = secondPlace,
-            thirdPlace = thirdPlace,
-        )
+        val winners = mapWinners(game) ?: return@also
 
         dispatch { GameEndIntent.InitData(winners) }
     }
 
-    private fun mapToUi(player: Player, score: Score): GameEndState.PlayerResult {
-        return GameEndState.PlayerResult(
-            name = player.name,
-            score = score.value,
+    private fun mapWinners(game: Game): GameEndState.Winners? {
+        val leaders = game.scores.entries.asSequence()
+            .sortedByDescending { (_, score) -> score.value }
+            .take(3)
+            .map { (player, score) ->
+                GameEndState.PlayerResult(
+                    name = player.name,
+                    score = score.value,
+                )
+            }
+            .toList()
+
+        return GameEndState.Winners(
+            firstPlace = leaders.firstOrNull() ?: return null,
+            secondPlace = leaders.getOrNull(1),
+            thirdPlace = leaders.getOrNull(2),
         )
     }
 

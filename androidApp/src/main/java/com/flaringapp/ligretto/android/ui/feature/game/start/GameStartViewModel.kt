@@ -15,7 +15,7 @@ class GameStartViewModel(
         state: GameStartState,
         intent: GameStartIntent,
     ): GameStartState = when (intent) {
-        GameStartIntent.AddNewPlayer -> addPlayer()
+        GameStartIntent.AddNewPlayer -> addNewPlayer()
         is GameStartIntent.ChangePlayerName -> changePlayerName(intent.id, intent.name)
         is GameStartIntent.PlayerFocusChanged -> handlePlayerFocusChanged(
             id = intent.id,
@@ -25,7 +25,7 @@ class GameStartViewModel(
         GameStartIntent.StartGame -> startGame()
     }
 
-    private fun addPlayer() = updateState {
+    private fun addNewPlayer() = updateState {
         val id = playersIdCounter + 1
         val newPlayers = players + GameStartState.Player(id, "")
         copy(

@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.android.ui.feature.game.score
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
+import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.Score
 import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.usecase.StartLapUseCase
@@ -28,7 +29,13 @@ class GameScoreViewModel(
 
     private fun loadData() = state.also {
         val game = getCurrentGameUseCase().value ?: return@also
-        val scores = game.players.map { player ->
+        val scores = mapScores(game)
+
+        dispatch { GameScoreIntent.InitData(scores) }
+    }
+
+    private fun mapScores(game: Game) : List<GameScoreState.PlayerScore> {
+        return game.players.map { player ->
             val score = game.scores[player] ?: Score.Zero
             GameScoreState.PlayerScore(
                 id = player.id,
@@ -36,8 +43,6 @@ class GameScoreViewModel(
                 score = score.value,
             )
         }
-
-        dispatch { GameScoreIntent.InitData(scores) }
     }
 
     private fun initData(scores: List<GameScoreState.PlayerScore>) = updateState {

@@ -16,7 +16,7 @@ object GameStartDestination : ScreenDestinationWithoutArguments() {
 
 @Composable
 fun GameStartScreen(
-    openScores: () -> Unit,
+    openScore: () -> Unit,
     openClose: () -> Unit,
     store: GameStartViewModel = getViewModel(),
 ) {
@@ -24,7 +24,7 @@ fun GameStartScreen(
 
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
-            GameStartEffect.StartGame -> openScores()
+            GameStartEffect.StartGame -> openScore()
         }
     }
 

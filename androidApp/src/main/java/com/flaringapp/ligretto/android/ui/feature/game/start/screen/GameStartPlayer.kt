@@ -32,7 +32,7 @@ import com.flaringapp.ligretto.android.ui.AppTheme
 fun GameStartPlayer(
     name: String,
     isFocused: Boolean,
-    onNameChanged: (String) -> Unit,
+    onNameChange: (String) -> Unit,
     onFocusChanged: (Boolean) -> Unit,
     onRemoveClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -44,7 +44,7 @@ fun GameStartPlayer(
         PlayerNameInput(
             name = name,
             isFocused = isFocused,
-            onNameChanged = onNameChanged,
+            onNameChange = onNameChange,
             onFocusChanged = onFocusChanged,
         )
 
@@ -65,7 +65,7 @@ fun GameStartPlayer(
 private fun PlayerNameInput(
     name: String,
     isFocused: Boolean,
-    onNameChanged: (String) -> Unit,
+    onNameChange: (String) -> Unit,
     onFocusChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -78,7 +78,7 @@ private fun PlayerNameInput(
                 onFocusChanged(it.isFocused)
             },
         value = name,
-        onValueChange = onNameChanged,
+        onValueChange = onNameChange,
         placeholder = {
             Text(
                 text = stringResource(R.string.players_player_placeholder),
@@ -103,7 +103,7 @@ private fun PreviewEmpty() {
         GameStartPlayer(
             name = "",
             isFocused = false,
-            onNameChanged = {},
+            onNameChange = {},
             onFocusChanged = {},
             onRemoveClick = {},
         )
@@ -117,7 +117,7 @@ private fun PreviewFilled() {
         GameStartPlayer(
             name = "Player",
             isFocused = true,
-            onNameChanged = {},
+            onNameChange = {},
             onFocusChanged = {},
             onRemoveClick = {},
         )

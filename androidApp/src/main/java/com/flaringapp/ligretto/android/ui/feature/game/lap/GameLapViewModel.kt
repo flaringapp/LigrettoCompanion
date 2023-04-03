@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.android.ui.feature.game.lap
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
+import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.Player
 import com.flaringapp.ligretto.usecase.EndLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentGameWithLapUseCase
@@ -43,24 +44,26 @@ class GameLapViewModel(
 
     private fun initDataUpdates() = state.also {
         viewModelScope.launch {
-            getCurrentGameWithLapUseCase().filterNotNull().collect { game ->
-                val lap = game.lastLap ?: return@collect
-                val playersCards = game.players.map { player ->
-                    GameLapState.PlayerCards(
-                        player = player,
-                        score = game.scores[player]?.value ?: 0,
-                        cardsLeft = lap.cardsLeft[player] ?: 0,
-                        cardsOnTable = lap.cardsOnTable[player] ?: 0,
-                    )
-                }
+            getCurrentGameWithLapUseCase().filterNotNull().collect(::handleGameUpdated)
+        }
+    }
 
-                dispatch {
-                    GameLapIntent.UpdateData(
-                        lap = lap,
-                        playersCards = playersCards,
-                    )
-                }
-            }
+    private fun handleGameUpdated(game: Game) {
+        val lap = game.lastLap ?: return
+        val playersCards = game.players.map { player ->
+            GameLapState.PlayerCards(
+                player = player,
+                score = game.scores[player]?.value ?: 0,
+                cardsLeft = lap.cardsLeft[player] ?: 0,
+                cardsOnTable = lap.cardsOnTable[player] ?: 0,
+            )
+        }
+
+        dispatch {
+            GameLapIntent.UpdateData(
+                lap = lap,
+                playersCards = playersCards,
+            )
         }
     }
 
