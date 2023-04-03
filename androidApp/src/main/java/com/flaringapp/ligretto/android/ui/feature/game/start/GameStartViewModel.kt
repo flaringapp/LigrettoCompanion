@@ -55,7 +55,7 @@ class GameStartViewModel(
     private fun removePlayer(id: Int) = updateState {
         val newPlayers = players.filterNot { it.id == id }
         copy(
-            isEmpty = players.isEmpty(),
+            isEmpty = newPlayers.isEmpty(),
             players = newPlayers,
         )
     }
