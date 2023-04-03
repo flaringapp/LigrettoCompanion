@@ -1,13 +1,13 @@
 package com.flaringapp.ligretto.android.ui.feature.game.end
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.flaringapp.ligretto.android.ui.feature.game.end.screen.GameEndScreenContent
+import com.flaringapp.ligretto.android.ui.mvi.ConsumeEffects
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
+import org.koin.androidx.compose.getViewModel
 
 object GameEndDestination : ScreenDestinationWithoutArguments() {
 
@@ -17,13 +17,22 @@ object GameEndDestination : ScreenDestinationWithoutArguments() {
 @Composable
 fun GameEndScreen(
     closeGame: () -> Unit,
+    store: GameEndViewModel = getViewModel(),
 ) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Button(onClick = closeGame) {
-            Text(text = "Close game")
+    val state by store.observeState().collectAsState()
+
+    ConsumeEffects(store.observeEffect()) { effect ->
+        when (effect) {
+            GameEndEffect.Close -> closeGame()
         }
     }
+
+    BackHandler(true) {
+        store.dispatch(GameEndIntent.Finish)
+    }
+
+    GameEndScreenContent(
+        state = state,
+        dispatch = store::dispatch,
+    )
 }

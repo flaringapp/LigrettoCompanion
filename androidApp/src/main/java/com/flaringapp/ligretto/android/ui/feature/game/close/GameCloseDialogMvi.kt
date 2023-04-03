@@ -4,7 +4,6 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.UiEffect
 import com.flaringapp.ligretto.android.ui.mvi.UiIntent
 import com.flaringapp.ligretto.android.ui.mvi.UiState
-import com.flaringapp.ligretto.usecase.EndGameUseCase
 import org.koin.android.annotation.KoinViewModel
 
 object GameCloseState : UiState
@@ -20,9 +19,8 @@ sealed interface GameCloseEffect : UiEffect {
 }
 
 @KoinViewModel
-class GameCloseViewModel(
-    private val endGameUseCase: EndGameUseCase,
-) : MviViewModel<GameCloseState, GameCloseIntent, GameCloseEffect>(GameCloseState) {
+class GameCloseViewModel :
+    MviViewModel<GameCloseState, GameCloseIntent, GameCloseEffect>(GameCloseState) {
 
     override fun reduce(state: GameCloseState, intent: GameCloseIntent): GameCloseState {
         return when (intent) {
@@ -32,7 +30,6 @@ class GameCloseViewModel(
     }
 
     private fun approve() = state.also {
-        endGameUseCase()
         setEffect { GameCloseEffect.EndGame }
     }
 
