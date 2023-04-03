@@ -3,6 +3,8 @@ package com.flaringapp.ligretto.android.ui.feature.game
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptionsBuilder
+import com.flaringapp.ligretto.android.ui.feature.game.close.GameCloseDestination
+import com.flaringapp.ligretto.android.ui.feature.game.close.GameCloseDialog
 import com.flaringapp.ligretto.android.ui.feature.game.end.GameEndDestination
 import com.flaringapp.ligretto.android.ui.feature.game.end.GameEndScreen
 import com.flaringapp.ligretto.android.ui.feature.game.lap.GameLapDestination
@@ -13,6 +15,7 @@ import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartDestinatio
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartScreen
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.android.ui.utils.navigation.composable
+import com.flaringapp.ligretto.android.ui.utils.navigation.dialog
 import com.flaringapp.ligretto.android.ui.utils.navigation.navigation
 import com.flaringapp.ligretto.android.ui.utils.navigation.popUpTo
 
@@ -39,6 +42,12 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composable(GameLapDestination) {
             GameLapScreen(
                 openScores = navController::navigateGameScores,
+            )
+        }
+        dialog(GameCloseDestination) {
+            GameCloseDialog(
+                openEnd = navController::navigateGameEnd,
+                close = { navController.popBackStack() }
             )
         }
         composable(GameEndDestination) {
