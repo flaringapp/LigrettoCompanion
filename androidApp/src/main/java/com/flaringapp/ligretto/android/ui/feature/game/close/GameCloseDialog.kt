@@ -25,13 +25,15 @@ object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestina
 @Composable
 fun GameCloseDialog(
     openEnd: () -> Unit,
-    close: () -> Unit,
+    closeGame: () -> Unit,
+    dismiss: () -> Unit,
     store: GameCloseViewModel = getViewModel(),
 ) {
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
             GameCloseEffect.EndGame -> openEnd()
-            GameCloseEffect.Close -> close()
+            GameCloseEffect.CloseGame -> closeGame()
+            GameCloseEffect.Dismiss -> dismiss()
         }
     }
 
