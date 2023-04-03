@@ -22,11 +22,12 @@ sealed interface GameCloseEffect : UiEffect {
 class GameCloseViewModel :
     MviViewModel<GameCloseState, GameCloseIntent, GameCloseEffect>(GameCloseState) {
 
-    override fun reduce(state: GameCloseState, intent: GameCloseIntent): GameCloseState {
-        return when (intent) {
-            GameCloseIntent.Approve -> approve()
-            GameCloseIntent.Dismiss -> dismiss()
-        }
+    override fun reduce(
+        state: GameCloseState,
+        intent: GameCloseIntent,
+    ): GameCloseState = when (intent) {
+        GameCloseIntent.Approve -> approve()
+        GameCloseIntent.Dismiss -> dismiss()
     }
 
     private fun approve() = state.also {

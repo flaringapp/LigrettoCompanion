@@ -17,11 +17,12 @@ class GameScoreViewModel(
         loadScores()
     }
 
-    override fun reduce(state: GameScoreState, intent: GameScoreIntent): GameScoreState {
-        return when (intent) {
-            is GameScoreIntent.InitData -> initData(intent.scores)
-            GameScoreIntent.StartNextLap -> startNewLap()
-        }
+    override fun reduce(
+        state: GameScoreState,
+        intent: GameScoreIntent,
+    ): GameScoreState = when (intent) {
+        is GameScoreIntent.InitData -> initData(intent.scores)
+        GameScoreIntent.StartNextLap -> startNewLap()
     }
 
     private fun loadScores() {

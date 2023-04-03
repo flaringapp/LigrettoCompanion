@@ -26,17 +26,18 @@ class GameLapViewModel(
         loadData()
     }
 
-    override fun reduce(state: GameLapState, intent: GameLapIntent): GameLapState {
-        return when (intent) {
-            is GameLapIntent.UpdateData -> updateData(intent)
-            is GameLapIntent.IncrementCardsLeft -> incrementCardsLeft(intent.player)
-            is GameLapIntent.DecrementCardsLeft -> decrementCardsLeft(intent.player)
-            is GameLapIntent.IncrementCardsOnTable -> incrementCardsOnTable(intent.player)
-            is GameLapIntent.DecrementCardsOnTable -> decrementCardsOnTable(intent.player)
-            GameLapIntent.EndLap -> endLap()
-            GameLapIntent.HideEndLapConfirmation -> hideEndLapConfirmation()
-            GameLapIntent.EndLapConfirmed -> endLapConfirmed()
-        }
+    override fun reduce(
+        state: GameLapState,
+        intent: GameLapIntent,
+    ): GameLapState = when (intent) {
+        is GameLapIntent.UpdateData -> updateData(intent)
+        is GameLapIntent.IncrementCardsLeft -> incrementCardsLeft(intent.player)
+        is GameLapIntent.DecrementCardsLeft -> decrementCardsLeft(intent.player)
+        is GameLapIntent.IncrementCardsOnTable -> incrementCardsOnTable(intent.player)
+        is GameLapIntent.DecrementCardsOnTable -> decrementCardsOnTable(intent.player)
+        GameLapIntent.EndLap -> endLap()
+        GameLapIntent.HideEndLapConfirmation -> hideEndLapConfirmation()
+        GameLapIntent.EndLapConfirmed -> endLapConfirmed()
     }
 
     private fun loadData() {

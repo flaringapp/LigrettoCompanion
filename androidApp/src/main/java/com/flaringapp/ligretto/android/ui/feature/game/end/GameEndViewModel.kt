@@ -18,11 +18,12 @@ class GameEndViewModel(
         loadGame()
     }
 
-    override fun reduce(state: GameEndState, intent: GameEndIntent): GameEndState {
-        return when (intent) {
-            is GameEndIntent.InitData -> initData(intent.winners)
-            GameEndIntent.Finish -> finish()
-        }
+    override fun reduce(
+        state: GameEndState,
+        intent: GameEndIntent,
+    ): GameEndState = when (intent) {
+        is GameEndIntent.InitData -> initData(intent.winners)
+        GameEndIntent.Finish -> finish()
     }
 
     private fun loadGame() {
