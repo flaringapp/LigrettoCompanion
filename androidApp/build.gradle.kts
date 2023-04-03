@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons)
 
+    implementation(libs.google.accompanist.systemUiController)
+
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     ksp(libs.koin.compiler)

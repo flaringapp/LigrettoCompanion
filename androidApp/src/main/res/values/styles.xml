@@ -1,8 +1,23 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="android:Theme.Material.NoActionBar" />
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">@bool/isLightTheme</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">
+            @bool/isLightTheme
+        </item>
 
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Splash screen doesn't provide ?attr/isLightTheme -->
+    <!-- https://issuetracker.google.com/issues/238522114 -->
     <style name="AppTheme.Splash" parent="Theme.SplashScreen">
         <item name="postSplashScreenTheme">@style/AppTheme</item>
+
+        <item name="android:windowLightStatusBar">@bool/isLightTheme</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">
+            @bool/isLightTheme
+        </item>
     </style>
 </resources>
