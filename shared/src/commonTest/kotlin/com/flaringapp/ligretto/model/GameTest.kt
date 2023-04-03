@@ -2,8 +2,31 @@ package com.flaringapp.ligretto.model
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 internal class GameTest {
+
+    @Test
+    fun `last lap is null when there is no completed laps`() {
+        val game = createGame(
+            completedLaps = emptyList(),
+        )
+
+        assertNull(game.lastLap)
+    }
+
+    @Test
+    fun `last lap is equal to the last item in completed laps list`() {
+        val laps = listOf(
+            createLap(1),
+            createLap(2),
+        )
+        val game = createGame(
+            completedLaps = laps,
+        )
+
+        assertEquals(laps.last(), game.lastLap)
+    }
 
     @Test
     fun `completed laps count is zero when there is no completed laps`() {

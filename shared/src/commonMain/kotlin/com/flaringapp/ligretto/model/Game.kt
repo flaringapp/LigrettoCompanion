@@ -12,6 +12,9 @@ data class Game(
         require(scores.keys == players.toSet()) { "Game must have scores for all players!" }
     }
 
+    val lastLap: Lap?
+        get() = completedLaps.lastOrNull()
+
     val completedLapsCount: Int
         get() = completedLaps.size
 
