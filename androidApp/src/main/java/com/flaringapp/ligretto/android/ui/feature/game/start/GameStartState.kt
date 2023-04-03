@@ -7,6 +7,7 @@ data class GameStartState(
     val isEmpty: Boolean = true,
     val players: List<Player> = emptyList(),
     val playersIdCounter: Int = 0,
+    val focusedPlayerId: Int? = null,
 ) : UiState {
 
     @Immutable

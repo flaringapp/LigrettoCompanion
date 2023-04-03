@@ -11,6 +11,11 @@ sealed interface GameStartIntent : UiIntent {
         val name: String,
     ) : GameStartIntent
 
+    data class PlayerFocusChanged(
+        val id: Int,
+        val isFocused: Boolean,
+    ) : GameStartIntent
+
     data class RemovePlayer(val id: Int) : GameStartIntent
 
     object StartGame : GameStartIntent

@@ -17,6 +17,10 @@ class GameStartViewModel(
     ): GameStartState = when (intent) {
         GameStartIntent.AddNewPlayer -> addPlayer()
         is GameStartIntent.ChangePlayerName -> changePlayerName(intent.id, intent.name)
+        is GameStartIntent.PlayerFocusChanged -> handlePlayerFocusChanged(
+            id = intent.id,
+            isFocused = intent.isFocused,
+        )
         is GameStartIntent.RemovePlayer -> removePlayer(intent.id)
         GameStartIntent.StartGame -> startGame()
     }
@@ -28,6 +32,7 @@ class GameStartViewModel(
             isEmpty = false,
             players = newPlayers,
             playersIdCounter = id,
+            focusedPlayerId = id,
         )
     }
 
@@ -37,6 +42,14 @@ class GameStartViewModel(
             player.copy(name = name)
         }
         copy(players = newPlayers)
+    }
+
+    private fun handlePlayerFocusChanged(id: Int, isFocused: Boolean) = updateState {
+        val newFocusedPlayerId = run {
+            if (isFocused) return@run id
+            focusedPlayerId.takeIf { it != id }
+        }
+        copy(focusedPlayerId = newFocusedPlayerId)
     }
 
     private fun removePlayer(id: Int) = updateState {
