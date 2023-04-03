@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
 import com.flaringapp.ligretto.model.Player
 import com.flaringapp.ligretto.usecase.EndLapUseCase
-import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
+import com.flaringapp.ligretto.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentLapUseCase
 import com.flaringapp.ligretto.usecase.SubmitPlayerLapCardsLeftUseCase
 import com.flaringapp.ligretto.usecase.SubmitPlayerLapCardsOnTableUseCase
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @KoinViewModel
 class GameLapViewModel(
-    private val getCurrentGameUseCase: GetCurrentGameUseCase,
+    private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
     private val getCurrentLapUseCase: GetCurrentLapUseCase,
     private val submitPlayerLapCardsLeftUseCase: SubmitPlayerLapCardsLeftUseCase,
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
@@ -40,13 +40,13 @@ class GameLapViewModel(
     }
 
     private fun loadData() {
-        val game = getCurrentGameUseCase().value ?: return
-
         viewModelScope.launch {
-            getCurrentLapUseCase().filterNotNull().collect { lap ->
+            getCurrentGameWithLapUseCase().filterNotNull().collect { game ->
+                val lap = game.lastLap ?: return@collect
                 val playersCards = game.players.map { player ->
                     GameLapState.PlayerCards(
                         player = player,
+                        score = game.scores[player]?.value ?: 0,
                         cardsLeft = lap.cardsLeft[player] ?: 0,
                         cardsOnTable = lap.cardsOnTable[player] ?: 0,
                     )

@@ -13,21 +13,25 @@ class GameLapStateProvider : PreviewParameterProvider<GameLapState> {
             playersCards = listOf(
                 GameLapState.PlayerCards(
                     player = Player(1, "Andreo"),
+                    score = 10,
                     cardsLeft = 2,
                     cardsOnTable = 14,
                 ),
                 GameLapState.PlayerCards(
                     player = Player(2, "Olenkka"),
+                    score = 20,
                     cardsLeft = 0,
                     cardsOnTable = 20,
                 ),
                 GameLapState.PlayerCards(
                     player = Player(3, "Mario"),
+                    score = 61,
                     cardsLeft = 3,
                     cardsOnTable = 10,
                 ),
                 GameLapState.PlayerCards(
                     player = Player(4, "Alina"),
+                    score = -12,
                     cardsLeft = 8,
                     cardsOnTable = 4,
                 )

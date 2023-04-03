@@ -67,6 +67,7 @@ fun GameLapScreenContent(
             GameLapPlayerCards(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 playerName = playersCards.player.name,
+                score = playersCards.score,
                 cardsLeft = playersCards.cardsLeft,
                 cardsOnTable = playersCards.cardsOnTable,
                 onIncrementCardsLeft = {

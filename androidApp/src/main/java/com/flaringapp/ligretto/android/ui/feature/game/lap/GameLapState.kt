@@ -12,6 +12,7 @@ data class GameLapState(
     @Immutable
     data class PlayerCards(
         val player: Player,
+        val score: Int,
         val cardsLeft: Int,
         val cardsOnTable: Int,
     )

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -28,6 +29,7 @@ import com.flaringapp.ligretto.android.ui.AppTheme
 @Composable
 fun GameLapPlayerCards(
     playerName: String,
+    score: Int,
     cardsLeft: Int,
     cardsOnTable: Int,
     onIncrementCardsLeft: () -> Unit,
@@ -40,8 +42,9 @@ fun GameLapPlayerCards(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        PlayerNameText(
-            text = playerName,
+        PlayerNameAndScore(
+            playerName = playerName,
+            score = score,
         )
         Cards(
             name = stringResource(R.string.lap_cards_left),
@@ -63,15 +66,25 @@ fun GameLapPlayerCards(
 }
 
 @Composable
-private fun PlayerNameText(
-    text: String,
+private fun PlayerNameAndScore(
+    playerName: String,
+    score: Int,
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = MaterialTheme.typography.titleMedium,
-    )
+    Row(modifier = modifier.fillMaxWidth()) {
+        Text(
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 24.dp),
+            text = playerName,
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Text(
+            modifier = Modifier,
+            text = score.toString(),
+            style = MaterialTheme.typography.titleMedium,
+        )
+    }
 }
 
 @Composable
@@ -164,6 +177,7 @@ private fun PreviewSmall() {
     AppTheme {
         GameLapPlayerCards(
             playerName = "Andrii",
+            score = 2,
             cardsLeft = 4,
             cardsOnTable = 3,
             onIncrementCardsLeft = {},
@@ -180,6 +194,7 @@ private fun PreviewBig() {
     AppTheme {
         GameLapPlayerCards(
             playerName = "Andreolabadubidus",
+            score = 152,
             cardsLeft = 4,
             cardsOnTable = 35,
             onIncrementCardsLeft = {},
