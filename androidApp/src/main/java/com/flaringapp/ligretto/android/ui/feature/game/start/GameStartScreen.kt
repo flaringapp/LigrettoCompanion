@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ object GameStartDestination : ScreenDestinationWithoutArguments() {
 @Composable
 fun GameStartScreen(
     openScores: () -> Unit,
+    openClose: () -> Unit,
     store: GameStartViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsState()
@@ -24,6 +26,10 @@ fun GameStartScreen(
         when (effect) {
             GameStartEffect.StartGame -> openScores()
         }
+    }
+
+    BackHandler(true) {
+        openClose()
     }
 
     GameStartScreenContent(

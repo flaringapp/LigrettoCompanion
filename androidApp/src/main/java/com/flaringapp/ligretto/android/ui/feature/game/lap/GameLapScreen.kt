@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.lap
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ object GameLapDestination : ScreenDestinationWithoutArguments() {
 @Composable
 fun GameLapScreen(
     openScores: () -> Unit,
+    openClose: () -> Unit,
     store: GameLapViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsState()
@@ -24,6 +26,10 @@ fun GameLapScreen(
         when (effect) {
             GameLapEffect.OpenScores -> openScores()
         }
+    }
+
+    BackHandler(true) {
+        openClose()
     }
 
     GameLapScreenContent(

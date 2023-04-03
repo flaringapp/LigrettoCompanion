@@ -32,16 +32,19 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composable(GameStartDestination) {
             GameStartScreen(
                 openScores = navController::navigateGameScores,
+                openClose = navController::navigateGameClose,
             )
         }
         composable(GameScoreDestination) {
             GameScoreScreen(
                 openNextLap = navController::navigateGameLap,
+                openClose = navController::navigateGameClose,
             )
         }
         composable(GameLapDestination) {
             GameLapScreen(
                 openScores = navController::navigateGameScores,
+                openClose = navController::navigateGameClose,
             )
         }
         dialog(GameCloseDestination) {
@@ -68,6 +71,10 @@ private fun NavController.navigateGameLap() {
     navigate(GameLapDestination.route()) {
         closeGameScreens()
     }
+}
+
+private fun NavController.navigateGameClose() {
+    navigate(GameCloseDestination.route())
 }
 
 private fun NavController.navigateGameEnd() {
