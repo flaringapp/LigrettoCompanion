@@ -34,6 +34,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.kotlinx.coroutines.core)
+                api(libs.kotlinx.datetime)
                 api(libs.napier)
                 api(libs.koin.core)
                 api(libs.koin.annotations)
