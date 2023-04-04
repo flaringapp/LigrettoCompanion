@@ -2,8 +2,8 @@ package com.flaringapp.ligretto.android.ui.feature.game.end
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.android.ui.feature.game.end.screen.GameEndScreenContent
 import com.flaringapp.ligretto.android.ui.mvi.ConsumeEffects
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
@@ -19,7 +19,7 @@ fun GameEndScreen(
     closeGame: () -> Unit,
     store: GameEndViewModel = getViewModel(),
 ) {
-    val state by store.observeState().collectAsState()
+    val state by store.observeState().collectAsStateWithLifecycle()
 
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {

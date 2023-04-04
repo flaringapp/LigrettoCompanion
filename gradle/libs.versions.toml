@@ -24,6 +24,7 @@ androidx-lifecycle-viewModel = { group = "androidx.lifecycle", name = "lifecycle
 
 # Android compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.7.0" }
+androidx-lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.5.3" }
 
 # Android compose ui

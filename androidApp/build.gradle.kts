@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModel)
 
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.compose)
     implementation(libs.androidx.navigation.compose)
 
     implementation(platform(libs.androidx.compose.bom))

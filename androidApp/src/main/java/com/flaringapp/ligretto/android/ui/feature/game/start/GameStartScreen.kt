@@ -2,8 +2,8 @@ package com.flaringapp.ligretto.android.ui.feature.game.start
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.android.ui.feature.game.start.screen.GameStartScreenContent
 import com.flaringapp.ligretto.android.ui.mvi.ConsumeEffects
 import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
@@ -20,7 +20,7 @@ fun GameStartScreen(
     openClose: () -> Unit,
     store: GameStartViewModel = getViewModel(),
 ) {
-    val state by store.observeState().collectAsState()
+    val state by store.observeState().collectAsStateWithLifecycle()
 
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
