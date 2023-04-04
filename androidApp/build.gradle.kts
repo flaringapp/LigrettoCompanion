@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModel)
 
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.compose)
     implementation(libs.androidx.navigation.compose)
 
     implementation(platform(libs.androidx.compose.bom))
@@ -68,7 +69,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.preview)
     debugImplementation(libs.androidx.compose.ui.debugTooling)
 
-    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons)
+
+    implementation(libs.google.accompanist.systemUiController)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)

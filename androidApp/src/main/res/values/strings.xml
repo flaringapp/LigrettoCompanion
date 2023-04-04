@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="players_title">Players</string>
+    <string name="players_player_placeholder">Player name</string>
+    <string name="players_player_remove">Remove player %1$s</string>
+    <string name="players_add_player">Add player</string>
+    <string name="players_empty">Add your players to start the game!</string>
+    <string name="players_start_game">Start game</string>
+
+    <string name="scores_title">Scores</string>
+    <string name="scores_start_next_lap">Start next lap</string>
+
+    <string name="lap_title">Lap cards</string>
+    <string name="lap_cards_left">Cards left</string>
+    <string name="lap_increment_cards_left">Increment cards left for player %1$s</string>
+    <string name="lap_decrement_cards_left">Decrement cards left for player %1$s</string>
+    <string name="lap_cards_on_table">Cards on table</string>
+    <string name="lap_increment_cards_on_table">Increment cards on table for player %1$s</string>
+    <string name="lap_decrement_cards_on_table">Decrement cards on table for player %1$s</string>
+    <string name="lap_end_lap">End current lap</string>
+    <string name="lap_end_lap_confirmation_title">End lap</string>
+    <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
+
+    <string name="game_close_title">Leave game</string>
+    <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
+
+    <string name="game_end_title">Congratulations!</string>
+    <string name="game_end_first_place_one">1</string>
+    <string name="game_end_first_place_two">st</string>
+    <string name="game_end_second_place_one">2</string>
+    <string name="game_end_second_place_two">nd</string>
+    <string name="game_end_third_place_one">3</string>
+    <string name="game_end_third_place_two">rd</string>
+    <string name="game_end_close">Exit</string>
+</resources>

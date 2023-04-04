@@ -1,23 +1,44 @@
 package com.flaringapp.ligretto.android.ui.main
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.flaringapp.ligretto.android.ui.feature.home.HomeDestination
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
-    ) {
-        GreetingView()
+    val navController = rememberNavController()
+
+    SystemBarsUi()
+
+    Scaffold { padding ->
+        NavHost(
+            modifier = Modifier.padding(padding),
+            navController = navController,
+            startDestination = HomeDestination.screenId,
+            builder = { appNavGraph(navController) },
+        )
     }
 }
 
 @Composable
-private fun GreetingView() {
-    Text(text = "Hello")
+private fun SystemBarsUi() {
+    val systemUiController = rememberSystemUiController()
+    val useDarkIcons = !isSystemInDarkTheme()
+
+    LaunchedEffect(systemUiController, useDarkIcons) {
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = useDarkIcons,
+        )
+    }
 }

@@ -17,6 +17,7 @@ internal class EndGameUseCaseImpl(
     override fun invoke(): Game? {
         return gameStorage.gameFlow.value.also {
             gameStorage.gameFlow.value = null
+            gameStorage.lapFlow.value = null
         }
     }
 }
