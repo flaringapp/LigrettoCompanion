@@ -7,6 +7,7 @@ import com.flaringapp.ligretto.model.Player
 import com.flaringapp.ligretto.model.Score
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlinx.datetime.Instant
 
 internal class GameLapApplierImplTest {
 
@@ -26,6 +27,7 @@ internal class GameLapApplierImplTest {
         val initialGame = Game(
             id = GameId(1),
             players = players,
+            timeStarted = Instant.DISTANT_PAST,
             scores = initialScores,
         )
 

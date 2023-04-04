@@ -79,6 +79,8 @@ class GameStartViewModel(
             )
         }
 
-        return GameConfig(players)
+        return GameConfig(
+            players = players,
+        )
     }
 }

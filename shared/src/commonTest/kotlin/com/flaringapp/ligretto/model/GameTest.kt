@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.model
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlinx.datetime.Instant
 
 internal class GameTest {
 
@@ -102,6 +103,7 @@ internal class GameTest {
     ) = Game(
         id = id,
         players = players,
+        timeStarted = Instant.DISTANT_PAST,
         scores = scores,
         completedLaps = completedLaps,
     )

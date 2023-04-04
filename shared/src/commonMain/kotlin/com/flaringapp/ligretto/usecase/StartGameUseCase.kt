@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.GameStorage
 import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.GameConfig
 import org.koin.core.annotation.Single
+import kotlinx.datetime.Clock
 
 interface StartGameUseCase {
 
@@ -15,6 +16,7 @@ interface StartGameUseCase {
 internal class StartGameUseCaseImpl(
     private val gameIdProvider: GameIdProvider,
     private val gameStorage: GameStorage,
+    private val clock: Clock,
 ) : StartGameUseCase {
 
     override fun invoke(config: GameConfig) {
@@ -22,6 +24,8 @@ internal class StartGameUseCaseImpl(
         val game = Game(
             id = id,
             players = config.players,
+            timeStarted = clock.now(),
+            endConditions = config.endConditions,
         )
 
         gameStorage.gameFlow.value = game
