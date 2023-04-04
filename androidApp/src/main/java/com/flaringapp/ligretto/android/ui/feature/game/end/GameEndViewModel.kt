@@ -4,12 +4,10 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
 import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.usecase.EndGameUseCase
-import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
 class GameEndViewModel(
-    private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val endGameUseCase: EndGameUseCase,
 ) : MviViewModel<GameEndState, GameEndIntent, GameEndEffect>(GameEndState()) {
 
@@ -27,7 +25,7 @@ class GameEndViewModel(
     }
 
     private fun loadData() = state.also {
-        val game = getCurrentGameUseCase().value ?: return@also
+        val game = endGameUseCase() ?: return@also
         val winners = mapWinners(game) ?: return@also
 
         dispatch { GameEndIntent.InitData(winners) }
@@ -57,7 +55,6 @@ class GameEndViewModel(
     }
 
     private fun finish() = state.also {
-        endGameUseCase()
         setEffect { GameEndEffect.Close }
     }
 }
