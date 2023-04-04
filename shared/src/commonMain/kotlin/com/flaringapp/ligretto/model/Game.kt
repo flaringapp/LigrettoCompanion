@@ -3,8 +3,8 @@ package com.flaringapp.ligretto.model
 data class Game(
     val id: GameId,
     val players: List<Player>,
-    val scores: Map<Player, Score>,
-    val completedLaps: List<Lap>,
+    val scores: Map<Player, Score> = players.associateWith { Score.Zero },
+    val completedLaps: List<Lap> = emptyList(),
 ) {
 
     init {

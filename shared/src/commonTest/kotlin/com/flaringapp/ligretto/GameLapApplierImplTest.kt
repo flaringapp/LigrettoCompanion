@@ -27,7 +27,6 @@ internal class GameLapApplierImplTest {
             id = GameId(1),
             players = players,
             scores = initialScores,
-            completedLaps = emptyList(),
         )
 
         val cardsLeft = mapOf(
