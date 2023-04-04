@@ -34,7 +34,7 @@ class GameScoreViewModel(
         dispatch { GameScoreIntent.InitData(scores) }
     }
 
-    private fun mapScores(game: Game) : List<GameScoreState.PlayerScore> {
+    private fun mapScores(game: Game): List<GameScoreState.PlayerScore> {
         return game.players.map { player ->
             val score = game.scores[player] ?: Score.Zero
             GameScoreState.PlayerScore(

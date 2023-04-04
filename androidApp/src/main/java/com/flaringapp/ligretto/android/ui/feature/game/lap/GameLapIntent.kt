@@ -12,11 +12,11 @@ sealed interface GameLapIntent : UiIntent {
         val playersCards: List<GameLapState.PlayerCards>,
     ) : GameLapIntent
 
-    data class IncrementCardsLeft(val player: Player): GameLapIntent
-    data class DecrementCardsLeft(val player: Player): GameLapIntent
+    data class IncrementCardsLeft(val player: Player) : GameLapIntent
+    data class DecrementCardsLeft(val player: Player) : GameLapIntent
 
-    data class IncrementCardsOnTable(val player: Player): GameLapIntent
-    data class DecrementCardsOnTable(val player: Player): GameLapIntent
+    data class IncrementCardsOnTable(val player: Player) : GameLapIntent
+    data class DecrementCardsOnTable(val player: Player) : GameLapIntent
 
     object EndLap : GameLapIntent
     object HideEndLapConfirmation : GameLapIntent
