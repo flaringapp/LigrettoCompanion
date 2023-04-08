@@ -4,6 +4,9 @@ import com.flaringapp.ligretto.GameIdProvider
 import com.flaringapp.ligretto.GameStorage
 import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.GameConfig
+import com.flaringapp.ligretto.model.end.GameEndConditions
+import com.flaringapp.ligretto.model.end.GameEndScoreCondition
+import com.flaringapp.ligretto.model.end.GameEndTimeCondition
 import org.koin.core.annotation.Single
 import kotlinx.datetime.Clock
 
@@ -21,11 +24,17 @@ internal class StartGameUseCaseImpl(
 
     override fun invoke(config: GameConfig) {
         val id = gameIdProvider.provide()
+
+        val endConditions = GameEndConditions(
+            score = config.targetScore?.let { GameEndScoreCondition(it) },
+            time = config.timeLimit?.let { GameEndTimeCondition(it, clock) },
+        )
+
         val game = Game(
             id = id,
             players = config.players,
             timeStarted = clock.now(),
-            endConditions = config.endConditions,
+            endConditions = endConditions,
         )
 
         gameStorage.gameFlow.value = game

@@ -33,8 +33,12 @@ import com.flaringapp.ligretto.android.ui.feature.game.start.screen.preview.Game
 import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
+private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"
 private const val CONTENT_TYPE_PLAYER = "player"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
+
+private const val KEY_HEADER_END_CONDITIONS = "_end_conditions"
+private const val KEY_HEADER_PLAYERS = "_players"
 
 @Composable
 fun GameStartScreenContent(
@@ -76,8 +80,24 @@ private fun ActualContent(
         verticalArrangement = remember { SnapLastItemToBottomArrangement() },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        item(contentType = CONTENT_TYPE_HEADER) {
-            Header(modifier = Modifier.padding(bottom = 16.dp))
+        item(
+            contentType = CONTENT_TYPE_HEADER,
+            key = "$CONTENT_TYPE_HEADER$KEY_HEADER_END_CONDITIONS",
+        ) {
+            EndConditionsHeader(modifier = Modifier.padding(bottom = 16.dp))
+        }
+        item(contentType = CONTENT_TYPE_END_CONDITIONS) {
+            GameStartEndConditions(
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
+                state = state.endConditions,
+                dispatch = dispatch,
+            )
+        }
+        item(
+            contentType = CONTENT_TYPE_HEADER,
+            key = "$CONTENT_TYPE_HEADER$KEY_HEADER_PLAYERS",
+        ) {
+            PlayersHeader(modifier = Modifier.padding(bottom = 16.dp))
         }
         itemsIndexed(
             items = state.players.list,
@@ -118,12 +138,22 @@ private fun ActualContent(
 }
 
 @Composable
-private fun Header(
+private fun EndConditionsHeader(
     modifier: Modifier,
 ) {
     HeaderText(
         modifier = modifier,
-        text = stringResource(R.string.start_title),
+        text = stringResource(R.string.start_title_end_conditions),
+    )
+}
+
+@Composable
+private fun PlayersHeader(
+    modifier: Modifier,
+) {
+    HeaderText(
+        modifier = modifier,
+        text = stringResource(R.string.start_title_players),
     )
 }
 

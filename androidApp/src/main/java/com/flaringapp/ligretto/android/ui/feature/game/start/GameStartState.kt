@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.android.ui.mvi.UiState
 
 data class GameStartState(
     val players: Players = Players(),
+    val endConditions: EndConditions = EndConditions(),
 ) : UiState {
 
     data class Players(
@@ -18,4 +19,21 @@ data class GameStartState(
         val id: Int,
         val name: String,
     )
+
+    data class EndConditions(
+        val score: ScoreLimit = ScoreLimit(),
+        val time: TimeLimit = TimeLimit(),
+    ) {
+
+        data class ScoreLimit(
+            val isEnabled: Boolean = false,
+            val value: String = "100",
+        )
+
+        data class TimeLimit(
+            val isEnabled: Boolean = false,
+            val hours: String = "0",
+            val minutes: String = "30",
+        )
+    }
 }

@@ -1,8 +1,9 @@
 package com.flaringapp.ligretto.model
 
-import com.flaringapp.ligretto.model.end.GameEndConditions
+import kotlin.time.Duration
 
 data class GameConfig(
     val players: List<Player>,
-    val endConditions: GameEndConditions = GameEndConditions(),
+    val targetScore: Score? = null,
+    val timeLimit: Duration? = null,
 )

@@ -23,3 +23,21 @@ sealed interface GameStartPlayersIntent : GameStartIntent {
 
     data class Remove(val id: Int) : GameStartPlayersIntent
 }
+
+sealed interface GameStartEndConditionsIntent : GameStartIntent
+
+sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
+
+    data class SetEnabled(val isEnabled: Boolean) : GameStartScoreEndConditionIntent
+
+    data class ValueChange(val value: String) : GameStartScoreEndConditionIntent
+}
+
+sealed interface GameStartTimeEndConditionIntent : GameStartEndConditionsIntent {
+
+    data class SetEnabled(val isEnabled: Boolean) : GameStartTimeEndConditionIntent
+
+    data class HourChange(val value: String) : GameStartTimeEndConditionIntent
+
+    data class MinuteChange(val value: String) : GameStartTimeEndConditionIntent
+}
