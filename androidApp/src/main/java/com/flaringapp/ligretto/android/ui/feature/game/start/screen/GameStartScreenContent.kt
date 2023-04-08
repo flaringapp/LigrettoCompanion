@@ -54,7 +54,7 @@ private fun EmptyScreen(
 ) {
     Text(
         modifier = modifier.padding(horizontal = 32.dp),
-        text = stringResource(R.string.players_empty),
+        text = stringResource(R.string.start_empty),
         style = MaterialTheme.typography.bodyMedium,
     )
 }
@@ -122,7 +122,7 @@ private fun Header(
 ) {
     HeaderText(
         modifier = modifier,
-        text = stringResource(R.string.players_title),
+        text = stringResource(R.string.start_title),
     )
 }
 
@@ -160,7 +160,7 @@ private fun AddPlayerButton(
         onClick = onClick,
     ) {
         Text(
-            text = stringResource(R.string.players_add_player),
+            text = stringResource(R.string.start_add_player),
         )
     }
 }
@@ -178,7 +178,7 @@ private fun StartGameButton(
     ) {
         Icon(
             painter = rememberVectorPainter(Icons.Rounded.KeyboardArrowRight),
-            contentDescription = stringResource(R.string.players_start_game),
+            contentDescription = stringResource(R.string.start_start_game),
         )
     }
 }

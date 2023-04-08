@@ -53,7 +53,7 @@ fun GameStartPlayer(
         ) {
             Icon(
                 painter = rememberVectorPainter(Icons.Rounded.Delete),
-                contentDescription = stringResource(R.string.players_player_remove),
+                contentDescription = stringResource(R.string.start_player_remove),
                 tint = MaterialTheme.colorScheme.error,
             )
         }
@@ -81,7 +81,7 @@ private fun PlayerNameInput(
         onValueChange = onNameChange,
         placeholder = {
             Text(
-                text = stringResource(R.string.players_player_placeholder),
+                text = stringResource(R.string.start_player_placeholder),
             )
         },
         keyboardOptions = KeyboardOptions(
