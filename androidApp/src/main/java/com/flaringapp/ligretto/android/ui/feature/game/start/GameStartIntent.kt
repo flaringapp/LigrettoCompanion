@@ -4,19 +4,22 @@ import com.flaringapp.ligretto.android.ui.mvi.UiIntent
 
 sealed interface GameStartIntent : UiIntent {
 
-    object AddNewPlayer : GameStartIntent
+    object StartGame : GameStartIntent
+}
 
-    data class ChangePlayerName(
+sealed interface GameStartPlayersIntent : GameStartIntent {
+
+    object AddNew : GameStartPlayersIntent
+
+    data class ChangeName(
         val id: Int,
         val name: String,
-    ) : GameStartIntent
+    ) : GameStartPlayersIntent
 
-    data class PlayerFocusChanged(
+    data class FocusChanged(
         val id: Int,
         val isFocused: Boolean,
-    ) : GameStartIntent
+    ) : GameStartPlayersIntent
 
-    data class RemovePlayer(val id: Int) : GameStartIntent
-
-    object StartGame : GameStartIntent
+    data class Remove(val id: Int) : GameStartPlayersIntent
 }

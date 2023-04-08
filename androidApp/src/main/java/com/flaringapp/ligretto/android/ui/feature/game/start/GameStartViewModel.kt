@@ -15,35 +15,35 @@ class GameStartViewModel(
         state: GameStartState,
         intent: GameStartIntent,
     ): GameStartState = when (intent) {
-        GameStartIntent.AddNewPlayer -> addNewPlayer()
-        is GameStartIntent.ChangePlayerName -> changePlayerName(intent.id, intent.name)
-        is GameStartIntent.PlayerFocusChanged -> handlePlayerFocusChanged(
+        GameStartPlayersIntent.AddNew -> addNewPlayer()
+        is GameStartPlayersIntent.ChangeName -> changePlayerName(intent.id, intent.name)
+        is GameStartPlayersIntent.FocusChanged -> handlePlayerFocusChanged(
             id = intent.id,
             isFocused = intent.isFocused,
         )
-        is GameStartIntent.RemovePlayer -> removePlayer(intent.id)
+        is GameStartPlayersIntent.Remove -> removePlayer(intent.id)
         GameStartIntent.StartGame -> startGame()
     }
 
-    private fun addNewPlayer() = updateState {
+    private fun addNewPlayer() = updatePlayersState {
         val id = playersIdCounter + 1
-        val newPlayers = players + GameStartState.Player(id, "")
+        val newPlayers = list + GameStartState.Player(id, "")
         copy(
-            players = newPlayers,
+            list = newPlayers,
             playersIdCounter = id,
             focusedPlayerId = id,
         )
     }
 
-    private fun changePlayerName(id: Int, name: String) = updateState {
-        val newPlayers = players.map { player ->
+    private fun changePlayerName(id: Int, name: String) = updatePlayersState {
+        val newPlayers = list.map { player ->
             if (player.id != id) return@map player
             player.copy(name = name)
         }
-        copy(players = newPlayers)
+        copy(list = newPlayers)
     }
 
-    private fun handlePlayerFocusChanged(id: Int, isFocused: Boolean) = updateState {
+    private fun handlePlayerFocusChanged(id: Int, isFocused: Boolean) = updatePlayersState {
         val newFocusedPlayerId = run {
             if (isFocused) return@run id
             focusedPlayerId.takeIf { it != id }
@@ -51,13 +51,13 @@ class GameStartViewModel(
         copy(focusedPlayerId = newFocusedPlayerId)
     }
 
-    private fun removePlayer(id: Int) = updateState {
-        val newPlayers = players.filterNot { it.id == id }
-        copy(players = newPlayers)
+    private fun removePlayer(id: Int) = updatePlayersState {
+        val newPlayers = list.filterNot { it.id == id }
+        copy(list = newPlayers)
     }
 
     private fun startGame() = state.also {
-        val hasEmptyNames = state.players.any { it.name.isBlank() }
+        val hasEmptyNames = state.players.list.any { it.name.isBlank() }
         if (hasEmptyNames) return@also
 
         val config = createGameConfig()
@@ -68,7 +68,7 @@ class GameStartViewModel(
     }
 
     private fun createGameConfig(): GameConfig {
-        val players = state.players.map { player ->
+        val players = state.players.list.map { player ->
             Player(
                 id = player.id,
                 name = player.name,
@@ -78,5 +78,11 @@ class GameStartViewModel(
         return GameConfig(
             players = players,
         )
+    }
+
+    private inline fun updatePlayersState(
+        build: GameStartState.Players.() -> GameStartState.Players,
+    ): GameStartState = updateState {
+        copy(players = players.build())
     }
 }

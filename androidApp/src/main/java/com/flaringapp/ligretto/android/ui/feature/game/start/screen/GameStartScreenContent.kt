@@ -27,6 +27,7 @@ import com.flaringapp.ligretto.android.R
 import com.flaringapp.ligretto.android.ui.AppTheme
 import com.flaringapp.ligretto.android.ui.common.HeaderText
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartIntent
+import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartState
 import com.flaringapp.ligretto.android.ui.feature.game.start.screen.preview.GameStartStateProvider
 import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
@@ -41,7 +42,7 @@ fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if (state.players.isEmpty()) {
+        if (state.players.list.isEmpty()) {
             EmptyScreen(modifier = Modifier.align(Alignment.Center))
         }
         ActualContent(state, dispatch)
@@ -65,8 +66,8 @@ private fun ActualContent(
     dispatch: (GameStartIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val lastPlayersIndex = remember(state.players.size) {
-        state.players.lastIndex
+    val lastPlayersIndex = remember(state.players.list.size) {
+        state.players.list.lastIndex
     }
 
     LazyColumn(
@@ -79,7 +80,7 @@ private fun ActualContent(
             Header(modifier = Modifier.padding(bottom = 16.dp))
         }
         itemsIndexed(
-            items = state.players,
+            items = state.players.list,
             key = { _, player -> "$CONTENT_TYPE_PLAYER${player.id}" },
             contentType = { _, _ -> CONTENT_TYPE_PLAYER },
         ) { index, player ->
@@ -93,24 +94,24 @@ private fun ActualContent(
             GameStartPlayer(
                 modifier = Modifier.then(paddingModifier),
                 name = player.name,
-                isFocused = player.id == state.focusedPlayerId,
+                isFocused = player.id == state.players.focusedPlayerId,
                 onNameChange = { name ->
-                    dispatch(GameStartIntent.ChangePlayerName(player.id, name))
+                    dispatch(GameStartPlayersIntent.ChangeName(player.id, name))
                 },
                 onFocusChanged = { isFocused ->
-                    dispatch(GameStartIntent.PlayerFocusChanged(player.id, isFocused))
+                    dispatch(GameStartPlayersIntent.FocusChanged(player.id, isFocused))
                 },
                 onRemoveClick = {
-                    dispatch(GameStartIntent.RemovePlayer(player.id))
+                    dispatch(GameStartPlayersIntent.Remove(player.id))
                 },
             )
         }
         item(contentType = CONTENT_TYPE_BUTTONS) {
             Buttons(
                 modifier = Modifier.padding(top = 16.dp),
-                onAddPlayer = { dispatch(GameStartIntent.AddNewPlayer) },
+                onAddPlayer = { dispatch(GameStartPlayersIntent.AddNew) },
                 onStartGame = { dispatch(GameStartIntent.StartGame) },
-                canStartGame = state.players.isNotEmpty(),
+                canStartGame = state.players.list.isNotEmpty(),
             )
         }
     }
