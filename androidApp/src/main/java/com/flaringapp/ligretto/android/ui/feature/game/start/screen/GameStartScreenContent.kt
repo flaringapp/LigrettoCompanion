@@ -41,7 +41,7 @@ fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if (state.isEmpty) {
+        if (state.players.isEmpty()) {
             EmptyScreen(modifier = Modifier.align(Alignment.Center))
         }
         ActualContent(state, dispatch)
@@ -110,7 +110,7 @@ private fun ActualContent(
                 modifier = Modifier.padding(top = 16.dp),
                 onAddPlayer = { dispatch(GameStartIntent.AddNewPlayer) },
                 onStartGame = { dispatch(GameStartIntent.StartGame) },
-                canStartGame = !state.isEmpty,
+                canStartGame = state.players.isNotEmpty(),
             )
         }
     }

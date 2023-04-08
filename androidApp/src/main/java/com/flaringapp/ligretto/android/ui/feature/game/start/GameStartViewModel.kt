@@ -29,7 +29,6 @@ class GameStartViewModel(
         val id = playersIdCounter + 1
         val newPlayers = players + GameStartState.Player(id, "")
         copy(
-            isEmpty = false,
             players = newPlayers,
             playersIdCounter = id,
             focusedPlayerId = id,
@@ -54,10 +53,7 @@ class GameStartViewModel(
 
     private fun removePlayer(id: Int) = updateState {
         val newPlayers = players.filterNot { it.id == id }
-        copy(
-            isEmpty = newPlayers.isEmpty(),
-            players = newPlayers,
-        )
+        copy(players = newPlayers)
     }
 
     private fun startGame() = state.also {

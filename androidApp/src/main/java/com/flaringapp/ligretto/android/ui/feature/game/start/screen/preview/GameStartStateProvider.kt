@@ -9,7 +9,6 @@ class GameStartStateProvider : PreviewParameterProvider<GameStartState> {
     override val values: Sequence<GameStartState> = sequenceOf(
         GameStartState(),
         GameStartState(
-            isEmpty = false,
             players = listOf(
                 Player(1, "Andreo"),
                 Player(2, "Mario"),
@@ -17,7 +16,6 @@ class GameStartStateProvider : PreviewParameterProvider<GameStartState> {
             ),
         ),
         GameStartState(
-            isEmpty = false,
             players = listOf(
                 Player(1, "Brad"),
                 Player(2, "Lucio"),
