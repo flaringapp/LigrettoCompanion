@@ -45,6 +45,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
             GameLapScreen(
                 openScores = navController::navigateGameScores,
                 openClose = navController::navigateGameClose,
+                openEnd = navController::navigateGameEnd,
             )
         }
         dialog(GameCloseDestination) {
