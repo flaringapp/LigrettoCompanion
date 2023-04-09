@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
 private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"
+private const val CONTENT_TYPE_EMPTY_PLAYERS = "empty_players"
 private const val CONTENT_TYPE_PLAYER = "player"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
 
@@ -46,22 +48,8 @@ fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if (state.players.list.isEmpty()) {
-            EmptyScreen(modifier = Modifier.align(Alignment.Center))
-        }
         ActualContent(state, dispatch)
     }
-}
-
-@Composable
-private fun EmptyScreen(
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        modifier = modifier.padding(horizontal = 32.dp),
-        text = stringResource(R.string.start_empty),
-        style = MaterialTheme.typography.bodyMedium,
-    )
 }
 
 @Composable
@@ -98,6 +86,11 @@ private fun ActualContent(
             key = "$CONTENT_TYPE_HEADER$KEY_HEADER_PLAYERS",
         ) {
             PlayersHeader(modifier = Modifier.padding(bottom = 16.dp))
+        }
+        if (state.players.list.isEmpty()) {
+            item(contentType = CONTENT_TYPE_EMPTY_PLAYERS) {
+                EmptyPlayers()
+            }
         }
         itemsIndexed(
             items = state.players.list,
@@ -154,6 +147,20 @@ private fun PlayersHeader(
     HeaderText(
         modifier = modifier,
         text = stringResource(R.string.start_title_players),
+    )
+}
+
+@Composable
+private fun EmptyPlayers(
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp, vertical = 64.dp),
+        text = stringResource(R.string.start_empty),
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.bodyMedium,
     )
 }
 
