@@ -39,6 +39,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
             GameScoreScreen(
                 openNextLap = navController::navigateGameLap,
                 openClose = navController::navigateGameClose,
+                openEnd = navController::navigateGameEnd,
             )
         }
         composable(GameLapDestination) {

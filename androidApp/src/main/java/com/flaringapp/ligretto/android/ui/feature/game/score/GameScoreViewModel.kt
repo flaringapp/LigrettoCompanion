@@ -4,6 +4,7 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
 import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.usecase.CheckGameEndConditionsUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.usecase.StartLapUseCase
 import org.koin.android.annotation.KoinViewModel
@@ -11,6 +12,7 @@ import org.koin.android.annotation.KoinViewModel
 @KoinViewModel
 class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
+    private val checkGameEndConditionsUseCase: CheckGameEndConditionsUseCase,
     private val startLapUseCase: StartLapUseCase,
 ) : MviViewModel<GameScoreState, GameScoreIntent, GameScoreEffect>(GameScoreState()) {
 
@@ -82,6 +84,13 @@ class GameScoreViewModel(
     }
 
     private fun startNewLap(): GameScoreState = state.also {
+        val game = getCurrentGameUseCase().value
+        val isGameEnded = game?.let(checkGameEndConditionsUseCase::invoke) ?: false
+        if (isGameEnded) {
+            setEffect { GameScoreEffect.EndGame }
+            return@also
+        }
+
         startLapUseCase()
         setEffect { GameScoreEffect.OpenNextLap }
     }
