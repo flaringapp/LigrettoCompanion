@@ -53,20 +53,20 @@ class GameStartViewModel(
 
     private fun addNewPlayer() = updatePlayersState {
         val id = playersIdCounter + 1
-        val newPlayers = list + GameStartState.Player(id, "")
+        val newList = list + GameStartState.Player(id, "")
         copy(
-            list = newPlayers,
+            list = newList,
             playersIdCounter = id,
             focusedPlayerId = id,
         )
     }
 
     private fun changePlayerName(id: Int, name: String) = updatePlayersState {
-        val newPlayers = list.map { player ->
+        val newList = list.map { player ->
             if (player.id != id) return@map player
             player.copy(name = name)
         }
-        copy(list = newPlayers)
+        copy(list = newList)
     }
 
     private fun handlePlayerFocusChanged(id: Int, isFocused: Boolean) = updatePlayersState {
@@ -78,8 +78,8 @@ class GameStartViewModel(
     }
 
     private fun removePlayer(id: Int) = updatePlayersState {
-        val newPlayers = list.filterNot { it.id == id }
-        copy(list = newPlayers)
+        val newList = list.filterNot { it.id == id }
+        copy(list = newList)
     }
 
     private fun setScoreEndConditionEnabled(isEnabled: Boolean) = updateScoreEndConditionState {
@@ -116,17 +116,17 @@ class GameStartViewModel(
             if (!score.isEnabled) return@let true
             if (score.value.isEmpty()) return@let false
 
-            val scoreInt = score.value.toIntOrNull() ?: return@let false
-            scoreInt > 0
+            val value = score.value.toIntOrNull() ?: return@let false
+            value > 0
         }
         if (!isScoreEndConditionValid) return@also
 
-        val isTimeEndConditionValid = state.endConditions.time.let {
-            if (!it.isEnabled) return@let true
-            if (it.hours.isEmpty() || it.minutes.isEmpty()) return@let false
+        val isTimeEndConditionValid = state.endConditions.time.let { time ->
+            if (!time.isEnabled) return@let true
+            if (time.hours.isEmpty() || time.minutes.isEmpty()) return@let false
 
-            val hours = it.hours.toIntOrNull() ?: return@let false
-            val minutes = it.minutes.toIntOrNull() ?: return@let false
+            val hours = time.hours.toIntOrNull() ?: return@let false
+            val minutes = time.minutes.toIntOrNull() ?: return@let false
             minutes < 60 && (hours > 0 || minutes > 0)
         }
         if (!isTimeEndConditionValid) return@also
