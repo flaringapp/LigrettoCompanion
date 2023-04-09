@@ -26,6 +26,9 @@ data class Game(
     val pendingLapNumber: Int
         get() = completedLapsCount + 1
 
+    val matchesEndConditions: Boolean
+        get() = endConditions.matches(this)
+
     internal fun withNewLap(
         lap: Lap,
         newScores: Map<Player, Score>,

@@ -5,7 +5,6 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
 import com.flaringapp.ligretto.model.Game
 import com.flaringapp.ligretto.model.Player
-import com.flaringapp.ligretto.usecase.CheckGameEndConditionsUseCase
 import com.flaringapp.ligretto.usecase.EndLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentLapUseCase
@@ -22,7 +21,6 @@ class GameLapViewModel(
     private val submitPlayerLapCardsLeftUseCase: SubmitPlayerLapCardsLeftUseCase,
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
     private val endLapUseCase: EndLapUseCase,
-    private val checkGameEndConditionsUseCase: CheckGameEndConditionsUseCase,
 ) : MviViewModel<GameLapState, GameLapIntent, GameLapEffect>(GameLapState()) {
 
     init {
@@ -107,8 +105,7 @@ class GameLapViewModel(
 
     private fun endLapConfirmed() = hideEndLapConfirmation().also {
         val game = endLapUseCase()
-        val isGameEnded = game?.let(checkGameEndConditionsUseCase::invoke) ?: false
-        if (isGameEnded) {
+        if (game?.matchesEndConditions == true) {
             setEffect { GameLapEffect.EndGame }
             return@also
         }
