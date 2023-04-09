@@ -6,16 +6,18 @@ import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartState.Play
 
 class GameStartPlayersProvider : PreviewParameterProvider<Players> {
 
-    override val values: Sequence<Players> = sequenceOf(
-        Players(),
-        Players(
+    companion object {
+        fun empty() = Players()
+
+        fun short() = Players(
             list = listOf(
                 Player(1, "Andreo"),
                 Player(2, "Mario"),
                 Player(3, "Olenkka"),
             ),
-        ),
-        Players(
+        )
+
+        fun long() = Players(
             list = listOf(
                 Player(1, "Brad"),
                 Player(2, "Lucio"),
@@ -29,5 +31,11 @@ class GameStartPlayersProvider : PreviewParameterProvider<Players> {
                 Player(10, "Jordan"),
             ),
         )
+    }
+
+    override val values: Sequence<Players> = sequenceOf(
+        empty(),
+        short(),
+        long(),
     )
 }

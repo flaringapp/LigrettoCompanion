@@ -6,10 +6,30 @@ import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartState.EndC
 class GameStartEndConditionsProvider : PreviewParameterProvider<EndConditions> {
 
     companion object {
-        // TODO
+        fun none() = EndConditions(
+            score = EndConditions.ScoreLimit(isEnabled = false),
+            time = EndConditions.TimeLimit(isEnabled = false),
+        )
+
+        fun scoreOnly() = none().copy(
+            score = EndConditions.ScoreLimit(
+                isEnabled = true,
+                value = "132",
+            )
+        )
+
+        fun all() = scoreOnly().copy(
+            time = EndConditions.TimeLimit(
+                isEnabled = true,
+                hours = "1",
+                minutes = "30",
+            )
+        )
     }
 
     override val values: Sequence<EndConditions> = sequenceOf(
-        // TODO
+        none(),
+        scoreOnly(),
+        all(),
     )
 }
