@@ -27,6 +27,7 @@ class GameScoreStateProvider : PreviewParameterProvider<GameScoreState> {
                 PlayerScore(9, "May", 8),
                 PlayerScore(10, "Jordan", 80),
             ),
+            endConditions = GameScoreEndConditionsProvider.scoreAndTime(),
         )
     )
 }

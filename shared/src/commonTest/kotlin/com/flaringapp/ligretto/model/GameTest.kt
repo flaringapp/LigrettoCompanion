@@ -1,8 +1,15 @@
 package com.flaringapp.ligretto.model
 
+import com.flaringapp.ligretto.model.end.GameEndConditions
+import com.flaringapp.ligretto.model.end.GameEndTimeCondition
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
+import kotlin.time.Duration.Companion.minutes
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 
 internal class GameTest {
 
@@ -94,16 +101,49 @@ internal class GameTest {
         assertEquals(Score(2), newGame.scores[players[1]])
     }
 
+    @Test
+    fun `matches end conditions is false if end conditions do not match`() {
+        val game = createGame(
+            endConditions = GameEndConditions(),
+        )
+
+        assertFalse(game.matchesEndConditions)
+    }
+
+    @Test
+    fun `matches end conditions is true if end conditions match`() {
+        val timeStarted = Instant.parse("2023-04-09T18:00:00.00Z")
+        val testClock = object : Clock {
+            override fun now(): Instant = Instant.parse("2023-04-09T19:00:01.00Z")
+        }
+        val endConditions = GameEndConditions(
+            time = GameEndTimeCondition(
+                gameDuration = 60.minutes,
+                clock = testClock,
+            ),
+        )
+        val game = createGame(
+            timeStarted = timeStarted,
+            endConditions = endConditions,
+        )
+
+        assertTrue(game.matchesEndConditions)
+    }
+
     private fun createGame(
         id: GameId = GameId(0),
         players: List<Player> = listOf(Player(1, "Andrii")),
+        timeStarted: Instant = Instant.DISTANT_PAST,
         scores: Map<Player, Score> = players.associateWith { Score.Zero },
         completedLaps: List<Lap> = emptyList(),
+        endConditions: GameEndConditions = GameEndConditions(),
     ) = Game(
         id = id,
         players = players,
+        timeStarted = timeStarted,
         scores = scores,
         completedLaps = completedLaps,
+        endConditions = endConditions,
     )
 
     private fun createLap(

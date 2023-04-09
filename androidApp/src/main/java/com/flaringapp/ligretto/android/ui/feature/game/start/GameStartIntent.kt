@@ -4,19 +4,40 @@ import com.flaringapp.ligretto.android.ui.mvi.UiIntent
 
 sealed interface GameStartIntent : UiIntent {
 
-    object AddNewPlayer : GameStartIntent
+    object StartGame : GameStartIntent
+}
 
-    data class ChangePlayerName(
+sealed interface GameStartPlayersIntent : GameStartIntent {
+
+    object AddNew : GameStartPlayersIntent
+
+    data class ChangeName(
         val id: Int,
         val name: String,
-    ) : GameStartIntent
+    ) : GameStartPlayersIntent
 
-    data class PlayerFocusChanged(
+    data class FocusChanged(
         val id: Int,
         val isFocused: Boolean,
-    ) : GameStartIntent
+    ) : GameStartPlayersIntent
 
-    data class RemovePlayer(val id: Int) : GameStartIntent
+    data class Remove(val id: Int) : GameStartPlayersIntent
+}
 
-    object StartGame : GameStartIntent
+sealed interface GameStartEndConditionsIntent : GameStartIntent
+
+sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
+
+    data class SetEnabled(val isEnabled: Boolean) : GameStartScoreEndConditionIntent
+
+    data class ValueChange(val value: String) : GameStartScoreEndConditionIntent
+}
+
+sealed interface GameStartTimeEndConditionIntent : GameStartEndConditionsIntent {
+
+    data class SetEnabled(val isEnabled: Boolean) : GameStartTimeEndConditionIntent
+
+    data class HourChange(val value: String) : GameStartTimeEndConditionIntent
+
+    data class MinuteChange(val value: String) : GameStartTimeEndConditionIntent
 }

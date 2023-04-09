@@ -18,6 +18,7 @@ object GameLapDestination : ScreenDestinationWithoutArguments() {
 fun GameLapScreen(
     openScores: () -> Unit,
     openClose: () -> Unit,
+    openEnd: () -> Unit,
     store: GameLapViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
@@ -25,6 +26,7 @@ fun GameLapScreen(
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
             GameLapEffect.OpenScores -> openScores()
+            GameLapEffect.EndGame -> openEnd()
         }
     }
 

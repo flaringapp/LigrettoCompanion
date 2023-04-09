@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -27,13 +28,19 @@ import com.flaringapp.ligretto.android.R
 import com.flaringapp.ligretto.android.ui.AppTheme
 import com.flaringapp.ligretto.android.ui.common.HeaderText
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartIntent
+import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartState
 import com.flaringapp.ligretto.android.ui.feature.game.start.screen.preview.GameStartStateProvider
 import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
+private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"
+private const val CONTENT_TYPE_EMPTY_PLAYERS = "empty_players"
 private const val CONTENT_TYPE_PLAYER = "player"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
+
+private const val KEY_HEADER_END_CONDITIONS = "_end_conditions"
+private const val KEY_HEADER_PLAYERS = "_players"
 
 @Composable
 fun GameStartScreenContent(
@@ -41,22 +48,8 @@ fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if (state.isEmpty) {
-            EmptyScreen(modifier = Modifier.align(Alignment.Center))
-        }
         ActualContent(state, dispatch)
     }
-}
-
-@Composable
-private fun EmptyScreen(
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        modifier = modifier.padding(horizontal = 32.dp),
-        text = stringResource(R.string.players_empty),
-        style = MaterialTheme.typography.bodyMedium,
-    )
 }
 
 @Composable
@@ -65,8 +58,8 @@ private fun ActualContent(
     dispatch: (GameStartIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val lastPlayersIndex = remember(state.players.size) {
-        state.players.lastIndex
+    val lastPlayersIndex = remember(state.players.list.size) {
+        state.players.list.lastIndex
     }
 
     LazyColumn(
@@ -75,11 +68,32 @@ private fun ActualContent(
         verticalArrangement = remember { SnapLastItemToBottomArrangement() },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        item(contentType = CONTENT_TYPE_HEADER) {
-            Header(modifier = Modifier.padding(bottom = 16.dp))
+        item(
+            contentType = CONTENT_TYPE_HEADER,
+            key = "$CONTENT_TYPE_HEADER$KEY_HEADER_END_CONDITIONS",
+        ) {
+            EndConditionsHeader(modifier = Modifier.padding(bottom = 16.dp))
+        }
+        item(contentType = CONTENT_TYPE_END_CONDITIONS) {
+            GameStartEndConditions(
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
+                state = state.endConditions,
+                dispatch = dispatch,
+            )
+        }
+        item(
+            contentType = CONTENT_TYPE_HEADER,
+            key = "$CONTENT_TYPE_HEADER$KEY_HEADER_PLAYERS",
+        ) {
+            PlayersHeader(modifier = Modifier.padding(bottom = 16.dp))
+        }
+        if (state.players.list.isEmpty()) {
+            item(contentType = CONTENT_TYPE_EMPTY_PLAYERS) {
+                EmptyPlayers()
+            }
         }
         itemsIndexed(
-            items = state.players,
+            items = state.players.list,
             key = { _, player -> "$CONTENT_TYPE_PLAYER${player.id}" },
             contentType = { _, _ -> CONTENT_TYPE_PLAYER },
         ) { index, player ->
@@ -93,36 +107,60 @@ private fun ActualContent(
             GameStartPlayer(
                 modifier = Modifier.then(paddingModifier),
                 name = player.name,
-                isFocused = player.id == state.focusedPlayerId,
+                isFocused = player.id == state.players.focusedPlayerId,
                 onNameChange = { name ->
-                    dispatch(GameStartIntent.ChangePlayerName(player.id, name))
+                    dispatch(GameStartPlayersIntent.ChangeName(player.id, name))
                 },
                 onFocusChanged = { isFocused ->
-                    dispatch(GameStartIntent.PlayerFocusChanged(player.id, isFocused))
+                    dispatch(GameStartPlayersIntent.FocusChanged(player.id, isFocused))
                 },
                 onRemoveClick = {
-                    dispatch(GameStartIntent.RemovePlayer(player.id))
+                    dispatch(GameStartPlayersIntent.Remove(player.id))
                 },
             )
         }
         item(contentType = CONTENT_TYPE_BUTTONS) {
             Buttons(
                 modifier = Modifier.padding(top = 16.dp),
-                onAddPlayer = { dispatch(GameStartIntent.AddNewPlayer) },
+                onAddPlayer = { dispatch(GameStartPlayersIntent.AddNew) },
                 onStartGame = { dispatch(GameStartIntent.StartGame) },
-                canStartGame = !state.isEmpty,
+                canStartGame = state.players.list.isNotEmpty(),
             )
         }
     }
 }
 
 @Composable
-private fun Header(
+private fun EndConditionsHeader(
     modifier: Modifier,
 ) {
     HeaderText(
         modifier = modifier,
-        text = stringResource(R.string.players_title),
+        text = stringResource(R.string.start_title_end_conditions),
+    )
+}
+
+@Composable
+private fun PlayersHeader(
+    modifier: Modifier,
+) {
+    HeaderText(
+        modifier = modifier,
+        text = stringResource(R.string.start_title_players),
+    )
+}
+
+@Composable
+private fun EmptyPlayers(
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp, vertical = 64.dp),
+        text = stringResource(R.string.start_empty),
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.bodyMedium,
     )
 }
 
@@ -160,7 +198,7 @@ private fun AddPlayerButton(
         onClick = onClick,
     ) {
         Text(
-            text = stringResource(R.string.players_add_player),
+            text = stringResource(R.string.start_add_player),
         )
     }
 }
@@ -178,7 +216,7 @@ private fun StartGameButton(
     ) {
         Icon(
             painter = rememberVectorPainter(Icons.Rounded.KeyboardArrowRight),
-            contentDescription = stringResource(R.string.players_start_game),
+            contentDescription = stringResource(R.string.start_start_game),
         )
     }
 }

@@ -1,10 +1,15 @@
 package com.flaringapp.ligretto.model
 
+import com.flaringapp.ligretto.model.end.GameEndConditions
+import kotlinx.datetime.Instant
+
 data class Game(
     val id: GameId,
     val players: List<Player>,
-    val scores: Map<Player, Score>,
-    val completedLaps: List<Lap>,
+    val timeStarted: Instant,
+    val scores: Map<Player, Score> = players.associateWith { Score.Zero },
+    val completedLaps: List<Lap> = emptyList(),
+    val endConditions: GameEndConditions = GameEndConditions(),
 ) {
 
     init {
@@ -20,6 +25,9 @@ data class Game(
 
     val pendingLapNumber: Int
         get() = completedLapsCount + 1
+
+    val matchesEndConditions: Boolean
+        get() = endConditions.matches(this)
 
     internal fun withNewLap(
         lap: Lap,

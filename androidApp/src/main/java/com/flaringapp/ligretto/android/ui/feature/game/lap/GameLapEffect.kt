@@ -5,4 +5,6 @@ import com.flaringapp.ligretto.android.ui.mvi.UiEffect
 sealed interface GameLapEffect : UiEffect {
 
     object OpenScores : GameLapEffect
+
+    object EndGame : GameLapEffect
 }
