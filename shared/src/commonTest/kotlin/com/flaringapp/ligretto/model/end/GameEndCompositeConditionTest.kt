@@ -11,10 +11,10 @@ import kotlinx.datetime.Instant
 internal class GameEndCompositeConditionTest {
 
     @Test
-    fun `returns true given there are no conditions`() {
+    fun `returns false given there are no conditions`() {
         val condition = GameEndCompositeCondition(emptyList())
 
-        assertTrue(condition.matches(mockGame()))
+        assertFalse(condition.matches(mockGame()))
     }
 
     @Test

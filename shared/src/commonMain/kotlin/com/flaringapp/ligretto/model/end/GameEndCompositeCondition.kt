@@ -7,6 +7,8 @@ internal data class GameEndCompositeCondition(
 ) : GameEndCondition {
 
     override fun matches(game: Game): Boolean {
+        if (conditions.isEmpty()) return false
+
         return conditions.all { it.matches(game) }
     }
 }
