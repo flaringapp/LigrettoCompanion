@@ -108,8 +108,11 @@ class GameLapViewModel(
     private fun endLapConfirmed() = hideEndLapConfirmation().also {
         val game = endLapUseCase()
         val isGameEnded = game?.let(checkGameEndConditionsUseCase::invoke) ?: false
-        setEffect {
-            if (isGameEnded) GameLapEffect.EndGame else GameLapEffect.OpenScores
+        if (isGameEnded) {
+            setEffect { GameLapEffect.EndGame }
+            return@also
         }
+
+        setEffect { GameLapEffect.OpenScores }
     }
 }
