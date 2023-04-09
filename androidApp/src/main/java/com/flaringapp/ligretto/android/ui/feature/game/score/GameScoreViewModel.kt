@@ -23,15 +23,24 @@ class GameScoreViewModel(
         intent: GameScoreIntent,
     ): GameScoreState = when (intent) {
         GameScoreIntent.LoadData -> loadData()
-        is GameScoreIntent.InitData -> initData(intent.scores)
+        is GameScoreIntent.InitData -> initData(
+            scores = intent.scores,
+            endConditions = intent.endConditions,
+        )
         GameScoreIntent.StartNextLap -> startNewLap()
     }
 
     private fun loadData() = state.also {
         val game = getCurrentGameUseCase().value ?: return@also
         val scores = mapScores(game)
+        val endConditions = mapEndConditions(game)
 
-        dispatch { GameScoreIntent.InitData(scores) }
+        dispatch {
+            GameScoreIntent.InitData(
+                scores = scores,
+                endConditions = endConditions,
+            )
+        }
     }
 
     private fun mapScores(game: Game): List<GameScoreState.PlayerScore> {
@@ -45,8 +54,31 @@ class GameScoreViewModel(
         }
     }
 
-    private fun initData(scores: List<GameScoreState.PlayerScore>) = updateState {
-        copy(scores = scores)
+    private fun mapEndConditions(game: Game): GameScoreState.EndConditions? {
+        if (game.endConditions.isEmpty) return null
+
+        val score = game.endConditions.score?.targetScore?.value
+        val time = game.endConditions.time?.let {
+            GameScoreState.EndConditions.Time(
+                timeEnd = game.timeStarted + it.gameDuration,
+                clock = it.clock,
+            )
+        }
+
+        return GameScoreState.EndConditions(
+            score = score,
+            time = time,
+        )
+    }
+
+    private fun initData(
+        scores: List<GameScoreState.PlayerScore>,
+        endConditions: GameScoreState.EndConditions?,
+    ) = updateState {
+        copy(
+            scores = scores,
+            endConditions = endConditions,
+        )
     }
 
     private fun startNewLap(): GameScoreState = state.also {

@@ -18,6 +18,8 @@
     <string name="start_start_game">Start game</string>
 
     <string name="scores_title">Scores</string>
+    <string name="scores_score_limit">Playing until score %1$s!</string>
+    <string name="scores_time_limit">%1$s:%2$s:%3$s</string>
     <string name="scores_start_next_lap">Start next lap</string>
 
     <string name="lap_title">Lap cards</string>

@@ -30,6 +30,7 @@ import com.flaringapp.ligretto.android.ui.feature.game.score.screen.preview.Game
 import com.flaringapp.ligretto.android.ui.utils.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
+private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"
 private const val CONTENT_TYPE_SCORE = "score"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
 
@@ -51,6 +52,14 @@ fun GameScoreScreenContent(
     ) {
         item(contentType = CONTENT_TYPE_HEADER) {
             Header(modifier = Modifier.padding(bottom = 16.dp))
+        }
+        state.endConditions?.let {
+            item(contentType = CONTENT_TYPE_END_CONDITIONS) {
+                GameScoreEndConditions(
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+                    state = it,
+                )
+            }
         }
         itemsIndexed(
             items = state.scores,
