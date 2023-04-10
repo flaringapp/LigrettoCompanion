@@ -1,24 +1,24 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'domain'
+    spec.name                     = 'core_model'
     spec.version                  = '1.0'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/domain.framework'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/core_model.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':core:domain',
-        'PRODUCT_MODULE_NAME' => 'domain',
+        'KOTLIN_PROJECT_PATH' => ':core:model',
+        'PRODUCT_MODULE_NAME' => 'core_model',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build domain',
+            :name => 'Build core_model',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
