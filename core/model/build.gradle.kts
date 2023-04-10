@@ -4,7 +4,6 @@ plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
     id(libs.plugins.kotlin.cocoapods.get().pluginId)
     id(libs.plugins.android.library.get().pluginId)
-    id(libs.plugins.ksp.get().pluginId)
 }
 
 kotlin {
@@ -24,36 +23,24 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
         framework {
-            baseName = "shared"
+            baseName = "model"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":core:model"))
-                api(libs.kotlinx.coroutines.core)
                 api(libs.kotlinx.datetime)
-                api(libs.napier)
-                api(libs.koin.core)
-                api(libs.koin.annotations)
             }
         }
         val commonTest by getting {
             dependencies {
                 api(libs.kotlin.test)
-                api(libs.kotlinx.coroutines.test)
-                api(libs.koin.test)
             }
         }
         val androidMain by getting
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(libs.mockk)
-            }
-        }
+        val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -76,17 +63,9 @@ kotlin {
 }
 
 android {
-    namespace = "com.flaringapp.ligretto"
+    namespace = "com.flaringapp.ligretto.core.model"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
     }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.compiler)
-    add("kspAndroid", libs.koin.compiler)
-    add("kspIosX64", libs.koin.compiler)
-    add("kspIosArm64", libs.koin.compiler)
-    add("kspIosSimulatorArm64", libs.koin.compiler)
 }

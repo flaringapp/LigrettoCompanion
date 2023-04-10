@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "Ligretto_Companion"
 include(":androidApp")
 include(":shared")
+include(":core:model")
