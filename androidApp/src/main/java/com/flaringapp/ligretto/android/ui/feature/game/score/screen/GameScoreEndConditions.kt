@@ -60,15 +60,15 @@ private fun TimeLeftTicker(
     state: GameScoreState.EndConditions.Time,
     modifier: Modifier = Modifier,
 ) {
-   Ticker {
-       val now = state.clock.now()
-       val timeLeft = (state.timeEnd - now).coerceAtLeast(Duration.ZERO)
+    Ticker {
+        val now = state.clock.now()
+        val timeLeft = (state.timeEnd - now).coerceAtLeast(Duration.ZERO)
 
-       TimeLeftText(
-           modifier = modifier,
-           timeLeft = timeLeft,
-       )
-   }
+        TimeLeftText(
+            modifier = modifier,
+            timeLeft = timeLeft,
+        )
+    }
 }
 
 @Composable
