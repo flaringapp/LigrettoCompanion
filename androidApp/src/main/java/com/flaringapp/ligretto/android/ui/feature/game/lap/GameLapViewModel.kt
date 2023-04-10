@@ -5,11 +5,11 @@ import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
 import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.model.Player
-import com.flaringapp.ligretto.usecase.EndLapUseCase
-import com.flaringapp.ligretto.usecase.GetCurrentGameWithLapUseCase
-import com.flaringapp.ligretto.usecase.GetCurrentLapUseCase
-import com.flaringapp.ligretto.usecase.SubmitPlayerLapCardsLeftUseCase
-import com.flaringapp.ligretto.usecase.SubmitPlayerLapCardsOnTableUseCase
+import com.flaringapp.ligretto.core.domain.usecase.EndLapUseCase
+import com.flaringapp.ligretto.core.domain.usecase.GetCurrentGameWithLapUseCase
+import com.flaringapp.ligretto.core.domain.usecase.GetCurrentLapUseCase
+import com.flaringapp.ligretto.core.domain.usecase.SubmitPlayerLapCardsLeftUseCase
+import com.flaringapp.ligretto.core.domain.usecase.SubmitPlayerLapCardsOnTableUseCase
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch

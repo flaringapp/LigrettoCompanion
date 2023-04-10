@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto
+package com.flaringapp.ligretto.core.domain
 
 import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.model.Lap

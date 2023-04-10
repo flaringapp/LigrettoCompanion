@@ -1,7 +1,7 @@
-package com.flaringapp.ligretto.usecase
+package com.flaringapp.ligretto.core.domain.usecase
 
-import com.flaringapp.ligretto.GameIdProvider
-import com.flaringapp.ligretto.GameStorage
+import com.flaringapp.ligretto.core.domain.GameIdProvider
+import com.flaringapp.ligretto.core.domain.GameStorage
 import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.model.GameConfig
 import com.flaringapp.ligretto.core.model.end.GameEndConditions
