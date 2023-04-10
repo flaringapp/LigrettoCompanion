@@ -1,6 +1,6 @@
-package com.flaringapp.ligretto.model.end
+package com.flaringapp.ligretto.core.model.end
 
-import com.flaringapp.ligretto.model.Game
+import com.flaringapp.ligretto.core.model.Game
 import kotlin.time.Duration
 import kotlinx.datetime.Clock
 

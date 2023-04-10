@@ -1,7 +1,7 @@
-package com.flaringapp.ligretto.model.end
+package com.flaringapp.ligretto.core.model.end
 
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.Score
 
 data class GameEndScoreCondition(
     val targetScore: Score,

@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.Score
 import org.koin.core.annotation.Single
 
 internal interface GameScoreCalculator {

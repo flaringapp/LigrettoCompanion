@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.usecase
 
 import com.flaringapp.ligretto.GameStorage
-import com.flaringapp.ligretto.model.Game
+import com.flaringapp.ligretto.core.model.Game
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

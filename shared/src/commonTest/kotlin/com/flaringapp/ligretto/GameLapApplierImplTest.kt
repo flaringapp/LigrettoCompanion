@@ -1,10 +1,10 @@
 package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.GameId
-import com.flaringapp.ligretto.model.Lap
-import com.flaringapp.ligretto.model.Player
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.GameId
+import com.flaringapp.ligretto.core.model.Lap
+import com.flaringapp.ligretto.core.model.Player
+import com.flaringapp.ligretto.core.model.Score
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.datetime.Instant

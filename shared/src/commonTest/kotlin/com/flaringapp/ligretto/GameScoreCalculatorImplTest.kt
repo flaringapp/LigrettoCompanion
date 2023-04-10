@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.Score
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

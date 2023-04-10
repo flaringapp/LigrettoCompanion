@@ -2,8 +2,8 @@ package com.flaringapp.ligretto.android.ui.feature.game.score
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.Score
 import com.flaringapp.ligretto.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.usecase.StartLapUseCase
 import org.koin.android.annotation.KoinViewModel

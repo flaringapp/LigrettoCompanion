@@ -2,11 +2,11 @@ package com.flaringapp.ligretto.usecase
 
 import com.flaringapp.ligretto.GameIdProvider
 import com.flaringapp.ligretto.GameStorage
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.GameConfig
-import com.flaringapp.ligretto.model.end.GameEndConditions
-import com.flaringapp.ligretto.model.end.GameEndScoreCondition
-import com.flaringapp.ligretto.model.end.GameEndTimeCondition
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.GameConfig
+import com.flaringapp.ligretto.core.model.end.GameEndConditions
+import com.flaringapp.ligretto.core.model.end.GameEndScoreCondition
+import com.flaringapp.ligretto.core.model.end.GameEndTimeCondition
 import org.koin.core.annotation.Single
 import kotlinx.datetime.Clock
 

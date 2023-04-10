@@ -1,6 +1,6 @@
-package com.flaringapp.ligretto.model
+package com.flaringapp.ligretto.core.model
 
-import com.flaringapp.ligretto.model.end.GameEndConditions
+import com.flaringapp.ligretto.core.model.end.GameEndConditions
 import kotlinx.datetime.Instant
 
 data class Game(
@@ -29,7 +29,7 @@ data class Game(
     val matchesEndConditions: Boolean
         get() = endConditions.matches(this)
 
-    internal fun withNewLap(
+    fun withNewLap(
         lap: Lap,
         newScores: Map<Player, Score>,
     ): Game {

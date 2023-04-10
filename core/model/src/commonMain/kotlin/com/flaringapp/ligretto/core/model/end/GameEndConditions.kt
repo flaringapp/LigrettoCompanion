@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.model.end
+package com.flaringapp.ligretto.core.model.end
 
 data class GameEndConditions(
     val score: GameEndScoreCondition? = null,

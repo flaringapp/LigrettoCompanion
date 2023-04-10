@@ -1,7 +1,7 @@
-package com.flaringapp.ligretto.model
+package com.flaringapp.ligretto.core.model
 
-import com.flaringapp.ligretto.model.end.GameEndConditions
-import com.flaringapp.ligretto.model.end.GameEndTimeCondition
+import com.flaringapp.ligretto.core.model.end.GameEndConditions
+import com.flaringapp.ligretto.core.model.end.GameEndTimeCondition
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

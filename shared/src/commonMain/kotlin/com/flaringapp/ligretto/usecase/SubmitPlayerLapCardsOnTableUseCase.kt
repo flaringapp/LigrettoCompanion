@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.usecase
 
 import com.flaringapp.ligretto.GameStorage
-import com.flaringapp.ligretto.model.Player
+import com.flaringapp.ligretto.core.model.Player
 import org.koin.core.annotation.Single
 
 interface SubmitPlayerLapCardsOnTableUseCase {

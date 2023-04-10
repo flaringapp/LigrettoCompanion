@@ -1,8 +1,8 @@
-package com.flaringapp.ligretto.model.end
+package com.flaringapp.ligretto.core.model.end
 
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.GameId
-import com.flaringapp.ligretto.model.Player
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.GameId
+import com.flaringapp.ligretto.core.model.Player
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

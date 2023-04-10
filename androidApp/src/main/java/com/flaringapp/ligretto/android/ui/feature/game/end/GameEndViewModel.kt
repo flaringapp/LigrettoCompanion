@@ -2,7 +2,7 @@ package com.flaringapp.ligretto.android.ui.feature.game.end
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
-import com.flaringapp.ligretto.model.Game
+import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.usecase.EndGameUseCase
 import org.koin.android.annotation.KoinViewModel
 

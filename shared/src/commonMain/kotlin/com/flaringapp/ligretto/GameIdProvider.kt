@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.model.GameId
+import com.flaringapp.ligretto.core.model.GameId
 import org.koin.core.annotation.Single
 
 internal interface GameIdProvider {

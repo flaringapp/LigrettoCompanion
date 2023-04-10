@@ -3,8 +3,8 @@ package com.flaringapp.ligretto.android.ui.feature.game.lap
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.Player
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.Player
 import com.flaringapp.ligretto.usecase.EndLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.usecase.GetCurrentLapUseCase

@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto
 
-import com.flaringapp.ligretto.model.Game
-import com.flaringapp.ligretto.model.Lap
+import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.core.model.Lap
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.MutableStateFlow
 

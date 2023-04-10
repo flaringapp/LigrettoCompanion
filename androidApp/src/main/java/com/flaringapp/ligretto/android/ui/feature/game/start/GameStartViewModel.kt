@@ -1,9 +1,9 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
-import com.flaringapp.ligretto.model.GameConfig
-import com.flaringapp.ligretto.model.Player
-import com.flaringapp.ligretto.model.Score
+import com.flaringapp.ligretto.core.model.GameConfig
+import com.flaringapp.ligretto.core.model.Player
+import com.flaringapp.ligretto.core.model.Score
 import com.flaringapp.ligretto.usecase.StartGameUseCase
 import org.koin.android.annotation.KoinViewModel
 import kotlin.time.Duration

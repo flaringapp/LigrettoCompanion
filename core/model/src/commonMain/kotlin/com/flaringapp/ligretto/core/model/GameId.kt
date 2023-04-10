@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.model
+package com.flaringapp.ligretto.core.model
 
 import kotlin.jvm.JvmInline
 
