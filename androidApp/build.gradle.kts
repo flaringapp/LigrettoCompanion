@@ -49,7 +49,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
     implementation(project(":core:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
