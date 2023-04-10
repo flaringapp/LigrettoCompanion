@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.core.domain.usecase
 import com.flaringapp.ligretto.core.domain.GameIdProvider
 import com.flaringapp.ligretto.core.domain.GameStorage
 import com.flaringapp.ligretto.core.model.Game
-import com.flaringapp.ligretto.core.model.GameConfig
+import com.flaringapp.ligretto.core.domain.model.GameConfig
 import com.flaringapp.ligretto.core.model.end.GameEndConditions
 import com.flaringapp.ligretto.core.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.core.model.end.GameEndTimeCondition
