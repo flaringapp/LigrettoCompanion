@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.android
 
 import android.app.Application
-import com.flaringapp.ligretto.commonModule
+import com.flaringapp.ligretto.core.domain.domainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -12,7 +12,7 @@ class LigrettoApp : Application() {
 
         startKoin {
             androidContext(this@LigrettoApp)
-            commonModule()
+            domainModule()
             uiModule()
         }
     }
