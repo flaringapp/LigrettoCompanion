@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.core.domain.usecase
 
-import com.flaringapp.ligretto.core.domain.GameStorage
 import com.flaringapp.ligretto.core.model.Lap
+import com.flaringapp.ligretto.domain.contracts.GameRepository
 import org.koin.core.annotation.Single
 
 interface StartLapUseCase {
@@ -11,17 +11,17 @@ interface StartLapUseCase {
 
 @Single
 internal class StartLapUseCaseImpl(
-    private val gameStorage: GameStorage,
+    private val repository: GameRepository,
 ) : StartLapUseCase {
 
     override fun invoke(): Lap {
-        val game = requireNotNull(gameStorage.gameFlow.value)
+        val game = requireNotNull(repository.currentGameFlow.value)
         val lap = Lap.empty(
             number = game.pendingLapNumber,
             players = game.players,
         )
 
-        gameStorage.lapFlow.value = lap
+        repository.setCurrentLap(lap)
 
         return lap
     }

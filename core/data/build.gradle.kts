@@ -35,6 +35,8 @@ kotlin {
             dependencies {
                 implementation(project(":core:model"))
                 implementation(project(":core:domain-contracts"))
+                api(libs.koin.core)
+                implementation(libs.koin.annotations)
             }
         }
         val commonTest by getting {

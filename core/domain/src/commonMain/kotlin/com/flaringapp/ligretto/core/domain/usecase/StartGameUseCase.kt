@@ -1,12 +1,12 @@
 package com.flaringapp.ligretto.core.domain.usecase
 
 import com.flaringapp.ligretto.core.domain.GameIdProvider
-import com.flaringapp.ligretto.core.domain.GameStorage
 import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.domain.model.GameConfig
 import com.flaringapp.ligretto.core.model.end.GameEndConditions
 import com.flaringapp.ligretto.core.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.core.model.end.GameEndTimeCondition
+import com.flaringapp.ligretto.domain.contracts.GameRepository
 import org.koin.core.annotation.Single
 import kotlinx.datetime.Clock
 
@@ -18,7 +18,7 @@ interface StartGameUseCase {
 @Single
 internal class StartGameUseCaseImpl(
     private val gameIdProvider: GameIdProvider,
-    private val gameStorage: GameStorage,
+    private val repository: GameRepository,
     private val clock: Clock,
 ) : StartGameUseCase {
 
@@ -37,6 +37,6 @@ internal class StartGameUseCaseImpl(
             endConditions = endConditions,
         )
 
-        gameStorage.gameFlow.value = game
+        repository.setCurrentGame(game)
     }
 }

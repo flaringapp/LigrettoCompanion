@@ -1,10 +1,9 @@
 package com.flaringapp.ligretto.core.domain.usecase
 
-import com.flaringapp.ligretto.core.domain.GameStorage
 import com.flaringapp.ligretto.core.model.Lap
+import com.flaringapp.ligretto.domain.contracts.GameRepository
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 
 interface GetCurrentLapUseCase {
 
@@ -13,10 +12,10 @@ interface GetCurrentLapUseCase {
 
 @Single
 internal class GetCurrentLapUseCaseImpl(
-    private val gameStorage: GameStorage,
+    private val repository: GameRepository,
 ) : GetCurrentLapUseCase {
 
     override fun invoke(): StateFlow<Lap?> {
-        return gameStorage.lapFlow.asStateFlow()
+        return repository.currentLapFlow
     }
 }

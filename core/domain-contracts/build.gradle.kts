@@ -30,7 +30,12 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api(project(":core:model"))
+                api(libs.kotlinx.coroutines.core)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 api(libs.kotlin.test)
