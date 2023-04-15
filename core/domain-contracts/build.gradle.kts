@@ -4,7 +4,6 @@ plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
     id(libs.plugins.kotlin.cocoapods.get().pluginId)
     id(libs.plugins.android.library.get().pluginId)
-    id(libs.plugins.ksp.get().pluginId)
 }
 
 kotlin {
@@ -26,7 +25,7 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "core_domain"
+            baseName = "core_domain-contracts"
         }
     }
 
@@ -34,12 +33,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":core:model"))
-                implementation(project(":core:domain-contracts"))
                 api(libs.kotlinx.coroutines.core)
-                api(libs.kotlinx.datetime)
-                api(libs.napier)
-                api(libs.koin.core)
-                api(libs.koin.annotations)
             }
         }
         val commonTest by getting {
@@ -71,17 +65,9 @@ kotlin {
 }
 
 android {
-    namespace = "com.flaringapp.ligretto.domain"
+    namespace = "com.flaringapp.ligretto.domain.contracts"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
     }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.compiler)
-    add("kspAndroid", libs.koin.compiler)
-    add("kspIosX64", libs.koin.compiler)
-    add("kspIosArm64", libs.koin.compiler)
-    add("kspIosSimulatorArm64", libs.koin.compiler)
 }

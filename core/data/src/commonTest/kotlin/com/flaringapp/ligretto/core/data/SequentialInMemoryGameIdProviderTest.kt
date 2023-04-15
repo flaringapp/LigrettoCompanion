@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.core.domain
+package com.flaringapp.ligretto.core.data
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

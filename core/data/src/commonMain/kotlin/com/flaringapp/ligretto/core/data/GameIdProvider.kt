@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.core.domain
+package com.flaringapp.ligretto.core.data
 
 import com.flaringapp.ligretto.core.model.GameId
 import org.koin.core.annotation.Single

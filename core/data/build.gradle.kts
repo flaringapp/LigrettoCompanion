@@ -26,20 +26,17 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "core_domain"
+            baseName = "core_data"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":core:model"))
+                implementation(project(":core:model"))
                 implementation(project(":core:domain-contracts"))
-                api(libs.kotlinx.coroutines.core)
-                api(libs.kotlinx.datetime)
-                api(libs.napier)
                 api(libs.koin.core)
-                api(libs.koin.annotations)
+                implementation(libs.koin.annotations)
             }
         }
         val commonTest by getting {
@@ -71,7 +68,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.flaringapp.ligretto.domain"
+    namespace = "com.flaringapp.ligretto.core.data"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
