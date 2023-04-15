@@ -21,7 +21,7 @@ internal class StartLapUseCaseImpl(
             players = game.players,
         )
 
-        repository.setCurrentLap(lap)
+        repository.startLap(lap)
 
         return lap
     }

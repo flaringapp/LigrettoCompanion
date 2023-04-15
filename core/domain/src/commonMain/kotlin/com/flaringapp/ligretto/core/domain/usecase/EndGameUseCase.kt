@@ -15,9 +15,6 @@ internal class EndGameUseCaseImpl(
 ) : EndGameUseCase {
 
     override fun invoke(): Game? {
-        return repository.currentGameFlow.value.also {
-            repository.setCurrentGame(null)
-            repository.setCurrentLap(null)
-        }
+        return repository.endGame()
     }
 }

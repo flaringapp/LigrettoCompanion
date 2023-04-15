@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 @Single
 internal class GameRepositoryImpl(
     private val gameStorage: GameStorage,
+    private val gameIdProvider: GameIdProvider,
 ) : GameRepository {
 
     override val currentGameFlow: StateFlow<Game?>
@@ -18,11 +19,31 @@ internal class GameRepositoryImpl(
     override val currentLapFlow: StateFlow<Lap?>
         get() = gameStorage.lapFlow.asStateFlow()
 
-    override fun setCurrentGame(game: Game?) {
-        gameStorage.gameFlow.value = game
+    override fun startGame(game: Game): Game {
+        val id = gameIdProvider.provide()
+        val newGame = game.copy(id = id)
+
+        gameStorage.gameFlow.value = newGame
+        return newGame
     }
 
-    override fun setCurrentLap(lap: Lap?) {
+    override fun endGame(): Game? {
+        return currentGameFlow.value.also {
+            gameStorage.lapFlow.value = null
+            gameStorage.gameFlow.value = null
+        }
+    }
+
+    override fun startLap(lap: Lap) {
         gameStorage.lapFlow.value = lap
+    }
+
+    override fun updateLapCards(lap: Lap) {
+        gameStorage.lapFlow.value = lap
+    }
+
+    override fun endLap(gameWithLap: Game) {
+        gameStorage.gameFlow.value = gameWithLap
+        gameStorage.lapFlow.value = null
     }
 }

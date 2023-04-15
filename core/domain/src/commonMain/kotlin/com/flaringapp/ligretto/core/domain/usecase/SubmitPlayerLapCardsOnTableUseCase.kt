@@ -22,6 +22,6 @@ internal class SubmitPlayerLapCardsOnTableUseCaseImpl(
 
         val newLap = lap.copy(cardsOnTable = newCardsOnTable)
 
-        repository.setCurrentLap(newLap)
+        repository.updateLapCards(newLap)
     }
 }

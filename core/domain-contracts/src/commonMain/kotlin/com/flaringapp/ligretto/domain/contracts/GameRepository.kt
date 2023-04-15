@@ -9,7 +9,11 @@ interface GameRepository {
     val currentGameFlow: StateFlow<Game?>
     val currentLapFlow: StateFlow<Lap?>
 
-    fun setCurrentGame(game: Game?)
-    fun setCurrentLap(lap: Lap?)
+    fun startGame(game: Game): Game
+    fun endGame(): Game?
+
+    fun startLap(lap: Lap)
+    fun updateLapCards(lap: Lap)
+    fun endLap(gameWithLap: Game)
 
 }

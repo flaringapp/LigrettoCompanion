@@ -22,8 +22,7 @@ internal class EndLapUseCaseImpl(
 
         val gameWithNewLap = gameLapApplier.apply(game, lap)
 
-        repository.setCurrentGame(gameWithNewLap)
-        repository.setCurrentLap(null)
+        repository.endLap(gameWithNewLap)
 
         return gameWithNewLap
     }
