@@ -1,10 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-// https://youtrack.jetbrains.com/issue/KTIJ-19369
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.android.application.get().pluginId)
-    id(libs.plugins.kotlin.android.get().pluginId)
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
     id("ligretto.android.ksp")
