@@ -12,8 +12,6 @@ kotlin {
                 api(libs.kotlinx.coroutines.core)
                 api(libs.kotlinx.datetime)
                 api(libs.napier)
-                api(libs.koin.core)
-                api(libs.koin.annotations)
             }
         }
     }
