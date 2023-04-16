@@ -5,9 +5,10 @@
 plugins {
     id(libs.plugins.android.application.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
-    id(libs.plugins.ksp.get().pluginId)
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
+    id("ligretto.android.ksp")
+    id("ligretto.android.koin.ksp")
 }
 
 android {
@@ -26,11 +27,6 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    androidComponents.onVariants { variant ->
-        kotlin.sourceSets.findByName(variant.name)?.kotlin?.srcDirs(
-            file("$buildDir/generated/ksp/${variant.name}/kotlin")
-        )
     }
 }
 
@@ -60,7 +56,5 @@ dependencies {
 
     implementation(libs.google.accompanist.systemUiController)
 
-    implementation(libs.koin.android)
     implementation(libs.koin.compose)
-    ksp(libs.koin.compiler)
 }

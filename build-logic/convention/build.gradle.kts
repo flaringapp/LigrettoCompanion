@@ -28,6 +28,14 @@ gradlePlugin {
             id = "ligretto.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidKsp") {
+            id = "ligretto.android.ksp"
+            implementationClass = "AndroidKspConventionPlugin"
+        }
+        register("androidKoinKsp") {
+            id = "ligretto.android.koin.ksp"
+            implementationClass = "AndroidKoinKspConventionPlugin"
+        }
         register("multiplatformLibrary") {
             id = "ligretto.multiplatform.library"
             implementationClass = "MultiplatformLibraryConventionPlugin"
