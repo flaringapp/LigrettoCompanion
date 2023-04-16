@@ -24,6 +24,10 @@ gradlePlugin {
             id = "ligretto.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "ligretto.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
         register("androidLibraryCompose") {
             id = "ligretto.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
