@@ -6,16 +6,14 @@ plugins {
     id(libs.plugins.android.application.get().pluginId)
     id(libs.plugins.kotlin.android.get().pluginId)
     id(libs.plugins.ksp.get().pluginId)
+    id("ligretto.android.application")
     id("ligretto.android.application.compose")
 }
 
 android {
     namespace = "com.flaringapp.ligretto.android"
-    compileSdk = 33
     defaultConfig {
         applicationId = "com.flaringapp.ligretto.android"
-        minSdk = 24
-        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -28,13 +26,6 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     androidComponents.onVariants { variant ->
         kotlin.sourceSets.findByName(variant.name)?.kotlin?.srcDirs(

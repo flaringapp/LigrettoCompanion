@@ -16,6 +16,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplication") {
+            id = "ligretto.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
         register("androidApplicationCompose") {
             id = "ligretto.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
