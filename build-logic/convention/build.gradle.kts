@@ -16,6 +16,14 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplicationCompose") {
+            id = "ligretto.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "ligretto.android.library.compose"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
         register("multiplatformLibrary") {
             id = "ligretto.multiplatform.library"
             implementationClass = "MultiplatformLibraryConventionPlugin"
