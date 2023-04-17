@@ -3,10 +3,9 @@ package com.flaringapp.ligretto
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-@Suppress("UnusedReceiverParameter")
 internal fun Project.configureKotlinAndroid(
     extension: CommonExtension<*, *, *, *>,
 ): Unit = with(extension) {
@@ -21,11 +20,9 @@ internal fun Project.configureKotlinAndroid(
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_11.toString()
+        }
     }
-}
-
-internal fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
-    (this as ExtensionAware).extensions.configure("kotlinOptions", block)
 }
