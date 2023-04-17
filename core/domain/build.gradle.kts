@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 plugins {
     id("ligretto.multiplatform.library")
     id("ligretto.multiplatform.koin.ksp")
