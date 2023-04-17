@@ -1,13 +1,13 @@
 [versions]
-kotlin = "1.8.10"
-kotlinKsp = "1.8.10-1.0.9"
+kotlin = "1.8.20"
+kotlinKsp = "1.8.20-1.0.10"
 kotlinCoroutines = "1.6.4"
 androidGradlePlugin = "7.4.2"
 androidxLifecycle = "2.5.1"
 androidxNavigation = "2.5.3"
-composeCompiler = "1.4.4"
-koinCore = "3.3.3"
-koinAnnotations = "1.1.1"
+composeCompiler = "1.4.5"
+koinCore = "3.4.0"
+koinAnnotations = "1.2.0"
 
 [libraries]
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
@@ -30,7 +30,7 @@ androidx-lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-r
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.5.3" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2023.03.00" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2023.04.00" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -40,15 +40,15 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 # Android compose accompanist
-google-accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version = "0.30.0" }
+google-accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version = "0.30.1" }
 
 # Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinCore" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koinCore" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
-koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.3.3" }
-koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.2" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.4.0" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.3" }
 
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
