@@ -10,26 +10,28 @@ import java.io.File
 @Suppress("UnstableApiUsage")
 internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *>,
-) = with(commonExtension) {
-    buildFeatures {
-        compose = true
-    }
+) {
+    with(commonExtension) {
+        buildFeatures {
+            compose = true
+        }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion =
-            libs.findVersion("composeCompiler").get().toString()
+        composeOptions {
+            kotlinCompilerExtensionVersion =
+                libs.findVersion("composeCompiler").get().toString()
+        }
+
+        dependencies {
+            val bom = libs.findLibrary("androidx-compose-bom").get()
+            add("implementation", platform(bom))
+            add("androidTestImplementation", platform(bom))
+        }
     }
 
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
         }
-    }
-
-    dependencies {
-        val bom = libs.findLibrary("androidx-compose-bom").get()
-        add("implementation", platform(bom))
-        add("androidTestImplementation", platform(bom))
     }
 }
 

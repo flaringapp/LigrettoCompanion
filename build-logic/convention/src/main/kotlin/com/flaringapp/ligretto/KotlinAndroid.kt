@@ -8,16 +8,18 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.configureKotlinAndroid(
     extension: CommonExtension<*, *, *, *>,
-): Unit = with(extension) {
-    compileSdk = 33
+) {
+    with(extension) {
+        compileSdk = 33
 
-    defaultConfig {
-        minSdk = 24
-    }
+        defaultConfig {
+            minSdk = 24
+        }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
     }
 
     tasks.withType<KotlinCompile>().configureEach {
