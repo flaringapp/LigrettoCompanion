@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.core.domain.usecase
 
- import com.flaringapp.ligretto.core.model.Player
+import com.flaringapp.ligretto.core.model.Player
 import com.flaringapp.ligretto.domain.contracts.GameRepository
 import org.koin.core.annotation.Single
 

@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.core.domain.usecase
 
-import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.domain.model.GameConfig
+import com.flaringapp.ligretto.core.model.Game
 import com.flaringapp.ligretto.core.model.GameId
 import com.flaringapp.ligretto.core.model.end.GameEndConditions
 import com.flaringapp.ligretto.core.model.end.GameEndScoreCondition

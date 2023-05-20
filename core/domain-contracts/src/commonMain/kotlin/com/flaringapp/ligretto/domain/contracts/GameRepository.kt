@@ -15,5 +15,4 @@ interface GameRepository {
     fun startLap(lap: Lap)
     fun updateLapCards(lap: Lap)
     fun endLap(gameWithLap: Game)
-
 }

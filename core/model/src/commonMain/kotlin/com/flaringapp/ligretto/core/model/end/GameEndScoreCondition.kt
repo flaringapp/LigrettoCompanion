@@ -12,4 +12,3 @@ data class GameEndScoreCondition(
         return maxScore >= targetScore
     }
 }
-
