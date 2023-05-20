@@ -22,6 +22,10 @@ android {
             isMinifyEnabled = false
         }
     }
+    lint {
+        checkAllWarnings = true
+        checkDependencies = true
+    }
 }
 
 dependencies {
