@@ -2,7 +2,7 @@
 kotlin = "1.8.20"
 kotlinKsp = "1.8.20-1.0.10"
 kotlinCoroutines = "1.6.4"
-androidGradlePlugin = "8.0.0"
+androidGradlePlugin = "8.0.1"
 androidxLifecycle = "2.5.1"
 androidxNavigation = "2.5.3"
 composeCompiler = "1.4.5"
