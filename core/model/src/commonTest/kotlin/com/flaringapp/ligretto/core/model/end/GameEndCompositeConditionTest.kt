@@ -44,7 +44,6 @@ internal class GameEndCompositeConditionTest {
         assertTrue(condition.matches(mockGame()))
     }
 
-
     @Test
     fun `returns false given any of multiple conditions is false`() {
         val condition = GameEndCompositeCondition(
