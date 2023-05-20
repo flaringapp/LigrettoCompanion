@@ -1,10 +1,10 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
-import com.flaringapp.ligretto.core.domain.model.GameConfig
-import com.flaringapp.ligretto.core.domain.usecase.StartGameUseCase
-import com.flaringapp.ligretto.core.model.Player
-import com.flaringapp.ligretto.core.model.Score
+import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
+import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
+import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.android.annotation.KoinViewModel
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours

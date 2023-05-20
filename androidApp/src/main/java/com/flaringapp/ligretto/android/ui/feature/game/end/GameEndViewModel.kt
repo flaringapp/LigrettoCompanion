@@ -2,8 +2,8 @@ package com.flaringapp.ligretto.android.ui.feature.game.end
 
 import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
 import com.flaringapp.ligretto.android.ui.mvi.dispatch
-import com.flaringapp.ligretto.core.domain.usecase.EndGameUseCase
-import com.flaringapp.ligretto.core.model.Game
+import com.flaringapp.ligretto.feature.game.domain.usecase.EndGameUseCase
+import com.flaringapp.ligretto.feature.game.model.Game
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
