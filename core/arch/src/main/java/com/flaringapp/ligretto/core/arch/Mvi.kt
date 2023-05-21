@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.mvi
+package com.flaringapp.ligretto.core.arch
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow

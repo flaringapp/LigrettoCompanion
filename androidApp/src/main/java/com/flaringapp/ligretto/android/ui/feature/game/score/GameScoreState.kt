@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.android.ui.feature.game.score
 
 import androidx.compose.runtime.Immutable
-import com.flaringapp.ligretto.android.ui.mvi.UiState
+import com.flaringapp.ligretto.core.arch.UiState
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 

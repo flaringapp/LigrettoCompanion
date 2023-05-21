@@ -1,8 +1,8 @@
 package com.flaringapp.ligretto.android.ui.feature.game.lap
 
 import androidx.lifecycle.viewModelScope
-import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
-import com.flaringapp.ligretto.android.ui.mvi.dispatch
+import com.flaringapp.ligretto.core.arch.MviViewModel
+import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase

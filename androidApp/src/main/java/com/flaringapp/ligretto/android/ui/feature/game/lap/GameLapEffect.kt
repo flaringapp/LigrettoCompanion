@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.lap
 
-import com.flaringapp.ligretto.android.ui.mvi.UiEffect
+import com.flaringapp.ligretto.core.arch.UiEffect
 
 sealed interface GameLapEffect : UiEffect {
 

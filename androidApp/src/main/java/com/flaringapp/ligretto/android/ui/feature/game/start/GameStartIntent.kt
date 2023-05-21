@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
-import com.flaringapp.ligretto.android.ui.mvi.UiIntent
+import com.flaringapp.ligretto.core.arch.UiIntent
 
 sealed interface GameStartIntent : UiIntent {
 

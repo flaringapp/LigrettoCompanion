@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
 import androidx.compose.runtime.Immutable
-import com.flaringapp.ligretto.android.ui.mvi.UiState
+import com.flaringapp.ligretto.core.arch.UiState
 
 data class GameStartState(
     val players: Players = Players(),

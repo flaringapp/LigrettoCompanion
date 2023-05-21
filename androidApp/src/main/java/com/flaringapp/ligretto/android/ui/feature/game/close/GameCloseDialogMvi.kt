@@ -1,9 +1,9 @@
 package com.flaringapp.ligretto.android.ui.feature.game.close
 
-import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
-import com.flaringapp.ligretto.android.ui.mvi.UiEffect
-import com.flaringapp.ligretto.android.ui.mvi.UiIntent
-import com.flaringapp.ligretto.android.ui.mvi.UiState
+import com.flaringapp.ligretto.core.arch.MviViewModel
+import com.flaringapp.ligretto.core.arch.UiEffect
+import com.flaringapp.ligretto.core.arch.UiIntent
+import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import org.koin.android.annotation.KoinViewModel
 

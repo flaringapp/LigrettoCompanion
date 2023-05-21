@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.mvi
+package com.flaringapp.ligretto.core.arch
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

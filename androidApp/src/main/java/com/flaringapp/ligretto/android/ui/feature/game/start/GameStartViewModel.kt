@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.start
 
-import com.flaringapp.ligretto.android.ui.mvi.MviViewModel
+import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Player

@@ -38,14 +38,13 @@ android {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
+    implementation(project(":core:arch"))
     implementation(project(":feature:game:data"))
     implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.androidx.core.splashScreen)
-    implementation(libs.androidx.lifecycle.core)
-    implementation(libs.androidx.lifecycle.viewModel)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.compose)

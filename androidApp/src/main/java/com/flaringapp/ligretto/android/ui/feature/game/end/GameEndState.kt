@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.android.ui.feature.game.end
 
-import com.flaringapp.ligretto.android.ui.mvi.UiState
+import com.flaringapp.ligretto.core.arch.UiState
 
 data class GameEndState(
     val winners: Winners? = null,
