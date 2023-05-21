@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
+    implementation(project(":core:ui"))
     implementation(project(":feature:game:data"))
     implementation(project(":feature:game:domain"))
 

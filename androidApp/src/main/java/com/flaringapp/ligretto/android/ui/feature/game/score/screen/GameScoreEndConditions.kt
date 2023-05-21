@@ -12,10 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.android.R
-import com.flaringapp.ligretto.android.ui.common.Ticker
 import com.flaringapp.ligretto.android.ui.feature.game.score.GameScoreState
 import com.flaringapp.ligretto.android.ui.feature.game.score.screen.preview.GameScoreEndConditionsProvider
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.Ticker
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes

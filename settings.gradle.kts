@@ -19,6 +19,7 @@ dependencyResolutionManagement {
 rootProject.name = "Ligretto_Companion"
 include(":androidApp")
 include(":core:designsystem")
+include(":core:ui")
 include(":feature:game:model")
 include(":feature:game:domain")
 include(":feature:game:domain-contracts")

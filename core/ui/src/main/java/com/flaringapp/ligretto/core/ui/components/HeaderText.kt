@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.common
+package com.flaringapp.ligretto.core.ui.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

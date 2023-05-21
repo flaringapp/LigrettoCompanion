@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.utils
+package com.flaringapp.ligretto.core.ui.misc
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.unit.Density
