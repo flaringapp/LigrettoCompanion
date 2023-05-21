@@ -36,12 +36,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
     implementation(project(":feature:game:data"))
     implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashScreen)
     implementation(libs.androidx.lifecycle.core)
     implementation(libs.androidx.lifecycle.viewModel)
@@ -49,15 +49,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.compose)
     implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.runtime.liveData)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.preview)
-    debugImplementation(libs.androidx.compose.ui.debugTooling)
-
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material.icons)
 
     implementation(libs.google.accompanist.systemUiController)
 

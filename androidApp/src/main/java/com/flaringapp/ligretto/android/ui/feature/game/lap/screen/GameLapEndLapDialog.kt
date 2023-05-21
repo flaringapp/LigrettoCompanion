@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.android.R
-import com.flaringapp.ligretto.android.ui.AppTheme
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
 fun GameLapEndLapDialog(

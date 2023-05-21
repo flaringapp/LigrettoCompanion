@@ -12,9 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.android.R
-import com.flaringapp.ligretto.android.ui.AppTheme
 import com.flaringapp.ligretto.android.ui.feature.game.end.GameEndState.PlayerResult
 import com.flaringapp.ligretto.android.ui.feature.game.end.screen.preview.GameEndPlayerResultProvider
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
 fun GameEndFirstPlace(

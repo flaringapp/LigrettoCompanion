@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.android.ui.AppTheme
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 private const val ANIM_TIME = 200
 
