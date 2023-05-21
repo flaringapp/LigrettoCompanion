@@ -38,6 +38,7 @@ android {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
     implementation(project(":core:arch"))
     implementation(project(":feature:game:data"))
     implementation(project(":feature:game:domain"))
@@ -48,7 +49,6 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.compose)
-    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.google.accompanist.systemUiController)
 

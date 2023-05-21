@@ -20,6 +20,7 @@ rootProject.name = "Ligretto_Companion"
 include(":androidApp")
 include(":core:designsystem")
 include(":core:ui")
+include(":core:navigation")
 include(":core:arch")
 include(":feature:game:model")
 include(":feature:game:domain")

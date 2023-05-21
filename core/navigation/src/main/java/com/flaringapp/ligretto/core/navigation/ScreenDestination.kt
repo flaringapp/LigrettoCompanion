@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.utils.navigation
+package com.flaringapp.ligretto.core.navigation
 
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavDeepLink

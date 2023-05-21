@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.utils.navigation
+package com.flaringapp.ligretto.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry

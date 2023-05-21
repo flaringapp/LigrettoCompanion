@@ -13,11 +13,11 @@ import com.flaringapp.ligretto.android.ui.feature.game.score.GameScoreDestinatio
 import com.flaringapp.ligretto.android.ui.feature.game.score.GameScoreScreen
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartDestination
 import com.flaringapp.ligretto.android.ui.feature.game.start.GameStartScreen
-import com.flaringapp.ligretto.android.ui.utils.navigation.ScreenDestinationWithoutArguments
-import com.flaringapp.ligretto.android.ui.utils.navigation.composable
-import com.flaringapp.ligretto.android.ui.utils.navigation.dialog
-import com.flaringapp.ligretto.android.ui.utils.navigation.navigation
-import com.flaringapp.ligretto.android.ui.utils.navigation.popUpTo
+import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import com.flaringapp.ligretto.core.navigation.composable
+import com.flaringapp.ligretto.core.navigation.dialog
+import com.flaringapp.ligretto.core.navigation.navigation
+import com.flaringapp.ligretto.core.navigation.popUpTo
 
 object GameDestination : ScreenDestinationWithoutArguments() {
 
