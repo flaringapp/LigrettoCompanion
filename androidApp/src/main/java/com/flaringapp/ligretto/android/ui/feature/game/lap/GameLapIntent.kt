@@ -1,8 +1,8 @@
 package com.flaringapp.ligretto.android.ui.feature.game.lap
 
 import com.flaringapp.ligretto.android.ui.mvi.UiIntent
-import com.flaringapp.ligretto.core.model.Lap
-import com.flaringapp.ligretto.core.model.Player
+import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.feature.game.model.Player
 
 sealed interface GameLapIntent : UiIntent {
 

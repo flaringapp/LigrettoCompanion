@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:domain"))
-    implementation(project(":core:data"))
+    implementation(project(":feature:game:data"))
+    implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
 
