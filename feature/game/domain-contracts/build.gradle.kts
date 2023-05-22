@@ -9,7 +9,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":feature:game:model"))
-                api(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
     }

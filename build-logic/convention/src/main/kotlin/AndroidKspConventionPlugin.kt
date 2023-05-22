@@ -1,4 +1,4 @@
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.AndroidComponentsExtension
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -25,7 +25,7 @@ class AndroidKspConventionPlugin : Plugin<Project> {
 }
 
 internal fun Project.androidComponents(
-    configure: ApplicationAndroidComponentsExtension.() -> Unit
+    configure: AndroidComponentsExtension<*, *, *>.() -> Unit
 ) {
     (this as ExtensionAware).extensions.configure("androidComponents", configure)
 }

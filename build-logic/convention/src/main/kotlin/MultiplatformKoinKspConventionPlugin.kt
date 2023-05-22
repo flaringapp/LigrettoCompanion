@@ -20,7 +20,7 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
             sourceSets {
                 val commonMain by getting {
                     dependencies {
-                        api(libs.findLibrary("koin-core").get())
+                        implementation(libs.findLibrary("koin-core").get())
                         implementation(libs.findLibrary("koin-annotations").get())
                     }
                 }

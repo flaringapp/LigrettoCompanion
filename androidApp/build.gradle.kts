@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
@@ -18,8 +20,13 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     lint {
@@ -29,30 +36,19 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:game:data"))
-    implementation(project(":feature:game:domain"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:arch"))
+    implementation(project(":feature:home:ui"))
+    implementation(project(":feature:game:ui"))
+    implementation(project(":feature:game:di"))
 
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashScreen)
-    implementation(libs.androidx.lifecycle.core)
-    implementation(libs.androidx.lifecycle.viewModel)
 
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.compose)
-    implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.runtime.liveData)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.preview)
-    debugImplementation(libs.androidx.compose.ui.debugTooling)
-
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material.icons)
 
     implementation(libs.google.accompanist.systemUiController)
-
-    implementation(libs.koin.compose)
 }

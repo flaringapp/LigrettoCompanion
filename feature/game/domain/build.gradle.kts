@@ -11,9 +11,8 @@ kotlin {
             dependencies {
                 api(project(":feature:game:model"))
                 implementation(project(":feature:game:domain-contracts"))
-                api(libs.kotlinx.coroutines.core)
-                api(libs.kotlinx.datetime)
-                api(libs.napier)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.datetime)
             }
         }
     }

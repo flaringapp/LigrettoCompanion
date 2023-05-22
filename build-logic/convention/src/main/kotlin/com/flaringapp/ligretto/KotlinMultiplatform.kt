@@ -33,10 +33,14 @@ internal fun Project.configureKotlinMultiplatform(
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.findLibrary("napier").get())
+            }
+        }
         val commonTest by getting {
             dependencies {
-                api(libs.findLibrary("kotlin-test").get())
+                implementation(libs.findLibrary("kotlin-test").get())
             }
         }
         val androidMain by getting
