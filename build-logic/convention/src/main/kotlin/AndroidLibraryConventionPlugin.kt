@@ -20,6 +20,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         }
 
         dependencies {
+            add("implementation", libs.findLibrary("napier").get())
+
             add("androidTestImplementation", libs.findLibrary("kotlin-test").get())
             add("testImplementation", libs.findLibrary("kotlin-test").get())
         }

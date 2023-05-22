@@ -13,7 +13,6 @@ kotlin {
                 implementation(project(":feature:game:domain-contracts"))
                 api(libs.kotlinx.coroutines.core)
                 api(libs.kotlinx.datetime)
-                api(libs.napier)
             }
         }
     }
