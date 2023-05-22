@@ -4,7 +4,7 @@ import com.flaringapp.ligretto.feature.game.data.gameDataModule
 import com.flaringapp.ligretto.feature.game.domain.gameDomainModule
 import org.koin.core.KoinApplication
 
-fun KoinApplication.gameModules() {
+fun KoinApplication.gameKmmModules() {
     gameDomainModule()
     gameDataModule()
 }
