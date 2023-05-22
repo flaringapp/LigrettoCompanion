@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.datetime)
 
     implementation(libs.androidx.core.splashScreen)
 

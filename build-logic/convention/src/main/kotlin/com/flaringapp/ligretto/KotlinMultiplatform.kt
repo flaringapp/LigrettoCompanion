@@ -40,7 +40,7 @@ internal fun Project.configureKotlinMultiplatform(
         }
         val commonTest by getting {
             dependencies {
-                api(libs.findLibrary("kotlin-test").get())
+                implementation(libs.findLibrary("kotlin-test").get())
             }
         }
         val androidMain by getting
