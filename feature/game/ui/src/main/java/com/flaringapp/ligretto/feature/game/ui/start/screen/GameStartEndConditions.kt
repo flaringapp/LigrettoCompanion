@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartTimeEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.screen.preview.GameStartEndConditionsProvider
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
 internal fun GameStartEndConditions(

@@ -7,8 +7,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.ui.R as CoreUiR
 
 @Composable

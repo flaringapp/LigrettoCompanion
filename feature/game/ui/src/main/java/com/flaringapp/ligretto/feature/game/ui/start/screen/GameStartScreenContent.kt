@@ -24,14 +24,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.HeaderText
+import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState
 import com.flaringapp.ligretto.feature.game.ui.start.screen.preview.GameStartStateProvider
-import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.HeaderText
-import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
 private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"

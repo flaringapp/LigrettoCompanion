@@ -3,6 +3,11 @@ package com.flaringapp.ligretto.feature.game.ui
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptionsBuilder
+import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import com.flaringapp.ligretto.core.navigation.composable
+import com.flaringapp.ligretto.core.navigation.dialog
+import com.flaringapp.ligretto.core.navigation.navigation
+import com.flaringapp.ligretto.core.navigation.popUpTo
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDestination
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndDestination
@@ -13,11 +18,6 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreDestination
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
-import com.flaringapp.ligretto.core.navigation.composable
-import com.flaringapp.ligretto.core.navigation.dialog
-import com.flaringapp.ligretto.core.navigation.navigation
-import com.flaringapp.ligretto.core.navigation.popUpTo
 
 object GameDestination : ScreenDestinationWithoutArguments() {
 

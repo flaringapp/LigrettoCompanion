@@ -4,9 +4,9 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.flaringapp.ligretto.feature.game.ui.lap.screen.GameLapScreenContent
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import com.flaringapp.ligretto.feature.game.ui.lap.screen.GameLapScreenContent
 import org.koin.androidx.compose.getViewModel
 
 internal object GameLapDestination : ScreenDestinationWithoutArguments() {

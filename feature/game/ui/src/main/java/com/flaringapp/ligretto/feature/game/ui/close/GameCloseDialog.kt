@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
-import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.navigation.DialogDestination
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
-import com.flaringapp.ligretto.core.ui.R as CoreUiR
+import com.flaringapp.ligretto.feature.game.ui.R
 import org.koin.androidx.compose.getViewModel
+import com.flaringapp.ligretto.core.ui.R as CoreUiR
 
 internal object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestination {
 

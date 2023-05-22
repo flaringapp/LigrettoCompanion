@@ -21,13 +21,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.HeaderText
+import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.feature.game.ui.lap.GameLapIntent
 import com.flaringapp.ligretto.feature.game.ui.lap.GameLapState
 import com.flaringapp.ligretto.feature.game.ui.lap.screen.preview.GameLapStateProvider
-import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.HeaderText
-import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 
 private const val CONTENT_TYPE_HEADER = "header"
 private const val CONTENT_TYPE_PLAYER_CARDS = "player_cards"
