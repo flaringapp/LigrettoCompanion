@@ -82,7 +82,7 @@ private fun Header(
 ) {
     HeaderText(
         modifier = modifier,
-        text = stringResource(R.string.game_end_title),
+        text = stringResource(R.string.end_title),
     )
 }
 
@@ -94,8 +94,8 @@ private fun SecondPlace(
     GameEndOtherPlace(
         modifier = modifier,
         state = state,
-        placeNumber = stringResource(R.string.game_end_second_place_one),
-        placePrefix = stringResource(R.string.game_end_second_place_two),
+        placeNumber = stringResource(R.string.end_second_place_one),
+        placePrefix = stringResource(R.string.end_second_place_two),
     )
 }
 
@@ -107,8 +107,8 @@ private fun ThirdPlace(
     GameEndOtherPlace(
         modifier = modifier,
         state = state,
-        placeNumber = stringResource(R.string.game_end_third_place_one),
-        placePrefix = stringResource(R.string.game_end_third_place_two),
+        placeNumber = stringResource(R.string.end_third_place_one),
+        placePrefix = stringResource(R.string.end_third_place_two),
     )
 }
 
@@ -122,7 +122,7 @@ private fun CloseButton(
         onClick = onClick,
     ) {
         Text(
-            text = stringResource(R.string.game_end_close)
+            text = stringResource(R.string.end_close)
         )
     }
 }

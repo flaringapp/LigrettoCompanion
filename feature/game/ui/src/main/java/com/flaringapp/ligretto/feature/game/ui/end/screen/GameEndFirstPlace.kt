@@ -44,12 +44,12 @@ fun GameEndFirstPlace(
 private fun RowScope.PlaceText() {
     Text(
         modifier = Modifier.alignByBaseline(),
-        text = stringResource(R.string.game_end_first_place_one),
+        text = stringResource(R.string.end_first_place_one),
         style = MaterialTheme.typography.displayMedium,
     )
     Text(
         modifier = Modifier.alignByBaseline(),
-        text = stringResource(R.string.game_end_first_place_two),
+        text = stringResource(R.string.end_first_place_two),
         style = MaterialTheme.typography.titleMedium,
     )
 }
