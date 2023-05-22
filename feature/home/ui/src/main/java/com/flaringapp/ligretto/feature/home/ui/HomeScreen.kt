@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.feature.home
+package com.flaringapp.ligretto.feature.home.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,13 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 
-object HomeDestination : ScreenDestinationWithoutArguments() {
+internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
 
-    override val screenId: String = "home"
+    override val screenId: String = "home/main"
 }
 
 @Composable
-fun HomeScreen(
+internal fun HomeScreen(
     startGame: () -> Unit,
 ) {
     Box(

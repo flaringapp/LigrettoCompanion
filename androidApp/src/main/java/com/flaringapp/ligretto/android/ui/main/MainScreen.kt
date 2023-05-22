@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.flaringapp.ligretto.android.ui.feature.home.HomeDestination
+import com.flaringapp.ligretto.feature.home.ui.HomeDestination
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable

@@ -4,17 +4,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.flaringapp.ligretto.android.ui.feature.game.GameDestination
 import com.flaringapp.ligretto.android.ui.feature.game.gameGraph
-import com.flaringapp.ligretto.android.ui.feature.home.HomeDestination
-import com.flaringapp.ligretto.android.ui.feature.home.HomeScreen
-import com.flaringapp.ligretto.core.navigation.composable
+import com.flaringapp.ligretto.feature.home.ui.homeGraph
 
 fun NavGraphBuilder.appNavGraph(navController: NavController) {
-    composable(HomeDestination) {
-        HomeScreen(
-            startGame = navController::navigateNewGame,
-        )
-    }
-    gameGraph(navController)
+    homeGraph(
+        navController = navController,
+        startGame = navController::navigateNewGame,
+    )
+    gameGraph(
+        navController = navController,
+    )
 }
 
 private fun NavController.navigateNewGame() {
