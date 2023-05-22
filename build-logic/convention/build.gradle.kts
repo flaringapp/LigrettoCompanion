@@ -40,6 +40,10 @@ gradlePlugin {
             id = "ligretto.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidFeature") {
+            id = "ligretto.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("androidKsp") {
             id = "ligretto.android.ksp"
             implementationClass = "AndroidKspConventionPlugin"
