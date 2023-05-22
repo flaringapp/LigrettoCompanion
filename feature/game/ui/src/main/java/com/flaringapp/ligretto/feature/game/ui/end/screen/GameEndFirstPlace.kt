@@ -17,7 +17,7 @@ import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndPlayerR
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameEndFirstPlace(
+internal fun GameEndFirstPlace(
     state: PlayerResult,
     modifier: Modifier = Modifier,
 ) {

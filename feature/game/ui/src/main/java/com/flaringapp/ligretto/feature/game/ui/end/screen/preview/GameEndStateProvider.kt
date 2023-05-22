@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.end.screen.preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
 
-class GameEndStateProvider : PreviewParameterProvider<GameEndState> {
+internal class GameEndStateProvider : PreviewParameterProvider<GameEndState> {
 
     companion object {
         fun one() = GameEndState(

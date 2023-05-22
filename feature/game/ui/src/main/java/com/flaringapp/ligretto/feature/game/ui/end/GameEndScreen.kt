@@ -9,13 +9,13 @@ import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import org.koin.androidx.compose.getViewModel
 
-object GameEndDestination : ScreenDestinationWithoutArguments() {
+internal object GameEndDestination : ScreenDestinationWithoutArguments() {
 
     override val screenId: String = "game/end"
 }
 
 @Composable
-fun GameEndScreen(
+internal fun GameEndScreen(
     closeGame: () -> Unit,
     store: GameEndViewModel = getViewModel(),
 ) {

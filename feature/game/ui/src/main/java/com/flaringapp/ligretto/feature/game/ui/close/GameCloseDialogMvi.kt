@@ -7,21 +7,21 @@ import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import org.koin.android.annotation.KoinViewModel
 
-object GameCloseState : UiState
+internal object GameCloseState : UiState
 
-sealed interface GameCloseIntent : UiIntent {
+internal sealed interface GameCloseIntent : UiIntent {
     object Approve : GameCloseIntent
     object Dismiss : GameCloseIntent
 }
 
-sealed interface GameCloseEffect : UiEffect {
+internal sealed interface GameCloseEffect : UiEffect {
     object EndGame : GameCloseEffect
     object CloseGame : GameCloseEffect
     object Dismiss : GameCloseEffect
 }
 
 @KoinViewModel
-class GameCloseViewModel(
+internal class GameCloseViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
 ) : MviViewModel<GameCloseState, GameCloseIntent, GameCloseEffect>(GameCloseState) {
 

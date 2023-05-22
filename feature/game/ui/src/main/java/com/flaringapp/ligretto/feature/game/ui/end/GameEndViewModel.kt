@@ -7,7 +7,7 @@ import com.flaringapp.ligretto.feature.game.model.Game
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
-class GameEndViewModel(
+internal class GameEndViewModel(
     private val endGameUseCase: EndGameUseCase,
 ) : MviViewModel<GameEndState, GameEndIntent, GameEndEffect>(GameEndState()) {
 

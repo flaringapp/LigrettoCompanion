@@ -4,7 +4,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 
-class GameScoreStateProvider : PreviewParameterProvider<GameScoreState> {
+internal class GameScoreStateProvider : PreviewParameterProvider<GameScoreState> {
 
     override val values: Sequence<GameScoreState> = sequenceOf(
         GameScoreState(

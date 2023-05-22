@@ -4,7 +4,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.lap.GameLapState
 import com.flaringapp.ligretto.feature.game.model.Player
 
-class GameLapStateProvider : PreviewParameterProvider<GameLapState> {
+internal class GameLapStateProvider : PreviewParameterProvider<GameLapState> {
 
     companion object {
         fun empty() = GameLapState()

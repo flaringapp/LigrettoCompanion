@@ -2,12 +2,12 @@ package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.UiIntent
 
-sealed interface GameStartIntent : UiIntent {
+internal sealed interface GameStartIntent : UiIntent {
 
     object StartGame : GameStartIntent
 }
 
-sealed interface GameStartPlayersIntent : GameStartIntent {
+internal sealed interface GameStartPlayersIntent : GameStartIntent {
 
     object AddNew : GameStartPlayersIntent
 
@@ -24,16 +24,16 @@ sealed interface GameStartPlayersIntent : GameStartIntent {
     data class Remove(val id: Int) : GameStartPlayersIntent
 }
 
-sealed interface GameStartEndConditionsIntent : GameStartIntent
+internal sealed interface GameStartEndConditionsIntent : GameStartIntent
 
-sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
+internal sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
 
     data class SetEnabled(val isEnabled: Boolean) : GameStartScoreEndConditionIntent
 
     data class ValueChange(val value: String) : GameStartScoreEndConditionIntent
 }
 
-sealed interface GameStartTimeEndConditionIntent : GameStartEndConditionsIntent {
+internal sealed interface GameStartTimeEndConditionIntent : GameStartEndConditionsIntent {
 
     data class SetEnabled(val isEnabled: Boolean) : GameStartTimeEndConditionIntent
 

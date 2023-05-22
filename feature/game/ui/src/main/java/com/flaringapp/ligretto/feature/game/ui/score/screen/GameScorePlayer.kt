@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameScorePlayer(
+internal fun GameScorePlayer(
     name: String,
     score: Int,
     modifier: Modifier = Modifier,

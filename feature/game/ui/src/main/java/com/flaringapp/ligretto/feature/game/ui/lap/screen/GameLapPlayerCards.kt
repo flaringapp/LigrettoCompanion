@@ -27,7 +27,7 @@ import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameLapPlayerCards(
+internal fun GameLapPlayerCards(
     playerName: String,
     score: Int,
     cardsLeft: Int,

@@ -2,7 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.end
 
 import com.flaringapp.ligretto.core.arch.UiState
 
-data class GameEndState(
+internal data class GameEndState(
     val winners: Winners? = null,
 ) : UiState {
 

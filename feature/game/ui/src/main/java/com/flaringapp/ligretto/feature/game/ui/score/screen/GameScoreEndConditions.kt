@@ -22,7 +22,7 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun GameScoreEndConditions(
+internal fun GameScoreEndConditions(
     state: GameScoreState.EndConditions,
     modifier: Modifier = Modifier,
 ) {

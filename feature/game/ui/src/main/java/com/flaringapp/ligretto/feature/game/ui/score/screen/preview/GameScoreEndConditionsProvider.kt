@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.EndCondition
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-class GameScoreEndConditionsProvider : PreviewParameterProvider<EndConditions> {
+internal class GameScoreEndConditionsProvider : PreviewParameterProvider<EndConditions> {
 
     companion object {
         fun empty() = EndConditions()

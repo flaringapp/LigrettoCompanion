@@ -18,7 +18,7 @@ import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameStartEndConditionScore(
+internal fun GameStartEndConditionScore(
     isEnabled: Boolean,
     value: String,
     onEnabledChange: (Boolean) -> Unit,

@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.end.screen.preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 
-class GameEndPlayerResultProvider : PreviewParameterProvider<PlayerResult> {
+internal class GameEndPlayerResultProvider : PreviewParameterProvider<PlayerResult> {
 
     companion object {
         fun default() = PlayerResult(

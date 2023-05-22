@@ -16,7 +16,7 @@ import com.flaringapp.ligretto.feature.game.ui.start.screen.preview.GameStartEnd
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameStartEndConditions(
+internal fun GameStartEndConditions(
     state: EndConditions,
     dispatch: (GameStartEndConditionsIntent) -> Unit,
     modifier: Modifier = Modifier,

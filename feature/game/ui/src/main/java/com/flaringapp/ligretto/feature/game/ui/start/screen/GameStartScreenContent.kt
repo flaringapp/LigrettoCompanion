@@ -43,7 +43,7 @@ private const val KEY_HEADER_END_CONDITIONS = "_end_conditions"
 private const val KEY_HEADER_PLAYERS = "_players"
 
 @Composable
-fun GameStartScreenContent(
+internal fun GameStartScreenContent(
     state: GameStartState,
     dispatch: (GameStartIntent) -> Unit,
 ) {

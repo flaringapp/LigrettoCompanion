@@ -16,7 +16,7 @@ import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.core.ui.R as CoreUiR
 import org.koin.androidx.compose.getViewModel
 
-object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestination {
+internal object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestination {
 
     override val screenId: String = "game/close"
 
@@ -24,7 +24,7 @@ object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestina
 }
 
 @Composable
-fun GameCloseDialog(
+internal fun GameCloseDialog(
     openEnd: () -> Unit,
     closeGame: () -> Unit,
     dismiss: () -> Unit,

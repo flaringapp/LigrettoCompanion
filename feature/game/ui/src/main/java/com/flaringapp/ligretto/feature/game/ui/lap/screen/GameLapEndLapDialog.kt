@@ -12,7 +12,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.R as CoreUiR
 
 @Composable
-fun GameLapEndLapDialog(
+internal fun GameLapEndLapDialog(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
 ) {

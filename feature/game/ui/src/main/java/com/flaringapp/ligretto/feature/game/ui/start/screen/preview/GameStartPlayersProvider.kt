@@ -4,7 +4,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Player
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Players
 
-class GameStartPlayersProvider : PreviewParameterProvider<Players> {
+internal class GameStartPlayersProvider : PreviewParameterProvider<Players> {
 
     companion object {
         fun empty() = Players()

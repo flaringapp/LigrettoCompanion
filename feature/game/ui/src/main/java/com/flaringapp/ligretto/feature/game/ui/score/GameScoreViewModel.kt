@@ -9,7 +9,7 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
-class GameScoreViewModel(
+internal class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val startLapUseCase: StartLapUseCase,
 ) : MviViewModel<GameScoreState, GameScoreIntent, GameScoreEffect>(GameScoreState()) {

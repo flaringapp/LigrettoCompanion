@@ -4,7 +4,7 @@ import com.flaringapp.ligretto.core.arch.UiIntent
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.Player
 
-sealed interface GameLapIntent : UiIntent {
+internal sealed interface GameLapIntent : UiIntent {
 
     object InitDataUpdates : GameLapIntent
     data class UpdateData(

@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.start.screen.preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 
-class GameStartEndConditionsProvider : PreviewParameterProvider<EndConditions> {
+internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndConditions> {
 
     companion object {
         fun none() = EndConditions(

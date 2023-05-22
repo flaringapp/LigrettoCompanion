@@ -35,7 +35,7 @@ private const val CONTENT_TYPE_SCORE = "score"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
 
 @Composable
-fun GameScoreScreenContent(
+internal fun GameScoreScreenContent(
     state: GameScoreState,
     dispatch: (GameScoreIntent) -> Unit,
     modifier: Modifier = Modifier,

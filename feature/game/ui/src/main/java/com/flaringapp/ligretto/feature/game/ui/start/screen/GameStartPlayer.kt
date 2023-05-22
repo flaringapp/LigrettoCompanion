@@ -28,7 +28,7 @@ import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameStartPlayer(
+internal fun GameStartPlayer(
     name: String,
     isFocused: Boolean,
     onNameChange: (String) -> Unit,

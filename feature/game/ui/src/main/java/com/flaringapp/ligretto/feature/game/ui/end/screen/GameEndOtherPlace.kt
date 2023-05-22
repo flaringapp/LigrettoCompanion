@@ -15,7 +15,7 @@ import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndPlayerR
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameEndOtherPlace(
+internal fun GameEndOtherPlace(
     state: PlayerResult,
     placeNumber: String,
     placePrefix: String,

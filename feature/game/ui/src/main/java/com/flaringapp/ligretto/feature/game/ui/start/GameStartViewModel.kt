@@ -14,7 +14,7 @@ private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLim
 private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 
 @KoinViewModel
-class GameStartViewModel(
+internal class GameStartViewModel(
     private val startGameUseCase: StartGameUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
 

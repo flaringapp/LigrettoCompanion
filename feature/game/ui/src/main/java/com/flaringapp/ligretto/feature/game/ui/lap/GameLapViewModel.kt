@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @KoinViewModel
-class GameLapViewModel(
+internal class GameLapViewModel(
     private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
     private val getCurrentLapUseCase: GetCurrentLapUseCase,
     private val submitPlayerLapCardsLeftUseCase: SubmitPlayerLapCardsLeftUseCase,

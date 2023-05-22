@@ -21,7 +21,7 @@ import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GameStartEndConditionTime(
+internal fun GameStartEndConditionTime(
     isEnabled: Boolean,
     hours: String,
     minutes: String,

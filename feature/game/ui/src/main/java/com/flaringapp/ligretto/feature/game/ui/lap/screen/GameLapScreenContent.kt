@@ -34,7 +34,7 @@ private const val CONTENT_TYPE_PLAYER_CARDS = "player_cards"
 private const val CONTENT_TYPE_BUTTONS = "buttons"
 
 @Composable
-fun GameLapScreenContent(
+internal fun GameLapScreenContent(
     state: GameLapState,
     dispatch: (GameLapIntent) -> Unit,
     modifier: Modifier = Modifier,

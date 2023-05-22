@@ -25,7 +25,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 private const val ANIM_TIME = 200
 
 @Composable
-fun GameStartEndConditionItem(
+internal fun GameStartEndConditionItem(
     label: String,
     isEnabled: Boolean,
     onEnabledChange: (Boolean) -> Unit,

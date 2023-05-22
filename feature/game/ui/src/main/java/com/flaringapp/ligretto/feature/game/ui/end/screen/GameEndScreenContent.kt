@@ -22,7 +22,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
 
 @Composable
-fun GameEndScreenContent(
+internal fun GameEndScreenContent(
     state: GameEndState,
     dispatch: (GameEndIntent) -> Unit,
 ) {
@@ -129,7 +129,7 @@ private fun CloseButton(
 
 @Preview(showBackground = true)
 @Composable
-fun Preview(
+private fun Preview(
     @PreviewParameter(GameEndStateProvider::class) state: GameEndState
 ) {
     AppTheme {

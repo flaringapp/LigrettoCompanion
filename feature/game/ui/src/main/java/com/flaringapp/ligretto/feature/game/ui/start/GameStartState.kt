@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.start
 import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
 
-data class GameStartState(
+internal data class GameStartState(
     val players: Players = Players(),
     val endConditions: EndConditions = EndConditions(),
 ) : UiState {

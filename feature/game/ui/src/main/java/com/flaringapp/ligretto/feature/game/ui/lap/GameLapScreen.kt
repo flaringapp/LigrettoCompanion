@@ -9,13 +9,13 @@ import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import org.koin.androidx.compose.getViewModel
 
-object GameLapDestination : ScreenDestinationWithoutArguments() {
+internal object GameLapDestination : ScreenDestinationWithoutArguments() {
 
     override val screenId: String = "game/lap"
 }
 
 @Composable
-fun GameLapScreen(
+internal fun GameLapScreen(
     openScores: () -> Unit,
     openClose: () -> Unit,
     openEnd: () -> Unit,

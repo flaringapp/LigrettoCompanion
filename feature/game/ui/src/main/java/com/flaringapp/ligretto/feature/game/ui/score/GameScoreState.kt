@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.core.arch.UiState
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-data class GameScoreState(
+internal data class GameScoreState(
     val scores: List<PlayerScore> = emptyList(),
     val endConditions: EndConditions? = null,
 ) : UiState {
