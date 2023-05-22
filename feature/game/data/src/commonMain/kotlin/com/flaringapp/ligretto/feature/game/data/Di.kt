@@ -5,7 +5,7 @@ import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.ksp.generated.module
 
-fun KoinApplication.dataModule() = modules(DataModule().module)
+fun KoinApplication.gameDataModule() = modules(DataModule().module)
 
 @Module
 @ComponentScan

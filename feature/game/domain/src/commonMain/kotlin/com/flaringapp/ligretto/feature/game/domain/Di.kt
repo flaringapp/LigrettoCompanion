@@ -7,7 +7,7 @@ import org.koin.core.annotation.Module
 import org.koin.ksp.generated.module
 import kotlinx.datetime.Clock
 
-fun KoinApplication.domainModule() = modules(DomainModule().module)
+fun KoinApplication.gameDomainModule() = modules(DomainModule().module)
 
 @Module
 @ComponentScan
