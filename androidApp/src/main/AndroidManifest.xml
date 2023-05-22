@@ -3,6 +3,8 @@
 
     <application
         android:name=".LigrettoApp"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Splash">
