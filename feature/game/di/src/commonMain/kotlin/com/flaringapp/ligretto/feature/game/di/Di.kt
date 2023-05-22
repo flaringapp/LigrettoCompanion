@@ -1,4 +1,4 @@
-package com.flaringapp.feature.game.di
+package com.flaringapp.ligretto.feature.game.di
 
 import com.flaringapp.ligretto.feature.game.data.gameDataModule
 import com.flaringapp.ligretto.feature.game.domain.gameDomainModule

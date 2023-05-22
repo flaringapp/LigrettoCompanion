@@ -17,5 +17,5 @@ kotlin {
 }
 
 android {
-    namespace = "com.flaringapp.feature.game.di"
+    namespace = "com.flaringapp.ligretto.feature.game.di"
 }
