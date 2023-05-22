@@ -41,16 +41,14 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:arch"))
     implementation(project(":feature:home:ui"))
+    implementation(project(":feature:game:ui"))
     implementation(project(":feature:game:di"))
-    implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.datetime)
 
     implementation(libs.androidx.core.splashScreen)
 
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.compose)
 
     implementation(libs.google.accompanist.systemUiController)
 }
