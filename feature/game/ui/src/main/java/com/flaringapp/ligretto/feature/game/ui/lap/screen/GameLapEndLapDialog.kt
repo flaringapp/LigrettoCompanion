@@ -9,6 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.feature.game.ui.R
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.R as CoreUiR
 
 @Composable
 fun GameLapEndLapDialog(
@@ -28,12 +29,12 @@ fun GameLapEndLapDialog(
         },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text(text = stringResource(R.string.yes))
+                Text(text = stringResource(CoreUiR.string.yes))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text(text = stringResource(R.string.cancel))
+                Text(text = stringResource(CoreUiR.string.cancel))
             }
         }
     )

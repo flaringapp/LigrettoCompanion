@@ -13,6 +13,7 @@ import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.navigation.DialogDestination
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import com.flaringapp.ligretto.core.ui.R as CoreUiR
 import org.koin.androidx.compose.getViewModel
 
 object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestination {
@@ -61,12 +62,12 @@ private fun GameCloseDialogContent(
         },
         confirmButton = {
             TextButton(onClick = approve) {
-                Text(text = stringResource(R.string.yes))
+                Text(text = stringResource(CoreUiR.string.yes))
             }
         },
         dismissButton = {
             TextButton(onClick = dismiss) {
-                Text(text = stringResource(R.string.cancel))
+                Text(text = stringResource(CoreUiR.string.cancel))
             }
         }
     )

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="yes">Yes</string>
-    <string name="cancel">Cancel</string>
-
     <string name="start_title_end_conditions">End conditions</string>
     <string name="start_score_end_condition_label">Score limit</string>
     <string name="start_score_end_condition_placeholder">000</string>
