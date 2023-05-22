@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.main
+package com.flaringapp.ligretto.android.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

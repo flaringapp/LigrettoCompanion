@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.android.ui.main
+package com.flaringapp.ligretto.android.main
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding

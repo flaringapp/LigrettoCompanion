@@ -7,7 +7,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Splash">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
