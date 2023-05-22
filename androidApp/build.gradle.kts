@@ -52,6 +52,4 @@ dependencies {
     implementation(libs.androidx.lifecycle.compose)
 
     implementation(libs.google.accompanist.systemUiController)
-
-    implementation(libs.koin.compose)
 }

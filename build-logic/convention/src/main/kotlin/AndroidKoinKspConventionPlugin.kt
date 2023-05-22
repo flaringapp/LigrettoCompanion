@@ -14,6 +14,7 @@ class AndroidKoinKspConventionPlugin : Plugin<Project> {
 
         dependencies {
             add("implementation", libs.findLibrary("koin-android").get())
+            add("implementation", libs.findLibrary("koin-compose").get())
             add("implementation", libs.findLibrary("koin-annotations").get())
             add("ksp", libs.findLibrary("koin-compiler").get())
         }
