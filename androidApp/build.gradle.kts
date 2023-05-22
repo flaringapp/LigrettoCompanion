@@ -41,7 +41,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:arch"))
     implementation(project(":feature:home:ui"))
-    implementation(project(":feature:game:data"))
+    implementation(project(":feature:game:di"))
     implementation(project(":feature:game:domain"))
 
     implementation(libs.kotlinx.coroutines.android)
