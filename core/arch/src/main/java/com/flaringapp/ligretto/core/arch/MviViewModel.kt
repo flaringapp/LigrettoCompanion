@@ -20,7 +20,7 @@ abstract class MviViewModel<State : UiState, Intent : UiIntent, Effect : UiEffec
 
     private val stateFlow = MutableStateFlow(emptyState)
 
-    protected val effectChannel: Channel<Effect> = Channel()
+    private val effectChannel: Channel<Effect> = Channel()
 
     private val intentFlow: MutableSharedFlow<Intent> = MutableSharedFlow()
 
@@ -47,7 +47,10 @@ abstract class MviViewModel<State : UiState, Intent : UiIntent, Effect : UiEffec
     }
 
     protected inline fun setEffect(build: () -> Effect) {
-        val effect = build()
+        setEffect(build())
+    }
+
+    protected fun setEffect(effect: Effect) {
         viewModelScope.launch { effectChannel.send(effect) }
     }
 
