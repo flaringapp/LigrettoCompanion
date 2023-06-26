@@ -22,7 +22,7 @@ fun NavGraphBuilder.homeGraph(
     ) {
         composable(HomeScreenDestination) {
             HomeScreen(
-                startGame = startGame,
+                openStartGame = startGame,
             )
         }
     }
