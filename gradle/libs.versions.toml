@@ -2,11 +2,10 @@
 kotlin = "1.8.21"
 kotlinKsp = "1.8.21-1.0.11"
 kotlinCoroutines = "1.7.1"
-androidGradlePlugin = "8.0.1"
+androidGradlePlugin = "8.0.2"
 androidxLifecycle = "2.6.1"
 composeCompiler = "1.4.7"
-koinCore = "3.4.0"
-koinAnnotations = "1.2.0"
+koinAnnotations = "1.2.2"
 
 [libraries]
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
@@ -24,12 +23,12 @@ androidx-lifecycle-core = { group = "androidx.lifecycle", name = "lifecycle-comm
 androidx-lifecycle-viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 
 # Android compose
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.7.1" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.7.2" }
 androidx-lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.5.3" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.6.0" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2023.05.01" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2023.06.01" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -42,12 +41,12 @@ androidx-compose-material-icons = { group = "androidx.compose.material", name = 
 google-accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version = "0.30.1" }
 
 # Koin
-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koinCore" }
-koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koinCore" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version = "3.4.2" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version = "3.4.1" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
-koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.4.0" }
-koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.4" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.4.2" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.5" }
 
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
@@ -65,5 +64,5 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
-ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "11.3.2" }
+ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "11.4.2" }
 dependencyVersions = { id = "com.github.ben-manes.versions", version = "0.46.0" }

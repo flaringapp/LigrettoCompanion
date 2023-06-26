@@ -27,15 +27,8 @@ subprojects {
 }
 
 fun KtlintExtension.configure(buildDir: File) {
-    version.set("0.47.1")
+    version.set("0.49.1")
     android.set(true)
-
-    disabledRules.set(
-        setOf(
-            "trailing-comma-on-call-site",
-            "trailing-comma-on-declaration-site",
-        )
-    )
 
     filter {
         exclude { it.file.path.contains("${buildDir.name}/generated/") }
