@@ -30,6 +30,7 @@ fun KtlintExtension.configure(buildDir: File) {
     version.set("0.47.1")
     android.set(true)
 
+    @Suppress("DEPRECATION")
     disabledRules.set(
         setOf(
             "trailing-comma-on-call-site",
