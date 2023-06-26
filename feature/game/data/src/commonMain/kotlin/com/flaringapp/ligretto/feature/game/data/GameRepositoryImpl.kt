@@ -19,6 +19,9 @@ internal class GameRepositoryImpl(
     override val currentLapFlow: StateFlow<Lap?>
         get() = gameStorage.lapFlow.asStateFlow()
 
+    override val previousGame: StateFlow<Game?>
+        get() = gameStorage.previousGame.asStateFlow()
+
     override fun startGame(game: Game): Game {
         val id = gameIdProvider.provide()
         val newGame = game.copy(id = id)
@@ -31,6 +34,7 @@ internal class GameRepositoryImpl(
         return currentGameFlow.value.also {
             gameStorage.lapFlow.value = null
             gameStorage.gameFlow.value = null
+            gameStorage.previousGame.value = it
         }
     }
 
