@@ -3,7 +3,6 @@ package com.flaringapp.ligretto.feature.game.ui.lap
 import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.emptyUiList
-import com.flaringapp.ligretto.feature.game.model.Player
 
 internal data class GameLapState(
     val playersCards: UiList<PlayerCards> = emptyUiList(),
@@ -15,5 +14,10 @@ internal data class GameLapState(
         val score: Int,
         val cardsLeft: Int,
         val cardsOnTable: Int,
+    )
+
+    data class Player(
+        val id: Int,
+        val name: String,
     )
 }

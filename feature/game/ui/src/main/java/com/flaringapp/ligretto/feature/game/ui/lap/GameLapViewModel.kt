@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsLeftUseCase
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 @KoinViewModel
 internal class GameLapViewModel(
     private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
+    private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val getCurrentLapUseCase: GetCurrentLapUseCase,
     private val submitPlayerLapCardsLeftUseCase: SubmitPlayerLapCardsLeftUseCase,
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
@@ -34,10 +36,10 @@ internal class GameLapViewModel(
     ): GameLapState = when (intent) {
         GameLapIntent.InitDataUpdates -> initDataUpdates()
         is GameLapIntent.UpdateData -> updateData(intent)
-        is GameLapIntent.IncrementCardsLeft -> incrementCardsLeft(intent.player)
-        is GameLapIntent.DecrementCardsLeft -> decrementCardsLeft(intent.player)
-        is GameLapIntent.IncrementCardsOnTable -> incrementCardsOnTable(intent.player)
-        is GameLapIntent.DecrementCardsOnTable -> decrementCardsOnTable(intent.player)
+        is GameLapIntent.IncrementCardsLeft -> incrementCardsLeft(intent.playerId)
+        is GameLapIntent.DecrementCardsLeft -> decrementCardsLeft(intent.playerId)
+        is GameLapIntent.IncrementCardsOnTable -> incrementCardsOnTable(intent.playerId)
+        is GameLapIntent.DecrementCardsOnTable -> decrementCardsOnTable(intent.playerId)
         GameLapIntent.EndLap -> endLap()
         GameLapIntent.HideEndLapConfirmation -> hideEndLapConfirmation()
         GameLapIntent.EndLapConfirmed -> endLapConfirmed()
@@ -52,8 +54,12 @@ internal class GameLapViewModel(
     private fun handleGameUpdated(game: Game) {
         val lap = game.lastLap ?: return
         val playersCards = game.players.map { player ->
+            val uiPlayer = GameLapState.Player(
+                id = player.id,
+                name = player.name,
+            )
             GameLapState.PlayerCards(
-                player = player,
+                player = uiPlayer,
                 score = game.scores[player]?.value ?: 0,
                 cardsLeft = lap.cardsLeft[player] ?: 0,
                 cardsOnTable = lap.cardsOnTable[player] ?: 0,
@@ -72,25 +78,29 @@ internal class GameLapViewModel(
         copy(playersCards = intent.playersCards.asUiList())
     }
 
-    private fun incrementCardsLeft(player: Player) = state.also {
+    private fun incrementCardsLeft(playerId: Int) = state.also {
+        val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) + 1
         submitPlayerLapCardsLeftUseCase(player, cardsLeft)
     }
 
-    private fun decrementCardsLeft(player: Player) = state.also {
+    private fun decrementCardsLeft(playerId: Int) = state.also {
+        val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) - 1
         submitPlayerLapCardsLeftUseCase(player, cardsLeft)
     }
 
-    private fun incrementCardsOnTable(player: Player) = state.also {
+    private fun incrementCardsOnTable(playerId: Int) = state.also {
+        val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) + 1
         submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
     }
 
-    private fun decrementCardsOnTable(player: Player) = state.also {
+    private fun decrementCardsOnTable(playerId: Int) = state.also {
+        val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) - 1
         submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
@@ -112,5 +122,10 @@ internal class GameLapViewModel(
         }
 
         setEffect { GameLapEffect.OpenScores }
+    }
+
+    private fun findPlayer(id: Int): Player? {
+        val game = getCurrentGameUseCase().value ?: return null
+        return game.players.find { it.id == id }
     }
 }
