@@ -4,6 +4,8 @@ import com.flaringapp.ligretto.core.arch.UiIntent
 
 internal sealed interface GameStartIntent : UiIntent {
 
+    object FetchDataFromLastGame : GameStartIntent
+
     object StartGame : GameStartIntent
 }
 

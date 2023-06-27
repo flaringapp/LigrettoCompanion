@@ -1,9 +1,13 @@
 package com.flaringapp.ligretto.feature.game.ui
 
+import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptionsBuilder
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import com.flaringapp.ligretto.core.navigation.ScreenDestination
 import com.flaringapp.ligretto.core.navigation.composable
 import com.flaringapp.ligretto.core.navigation.dialog
 import com.flaringapp.ligretto.core.navigation.navigation
@@ -19,9 +23,26 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
 
-object GameDestination : ScreenDestinationWithoutArguments() {
+object GameDestination : ScreenDestination {
 
     override val screenId: String = "game"
+
+    override val route: String = "$screenId?restart_last_game={restart_last_game}"
+
+    override val arguments: List<NamedNavArgument> = listOf(
+        navArgument("restart_last_game") {
+            type = NavType.BoolType
+            defaultValue = false
+        },
+    )
+
+    fun route(restartLastGame: Boolean): String {
+        return "$screenId?restart_last_game=$restartLastGame"
+    }
+
+    fun restartLastGame(entry: NavBackStackEntry): Boolean {
+        return entry.arguments!!.getBoolean("restart_last_game")
+    }
 }
 
 fun NavGraphBuilder.gameGraph(navController: NavController) {
@@ -31,6 +52,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
     ) {
         composable(GameStartDestination) {
             GameStartScreen(
+                restartLastGame = GameDestination.restartLastGame(it),
                 openScore = navController::navigateGameScores,
                 openClose = navController::navigateGameClose,
             )
@@ -87,7 +109,7 @@ private fun NavController.navigateGameEnd() {
 }
 
 private fun NavController.navigateCloseGame() {
-    popBackStack(GameDestination.route(), true)
+    popBackStack(GameDestination.route, true)
 }
 
 private fun NavOptionsBuilder.closeGameScreens() {

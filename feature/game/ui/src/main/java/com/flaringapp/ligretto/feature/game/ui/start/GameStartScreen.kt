@@ -8,6 +8,7 @@ import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.game.ui.start.screen.GameStartScreenContent
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 internal object GameStartDestination : ScreenDestinationWithoutArguments() {
 
@@ -16,9 +17,10 @@ internal object GameStartDestination : ScreenDestinationWithoutArguments() {
 
 @Composable
 internal fun GameStartScreen(
+    restartLastGame: Boolean,
     openScore: () -> Unit,
     openClose: () -> Unit,
-    store: GameStartViewModel = getViewModel(),
+    store: GameStartViewModel = getViewModel { parametersOf(restartLastGame) },
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 
