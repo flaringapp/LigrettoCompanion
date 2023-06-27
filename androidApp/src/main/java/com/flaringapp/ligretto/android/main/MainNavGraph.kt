@@ -16,6 +16,8 @@ fun NavGraphBuilder.appNavGraph(navController: NavController) {
     )
 }
 
-private fun NavController.navigateNewGame() {
-    navigate(GameDestination.route())
+private fun NavController.navigateNewGame(restartLastGame: Boolean) {
+    navigate(
+        GameDestination.route(restartLastGame = restartLastGame)
+    )
 }

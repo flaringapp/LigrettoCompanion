@@ -15,15 +15,14 @@ internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
 
 @Composable
 internal fun HomeScreen(
-    openStartGame: () -> Unit,
+    openStartGame: (restartLastGame: Boolean) -> Unit,
     store: HomeViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
-            // TODO navigation argument
-            is HomeEffect.OpenStartGame -> openStartGame()
+            is HomeEffect.OpenStartGame -> openStartGame(effect.restartLastGame)
         }
     }
 

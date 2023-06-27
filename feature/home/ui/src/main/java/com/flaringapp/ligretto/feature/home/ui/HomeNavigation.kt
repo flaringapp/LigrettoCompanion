@@ -14,7 +14,7 @@ object HomeDestination : ScreenDestinationWithoutArguments() {
 @Suppress("UNUSED_PARAMETER")
 fun NavGraphBuilder.homeGraph(
     navController: NavController,
-    startGame: () -> Unit,
+    startGame: (restartLastGame: Boolean) -> Unit,
 ) {
     navigation(
         startDestination = HomeScreenDestination,

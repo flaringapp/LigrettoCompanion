@@ -1,11 +1,15 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
+import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
+import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
+import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -15,13 +19,22 @@ private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 
 @KoinViewModel
 internal class GameStartViewModel(
+    @InjectedParam restartLastGame: Boolean,
+    private val getPreviousGameUseCase: GetPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
+
+    init {
+        if (restartLastGame) {
+            dispatch { GameStartIntent.FetchDataFromLastGame }
+        }
+    }
 
     override fun reduce(
         state: GameStartState,
         intent: GameStartIntent,
     ): GameStartState = when (intent) {
+        GameStartIntent.FetchDataFromLastGame -> fetchDataFromLastGame()
         //region Players
         GameStartPlayersIntent.AddNew -> addNewPlayer()
         is GameStartPlayersIntent.ChangeName -> changePlayerName(intent.id, intent.name)
@@ -49,6 +62,56 @@ internal class GameStartViewModel(
         }
         //endregion
         GameStartIntent.StartGame -> startGame()
+    }
+
+    private fun fetchDataFromLastGame(): GameStartState {
+        val game = getPreviousGameUseCase().value ?: return state
+
+        return GameStartState(
+            players = mapUiGamePlayers(game.players),
+            endConditions = mapUiGameEndConditions(game.endConditions),
+        )
+    }
+
+    private fun mapUiGamePlayers(
+        players: List<Player>,
+    ): GameStartState.Players {
+        val list = players.map { player ->
+            GameStartState.Player(
+                id = player.id,
+                name = player.name,
+            )
+        }
+        return GameStartState.Players(
+            list = list,
+            playersIdCounter = (list.maxOfOrNull { it.id } ?: 0) + 1,
+        )
+    }
+
+    private fun mapUiGameEndConditions(
+        endConditions: GameEndConditions,
+    ): GameStartState.EndConditions {
+        val score = endConditions.score?.let {
+            GameStartState.EndConditions.ScoreLimit(
+                isEnabled = true,
+                value = it.targetScore.value.toString(),
+            )
+        } ?: GameStartState.EndConditions.ScoreLimit()
+
+        val time = endConditions.time?.let {
+            val hours = it.gameDuration.inWholeHours.hours
+            val minutes = (it.gameDuration - hours).inWholeMinutes.minutes
+            GameStartState.EndConditions.TimeLimit(
+                isEnabled = true,
+                hours = hours.inWholeHours.toString(),
+                minutes = minutes.inWholeMinutes.toString(),
+            )
+        } ?: GameStartState.EndConditions.TimeLimit()
+
+        return GameStartState.EndConditions(
+            score = score,
+            time = time,
+        )
     }
 
     private fun addNewPlayer() = updatePlayersState {
