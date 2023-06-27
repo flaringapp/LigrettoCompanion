@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.start.screen.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Player
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Players
 
@@ -10,7 +11,7 @@ internal class GameStartPlayersProvider : PreviewParameterProvider<Players> {
         fun empty() = Players()
 
         fun short() = Players(
-            list = listOf(
+            list = uiListOf(
                 Player(1, "Andreo"),
                 Player(2, "Mario"),
                 Player(3, "Olenkka"),
@@ -18,7 +19,7 @@ internal class GameStartPlayersProvider : PreviewParameterProvider<Players> {
         )
 
         fun long() = Players(
-            list = listOf(
+            list = uiListOf(
                 Player(1, "Brad"),
                 Player(2, "Lucio"),
                 Player(3, "Helen"),

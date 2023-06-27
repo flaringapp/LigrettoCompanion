@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
@@ -83,7 +84,7 @@ internal class GameStartViewModel(
             )
         }
         return GameStartState.Players(
-            list = list,
+            list = list.asUiList(),
             playersIdCounter = (list.maxOfOrNull { it.id } ?: 0) + 1,
         )
     }
@@ -118,7 +119,7 @@ internal class GameStartViewModel(
         val id = playersIdCounter + 1
         val newList = list + GameStartState.Player(id, "")
         copy(
-            list = newList,
+            list = newList.asUiList(),
             playersIdCounter = id,
             focusedPlayerId = id,
         )
@@ -129,7 +130,7 @@ internal class GameStartViewModel(
             if (player.id != id) return@map player
             player.copy(name = name)
         }
-        copy(list = newList)
+        copy(list = newList.asUiList())
     }
 
     private fun handlePlayerFocusChanged(id: Int, isFocused: Boolean) = updatePlayersState {
@@ -142,7 +143,7 @@ internal class GameStartViewModel(
 
     private fun removePlayer(id: Int) = updatePlayersState {
         val newList = list.filterNot { it.id == id }
-        copy(list = newList)
+        copy(list = newList.asUiList())
     }
 
     private fun setScoreEndConditionEnabled(isEnabled: Boolean) = updateScoreEndConditionState {

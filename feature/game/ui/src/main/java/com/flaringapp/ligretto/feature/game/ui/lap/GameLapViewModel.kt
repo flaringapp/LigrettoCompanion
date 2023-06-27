@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.lap
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
@@ -68,7 +69,7 @@ internal class GameLapViewModel(
     }
 
     private fun updateData(intent: GameLapIntent.UpdateData) = updateState {
-        copy(playersCards = intent.playersCards)
+        copy(playersCards = intent.playersCards.asUiList())
     }
 
     private fun incrementCardsLeft(player: Player) = state.also {

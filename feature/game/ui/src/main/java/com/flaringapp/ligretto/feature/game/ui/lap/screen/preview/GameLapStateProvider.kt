@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.screen.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.ui.lap.GameLapState
 
@@ -10,7 +11,7 @@ internal class GameLapStateProvider : PreviewParameterProvider<GameLapState> {
         fun empty() = GameLapState()
 
         fun filled() = GameLapState(
-            playersCards = listOf(
+            playersCards = uiListOf(
                 GameLapState.PlayerCards(
                     player = Player(1, "Andreo"),
                     score = 10,
