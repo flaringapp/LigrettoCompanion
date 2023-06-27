@@ -68,14 +68,13 @@ internal class GameLapViewModel(
 
         dispatch {
             GameLapIntent.UpdateData(
-                lap = lap,
-                playersCards = playersCards,
+                playersCards = playersCards.asUiList(),
             )
         }
     }
 
     private fun updateData(intent: GameLapIntent.UpdateData) = updateState {
-        copy(playersCards = intent.playersCards.asUiList())
+        copy(playersCards = intent.playersCards)
     }
 
     private fun incrementCardsLeft(playerId: Int) = state.also {

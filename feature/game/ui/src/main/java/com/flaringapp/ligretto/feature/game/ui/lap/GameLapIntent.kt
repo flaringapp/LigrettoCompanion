@@ -1,14 +1,13 @@
 package com.flaringapp.ligretto.feature.game.ui.lap
 
 import com.flaringapp.ligretto.core.arch.UiIntent
-import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.core.ui.ext.UiList
 
 internal sealed interface GameLapIntent : UiIntent {
 
     object InitDataUpdates : GameLapIntent
     data class UpdateData(
-        val lap: Lap,
-        val playersCards: List<GameLapState.PlayerCards>,
+        val playersCards: UiList<GameLapState.PlayerCards>,
     ) : GameLapIntent
 
     data class IncrementCardsLeft(val playerId: Int) : GameLapIntent

@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.score
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
@@ -38,7 +39,7 @@ internal class GameScoreViewModel(
 
         dispatch {
             GameScoreIntent.InitData(
-                scores = scores,
+                scores = scores.asUiList(),
                 endConditions = endConditions,
             )
         }
@@ -73,11 +74,11 @@ internal class GameScoreViewModel(
     }
 
     private fun initData(
-        scores: List<GameScoreState.PlayerScore>,
+        scores: UiList<GameScoreState.PlayerScore>,
         endConditions: GameScoreState.EndConditions?,
     ) = updateState {
         copy(
-            scores = scores.asUiList(),
+            scores = scores,
             endConditions = endConditions,
         )
     }
