@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.score
 
+import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.emptyUiList
@@ -22,6 +23,7 @@ internal data class GameScoreState(
         val time: Time? = null,
     ) {
 
+        @Immutable
         data class Time(
             val timeEnd: Instant,
             val clock: Clock,
