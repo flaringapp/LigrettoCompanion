@@ -1,4 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 // https://youtrack.jetbrains.com/issue/KTIJ-19369
@@ -10,7 +9,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.ktlintGradle)
-    alias(libs.plugins.dependencyVersions)
 }
 
 //region Ktlint configuration
@@ -33,19 +31,6 @@ fun KtlintExtension.configure(buildDir: File) {
     filter {
         exclude { it.file.path.contains("${buildDir.name}/generated/") }
     }
-}
-//endregion
-
-//region Dependency updates
-tasks.withType<DependencyUpdatesTask> {
-    rejectVersionIf {
-        isStable(currentVersion) && !isStable(candidate.version)
-    }
-}
-
-fun isStable(version: String): Boolean {
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    return regex.matches(version)
 }
 //endregion
 
