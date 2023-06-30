@@ -1,7 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
-import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
+import com.flaringapp.ligretto.core.ui.ext.UiList
+import com.flaringapp.ligretto.core.ui.ext.emptyUiList
 
 internal data class GameStartState(
     val players: Players = Players(),
@@ -9,12 +10,11 @@ internal data class GameStartState(
 ) : UiState {
 
     data class Players(
-        val list: List<Player> = emptyList(),
+        val list: UiList<Player> = emptyUiList(),
         val playersIdCounter: Int = 0,
         val focusedPlayerId: Int? = null,
     )
 
-    @Immutable
     data class Player(
         val id: Int,
         val name: String,

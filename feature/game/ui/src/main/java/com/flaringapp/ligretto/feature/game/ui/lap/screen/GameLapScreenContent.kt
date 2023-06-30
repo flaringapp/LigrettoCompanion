@@ -71,16 +71,16 @@ internal fun GameLapScreenContent(
                 cardsLeft = playersCards.cardsLeft,
                 cardsOnTable = playersCards.cardsOnTable,
                 onIncrementCardsLeft = {
-                    dispatch(GameLapIntent.IncrementCardsLeft(playersCards.player))
+                    dispatch(GameLapIntent.IncrementCardsLeft(playersCards.player.id))
                 },
                 onDecrementCardsLeft = {
-                    dispatch(GameLapIntent.DecrementCardsLeft(playersCards.player))
+                    dispatch(GameLapIntent.DecrementCardsLeft(playersCards.player.id))
                 },
                 onIncrementCardsOnTable = {
-                    dispatch(GameLapIntent.IncrementCardsOnTable(playersCards.player))
+                    dispatch(GameLapIntent.IncrementCardsOnTable(playersCards.player.id))
                 },
                 onDecrementCardsOnTable = {
-                    dispatch(GameLapIntent.DecrementCardsOnTable(playersCards.player))
+                    dispatch(GameLapIntent.DecrementCardsOnTable(playersCards.player.id))
                 },
             )
 

@@ -2,15 +2,16 @@ package com.flaringapp.ligretto.feature.game.ui.score
 
 import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
+import com.flaringapp.ligretto.core.ui.ext.UiList
+import com.flaringapp.ligretto.core.ui.ext.emptyUiList
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
 internal data class GameScoreState(
-    val scores: List<PlayerScore> = emptyList(),
+    val scores: UiList<PlayerScore> = emptyUiList(),
     val endConditions: EndConditions? = null,
 ) : UiState {
 
-    @Immutable
     data class PlayerScore(
         val id: Int,
         val playerName: String,
@@ -22,6 +23,7 @@ internal data class GameScoreState(
         val time: Time? = null,
     ) {
 
+        @Immutable
         data class Time(
             val timeEnd: Instant,
             val clock: Clock,
