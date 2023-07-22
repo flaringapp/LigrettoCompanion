@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.android
 
 import android.app.Application
+import com.flaringapp.ligretto.core.database.coreDatabaseModule
 import com.flaringapp.ligretto.feature.game.di.gameKmmModules
 import com.flaringapp.ligretto.feature.game.ui.gameUiModule
 import com.flaringapp.ligretto.feature.home.ui.homeUiModule
@@ -14,6 +15,7 @@ class LigrettoApp : Application() {
 
         startKoin {
             androidContext(this@LigrettoApp)
+            coreDatabaseModule()
             homeUiModule()
             gameKmmModules()
             gameUiModule()
