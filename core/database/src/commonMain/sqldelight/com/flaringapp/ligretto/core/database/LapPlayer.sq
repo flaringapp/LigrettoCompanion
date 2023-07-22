@@ -1,0 +1,11 @@
+CREATE TABLE lapPlayer (
+  game_id INTEGER NOT NULL,
+  lap_number INTEGER NOT NULL,
+  player_id INTEGER NOT NULL,
+  cards_left INTEGER DEFAULT 0 NOT NULL,
+  cards_on_table INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY (game_id, lap_number, player_id),
+  FOREIGN KEY (game_id) REFERENCES game (id) ON DELETE CASCADE,
+  FOREIGN KEY (game_id, lap_number) REFERENCES lap (game_id, number) ON DELETE CASCADE,
+  FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
+);

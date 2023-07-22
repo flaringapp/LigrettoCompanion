@@ -1,7 +1,12 @@
 CREATE TABLE game (
-  id INTEGER PRIMARY KEY NOT NULL
+  id INTEGER PRIMARY KEY NOT NULL,
+  time_started INTEGER NOT NULL,
+  completed_lap_number INTEGER,
+  target_score INTEGER,
+  duration_hours INTEGER,
+  duration_minutes INTEGER,
+  FOREIGN KEY (completed_lap_number) REFERENCES lap (number) ON DELETE SET NULL
 );
 
-selectAll:
-SELECT *
-FROM game;
+CREATE INDEX idx_game_time_started ON game (time_started);
+

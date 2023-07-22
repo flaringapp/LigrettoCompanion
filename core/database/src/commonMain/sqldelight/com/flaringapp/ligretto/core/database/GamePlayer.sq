@@ -1,0 +1,8 @@
+CREATE TABLE gamePlayer (
+  game_id INTEGER NOT NULL,
+  player_id INTEGER NOT NULL,
+  score INTEGER NOT NULL,
+  PRIMARY KEY (game_id, player_id),
+  FOREIGN KEY (game_id) REFERENCES game (id) ON DELETE CASCADE,
+  FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
+);

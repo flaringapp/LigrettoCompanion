@@ -1,0 +1,6 @@
+CREATE TABLE lap (
+  game_id INTEGER NOT NULL,
+  number INTEGER NOT NULL,
+  PRIMARY KEY (game_id, number),
+  FOREIGN KEY (game_id) REFERENCES game (id) ON DELETE CASCADE
+);

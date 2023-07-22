@@ -1,0 +1,6 @@
+CREATE TABLE player (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX idx_player_name ON player (name);
