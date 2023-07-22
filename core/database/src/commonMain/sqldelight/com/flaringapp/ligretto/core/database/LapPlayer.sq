@@ -9,3 +9,12 @@ CREATE TABLE lapPlayer (
   FOREIGN KEY (game_id, lap_number) REFERENCES lap (game_id, number) ON DELETE CASCADE,
   FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
 );
+
+insert:
+INSERT INTO lapPlayer (game_id, lap_number, player_id)
+VALUES (?, ?, ?);
+
+updateCards:
+UPDATE lapPlayer
+SET cards_left = ?, cards_on_table = ?
+WHERE game_id = ? AND lap_number = ? AND player_id = ?;

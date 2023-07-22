@@ -4,3 +4,7 @@ CREATE TABLE lap (
   PRIMARY KEY (game_id, number),
   FOREIGN KEY (game_id) REFERENCES game (id) ON DELETE CASCADE
 );
+
+insert:
+INSERT INTO lap(game_id, number)
+VALUES (?, ?);
