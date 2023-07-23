@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.domain.usecase
 
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
-import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
