@@ -77,28 +77,28 @@ internal class GameLapViewModel(
         copy(playersCards = intent.playersCards)
     }
 
-    private fun incrementCardsLeft(playerId: Int) = state.also {
+    private fun incrementCardsLeft(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) + 1
         submitPlayerLapCardsLeftUseCase(player, cardsLeft)
     }
 
-    private fun decrementCardsLeft(playerId: Int) = state.also {
+    private fun decrementCardsLeft(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) - 1
         submitPlayerLapCardsLeftUseCase(player, cardsLeft)
     }
 
-    private fun incrementCardsOnTable(playerId: Int) = state.also {
+    private fun incrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) + 1
         submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
     }
 
-    private fun decrementCardsOnTable(playerId: Int) = state.also {
+    private fun decrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) - 1
@@ -123,7 +123,7 @@ internal class GameLapViewModel(
         setEffect { GameLapEffect.OpenScores }
     }
 
-    private fun findPlayer(id: Int): Player? {
+    private fun findPlayer(id: Long): Player? {
         val game = getCurrentGameUseCase().value ?: return null
         return game.players.find { it.id == id }
     }

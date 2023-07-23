@@ -79,7 +79,7 @@ internal class GameStartViewModel(
     ): GameStartState.Players {
         val list = players.map { player ->
             GameStartState.Player(
-                id = player.id,
+                id = player.id.toInt(), // TODO fix
                 name = player.name,
             )
         }
@@ -205,7 +205,7 @@ internal class GameStartViewModel(
     private fun createGameConfig(): GameConfig {
         val players = state.players.list.map { player ->
             Player(
-                id = player.id,
+                id = player.id.toLong(),
                 name = player.name,
             )
         }

@@ -17,7 +17,7 @@ internal data class GameLapState(
     )
 
     data class Player(
-        val id: Int,
+        val id: Long,
         val name: String,
     )
 }
