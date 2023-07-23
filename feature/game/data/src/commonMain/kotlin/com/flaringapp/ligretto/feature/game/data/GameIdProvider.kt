@@ -10,7 +10,7 @@ internal interface GameIdProvider {
 @Single
 internal class SequentialInMemoryGameIdProvider : GameIdProvider {
 
-    private var counter = 1
+    private var counter = 1L
 
     override fun provide(): GameId {
         return GameId(counter).also { counter++ }
