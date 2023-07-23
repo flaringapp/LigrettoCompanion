@@ -1,9 +1,7 @@
 CREATE TABLE player (
   id INTEGER PRIMARY KEY NOT NULL,
-  name TEXT NOT NULL
+  name TEXT NOT NULL UNIQUE
 );
-
-CREATE UNIQUE INDEX idx_player_name ON player (name);
 
 insert:
 INSERT INTO player(name)
