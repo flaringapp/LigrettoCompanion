@@ -10,6 +10,8 @@ CREATE TABLE game (
 
 CREATE INDEX idx_game_time_started ON game (time_started);
 
+rowid: SELECT last_insert_rowid();
+
 insert:
 INSERT INTO game(time_started, target_score, duration_hours, duration_minutes)
 VALUES (?, ?, ?, ?);

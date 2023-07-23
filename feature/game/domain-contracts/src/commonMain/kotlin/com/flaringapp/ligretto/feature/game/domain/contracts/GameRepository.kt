@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.domain.contracts
 
 import com.flaringapp.ligretto.feature.game.model.Game
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
 import kotlinx.coroutines.flow.StateFlow
 
@@ -11,7 +12,7 @@ interface GameRepository {
 
     val previousGame: StateFlow<Game?>
 
-    fun startGame(game: Game): Game
+    suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
 
     fun startLap(lap: Lap)

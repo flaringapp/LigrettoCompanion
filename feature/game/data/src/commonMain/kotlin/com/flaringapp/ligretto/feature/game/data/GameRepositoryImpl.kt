@@ -1,7 +1,9 @@
 package com.flaringapp.ligretto.feature.game.data
 
+import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSource
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 @Single
 internal class GameRepositoryImpl(
     private val gameStorage: GameStorage,
-    private val gameIdProvider: GameIdProvider,
+    private val gameStorageDataSource: GameStorageDataSource,
+    private val mapper: GameRepositoryMapper,
 ) : GameRepository {
 
     override val currentGameFlow: StateFlow<Game?>
@@ -22,9 +25,13 @@ internal class GameRepositoryImpl(
     override val previousGame: StateFlow<Game?>
         get() = gameStorage.previousGame.asStateFlow()
 
-    override fun startGame(game: Game): Game {
-        val id = gameIdProvider.provide()
-        val newGame = game.copy(id = id)
+    override suspend fun startGame(gameConfig: GameConfig): Game {
+        val dto = gameStorageDataSource.startGame(gameConfig)
+
+        val newGame = mapper.mapNewGame(
+            config = gameConfig,
+            dto = dto,
+        )
 
         gameStorage.gameFlow.value = newGame
         return newGame

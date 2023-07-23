@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
+import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
@@ -14,6 +15,8 @@ import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
 private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
@@ -24,6 +27,8 @@ internal class GameStartViewModel(
     private val getPreviousGameUseCase: GetPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
+
+    private var startGameJob: Job? = null
 
     init {
         if (restartLastGame) {
@@ -173,6 +178,8 @@ internal class GameStartViewModel(
     }
 
     private fun startGame() = state.also {
+        if (startGameJob?.isActive == true) return@also
+
         val hasEmptyNames = state.players.list.any { it.name.isBlank() }
         if (hasEmptyNames) return@also
 
@@ -196,9 +203,15 @@ internal class GameStartViewModel(
         if (!isTimeEndConditionValid) return@also
 
         val config = createGameConfig()
-        startGameUseCase(config)
 
-        setEffect { GameStartEffect.StartGame }
+        // TODO loading/disable button?
+        // TODO error handling
+        startGameJob = viewModelScope.launch {
+            startGameUseCase(config)
+
+            setEffect { GameStartEffect.StartGame }
+        }
+
         return@also
     }
 
