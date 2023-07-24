@@ -16,7 +16,7 @@ internal interface GameStorageDataSource {
         gameId: GameId,
         lapNumber: Int,
         playerIds: Iterable<Long>,
-    )
+    ): Long
 }
 
 @Single
@@ -73,8 +73,8 @@ internal class GameStorageDataSourceImpl(
         gameId: GameId,
         lapNumber: Int,
         playerIds: Iterable<Long>,
-    ) {
-        database.transaction {
+    ): Long {
+        return database.transactionWithResult {
             database.lapQueries.insert(
                 game_id = gameId.value,
                 number = lapNumber.toLong(),
@@ -87,6 +87,8 @@ internal class GameStorageDataSourceImpl(
                     player_id = playerId,
                 )
             }
+
+            lapId
         }
     }
 }

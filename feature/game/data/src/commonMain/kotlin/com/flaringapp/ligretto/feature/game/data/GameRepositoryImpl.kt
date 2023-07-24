@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.feature.game.model.LapId
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -53,13 +54,14 @@ internal class GameRepositoryImpl(
             .map { it.id }
             .asIterable()
 
-        gameStorageDataSource.startNextLap(
+        val lapId = gameStorageDataSource.startNextLap(
             gameId = game.id,
             lapNumber = lapNumber,
             playerIds = playerIds,
         )
 
         val lap = Lap.empty(
+            id = LapId(lapId),
             number = lapNumber,
             players = game.players,
         )
