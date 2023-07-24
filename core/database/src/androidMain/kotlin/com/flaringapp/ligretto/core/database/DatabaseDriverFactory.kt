@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.core.database
 
 import android.content.Context
+import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
@@ -15,10 +16,16 @@ actual class DatabaseDriverFactory(
     actual suspend fun provideDriver(
         schema: SqlSchema<QueryResult.AsyncValue<Unit>>,
     ): SqlDriver {
+        val schemaValue = schema.synchronous()
         return AndroidSqliteDriver(
-            schema = schema.synchronous(),
+            schema = schemaValue,
             context = context,
             name = databaseName,
+            callback = object : AndroidSqliteDriver.Callback(schemaValue) {
+                override fun onOpen(db: SupportSQLiteDatabase) {
+                    db.setForeignKeyConstraintsEnabled(true)
+                }
+            },
         )
     }
 }
