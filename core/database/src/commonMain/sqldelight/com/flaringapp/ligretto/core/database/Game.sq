@@ -1,11 +1,11 @@
 CREATE TABLE game (
   id INTEGER PRIMARY KEY NOT NULL,
   time_started INTEGER NOT NULL,
-  completed_lap_number INTEGER,
+  completed_lap_id INTEGER,
   target_score INTEGER,
   duration_hours INTEGER,
   duration_minutes INTEGER,
-  FOREIGN KEY (completed_lap_number) REFERENCES lap (number) ON DELETE SET NULL
+  FOREIGN KEY (completed_lap_id) REFERENCES lap (id) ON DELETE SET NULL
 );
 
 CREATE INDEX idx_game_time_started ON game (time_started);
@@ -16,7 +16,7 @@ insert:
 INSERT INTO game(time_started, target_score, duration_hours, duration_minutes)
 VALUES (?, ?, ?, ?);
 
-updateCompletedLapNumber:
+updateCompletedLapId:
 UPDATE game
-SET completed_lap_number = ?
+SET completed_lap_id = ?
 WHERE id = ?;

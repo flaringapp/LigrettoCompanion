@@ -79,11 +79,11 @@ internal class GameStorageDataSourceImpl(
                 game_id = gameId.value,
                 number = lapNumber.toLong(),
             )
+            val lapId = database.lapQueries.rowid().executeAsOne()
 
             playerIds.forEach { playerId ->
                 database.lapPlayerQueries.insert(
-                    game_id = gameId.value,
-                    lap_number = lapNumber.toLong(),
+                    lap_id = lapId,
                     player_id = playerId,
                 )
             }
