@@ -45,8 +45,27 @@ internal class GameRepositoryImpl(
         }
     }
 
-    override fun startLap(lap: Lap) {
+    override suspend fun startNextLap(): Lap {
+        val game = requireNotNull(currentGameFlow.value)
+        val lapNumber = game.pendingLapNumber
+        val playerIds = game.players
+            .asSequence()
+            .map { it.id }
+            .asIterable()
+
+        gameStorageDataSource.startNextLap(
+            gameId = game.id,
+            lapNumber = lapNumber,
+            playerIds = playerIds,
+        )
+
+        val lap = Lap.empty(
+            number = lapNumber,
+            players = game.players,
+        )
+
         gameStorage.lapFlow.value = lap
+        return lap
     }
 
     override fun updateLapCards(lap: Lap) {

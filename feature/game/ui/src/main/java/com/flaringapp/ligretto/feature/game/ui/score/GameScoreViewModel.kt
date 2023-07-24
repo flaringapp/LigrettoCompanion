@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.score
 
+import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.UiList
@@ -9,12 +10,17 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.android.annotation.KoinViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 @KoinViewModel
 internal class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val startLapUseCase: StartLapUseCase,
 ) : MviViewModel<GameScoreState, GameScoreIntent, GameScoreEffect>(GameScoreState()) {
+
+    private var startLapJob: Job? = null
 
     init {
         dispatch { GameScoreIntent.LoadData }
@@ -84,13 +90,19 @@ internal class GameScoreViewModel(
     }
 
     private fun startNewLap(): GameScoreState = state.also {
+        if (startLapJob?.isActive == true) return@also
+
         val game = getCurrentGameUseCase().value
         if (game?.matchesEndConditions == true) {
             setEffect { GameScoreEffect.EndGame }
             return@also
         }
 
-        startLapUseCase()
-        setEffect { GameScoreEffect.OpenNextLap }
+        // TODO loading/disable button?
+        // TODO error handling
+        startLapJob = viewModelScope.launch(Dispatchers.IO) {
+            startLapUseCase()
+            setEffect { GameScoreEffect.OpenNextLap }
+        }
     }
 }
