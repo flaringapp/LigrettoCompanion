@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.domain.contracts
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.feature.game.model.Player
 import kotlinx.coroutines.flow.StateFlow
 
 interface GameRepository {
@@ -16,6 +17,8 @@ interface GameRepository {
     fun endGame(): Game?
 
     suspend fun startNextLap(): Lap
-    fun updateLapCards(lap: Lap)
+
+    suspend fun updateLapPlayerCards(lap: Lap, player: Player)
+
     suspend fun endLap(gameWithLap: Game)
 }

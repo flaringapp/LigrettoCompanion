@@ -85,28 +85,44 @@ internal class GameLapViewModel(
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) + 1
-        submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+        }
     }
 
     private fun decrementCardsLeft(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) - 1
-        submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+        }
     }
 
     private fun incrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) + 1
-        submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+        }
     }
 
     private fun decrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) - 1
-        submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+        }
     }
 
     private fun endLap() = updateState {

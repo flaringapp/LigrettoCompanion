@@ -6,6 +6,7 @@ import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
+import com.flaringapp.ligretto.feature.game.model.Player
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -70,7 +71,14 @@ internal class GameRepositoryImpl(
         return lap
     }
 
-    override fun updateLapCards(lap: Lap) {
+    override suspend fun updateLapPlayerCards(lap: Lap, player: Player) {
+        gameStorageDataSource.updateLapPlayerCards(
+            lapId = lap.id,
+            playerId = player.id,
+            cardsLeft = lap.cardsLeft[player] ?: 0,
+            cardsOnTable = lap.cardsOnTable[player] ?: 0,
+        )
+
         gameStorage.lapFlow.value = lap
     }
 

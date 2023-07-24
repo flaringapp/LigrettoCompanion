@@ -21,6 +21,13 @@ internal interface GameStorageDataSource {
         playerIds: Iterable<Long>,
     ): Long
 
+    suspend fun updateLapPlayerCards(
+        lapId: LapId,
+        playerId: Long,
+        cardsLeft: Int,
+        cardsOnTable: Int,
+    )
+
     suspend fun endLap(
         gameId: GameId,
         lapId: LapId,
@@ -99,6 +106,20 @@ internal class GameStorageDataSourceImpl(
 
             lapId
         }
+    }
+
+    override suspend fun updateLapPlayerCards(
+        lapId: LapId,
+        playerId: Long,
+        cardsLeft: Int,
+        cardsOnTable: Int,
+    ) {
+        database.lapPlayerQueries.updateCards(
+            lap_id = lapId.value,
+            player_id = playerId,
+            cards_left = cardsLeft.toLong(),
+            cards_on_table = cardsOnTable.toLong(),
+        )
     }
 
     override suspend fun endLap(
