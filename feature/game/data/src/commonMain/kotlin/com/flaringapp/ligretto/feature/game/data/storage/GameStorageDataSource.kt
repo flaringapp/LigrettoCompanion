@@ -3,6 +3,9 @@ package com.flaringapp.ligretto.feature.game.data.storage
 import com.flaringapp.ligretto.core.database.Database
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
+import com.flaringapp.ligretto.feature.game.model.LapId
+import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Single
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -17,6 +20,12 @@ internal interface GameStorageDataSource {
         lapNumber: Int,
         playerIds: Iterable<Long>,
     ): Long
+
+    suspend fun endLap(
+        gameId: GameId,
+        lapId: LapId,
+        playerScores: Map<Player, Score>,
+    )
 }
 
 @Single
@@ -89,6 +98,27 @@ internal class GameStorageDataSourceImpl(
             }
 
             lapId
+        }
+    }
+
+    override suspend fun endLap(
+        gameId: GameId,
+        lapId: LapId,
+        playerScores: Map<Player, Score>,
+    ) {
+        database.transaction {
+            database.gameQueries.updateCompletedLapId(
+                id = gameId.value,
+                completed_lap_id = lapId.value,
+            )
+
+            playerScores.forEach { (player, score) ->
+                database.gamePlayerQueries.updateScore(
+                    game_id = gameId.value,
+                    player_id = player.id,
+                    score = score.value.toLong(),
+                )
+            }
         }
     }
 }

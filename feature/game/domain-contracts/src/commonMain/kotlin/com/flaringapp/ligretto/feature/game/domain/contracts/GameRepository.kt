@@ -17,5 +17,5 @@ interface GameRepository {
 
     suspend fun startNextLap(): Lap
     fun updateLapCards(lap: Lap)
-    fun endLap(gameWithLap: Game)
+    suspend fun endLap(gameWithLap: Game)
 }

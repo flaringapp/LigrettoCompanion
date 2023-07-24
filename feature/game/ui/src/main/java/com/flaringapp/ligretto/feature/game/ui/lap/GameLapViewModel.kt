@@ -13,6 +13,8 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsO
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
 import org.koin.android.annotation.KoinViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,8 @@ internal class GameLapViewModel(
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
     private val endLapUseCase: EndLapUseCase,
 ) : MviViewModel<GameLapState, GameLapIntent, GameLapEffect>(GameLapState()) {
+
+    private var endLapJob: Job? = null
 
     init {
         dispatch { GameLapIntent.InitDataUpdates }
@@ -106,6 +110,8 @@ internal class GameLapViewModel(
     }
 
     private fun endLap() = updateState {
+        if (endLapJob?.isActive == true) return@updateState this
+
         copy(showConfirmEndLap = true)
     }
 
@@ -114,13 +120,19 @@ internal class GameLapViewModel(
     }
 
     private fun endLapConfirmed() = hideEndLapConfirmation().also {
-        val game = endLapUseCase()
-        if (game?.matchesEndConditions == true) {
-            setEffect { GameLapEffect.EndGame }
-            return@also
-        }
+        if (endLapJob?.isActive == true) return@also
 
-        setEffect { GameLapEffect.OpenScores }
+        // TODO loading/disable button?
+        // TODO error handling
+        viewModelScope.launch(Dispatchers.IO) {
+            val game = endLapUseCase()
+            if (game?.matchesEndConditions == true) {
+                setEffect { GameLapEffect.EndGame }
+                return@launch
+            }
+
+            setEffect { GameLapEffect.OpenScores }
+        }
     }
 
     private fun findPlayer(id: Long): Player? {

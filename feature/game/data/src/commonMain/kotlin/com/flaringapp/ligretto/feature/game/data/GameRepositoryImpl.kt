@@ -74,7 +74,13 @@ internal class GameRepositoryImpl(
         gameStorage.lapFlow.value = lap
     }
 
-    override fun endLap(gameWithLap: Game) {
+    override suspend fun endLap(gameWithLap: Game) {
+        gameStorageDataSource.endLap(
+            gameId = gameWithLap.id,
+            lapId = gameWithLap.lastLap!!.id,
+            playerScores = gameWithLap.scores,
+        )
+
         gameStorage.gameFlow.value = gameWithLap
         gameStorage.lapFlow.value = null
     }
