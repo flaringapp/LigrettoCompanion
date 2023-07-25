@@ -7,7 +7,7 @@ import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import co.touchlab.sqliter.DatabaseConfiguration
 
-actual class DatabaseDriverFactory(
+internal actual class DatabaseDriverFactory(
     private val databaseName: String,
 ) {
 

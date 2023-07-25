@@ -8,7 +8,7 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 
-actual class DatabaseDriverFactory(
+internal actual class DatabaseDriverFactory(
     private val context: Context,
     private val databaseName: String,
 ) {
