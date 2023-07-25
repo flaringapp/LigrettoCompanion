@@ -17,6 +17,11 @@ class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
 
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets {
+                val commonMain by getting {
+                    dependencies {
+                        api(libs.findLibrary("sqlDelight-coroutines").get())
+                    }
+                }
                 val androidMain by getting {
                     dependencies {
                         implementation(libs.findLibrary("sqlDelight-driver-android").get())

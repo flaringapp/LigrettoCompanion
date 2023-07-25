@@ -55,6 +55,7 @@ napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
 # Database
 sqlDelight-driver-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqlDelight" }
 sqlDelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqlDelight" }
+sqlDelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqlDelight" }
 
 # Testing
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.5" }
