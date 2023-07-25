@@ -8,6 +8,10 @@ CREATE TABLE lapPlayer (
   FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
 );
 
+selectAllByLaps:
+SELECT * FROM lapPlayer
+WHERE lap_id IN ?;
+
 insert:
 INSERT INTO lapPlayer (lap_id, player_id)
 VALUES (?, ?);

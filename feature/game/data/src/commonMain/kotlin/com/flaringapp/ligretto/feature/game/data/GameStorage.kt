@@ -11,7 +11,6 @@ internal interface GameStorage {
 
     val lapFlow: MutableStateFlow<Lap?>
 
-    var previousGame: MutableStateFlow<Game?>
 }
 
 @Single
@@ -21,5 +20,4 @@ internal class GameStorageImpl : GameStorage {
 
     override val lapFlow: MutableStateFlow<Lap?> = MutableStateFlow(null)
 
-    override var previousGame: MutableStateFlow<Game?> = MutableStateFlow(null)
 }

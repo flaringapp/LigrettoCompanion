@@ -5,14 +5,19 @@ CREATE TABLE player (
 
 rowid: SELECT last_insert_rowid();
 
-insert:
-INSERT INTO player(name)
-VALUES (?);
+selectAllByIds:
+SELECT * FROM player
+WHERE id IN ?;
 
 selectIdByName:
 SELECT id
 FROM player
-WHERE name = ?;
+WHERE name = ?
+LIMIT 1;
+
+insert:
+INSERT INTO player(name)
+VALUES (?);
 
 updateName:
 UPDATE player

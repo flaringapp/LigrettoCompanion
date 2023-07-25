@@ -8,6 +8,11 @@ CREATE TABLE lap (
 
 rowid: SELECT last_insert_rowid();
 
+selectAllByGameIdNumberAscending:
+SELECT id, number FROM lap
+WHERE game_id = ?
+ORDER BY number ASC;
+
 insert:
 INSERT INTO lap(game_id, number)
 VALUES (?, ?);

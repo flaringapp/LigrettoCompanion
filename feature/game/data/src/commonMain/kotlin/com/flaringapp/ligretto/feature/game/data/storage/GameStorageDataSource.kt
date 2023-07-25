@@ -1,5 +1,7 @@
 package com.flaringapp.ligretto.feature.game.data.storage
 
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToOneOrNull
 import com.flaringapp.ligretto.core.database.Database
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
@@ -9,9 +11,17 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Single
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
+import com.flaringapp.ligretto.core.database.Game as DatabaseGame
 
 internal interface GameStorageDataSource {
+
+    val lastGameFlow: Flow<DatabaseGame?>
+
+    suspend fun getGameData(gameId: Long): GameDataStorageDto
 
     suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto
 
@@ -40,6 +50,43 @@ internal class GameStorageDataSourceImpl(
     private val database: Database,
     private val clock: Clock,
 ) : GameStorageDataSource {
+
+    override val lastGameFlow: Flow<DatabaseGame?> =
+        database.gameQueries
+            .selectLast()
+            .asFlow()
+            .mapToOneOrNull(Dispatchers.IO)
+
+    override suspend fun getGameData(gameId: Long): GameDataStorageDto {
+        return database.transactionWithResult {
+            val gamePlayers = database.gamePlayerQueries
+                .selectAllByGameId(gameId)
+                .executeAsList()
+
+            val gamePlayersIds = gamePlayers.map { it.player_id }
+
+            val players = database.playerQueries
+                .selectAllByIds(gamePlayersIds)
+                .executeAsList()
+
+            val laps = database.lapQueries
+                .selectAllByGameIdNumberAscending(gameId)
+                .executeAsList()
+
+            val lapsIds = laps.map { it.id }
+
+            val lapsPlayers = database.lapPlayerQueries
+                .selectAllByLaps(lapsIds)
+                .executeAsList()
+
+            GameDataStorageDto(
+                gamePlayers = gamePlayers,
+                laps = laps,
+                lapsPlayers = lapsPlayers,
+                players = players,
+            )
+        }
+    }
 
     override suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto {
         val hoursToMinutes = gameConfig.timeLimit?.let {

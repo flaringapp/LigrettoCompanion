@@ -7,6 +7,10 @@ CREATE TABLE gamePlayer (
   FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
 );
 
+selectAllByGameId:
+SELECT player_id, score FROM gamePlayer
+WHERE game_id = ?;
+
 insert:
 INSERT INTO gamePlayer(game_id, player_id)
 VALUES (?, ?);

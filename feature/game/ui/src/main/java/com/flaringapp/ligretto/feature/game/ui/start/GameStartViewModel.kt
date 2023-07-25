@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
-import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
@@ -15,7 +15,9 @@ import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
@@ -41,6 +43,7 @@ internal class GameStartViewModel(
         intent: GameStartIntent,
     ): GameStartState = when (intent) {
         GameStartIntent.FetchDataFromLastGame -> fetchDataFromLastGame()
+        is GameStartIntent.LastGameDataFetched -> intent.state
         //region Players
         GameStartPlayersIntent.AddNew -> addNewPlayer()
         is GameStartPlayersIntent.ChangeName -> changePlayerName(intent.id, intent.name)
@@ -70,13 +73,17 @@ internal class GameStartViewModel(
         GameStartIntent.StartGame -> startGame()
     }
 
-    private fun fetchDataFromLastGame(): GameStartState {
-        val game = getPreviousGameUseCase().value ?: return state
+    private fun fetchDataFromLastGame() = state.also {
+        viewModelScope.launch(Dispatchers.IO) {
+            val game = getPreviousGameUseCase().firstOrNull() ?: return@launch
 
-        return GameStartState(
-            players = mapUiGamePlayers(game.players),
-            endConditions = mapUiGameEndConditions(game.endConditions),
-        )
+            val state = GameStartState(
+                players = mapUiGamePlayers(game.players),
+                endConditions = mapUiGameEndConditions(game.endConditions),
+            )
+
+            dispatch { GameStartIntent.LastGameDataFetched(state) }
+        }
     }
 
     private fun mapUiGamePlayers(
