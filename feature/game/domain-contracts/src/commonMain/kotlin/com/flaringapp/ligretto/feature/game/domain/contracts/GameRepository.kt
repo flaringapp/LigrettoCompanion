@@ -12,7 +12,7 @@ interface GameRepository {
     val currentGameFlow: StateFlow<Game?>
     val currentLapFlow: StateFlow<Lap?>
 
-    val previousGame: Flow<Game?>
+    val previousGameFlow: Flow<Game?>
 
     suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?

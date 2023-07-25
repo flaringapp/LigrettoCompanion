@@ -26,7 +26,7 @@ internal class GameRepositoryImpl(
     override val currentLapFlow: StateFlow<Lap?>
         get() = gameStorage.lapFlow.asStateFlow()
 
-    override val previousGame: Flow<Game?>
+    override val previousGameFlow: Flow<Game?>
         get() = gameStorageDataSource.lastGameFlow.map { game ->
             if (game == null) return@map null
 

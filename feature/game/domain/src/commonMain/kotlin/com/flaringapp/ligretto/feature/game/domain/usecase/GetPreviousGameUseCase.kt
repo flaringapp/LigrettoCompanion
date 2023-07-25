@@ -16,6 +16,6 @@ internal class GetPreviousGameUseCaseImpl(
 ) : GetPreviousGameUseCase {
 
     override fun invoke(): Flow<Game?> {
-        return repository.previousGame
+        return repository.previousGameFlow
     }
 }
