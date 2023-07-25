@@ -14,6 +14,11 @@ interface GameRepository {
 
     val previousGameFlow: Flow<Game?>
 
+    /**
+     * @return Last [Game] collected from the [previousGameFlow]
+     */
+    fun getCachedPreviousGame(): Game?
+
     suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
 

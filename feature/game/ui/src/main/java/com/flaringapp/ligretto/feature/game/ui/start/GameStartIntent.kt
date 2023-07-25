@@ -6,10 +6,6 @@ internal sealed interface GameStartIntent : UiIntent {
 
     object FetchDataFromLastGame : GameStartIntent
 
-    data class LastGameDataFetched(
-        val state: GameStartState,
-    ) : GameStartIntent
-
     object StartGame : GameStartIntent
 }
 

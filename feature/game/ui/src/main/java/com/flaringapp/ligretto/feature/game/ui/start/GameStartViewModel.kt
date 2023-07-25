@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
-import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
-import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.GetCachedPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.model.GameConfig
+import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
@@ -15,9 +15,7 @@ import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
@@ -26,7 +24,7 @@ private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 @KoinViewModel
 internal class GameStartViewModel(
     @InjectedParam restartLastGame: Boolean,
-    private val getPreviousGameUseCase: GetPreviousGameUseCase,
+    private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
 
@@ -43,7 +41,6 @@ internal class GameStartViewModel(
         intent: GameStartIntent,
     ): GameStartState = when (intent) {
         GameStartIntent.FetchDataFromLastGame -> fetchDataFromLastGame()
-        is GameStartIntent.LastGameDataFetched -> intent.state
         //region Players
         GameStartPlayersIntent.AddNew -> addNewPlayer()
         is GameStartPlayersIntent.ChangeName -> changePlayerName(intent.id, intent.name)
@@ -73,17 +70,13 @@ internal class GameStartViewModel(
         GameStartIntent.StartGame -> startGame()
     }
 
-    private fun fetchDataFromLastGame() = state.also {
-        viewModelScope.launch(Dispatchers.IO) {
-            val game = getPreviousGameUseCase().firstOrNull() ?: return@launch
+    private fun fetchDataFromLastGame(): GameStartState {
+        val game = getCachedPreviousGameUseCase() ?: return state
 
-            val state = GameStartState(
-                players = mapUiGamePlayers(game.players),
-                endConditions = mapUiGameEndConditions(game.endConditions),
-            )
-
-            dispatch { GameStartIntent.LastGameDataFetched(state) }
-        }
+        return GameStartState(
+            players = mapUiGamePlayers(game.players),
+            endConditions = mapUiGameEndConditions(game.endConditions),
+        )
     }
 
     private fun mapUiGamePlayers(

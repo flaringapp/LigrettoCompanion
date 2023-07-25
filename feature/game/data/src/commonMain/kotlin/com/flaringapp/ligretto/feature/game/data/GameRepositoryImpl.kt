@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.data
 
+import com.flaringapp.ligretto.feature.game.data.cache.GameCache
 import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSource
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
@@ -12,11 +13,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
 @Single
 internal class GameRepositoryImpl(
     private val gameStorage: GameStorage,
     private val gameStorageDataSource: GameStorageDataSource,
+    private val gameCache: GameCache,
     private val mapper: GameRepositoryMapper,
 ) : GameRepository {
 
@@ -35,7 +38,13 @@ internal class GameRepositoryImpl(
                 game = game,
                 data = gameData,
             )
+        }.onEach {
+            gameCache.previousGame = it
         }
+
+    override fun getCachedPreviousGame(): Game? {
+        return gameCache.previousGame
+    }
 
     override suspend fun startGame(gameConfig: GameConfig): Game {
         val dto = gameStorageDataSource.startGame(gameConfig)
