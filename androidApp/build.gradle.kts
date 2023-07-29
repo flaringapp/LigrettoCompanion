@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:arch"))
     implementation(project(":core:database"))
+    implementation(project(":core:settings"))
     implementation(project(":feature:home:ui"))
     implementation(project(":feature:game:ui"))
     implementation(project(":feature:game:di"))
