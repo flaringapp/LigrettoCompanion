@@ -10,7 +10,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.multiplatform.settings)
+                api(libs.multiplatform.settings)
             }
         }
     }
