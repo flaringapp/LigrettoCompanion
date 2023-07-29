@@ -18,18 +18,18 @@ import kotlinx.coroutines.flow.onEach
 
 @Single
 internal class GameRepositoryImpl(
-    private val gameSettings: GameSettings,
-    private val gameStorage: GameStorage,
     private val gameStorageDataSource: GameStorageDataSource,
+    private val gameSettings: GameSettings,
     private val gameCache: GameCache,
+    private val gameObservables: GameObservables,
     private val mapper: GameRepositoryMapper,
 ) : GameRepository {
 
     override val currentGameFlow: StateFlow<Game?>
-        get() = gameStorage.gameFlow.asStateFlow()
+        get() = gameObservables.gameFlow.asStateFlow()
 
     override val currentLapFlow: StateFlow<Lap?>
-        get() = gameStorage.lapFlow.asStateFlow()
+        get() = gameObservables.lapFlow.asStateFlow()
 
     override val previousGameFlow: Flow<Game?>
         get() = gameStorageDataSource.lastGameFlow.map { game ->
@@ -57,7 +57,7 @@ internal class GameRepositoryImpl(
         )
 
         gameSettings.activeGameId = newGame.id.value
-        gameStorage.gameFlow.value = newGame
+        gameObservables.gameFlow.value = newGame
         return newGame
     }
 
@@ -65,8 +65,8 @@ internal class GameRepositoryImpl(
         gameSettings.activeGameId = null
 
         return currentGameFlow.value.also {
-            gameStorage.lapFlow.value = null
-            gameStorage.gameFlow.value = null
+            gameObservables.lapFlow.value = null
+            gameObservables.gameFlow.value = null
         }
     }
 
@@ -90,7 +90,7 @@ internal class GameRepositoryImpl(
             players = game.players,
         )
 
-        gameStorage.lapFlow.value = lap
+        gameObservables.lapFlow.value = lap
         return lap
     }
 
@@ -102,7 +102,7 @@ internal class GameRepositoryImpl(
             cardsOnTable = lap.cardsOnTable[player] ?: 0,
         )
 
-        gameStorage.lapFlow.value = lap
+        gameObservables.lapFlow.value = lap
     }
 
     override suspend fun endLap(gameWithLap: Game) {
@@ -112,7 +112,7 @@ internal class GameRepositoryImpl(
             playerScores = gameWithLap.scores,
         )
 
-        gameStorage.gameFlow.value = gameWithLap
-        gameStorage.lapFlow.value = null
+        gameObservables.gameFlow.value = gameWithLap
+        gameObservables.lapFlow.value = null
     }
 }

@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.feature.game.model.Lap
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.MutableStateFlow
 
-internal interface GameStorage {
+internal interface GameObservables {
 
     val gameFlow: MutableStateFlow<Game?>
 
@@ -14,7 +14,7 @@ internal interface GameStorage {
 }
 
 @Single
-internal class GameStorageImpl : GameStorage {
+internal class GameObservablesImpl : GameObservables {
 
     override val gameFlow: MutableStateFlow<Game?> = MutableStateFlow(null)
 
