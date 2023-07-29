@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.data
 
 import com.flaringapp.ligretto.feature.game.data.cache.GameCache
+import com.flaringapp.ligretto.feature.game.data.settings.GameSettings
 import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSource
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.onEach
 
 @Single
 internal class GameRepositoryImpl(
+    private val gameSettings: GameSettings,
     private val gameStorage: GameStorage,
     private val gameStorageDataSource: GameStorageDataSource,
     private val gameCache: GameCache,
@@ -54,11 +56,14 @@ internal class GameRepositoryImpl(
             dto = dto,
         )
 
+        gameSettings.activeGameId = newGame.id.value
         gameStorage.gameFlow.value = newGame
         return newGame
     }
 
     override fun endGame(): Game? {
+        gameSettings.activeGameId = null
+
         return currentGameFlow.value.also {
             gameStorage.lapFlow.value = null
             gameStorage.gameFlow.value = null
