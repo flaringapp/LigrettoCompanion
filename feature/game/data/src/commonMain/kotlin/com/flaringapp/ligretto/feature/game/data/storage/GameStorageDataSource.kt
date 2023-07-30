@@ -1,5 +1,8 @@
 package com.flaringapp.ligretto.feature.game.data.storage
 
+import app.cash.sqldelight.async.coroutines.awaitAsList
+import app.cash.sqldelight.async.coroutines.awaitAsOne
+import app.cash.sqldelight.async.coroutines.awaitAsOneOrNull
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToOneOrNull
 import com.flaringapp.ligretto.core.database.Database
@@ -61,23 +64,23 @@ internal class GameStorageDataSourceImpl(
         return database.transactionWithResult {
             val gamePlayers = database.gamePlayerQueries
                 .selectAllByGameId(gameId)
-                .executeAsList()
+                .awaitAsList()
 
             val gamePlayersIds = gamePlayers.map { it.player_id }
 
             val players = database.playerQueries
                 .selectAllByIds(gamePlayersIds)
-                .executeAsList()
+                .awaitAsList()
 
             val laps = database.lapQueries
                 .selectAllByGameIdNumberAscending(gameId)
-                .executeAsList()
+                .awaitAsList()
 
             val lapsIds = laps.map { it.id }
 
             val lapsPlayers = database.lapPlayerQueries
                 .selectAllByLaps(lapsIds)
-                .executeAsList()
+                .awaitAsList()
 
             GameDataStorageDto(
                 gamePlayers = gamePlayers,
@@ -104,17 +107,17 @@ internal class GameStorageDataSourceImpl(
                 duration_hours = hoursToMinutes?.first,
                 duration_minutes = hoursToMinutes?.second,
             )
-            val gameId = database.gameQueries.rowid().executeAsOne()
+            val gameId = database.gameQueries.rowid().awaitAsOne()
 
             val playerIds = gameConfig.players.map { player ->
                 // Find existing player
                 database.playerQueries
                     .selectIdByName(player.name)
-                    .executeAsOneOrNull()
+                    .awaitAsOneOrNull()
                     ?.let { return@map it }
 
                 database.playerQueries.insert(name = player.name)
-                database.playerQueries.rowid().executeAsOne()
+                database.playerQueries.rowid().awaitAsOne()
             }
 
             playerIds.forEach { playerId ->
@@ -142,7 +145,7 @@ internal class GameStorageDataSourceImpl(
                 game_id = gameId.value,
                 number = lapNumber.toLong(),
             )
-            val lapId = database.lapQueries.rowid().executeAsOne()
+            val lapId = database.lapQueries.rowid().awaitAsOne()
 
             playerIds.forEach { playerId ->
                 database.lapPlayerQueries.insert(
