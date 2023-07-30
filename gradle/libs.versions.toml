@@ -6,7 +6,7 @@ androidGradlePlugin = "8.0.2"
 androidxLifecycle = "2.6.1"
 composeCompiler = "1.4.8"
 koinAnnotations = "1.2.2"
-sqlDelight = "2.0.0-rc02"
+sqlDelight = "2.0.0"
 
 [libraries]
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
