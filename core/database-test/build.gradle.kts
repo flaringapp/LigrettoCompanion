@@ -2,7 +2,6 @@
 
 plugins {
     id("ligretto.multiplatform.library")
-    id("ligretto.multiplatform.database")
 }
 
 kotlin {
