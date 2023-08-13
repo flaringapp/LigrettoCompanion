@@ -5,6 +5,9 @@ CREATE TABLE player (
 
 rowid: SELECT last_insert_rowid();
 
+selectAll:
+SELECT * FROM player;
+
 selectAllByIds:
 SELECT * FROM player
 WHERE id IN ?;
