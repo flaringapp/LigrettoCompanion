@@ -2,20 +2,14 @@ package com.flaringapp.ligretto.core.database
 
 import app.cash.sqldelight.async.coroutines.awaitAsList
 import app.cash.sqldelight.async.coroutines.awaitAsOne
-import com.flaringapp.ligretto.core.database.test.TestDatabaseDriverProvider
 import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
 import org.junit.Test
 
-class PlayerQueriesTest {
+class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
 
-    private lateinit var queries: PlayerQueries
-
-    @Before
-    fun setup() {
-        val driver = TestDatabaseDriverProvider.create(Database.Schema)
-        queries = Database(driver).playerQueries
+    override fun provideQueries(database: Database): PlayerQueries {
+        return database.playerQueries
     }
 
     @Test
