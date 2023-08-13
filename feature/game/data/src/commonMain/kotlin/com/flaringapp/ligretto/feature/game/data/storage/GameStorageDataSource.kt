@@ -11,11 +11,9 @@ import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
-import org.koin.core.annotation.Single
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
@@ -48,17 +46,17 @@ internal interface GameStorageDataSource {
     )
 }
 
-@Single
 internal class GameStorageDataSourceImpl(
     private val database: Database,
     private val clock: Clock,
+    dispatcher: CoroutineDispatcher,
 ) : GameStorageDataSource {
 
     override val lastGameFlow: Flow<DatabaseGame?> =
         database.gameQueries
             .selectLast()
             .asFlow()
-            .mapToOneOrNull(Dispatchers.IO)
+            .mapToOneOrNull(dispatcher)
 
     override suspend fun getGameData(gameId: Long): GameDataStorageDto {
         return database.transactionWithResult {
