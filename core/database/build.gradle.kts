@@ -14,7 +14,7 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
             }
         }
-        val androidUnitTest by getting {
+        val commonTest by getting {
             dependencies {
                 implementation(project(":core:util:database-test"))
                 implementation(libs.kotlinx.coroutines.test)

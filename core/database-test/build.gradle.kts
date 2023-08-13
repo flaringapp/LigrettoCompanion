@@ -6,7 +6,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        val androidMain by getting {
+        val commonMain by getting {
             dependencies {
                 api(project(":core:database"))
                 api(project(":core:util:database-test"))

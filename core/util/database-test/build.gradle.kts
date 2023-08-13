@@ -8,12 +8,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(libs.kotlinx.coroutines.core)
                 api(libs.sqlDelight.runtime)
             }
         }
         val androidMain by getting {
             dependencies {
-                api(libs.kotlinx.coroutines.core)
                 implementation(libs.sqlDelight.driver.sqlite)
             }
         }
