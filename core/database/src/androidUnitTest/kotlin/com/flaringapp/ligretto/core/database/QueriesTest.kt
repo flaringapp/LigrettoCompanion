@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.core.database
 
-import com.flaringapp.ligretto.core.database.test.TestDatabaseDriverProvider
+import com.flaringapp.ligretto.core.util.database.test.TestDatabaseDriverProvider
 import kotlin.test.BeforeTest
 
 abstract class QueriesTest<Queries : Any> {
@@ -9,7 +9,7 @@ abstract class QueriesTest<Queries : Any> {
 
     @BeforeTest
     fun setup() {
-        val driver = TestDatabaseDriverProvider.create(Database.Schema)
+        val driver = TestDatabaseDriverProvider.createBlocking(Database.Schema)
         val database = Database(driver)
         queries = provideQueries(database)
     }

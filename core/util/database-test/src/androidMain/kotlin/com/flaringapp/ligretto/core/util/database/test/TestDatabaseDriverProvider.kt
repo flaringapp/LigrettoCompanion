@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.core.database.test
+package com.flaringapp.ligretto.core.util.database.test
 
 import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
@@ -8,10 +8,16 @@ import kotlinx.coroutines.runBlocking
 
 object TestDatabaseDriverProvider {
 
-    fun create(
+    fun createBlocking(
         schema: SqlSchema<QueryResult.AsyncValue<Unit>>,
     ): SqlDriver = runBlocking {
-        JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also {
+        create(schema)
+    }
+
+    suspend fun create(
+        schema: SqlSchema<QueryResult.AsyncValue<Unit>>,
+    ): SqlDriver {
+        return JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also {
             schema.create(it).await()
         }
     }

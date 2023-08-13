@@ -8,13 +8,13 @@ kotlin {
     sourceSets {
         val androidMain by getting {
             dependencies {
-                api(project(":core:database"))
-                api(project(":core:util:database-test"))
+                api(libs.kotlinx.coroutines.core)
+                implementation(libs.sqlDelight.driver.sqlite)
             }
         }
     }
 }
 
 android {
-    namespace = "com.flaringapp.ligretto.core.database.test"
+    namespace = "com.flaringapp.ligretto.core.util.database.test"
 }

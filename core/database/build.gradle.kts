@@ -16,7 +16,7 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependencies {
-                implementation(project(":core:database-test"))
+                implementation(project(":core:util:database-test"))
                 implementation(libs.kotlinx.coroutines.test)
             }
         }
