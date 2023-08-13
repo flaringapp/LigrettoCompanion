@@ -20,6 +20,7 @@ class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
                 val commonMain by getting {
                     dependencies {
                         api(libs.findLibrary("sqlDelight-coroutines").get())
+                        api(libs.findLibrary("sqlDelight-runtime").get())
                     }
                 }
                 val androidMain by getting {

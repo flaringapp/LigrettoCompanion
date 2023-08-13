@@ -6,6 +6,11 @@ plugins {
 
 kotlin {
     sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(libs.sqlDelight.runtime)
+            }
+        }
         val androidMain by getting {
             dependencies {
                 api(libs.kotlinx.coroutines.core)
