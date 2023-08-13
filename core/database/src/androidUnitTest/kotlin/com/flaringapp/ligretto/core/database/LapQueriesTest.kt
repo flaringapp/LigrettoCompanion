@@ -4,7 +4,7 @@ import app.cash.sqldelight.async.coroutines.awaitAsList
 import app.cash.sqldelight.async.coroutines.awaitAsOne
 import kotlin.test.assertContentEquals
 import kotlinx.coroutines.test.runTest
-import org.junit.Test
+import kotlin.test.Test
 
 class LapQueriesTest : QueriesTest<LapQueries>() {
 

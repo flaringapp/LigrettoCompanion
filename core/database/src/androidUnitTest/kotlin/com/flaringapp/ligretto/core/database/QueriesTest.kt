@@ -1,13 +1,13 @@
 package com.flaringapp.ligretto.core.database
 
 import com.flaringapp.ligretto.core.database.test.TestDatabaseDriverProvider
-import org.junit.Before
+import kotlin.test.BeforeTest
 
 abstract class QueriesTest<Queries> {
 
     protected lateinit var queries: Queries & Any
 
-    @Before
+    @BeforeTest
     fun setup() {
         val driver = TestDatabaseDriverProvider.create(Database.Schema)
         val database = Database(driver)
