@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 
-class LapPlayerQueriesTest : QueriesTest<LapPlayerQueries>() {
+internal class LapPlayerQueriesTest : QueriesTest<LapPlayerQueries>() {
 
     override fun provideQueries(database: Database): LapPlayerQueries {
         return database.lapPlayerQueries

@@ -3,7 +3,7 @@ package com.flaringapp.ligretto.core.database
 import com.flaringapp.ligretto.core.util.database.test.TestDatabaseDriverProvider
 import kotlin.test.BeforeTest
 
-abstract class QueriesTest<Queries : Any> {
+internal abstract class QueriesTest<Queries : Any> {
 
     protected lateinit var queries: Queries
 

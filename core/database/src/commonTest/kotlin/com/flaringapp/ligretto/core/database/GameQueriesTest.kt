@@ -6,7 +6,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Instant
 import kotlin.test.Test
 
-class GameQueriesTest : QueriesTest<GameQueries>() {
+internal class GameQueriesTest : QueriesTest<GameQueries>() {
 
     override fun provideQueries(database: Database): GameQueries {
         return database.gameQueries
