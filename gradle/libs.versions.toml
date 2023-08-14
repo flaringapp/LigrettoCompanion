@@ -2,7 +2,7 @@
 kotlin = "1.9.0"
 kotlinKsp = "1.9.0-1.0.13"
 kotlinCoroutines = "1.7.3"
-androidGradlePlugin = "8.0.2"
+androidGradlePlugin = "8.1.0"
 androidxLifecycle = "2.6.1"
 composeCompiler = "1.5.1"
 koinAnnotations = "1.2.2"
