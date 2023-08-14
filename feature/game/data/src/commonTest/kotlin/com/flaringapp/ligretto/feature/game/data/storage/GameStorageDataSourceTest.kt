@@ -30,7 +30,7 @@ import com.flaringapp.ligretto.core.database.Player as DatabasePlayer
 import com.flaringapp.ligretto.core.database.SelectAllByGameId as DatabaseGamePlayer
 import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as DatabaseLap
 
-class GameStorageDataSourceTest {
+internal class GameStorageDataSourceTest {
 
     private lateinit var clockTime: Instant
     private lateinit var storage: GameStorageDataSource
