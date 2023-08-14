@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 plugins {
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
