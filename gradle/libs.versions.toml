@@ -67,6 +67,9 @@ multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-s
 # Testing
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.5" }
 
+# Lint
+slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.2.0" }
+
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

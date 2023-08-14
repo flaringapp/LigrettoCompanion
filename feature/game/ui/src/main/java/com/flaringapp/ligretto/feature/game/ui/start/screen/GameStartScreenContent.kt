@@ -132,7 +132,7 @@ private fun ActualContent(
 
 @Composable
 private fun EndConditionsHeader(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     HeaderText(
         modifier = modifier,
@@ -142,7 +142,7 @@ private fun EndConditionsHeader(
 
 @Composable
 private fun PlayersHeader(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     HeaderText(
         modifier = modifier,
