@@ -17,6 +17,12 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(project(":core:database-test"))
+                implementation(libs.kotlinx.coroutines.test)
+            }
+        }
     }
 }
 
