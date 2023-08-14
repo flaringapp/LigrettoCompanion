@@ -101,10 +101,12 @@ internal class GameRepositoryImpl(
     }
 
     override suspend fun endLap(gameWithLap: Game) {
+        val playerScores = gameWithLap.scores.mapKeys { it.key.id }
+
         gameStorageDataSource.endLap(
             gameId = gameWithLap.id,
             lapId = gameWithLap.lastLap!!.id,
-            playerScores = gameWithLap.scores,
+            playerScores = playerScores,
         )
 
         gameObservables.gameFlow.value = gameWithLap

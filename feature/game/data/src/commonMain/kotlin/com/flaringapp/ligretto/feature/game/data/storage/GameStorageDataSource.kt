@@ -9,7 +9,6 @@ import com.flaringapp.ligretto.core.database.Database
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
-import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -41,7 +40,7 @@ internal interface GameStorageDataSource {
     suspend fun endLap(
         gameId: GameId,
         lapId: LapId,
-        playerScores: Map<Player, Score>,
+        playerScores: Map<Long, Score>,
     )
 }
 
@@ -175,7 +174,7 @@ internal class GameStorageDataSourceImpl(
     override suspend fun endLap(
         gameId: GameId,
         lapId: LapId,
-        playerScores: Map<Player, Score>,
+        playerScores: Map<Long, Score>,
     ) {
         database.transaction {
             database.gameQueries.updateCompletedLapId(
@@ -183,10 +182,10 @@ internal class GameStorageDataSourceImpl(
                 completed_lap_id = lapId.value,
             )
 
-            playerScores.forEach { (player, score) ->
+            playerScores.forEach { (playerId, score) ->
                 database.gamePlayerQueries.updateScore(
                     game_id = gameId.value,
-                    player_id = player.id,
+                    player_id = playerId,
                     score = score.value.toLong(),
                 )
             }
