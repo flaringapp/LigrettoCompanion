@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.domain
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.Test
@@ -40,6 +41,7 @@ internal class GameLapApplierImplTest {
             playerTwo to 16,
         )
         val lap = Lap(
+            id = LapId(1),
             number = 1,
             cardsLeft = cardsLeft,
             cardsOnTable = cardsOnTable,

@@ -87,7 +87,7 @@ internal fun GameScoreScreenContent(
 
 @Composable
 private fun Header(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     HeaderText(
         modifier = modifier,

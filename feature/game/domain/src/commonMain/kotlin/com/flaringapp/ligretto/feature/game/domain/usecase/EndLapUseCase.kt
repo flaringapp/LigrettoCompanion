@@ -7,7 +7,7 @@ import org.koin.core.annotation.Single
 
 interface EndLapUseCase {
 
-    operator fun invoke(): Game?
+    suspend operator fun invoke(): Game?
 }
 
 @Single
@@ -16,7 +16,7 @@ internal class EndLapUseCaseImpl(
     private val gameLapApplier: GameLapApplier,
 ) : EndLapUseCase {
 
-    override fun invoke(): Game? {
+    override suspend fun invoke(): Game? {
         val game = repository.currentGameFlow.value ?: return null
         val lap = repository.currentLapFlow.value ?: return null
 

@@ -60,5 +60,9 @@ gradlePlugin {
             id = "ligretto.multiplatform.koin.ksp"
             implementationClass = "MultiplatformKoinKspConventionPlugin"
         }
+        register("multiplatformDatabase") {
+            id = "ligretto.multiplatform.database"
+            implementationClass = "MultiplatformDatabaseConventionPlugin"
+        }
     }
 }

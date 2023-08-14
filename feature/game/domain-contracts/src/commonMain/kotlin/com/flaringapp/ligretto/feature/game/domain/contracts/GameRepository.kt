@@ -1,7 +1,10 @@
 package com.flaringapp.ligretto.feature.game.domain.contracts
 
 import com.flaringapp.ligretto.feature.game.model.Game
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Lap
+import com.flaringapp.ligretto.feature.game.model.Player
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 interface GameRepository {
@@ -9,12 +12,19 @@ interface GameRepository {
     val currentGameFlow: StateFlow<Game?>
     val currentLapFlow: StateFlow<Lap?>
 
-    val previousGame: StateFlow<Game?>
+    val previousGameFlow: Flow<Game?>
 
-    fun startGame(game: Game): Game
+    /**
+     * @return Last [Game] collected from the [previousGameFlow]
+     */
+    fun getCachedPreviousGame(): Game?
+
+    suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
 
-    fun startLap(lap: Lap)
-    fun updateLapCards(lap: Lap)
-    fun endLap(gameWithLap: Game)
+    suspend fun startNextLap(): Lap
+
+    suspend fun updateLapPlayerCards(lap: Lap, player: Player)
+
+    suspend fun endLap(gameWithLap: Game)
 }

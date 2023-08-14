@@ -99,7 +99,7 @@ internal fun GameLapScreenContent(
 
 @Composable
 private fun Header(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     HeaderText(
         modifier = modifier,

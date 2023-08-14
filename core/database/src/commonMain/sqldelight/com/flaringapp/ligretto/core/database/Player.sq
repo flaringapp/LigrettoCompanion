@@ -1,0 +1,28 @@
+CREATE TABLE player (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL UNIQUE
+);
+
+rowid: SELECT last_insert_rowid();
+
+selectAll:
+SELECT * FROM player;
+
+selectAllByIds:
+SELECT * FROM player
+WHERE id IN ?;
+
+selectIdByName:
+SELECT id
+FROM player
+WHERE name = ?
+LIMIT 1;
+
+insert:
+INSERT INTO player(name)
+VALUES (?);
+
+updateName:
+UPDATE player
+SET name = ?
+WHERE id = ?;

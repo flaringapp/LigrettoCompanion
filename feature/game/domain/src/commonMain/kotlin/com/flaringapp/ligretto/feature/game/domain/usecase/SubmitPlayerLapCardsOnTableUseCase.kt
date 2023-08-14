@@ -6,7 +6,7 @@ import org.koin.core.annotation.Single
 
 interface SubmitPlayerLapCardsOnTableUseCase {
 
-    operator fun invoke(player: Player, count: Int)
+    suspend operator fun invoke(player: Player, count: Int)
 }
 
 @Single
@@ -14,7 +14,7 @@ internal class SubmitPlayerLapCardsOnTableUseCaseImpl(
     private val repository: GameRepository,
 ) : SubmitPlayerLapCardsOnTableUseCase {
 
-    override fun invoke(player: Player, count: Int) {
+    override suspend fun invoke(player: Player, count: Int) {
         val lap = requireNotNull(repository.currentLapFlow.value)
 
         val newCardsOnTable = lap.cardsOnTable.toMutableMap()
@@ -22,6 +22,9 @@ internal class SubmitPlayerLapCardsOnTableUseCaseImpl(
 
         val newLap = lap.copy(cardsOnTable = newCardsOnTable)
 
-        repository.updateLapCards(newLap)
+        repository.updateLapPlayerCards(
+            lap = newLap,
+            player = player,
+        )
     }
 }

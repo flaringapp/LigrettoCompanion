@@ -13,7 +13,7 @@ internal data class GameScoreState(
 ) : UiState {
 
     data class PlayerScore(
-        val id: Int,
+        val id: Long,
         val playerName: String,
         val score: Int,
     )

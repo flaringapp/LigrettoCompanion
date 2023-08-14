@@ -1,11 +1,12 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
+import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
-import com.flaringapp.ligretto.feature.game.domain.model.GameConfig
-import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.GetCachedPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
+import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
@@ -14,6 +15,8 @@ import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
 private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
@@ -21,9 +24,11 @@ private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 @KoinViewModel
 internal class GameStartViewModel(
     @InjectedParam restartLastGame: Boolean,
-    private val getPreviousGameUseCase: GetPreviousGameUseCase,
+    private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
+
+    private var startGameJob: Job? = null
 
     init {
         if (restartLastGame) {
@@ -66,7 +71,7 @@ internal class GameStartViewModel(
     }
 
     private fun fetchDataFromLastGame(): GameStartState {
-        val game = getPreviousGameUseCase().value ?: return state
+        val game = getCachedPreviousGameUseCase() ?: return state
 
         return GameStartState(
             players = mapUiGamePlayers(game.players),
@@ -79,7 +84,7 @@ internal class GameStartViewModel(
     ): GameStartState.Players {
         val list = players.map { player ->
             GameStartState.Player(
-                id = player.id,
+                id = player.id.toInt(), // TODO fix
                 name = player.name,
             )
         }
@@ -173,6 +178,8 @@ internal class GameStartViewModel(
     }
 
     private fun startGame() = state.also {
+        if (startGameJob?.isActive == true) return@also
+
         val hasEmptyNames = state.players.list.any { it.name.isBlank() }
         if (hasEmptyNames) return@also
 
@@ -196,16 +203,22 @@ internal class GameStartViewModel(
         if (!isTimeEndConditionValid) return@also
 
         val config = createGameConfig()
-        startGameUseCase(config)
 
-        setEffect { GameStartEffect.StartGame }
+        // TODO loading/disable button?
+        // TODO error handling
+        startGameJob = viewModelScope.launch {
+            startGameUseCase(config)
+
+            setEffect { GameStartEffect.StartGame }
+        }
+
         return@also
     }
 
     private fun createGameConfig(): GameConfig {
         val players = state.players.list.map { player ->
             Player(
-                id = player.id,
+                id = player.id.toLong(),
                 name = player.name,
             )
         }

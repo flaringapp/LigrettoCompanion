@@ -13,6 +13,8 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsO
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
 import org.koin.android.annotation.KoinViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,8 @@ internal class GameLapViewModel(
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
     private val endLapUseCase: EndLapUseCase,
 ) : MviViewModel<GameLapState, GameLapIntent, GameLapEffect>(GameLapState()) {
+
+    private var endLapJob: Job? = null
 
     init {
         dispatch { GameLapIntent.InitDataUpdates }
@@ -77,35 +81,53 @@ internal class GameLapViewModel(
         copy(playersCards = intent.playersCards)
     }
 
-    private fun incrementCardsLeft(playerId: Int) = state.also {
+    private fun incrementCardsLeft(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) + 1
-        submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+        }
     }
 
-    private fun decrementCardsLeft(playerId: Int) = state.also {
+    private fun decrementCardsLeft(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsLeft = (lap.cardsLeft[player] ?: 0) - 1
-        submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsLeftUseCase(player, cardsLeft)
+        }
     }
 
-    private fun incrementCardsOnTable(playerId: Int) = state.also {
+    private fun incrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) + 1
-        submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+        }
     }
 
-    private fun decrementCardsOnTable(playerId: Int) = state.also {
+    private fun decrementCardsOnTable(playerId: Long) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
         val cardsOnTable = (lap.cardsOnTable[player] ?: 0) - 1
-        submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+
+        // TODO Synchronize?
+        viewModelScope.launch {
+            submitPlayerLapCardsOnTableUseCase(player, cardsOnTable)
+        }
     }
 
     private fun endLap() = updateState {
+        if (endLapJob?.isActive == true) return@updateState this
+
         copy(showConfirmEndLap = true)
     }
 
@@ -114,16 +136,22 @@ internal class GameLapViewModel(
     }
 
     private fun endLapConfirmed() = hideEndLapConfirmation().also {
-        val game = endLapUseCase()
-        if (game?.matchesEndConditions == true) {
-            setEffect { GameLapEffect.EndGame }
-            return@also
-        }
+        if (endLapJob?.isActive == true) return@also
 
-        setEffect { GameLapEffect.OpenScores }
+        // TODO loading/disable button?
+        // TODO error handling
+        viewModelScope.launch(Dispatchers.IO) {
+            val game = endLapUseCase()
+            if (game?.matchesEndConditions == true) {
+                setEffect { GameLapEffect.EndGame }
+                return@launch
+            }
+
+            setEffect { GameLapEffect.OpenScores }
+        }
     }
 
-    private fun findPlayer(id: Int): Player? {
+    private fun findPlayer(id: Long): Player? {
         val game = getCurrentGameUseCase().value ?: return null
         return game.players.find { it.id == id }
     }

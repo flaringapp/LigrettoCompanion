@@ -1,11 +1,13 @@
 [versions]
-kotlin = "1.8.21"
-kotlinKsp = "1.8.21-1.0.11"
+kotlin = "1.8.22"
+kotlinKsp = "1.8.22-1.0.11"
 kotlinCoroutines = "1.7.1"
 androidGradlePlugin = "8.0.2"
 androidxLifecycle = "2.6.1"
-composeCompiler = "1.4.7"
+composeCompiler = "1.4.8"
 koinAnnotations = "1.2.2"
+sqlDelight = "2.0.0"
+multiplatformSettings = "1.0.0"
 
 [libraries]
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
@@ -51,8 +53,22 @@ koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", versi
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
 
+# Database
+sqlDelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqlDelight" }
+sqlDelight-driver-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqlDelight" }
+sqlDelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqlDelight" }
+sqlDelight-driver-sqlite = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqlDelight" }
+sqlDelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqlDelight" }
+
+# Key Value Storage
+multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings", version.ref = "multiplatformSettings" }
+multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
+
 # Testing
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.5" }
+
+# Lint
+slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.2.0" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -64,4 +80,5 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "11.4.2" }

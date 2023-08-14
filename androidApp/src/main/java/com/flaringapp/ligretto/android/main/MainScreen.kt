@@ -13,12 +13,16 @@ import com.flaringapp.ligretto.feature.home.ui.HomeDestination
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+) {
     val navController = rememberNavController()
 
     SystemBarsUi()
 
-    Scaffold { padding ->
+    Scaffold(
+        modifier = modifier,
+    ) { padding ->
         NavHost(
             modifier = Modifier.padding(padding),
             navController = navController,

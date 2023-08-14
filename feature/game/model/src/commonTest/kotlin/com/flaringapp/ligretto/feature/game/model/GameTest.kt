@@ -148,10 +148,12 @@ internal class GameTest {
 
     private fun createLap(
         number: Int,
+        id: LapId = LapId(number.toLong()),
         players: List<Player> = listOf(Player(1, "Andrii")),
         cardsLeft: Map<Player, Int> = players.associateWith { 0 },
         cardsOnTable: Map<Player, Int> = players.associateWith { 0 },
     ) = Lap(
+        id = id,
         number = number,
         cardsLeft = cardsLeft,
         cardsOnTable = cardsOnTable,

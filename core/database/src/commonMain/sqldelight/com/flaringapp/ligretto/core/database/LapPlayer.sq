@@ -1,0 +1,22 @@
+CREATE TABLE lapPlayer (
+  lap_id INTEGER NOT NULL,
+  player_id INTEGER NOT NULL,
+  cards_left INTEGER DEFAULT 0 NOT NULL,
+  cards_on_table INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY (lap_id, player_id),
+  FOREIGN KEY (lap_id) REFERENCES lap (id) ON DELETE CASCADE,
+  FOREIGN KEY (player_id) REFERENCES player (id) ON DELETE RESTRICT
+);
+
+selectAllByLaps:
+SELECT * FROM lapPlayer
+WHERE lap_id IN ?;
+
+insert:
+INSERT INTO lapPlayer (lap_id, player_id)
+VALUES (?, ?);
+
+updateCards:
+UPDATE lapPlayer
+SET cards_left = ?, cards_on_table = ?
+WHERE lap_id = ? AND player_id = ?;
