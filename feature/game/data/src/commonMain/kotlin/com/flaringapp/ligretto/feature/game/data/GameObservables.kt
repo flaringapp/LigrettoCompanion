@@ -10,7 +10,6 @@ internal interface GameObservables {
     val gameFlow: MutableStateFlow<Game?>
 
     val lapFlow: MutableStateFlow<Lap?>
-
 }
 
 @Single
@@ -19,5 +18,4 @@ internal class GameObservablesImpl : GameObservables {
     override val gameFlow: MutableStateFlow<Game?> = MutableStateFlow(null)
 
     override val lapFlow: MutableStateFlow<Lap?> = MutableStateFlow(null)
-
 }

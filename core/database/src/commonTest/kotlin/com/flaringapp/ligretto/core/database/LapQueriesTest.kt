@@ -2,9 +2,9 @@ package com.flaringapp.ligretto.core.database
 
 import app.cash.sqldelight.async.coroutines.awaitAsList
 import app.cash.sqldelight.async.coroutines.awaitAsOne
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
 
 internal class LapQueriesTest : QueriesTest<LapQueries>() {
 

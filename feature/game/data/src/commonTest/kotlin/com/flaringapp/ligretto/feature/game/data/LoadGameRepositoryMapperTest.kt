@@ -10,11 +10,6 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
-import com.flaringapp.ligretto.core.database.Game as DatabaseGame
-import com.flaringapp.ligretto.core.database.LapPlayer as DatabaseLapPlayer
-import com.flaringapp.ligretto.core.database.Player as DatabasePlayer
-import com.flaringapp.ligretto.core.database.SelectAllByGameId as DatabaseGamePlayer
-import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as DatabaseLap
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,6 +17,11 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import com.flaringapp.ligretto.core.database.Game as DatabaseGame
+import com.flaringapp.ligretto.core.database.LapPlayer as DatabaseLapPlayer
+import com.flaringapp.ligretto.core.database.Player as DatabasePlayer
+import com.flaringapp.ligretto.core.database.SelectAllByGameId as DatabaseGamePlayer
+import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as DatabaseLap
 
 internal class LoadGameRepositoryMapperTest {
 

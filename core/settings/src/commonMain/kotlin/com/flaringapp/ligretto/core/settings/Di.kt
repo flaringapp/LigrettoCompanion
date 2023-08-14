@@ -26,6 +26,5 @@ internal class SettingsModule {
 }
 
 internal fun platformSettingModule() = module {
-
     single { settingsFactory() }
 }

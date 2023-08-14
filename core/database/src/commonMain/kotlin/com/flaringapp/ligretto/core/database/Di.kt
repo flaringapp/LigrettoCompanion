@@ -26,6 +26,5 @@ internal class DatabaseModule {
 }
 
 internal fun platformDatabaseModule() = module {
-
     factory { databaseDriverFactory("ligretto.db") }
 }

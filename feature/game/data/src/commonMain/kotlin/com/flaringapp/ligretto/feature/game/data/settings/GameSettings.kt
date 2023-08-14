@@ -14,7 +14,7 @@ internal interface GameSettings {
 @Single
 class GameSettingsImpl(
     private val settingsProvider: SettingsProvider,
-): GameSettings {
+) : GameSettings {
 
     private val settings: Settings by lazy { settingsProvider.provide(SettingsType.Game) }
 

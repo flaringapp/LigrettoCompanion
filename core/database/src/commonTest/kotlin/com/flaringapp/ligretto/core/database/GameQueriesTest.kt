@@ -1,10 +1,10 @@
 package com.flaringapp.ligretto.core.database
 
 import app.cash.sqldelight.async.coroutines.awaitAsOne
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Instant
-import kotlin.test.Test
 
 internal class GameQueriesTest : QueriesTest<GameQueries>() {
 

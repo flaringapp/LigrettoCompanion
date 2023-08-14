@@ -1,9 +1,5 @@
 package com.flaringapp.ligretto.feature.game.data
 
-import com.flaringapp.ligretto.core.database.LapPlayer as DatabaseLapPlayer
-import com.flaringapp.ligretto.core.database.Player as DatabasePlayer
-import com.flaringapp.ligretto.core.database.SelectAllByGameId as DatabaseGamePlayer
-import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as DatabaseLap
 import com.flaringapp.ligretto.feature.game.data.storage.GameDataStorageDto
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
@@ -20,6 +16,10 @@ import kotlin.time.Duration.Companion.minutes
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
+import com.flaringapp.ligretto.core.database.LapPlayer as DatabaseLapPlayer
+import com.flaringapp.ligretto.core.database.Player as DatabasePlayer
+import com.flaringapp.ligretto.core.database.SelectAllByGameId as DatabaseGamePlayer
+import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as DatabaseLap
 
 internal interface LoadGameRepositoryMapper {
 
@@ -29,7 +29,7 @@ internal interface LoadGameRepositoryMapper {
 @Factory
 internal class LoadGameRepositoryMapperImpl(
     private val clock: Clock,
-): LoadGameRepositoryMapper {
+) : LoadGameRepositoryMapper {
 
     override fun map(game: DatabaseGame, data: GameDataStorageDto): Game {
         val players = mapPlayersByIds(data.players)
