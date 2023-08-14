@@ -7,6 +7,7 @@ androidxLifecycle = "2.6.1"
 composeCompiler = "1.4.8"
 koinAnnotations = "1.2.2"
 sqlDelight = "2.0.0"
+multiplatformSettings = "1.0.0"
 
 [libraries]
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
@@ -60,7 +61,8 @@ sqlDelight-driver-sqlite = { group = "app.cash.sqldelight", name = "sqlite-drive
 sqlDelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqlDelight" }
 
 # Key Value Storage
-multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings", version = "1.0.0" }
+multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings", version.ref = "multiplatformSettings" }
+multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
 # Testing
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.5" }
