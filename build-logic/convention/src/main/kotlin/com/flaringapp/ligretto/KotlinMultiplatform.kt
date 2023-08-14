@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
 ): Unit = with(extension) {
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_17.toString()
