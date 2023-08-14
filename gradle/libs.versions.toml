@@ -1,10 +1,10 @@
 [versions]
-kotlin = "1.8.22"
-kotlinKsp = "1.8.22-1.0.11"
-kotlinCoroutines = "1.7.1"
+kotlin = "1.9.0"
+kotlinKsp = "1.9.0-1.0.13"
+kotlinCoroutines = "1.7.3"
 androidGradlePlugin = "8.0.2"
 androidxLifecycle = "2.6.1"
-composeCompiler = "1.4.8"
+composeCompiler = "1.5.1"
 koinAnnotations = "1.2.2"
 sqlDelight = "2.0.0"
 multiplatformSettings = "1.0.0"
@@ -43,12 +43,12 @@ androidx-compose-material-icons = { group = "androidx.compose.material", name = 
 google-accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version = "0.30.1" }
 
 # Koin
-koin-core = { group = "io.insert-koin", name = "koin-core", version = "3.4.2" }
-koin-test = { group = "io.insert-koin", name = "koin-test", version = "3.4.1" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version = "3.4.3" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version = "3.4.3" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
-koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.4.2" }
-koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.5" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version = "3.4.3" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.6" }
 
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
@@ -81,4 +81,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
-ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "11.4.2" }
+ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "11.5.1" }
