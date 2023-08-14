@@ -29,7 +29,6 @@ internal interface GameStorageDataSource {
     suspend fun startNextLap(
         gameId: GameId,
         lapNumber: Int,
-        playerIds: Iterable<Long>,
     ): Long
 
     suspend fun updateLapPlayerCards(
@@ -136,19 +135,22 @@ internal class GameStorageDataSourceImpl(
     override suspend fun startNextLap(
         gameId: GameId,
         lapNumber: Int,
-        playerIds: Iterable<Long>,
     ): Long {
         return database.transactionWithResult {
+            val gamePlayers = database.gamePlayerQueries
+                .selectAllByGameId(gameId.value)
+                .awaitAsList()
+
             database.lapQueries.insert(
                 game_id = gameId.value,
                 number = lapNumber.toLong(),
             )
             val lapId = database.lapQueries.rowid().awaitAsOne()
 
-            playerIds.forEach { playerId ->
+            gamePlayers.forEach { gamePlayer ->
                 database.lapPlayerQueries.insert(
                     lap_id = lapId,
-                    player_id = playerId,
+                    player_id = gamePlayer.player_id,
                 )
             }
 

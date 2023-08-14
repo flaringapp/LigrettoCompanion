@@ -73,15 +73,10 @@ internal class GameRepositoryImpl(
     override suspend fun startNextLap(): Lap {
         val game = requireNotNull(currentGameFlow.value)
         val lapNumber = game.pendingLapNumber
-        val playerIds = game.players
-            .asSequence()
-            .map { it.id }
-            .asIterable()
 
         val lapId = gameStorageDataSource.startNextLap(
             gameId = game.id,
             lapNumber = lapNumber,
-            playerIds = playerIds,
         )
 
         val lap = Lap.empty(
