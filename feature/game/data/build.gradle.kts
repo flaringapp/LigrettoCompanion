@@ -20,8 +20,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(project(":core:database-test"))
+                implementation(project(":core:settings-test"))
                 implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.multiplatform.settings.test)
             }
         }
     }
