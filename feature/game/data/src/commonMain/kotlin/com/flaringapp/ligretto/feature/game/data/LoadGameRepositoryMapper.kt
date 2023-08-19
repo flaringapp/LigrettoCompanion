@@ -24,7 +24,10 @@ import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as
 
 internal interface LoadGameRepositoryMapper {
 
-    fun map(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot
+    fun map(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot
 }
 
 @Factory
@@ -32,7 +35,10 @@ internal class LoadGameRepositoryMapperImpl(
     private val clock: Clock,
 ) : LoadGameRepositoryMapper {
 
-    override fun map(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot {
+    override fun map(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot {
         val players = mapPlayersByIds(data.players)
 
         val scores = mapPlayerScores(

@@ -37,7 +37,7 @@ internal class GameRepositoryImpl(
             if (game == null) return@map null
 
             val gameData = gameStorageDataSource.getGameData(game.id)
-            mapper.mapGame(
+            mapper.mapGameSnapshot(
                 game = game,
                 data = gameData,
             )

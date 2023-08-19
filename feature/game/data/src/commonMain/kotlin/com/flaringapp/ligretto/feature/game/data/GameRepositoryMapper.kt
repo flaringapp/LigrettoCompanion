@@ -19,7 +19,10 @@ internal interface GameRepositoryMapper {
 
     fun mapNewGame(config: GameConfig, dto: StartGameStorageDto): Game
 
-    fun mapGame(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot
+    fun mapGameSnapshot(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot
 }
 
 @Factory
@@ -49,7 +52,10 @@ internal class GameRepositoryMapperImpl(
         )
     }
 
-    override fun mapGame(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot {
+    override fun mapGameSnapshot(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot {
         return loadGameMapper.map(
             game = game,
             data = data,
