@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.data
 import com.flaringapp.ligretto.feature.game.data.storage.GameDataStorageDto
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
@@ -74,7 +75,7 @@ internal class LoadGameRepositoryMapperTest {
             Player(id = 2, name = "Olenkka"),
             Player(id = 3, name = "Alina"),
         )
-        val expected = Game(
+        val expectedGame = Game(
             id = GameId(1),
             players = expectedPlayers,
             timeStarted = timeStarted,
@@ -85,26 +86,120 @@ internal class LoadGameRepositoryMapperTest {
                 time = null,
             ),
         )
+        val expectedGameSnapshot = GameSnapshot(
+            game = expectedGame,
+            activeLap = null,
+        )
 
         val actual = mapper.map(
             game = gameDto,
             data = data,
         )
 
-        assertEquals(expected, actual)
+        assertEquals(expectedGameSnapshot, actual)
     }
 
     @Test
-    fun `Map filled game with end conditions returns expected data`() {
+    fun `Map filled game with end conditions and all completed laps returns expected data`() {
+        val timeStarted = Instant.parse("2023-08-13T18:00:00.00Z")
+
+        val gameDto = DatabaseGame(
+            id = 1,
+            time_started = timeStarted.toEpochMilliseconds(),
+            completed_lap_id = 1,
+            target_score = 121,
+            duration_hours = 1,
+            duration_minutes = 12,
+        )
+
+        val playersDto = listOf(
+            DatabasePlayer(id = 1, name = "Andreo"),
+            DatabasePlayer(id = 2, name = "Alina"),
+            DatabasePlayer(id = 3, name = "Mario"),
+        )
+
+        val data = GameDataStorageDto(
+            gamePlayers = listOf(
+                DatabaseGamePlayer(player_id = 1, score = 13),
+                DatabaseGamePlayer(player_id = 2, score = 4),
+                DatabaseGamePlayer(player_id = 3, score = -2),
+            ),
+            laps = listOf(
+                DatabaseLap(id = 1, number = 1),
+            ),
+            lapsPlayers = listOf(
+                // Lap 1
+                DatabaseLapPlayer(lap_id = 1, player_id = 1, cards_left = 0, cards_on_table = 13),
+                DatabaseLapPlayer(lap_id = 1, player_id = 2, cards_left = 4, cards_on_table = 12),
+                DatabaseLapPlayer(lap_id = 1, player_id = 3, cards_left = 5, cards_on_table = 8),
+            ),
+            players = playersDto,
+        )
+
+        val expectedPlayers = listOf(
+            Player(id = 1, name = "Andreo"),
+            Player(id = 2, name = "Alina"),
+            Player(id = 3, name = "Mario"),
+        )
+        val expectedGame = Game(
+            id = GameId(1),
+            players = expectedPlayers,
+            timeStarted = timeStarted,
+            scores = mapOf(
+                expectedPlayers[0] to Score(13),
+                expectedPlayers[1] to Score(4),
+                expectedPlayers[2] to Score(-2),
+            ),
+            completedLaps = listOf(
+                Lap(
+                    id = LapId(1),
+                    number = 1,
+                    cardsLeft = mapOf(
+                        expectedPlayers[0] to 0,
+                        expectedPlayers[1] to 4,
+                        expectedPlayers[2] to 5,
+                    ),
+                    cardsOnTable = mapOf(
+                        expectedPlayers[0] to 13,
+                        expectedPlayers[1] to 12,
+                        expectedPlayers[2] to 8,
+                    ),
+                ),
+            ),
+            endConditions = GameEndConditions(
+                score = GameEndScoreCondition(
+                    targetScore = Score(121)
+                ),
+                time = GameEndTimeCondition(
+                    gameDuration = 1.hours + 12.minutes,
+                    clock = clock,
+                ),
+            ),
+        )
+        val expectedSnapshot = GameSnapshot(
+            game = expectedGame,
+            activeLap = null,
+        )
+
+        val actual = mapper.map(
+            game = gameDto,
+            data = data,
+        )
+
+        assertEquals(expectedSnapshot, actual)
+    }
+
+    @Test
+    fun `Map filled game with uncompleted lap returns expected data`() {
         val timeStarted = Instant.parse("2023-08-13T18:00:00.00Z")
 
         val gameDto = DatabaseGame(
             id = 1,
             time_started = timeStarted.toEpochMilliseconds(),
             completed_lap_id = 2,
-            target_score = 153,
-            duration_hours = 2,
-            duration_minutes = 34,
+            target_score = null,
+            duration_hours = null,
+            duration_minutes = null,
         )
         val playersDto = listOf(
             DatabasePlayer(id = 1, name = "Andreo"),
@@ -150,7 +245,7 @@ internal class LoadGameRepositoryMapperTest {
             Player(id = 3, name = "Alina"),
             Player(id = 4, name = "Mario"),
         )
-        val expected = Game(
+        val expectedGame = Game(
             id = GameId(1),
             players = expectedPlayers,
             timeStarted = timeStarted,
@@ -193,32 +288,27 @@ internal class LoadGameRepositoryMapperTest {
                         expectedPlayers[3] to 2,
                     ),
                 ),
-                Lap(
-                    id = LapId(3),
-                    number = 3,
-                    cardsLeft = mapOf(
-                        expectedPlayers[0] to 1,
-                        expectedPlayers[1] to 0,
-                        expectedPlayers[2] to 4,
-                        expectedPlayers[3] to 9,
-                    ),
-                    cardsOnTable = mapOf(
-                        expectedPlayers[0] to 18,
-                        expectedPlayers[1] to 26,
-                        expectedPlayers[2] to 30,
-                        expectedPlayers[3] to 4,
-                    ),
-                ),
             ),
-            endConditions = GameEndConditions(
-                score = GameEndScoreCondition(
-                    targetScore = Score(153)
-                ),
-                time = GameEndTimeCondition(
-                    gameDuration = 2.hours + 34.minutes,
-                    clock = clock,
-                ),
+        )
+        val expectedActiveLap = Lap(
+            id = LapId(3),
+            number = 3,
+            cardsLeft = mapOf(
+                expectedPlayers[0] to 1,
+                expectedPlayers[1] to 0,
+                expectedPlayers[2] to 4,
+                expectedPlayers[3] to 9,
             ),
+            cardsOnTable = mapOf(
+                expectedPlayers[0] to 18,
+                expectedPlayers[1] to 26,
+                expectedPlayers[2] to 30,
+                expectedPlayers[3] to 4,
+            ),
+        )
+        val expectedSnapshot = GameSnapshot(
+            game = expectedGame,
+            activeLap = expectedActiveLap,
         )
 
         val actual = mapper.map(
@@ -226,6 +316,6 @@ internal class LoadGameRepositoryMapperTest {
             data = data,
         )
 
-        assertEquals(expected, actual)
+        assertEquals(expectedSnapshot, actual)
     }
 }
