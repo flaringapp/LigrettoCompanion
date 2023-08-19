@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.data
 import com.flaringapp.ligretto.feature.game.data.storage.GameDataStorageDto
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
@@ -23,7 +24,7 @@ import com.flaringapp.ligretto.core.database.SelectAllByGameIdNumberAscending as
 
 internal interface LoadGameRepositoryMapper {
 
-    fun map(game: DatabaseGame, data: GameDataStorageDto): Game
+    fun map(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot
 }
 
 @Factory
@@ -31,7 +32,7 @@ internal class LoadGameRepositoryMapperImpl(
     private val clock: Clock,
 ) : LoadGameRepositoryMapper {
 
-    override fun map(game: DatabaseGame, data: GameDataStorageDto): Game {
+    override fun map(game: DatabaseGame, data: GameDataStorageDto): GameSnapshot {
         val players = mapPlayersByIds(data.players)
 
         val scores = mapPlayerScores(
@@ -39,19 +40,31 @@ internal class LoadGameRepositoryMapperImpl(
             gamePlayers = data.gamePlayers,
         )
 
-        val laps = mapGameLaps(
+        val completedLaps = mapGameLaps(
             players = players,
             lapsPlayers = data.lapsPlayers,
             laps = data.laps,
-        )
+        ).toMutableList()
 
-        return Game(
+        val activeLap = run {
+            val lastLap = completedLaps.lastOrNull() ?: return@run null
+            if (lastLap.id.value == game.completed_lap_id) return@run null
+
+            completedLaps.removeLast()
+        }
+
+        val domainGame = Game(
             id = GameId(game.id),
             players = players.values.toList(),
             timeStarted = Instant.fromEpochMilliseconds(game.time_started),
             scores = scores,
-            completedLaps = laps,
+            completedLaps = completedLaps,
             endConditions = mapGameEndConditions(game),
+        )
+
+        return GameSnapshot(
+            game = domainGame,
+            activeLap = activeLap,
         )
     }
 
