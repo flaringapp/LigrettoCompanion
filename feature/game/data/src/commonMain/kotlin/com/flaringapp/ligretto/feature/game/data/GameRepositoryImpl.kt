@@ -6,6 +6,7 @@ import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSource
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
+import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
@@ -47,6 +48,16 @@ internal class GameRepositoryImpl(
 
     override fun getCachedPreviousGame(): GameSnapshot? {
         return gameCache.previousGame
+    }
+
+    override fun getActiveGameId(): GameId? {
+        return gameSettings.activeGameId?.let(::GameId)
+    }
+
+    override suspend fun resumeGame(gameSnapshot: GameSnapshot) {
+        gameSettings.activeGameId = gameSnapshot.game.id.value
+        gameObservables.gameFlow.value = gameSnapshot.game
+        gameObservables.lapFlow.value = gameSnapshot.activeLap
     }
 
     override suspend fun startGame(gameConfig: GameConfig): Game {
