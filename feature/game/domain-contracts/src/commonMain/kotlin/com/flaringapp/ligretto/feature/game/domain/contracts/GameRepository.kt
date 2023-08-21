@@ -22,6 +22,7 @@ interface GameRepository {
     fun getCachedPreviousGame(): GameSnapshot?
 
     fun getActiveGameId(): GameId?
+    fun observeActiveGameId(): Flow<GameId?>
 
     suspend fun resumeGame(gameSnapshot: GameSnapshot)
 

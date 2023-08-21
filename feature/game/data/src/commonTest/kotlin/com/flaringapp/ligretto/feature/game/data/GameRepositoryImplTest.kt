@@ -109,6 +109,8 @@ internal class GameRepositoryImplTest {
 
         val game = repository.startGame(gameConfig)
 
+        assertEquals(game.id.value, repository.getActiveGameId()?.value)
+        assertEquals(game.id.value, repository.observeActiveGameId().firstOrNull()?.value)
         assertEquals(game.id.value, settings.activeGameId)
     }
 
@@ -184,6 +186,8 @@ internal class GameRepositoryImplTest {
         repository.startGame(gameConfig)
         repository.endGame()
 
+        assertNull(repository.getActiveGameId())
+        assertNull(repository.observeActiveGameId().firstOrNull())
         assertNull(settings.activeGameId)
     }
 

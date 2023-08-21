@@ -54,6 +54,10 @@ internal class GameRepositoryImpl(
         return gameSettings.activeGameId?.let(::GameId)
     }
 
+    override fun observeActiveGameId(): Flow<GameId?> {
+        return gameSettings.activeGameIdFlow.map { it?.let(::GameId) }
+    }
+
     override suspend fun resumeGame(gameSnapshot: GameSnapshot) {
         gameSettings.activeGameId = gameSnapshot.game.id.value
         gameObservables.gameFlow.value = gameSnapshot.game
