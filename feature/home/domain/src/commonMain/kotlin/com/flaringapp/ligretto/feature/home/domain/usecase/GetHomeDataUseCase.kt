@@ -1,6 +1,8 @@
 package com.flaringapp.ligretto.feature.home.domain.usecase
 
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
+import com.flaringapp.ligretto.feature.game.model.GameId
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.home.domain.model.HomeData
 import org.koin.core.annotation.Single
 import kotlinx.coroutines.flow.Flow
@@ -21,10 +23,29 @@ internal class GetHomeDataUseCaseImpl(
             repository.previousGameFlow,
             repository.observeActiveGameId(),
         ) { previousGame, activeGameId ->
+            val activeGame = resolveActiveGame(
+                previousGame = previousGame,
+                activeGameId = activeGameId,
+            )
+
             HomeData(
-                activeGame = previousGame?.takeIf { it.game.id == activeGameId },
+                activeGame = activeGame,
                 previousGame = previousGame,
             )
         }
+    }
+
+    private fun resolveActiveGame(
+        previousGame: GameSnapshot?,
+        activeGameId: GameId?,
+    ): GameSnapshot? {
+        if (previousGame == null || previousGame.game.id != activeGameId) return null
+
+        if (previousGame.game.matchesEndConditions) {
+            repository.endGame()
+            return null
+        }
+
+        return previousGame
     }
 }
