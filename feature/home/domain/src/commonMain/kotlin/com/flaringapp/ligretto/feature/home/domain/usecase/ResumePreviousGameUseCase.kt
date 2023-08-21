@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.domain.usecase
+package com.flaringapp.ligretto.feature.home.domain.usecase
 
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
