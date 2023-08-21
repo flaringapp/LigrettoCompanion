@@ -16,6 +16,7 @@ internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
 @Composable
 internal fun HomeScreen(
     openStartGame: (restartLastGame: Boolean) -> Unit,
+    openResumeGame: (openLap: Boolean) -> Unit,
     store: HomeViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
@@ -23,6 +24,7 @@ internal fun HomeScreen(
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
             is HomeEffect.OpenStartGame -> openStartGame(effect.restartLastGame)
+            is HomeEffect.OpenResumeGame -> openResumeGame(effect.openLap)
         }
     }
 

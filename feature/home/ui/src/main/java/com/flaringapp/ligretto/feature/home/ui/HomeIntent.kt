@@ -11,4 +11,6 @@ internal sealed interface HomeIntent : UiIntent {
     object StartNewGame : HomeIntent
 
     object RestartLastGame : HomeIntent
+
+    object ContinueActiveGame : HomeIntent
 }

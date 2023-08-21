@@ -15,6 +15,7 @@ object HomeDestination : ScreenDestinationWithoutArguments() {
 fun NavGraphBuilder.homeGraph(
     navController: NavController,
     startGame: (restartLastGame: Boolean) -> Unit,
+    resumeGame: (openLap: Boolean) -> Unit,
 ) {
     navigation(
         startDestination = HomeScreenDestination,
@@ -23,6 +24,7 @@ fun NavGraphBuilder.homeGraph(
         composable(HomeScreenDestination) {
             HomeScreen(
                 openStartGame = startGame,
+                openResumeGame = resumeGame,
             )
         }
     }

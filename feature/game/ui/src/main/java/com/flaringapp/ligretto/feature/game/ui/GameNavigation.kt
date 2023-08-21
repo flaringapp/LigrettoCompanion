@@ -23,7 +23,7 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
 
-object GameDestination : ScreenDestination {
+internal object GameDestination : ScreenDestination {
 
     override val screenId: String = "game"
 
@@ -85,6 +85,23 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         }
     }
 }
+
+fun NavController.navigateNewGame(restartLastGame: Boolean) {
+    navigate(
+        GameDestination.route(restartLastGame = restartLastGame)
+    )
+}
+
+fun NavController.navigateResumeGame(openLap: Boolean) {
+    navigateNewGame(restartLastGame = false)
+
+    if (openLap) {
+        navigateGameLap()
+    } else {
+        navigateGameScores()
+    }
+}
+
 
 private fun NavController.navigateGameScores() {
     navigate(GameScoreDestination.route()) {

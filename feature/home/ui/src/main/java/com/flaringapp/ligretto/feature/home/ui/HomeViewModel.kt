@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.home.ui
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.feature.game.domain.usecase.ResumePreviousGameUseCase
 import com.flaringapp.ligretto.feature.home.domain.usecase.GetHomeDataUseCase
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
@@ -10,6 +11,7 @@ import kotlinx.coroutines.launch
 @KoinViewModel
 internal class HomeViewModel(
     private val getHomeDataUseCase: GetHomeDataUseCase,
+    private val resumePreviousGameUseCase: ResumePreviousGameUseCase,
 ) : MviViewModel<HomeState, HomeIntent, HomeEffect>(HomeState()) {
 
     init {
@@ -32,6 +34,7 @@ internal class HomeViewModel(
         is HomeIntent.UpdateData -> intent.state
         HomeIntent.StartNewGame -> startNewGame()
         HomeIntent.RestartLastGame -> restartLastGame()
+        HomeIntent.ContinueActiveGame -> continueActiveGame()
     }
 
     private fun startNewGame(): HomeState = state.also {
@@ -40,5 +43,14 @@ internal class HomeViewModel(
 
     private fun restartLastGame(): HomeState = state.also {
         setEffect { HomeEffect.OpenStartGame(restartLastGame = true) }
+    }
+
+    private fun continueActiveGame(): HomeState = state.also {
+        viewModelScope.launch {
+            val game = resumePreviousGameUseCase() ?: return@launch
+            val openLap = game.activeLap != null
+
+            setEffect { HomeEffect.OpenResumeGame(openLap = openLap) }
+        }
     }
 }

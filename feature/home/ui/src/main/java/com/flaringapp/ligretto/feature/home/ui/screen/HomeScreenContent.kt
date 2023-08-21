@@ -42,6 +42,15 @@ internal fun HomeScreenContent(
                 Text(text = "Restart last game")
             }
         }
+
+        if (state.hasActiveGame) {
+            TextButton(
+                modifier = Modifier.padding(top = 32.dp),
+                onClick = { dispatch(HomeIntent.ContinueActiveGame) },
+            ) {
+                Text(text = "Continue current game")
+            }
+        }
     }
 }
 
