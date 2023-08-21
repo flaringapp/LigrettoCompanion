@@ -47,7 +47,12 @@ internal class HomeViewModel(
 
     private fun continueActiveGame(): HomeState = state.also {
         viewModelScope.launch {
-            val game = resumePreviousGameUseCase() ?: return@launch
+            val game = resumePreviousGameUseCase() ?: run {
+                // TODO check reason
+                setEffect { HomeEffect.OpenActiveGameEnded }
+                return@launch
+            }
+
             val openLap = game.activeLap != null
 
             setEffect { HomeEffect.OpenResumeGame(openLap = openLap) }

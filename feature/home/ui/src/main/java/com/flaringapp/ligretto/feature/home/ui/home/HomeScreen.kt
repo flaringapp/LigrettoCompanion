@@ -17,6 +17,7 @@ internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
 internal fun HomeScreen(
     openStartGame: (restartLastGame: Boolean) -> Unit,
     openResumeGame: (openLap: Boolean) -> Unit,
+    openActiveGameEnded: () -> Unit,
     store: HomeViewModel = getViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
@@ -25,6 +26,7 @@ internal fun HomeScreen(
         when (effect) {
             is HomeEffect.OpenStartGame -> openStartGame(effect.restartLastGame)
             is HomeEffect.OpenResumeGame -> openResumeGame(effect.openLap)
+            is HomeEffect.OpenActiveGameEnded -> openActiveGameEnded()
         }
     }
 
