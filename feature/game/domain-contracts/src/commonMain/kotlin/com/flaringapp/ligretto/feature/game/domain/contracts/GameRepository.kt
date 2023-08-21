@@ -26,6 +26,7 @@ interface GameRepository {
 
     suspend fun resumeGame(gameSnapshot: GameSnapshot)
 
+    //region Game in progress
     suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
 
@@ -34,4 +35,5 @@ interface GameRepository {
     suspend fun updateLapPlayerCards(lap: Lap, player: Player)
 
     suspend fun endLap(gameWithLap: Game)
+    //endregion
 }
