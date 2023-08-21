@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_ended_title">Current game has ended</string>
+    <string name="game_ended_message">Time limit of the current game has ended. Start a new one, or restart the previous</string>
+</resources>

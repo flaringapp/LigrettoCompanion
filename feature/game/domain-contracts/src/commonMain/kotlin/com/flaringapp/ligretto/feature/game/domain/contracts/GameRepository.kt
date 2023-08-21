@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.domain.contracts
 
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
+import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.Player
@@ -20,6 +21,12 @@ interface GameRepository {
      */
     fun getCachedPreviousGame(): GameSnapshot?
 
+    fun getActiveGameId(): GameId?
+    fun observeActiveGameId(): Flow<GameId?>
+
+    suspend fun resumeGame(gameSnapshot: GameSnapshot)
+
+    //region Game in progress
     suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
 
@@ -28,4 +35,5 @@ interface GameRepository {
     suspend fun updateLapPlayerCards(lap: Lap, player: Player)
 
     suspend fun endLap(gameWithLap: Game)
+    //endregion
 }

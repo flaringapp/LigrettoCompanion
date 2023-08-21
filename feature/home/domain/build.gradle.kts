@@ -9,14 +9,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":feature:game:model"))
+                implementation(project(":feature:game:domain-contracts"))
                 implementation(libs.kotlinx.coroutines.core)
-                api(libs.multiplatform.settings)
-                api(libs.multiplatform.settings.coroutines)
             }
         }
     }
 }
 
 android {
-    namespace = "com.flaringapp.ligretto.core.settings"
+    namespace = "com.flaringapp.ligretto.feature.home.domain"
 }

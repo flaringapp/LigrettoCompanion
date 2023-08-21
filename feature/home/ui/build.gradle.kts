@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:game:domain"))
+    implementation(project(":feature:home:domain"))
 }
