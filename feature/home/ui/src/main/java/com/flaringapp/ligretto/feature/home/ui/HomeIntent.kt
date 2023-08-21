@@ -4,8 +4,8 @@ import com.flaringapp.ligretto.core.arch.UiIntent
 
 internal sealed interface HomeIntent : UiIntent {
 
-    data class UpdateHasPreviousGame(
-        val hasPreviousGame: Boolean,
+    data class UpdateData(
+        val state: HomeState,
     ) : HomeIntent
 
     object StartNewGame : HomeIntent

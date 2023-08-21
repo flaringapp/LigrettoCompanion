@@ -3,20 +3,24 @@ package com.flaringapp.ligretto.feature.home.ui
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
-import com.flaringapp.ligretto.feature.game.domain.usecase.GetPreviousGameUseCase
+import com.flaringapp.ligretto.feature.home.domain.usecase.GetHomeDataUseCase
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
 
 @KoinViewModel
 internal class HomeViewModel(
-    private val getPreviousGameUseCase: GetPreviousGameUseCase,
+    private val getHomeDataUseCase: GetHomeDataUseCase,
 ) : MviViewModel<HomeState, HomeIntent, HomeEffect>(HomeState()) {
 
     init {
         viewModelScope.launch {
-            getPreviousGameUseCase().collect {
-                val hasPreviousGame = it != null
-                dispatch { HomeIntent.UpdateHasPreviousGame(hasPreviousGame) }
+            getHomeDataUseCase().collect { data ->
+                val state = HomeState(
+                    hasActiveGame = data.activeGame != null,
+                    hasPreviousGame = data.previousGame != null,
+                )
+
+                dispatch { HomeIntent.UpdateData(state) }
             }
         }
     }
@@ -25,13 +29,9 @@ internal class HomeViewModel(
         state: HomeState,
         intent: HomeIntent,
     ): HomeState = when (intent) {
-        is HomeIntent.UpdateHasPreviousGame -> updateHasPreviousGame(intent.hasPreviousGame)
+        is HomeIntent.UpdateData -> intent.state
         HomeIntent.StartNewGame -> startNewGame()
         HomeIntent.RestartLastGame -> restartLastGame()
-    }
-
-    private fun updateHasPreviousGame(hasPreviousGame: Boolean) = updateState {
-        copy(hasPreviousGame = hasPreviousGame)
     }
 
     private fun startNewGame(): HomeState = state.also {
