@@ -11,6 +11,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
                 api(libs.multiplatform.settings)
+                api(libs.multiplatform.settings.coroutines)
             }
         }
     }
