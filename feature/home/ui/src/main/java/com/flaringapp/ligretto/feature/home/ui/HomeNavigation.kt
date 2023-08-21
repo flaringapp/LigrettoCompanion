@@ -5,6 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.core.navigation.composable
 import com.flaringapp.ligretto.core.navigation.navigation
+import com.flaringapp.ligretto.feature.home.ui.home.HomeScreen
+import com.flaringapp.ligretto.feature.home.ui.home.HomeScreenDestination
 
 object HomeDestination : ScreenDestinationWithoutArguments() {
 

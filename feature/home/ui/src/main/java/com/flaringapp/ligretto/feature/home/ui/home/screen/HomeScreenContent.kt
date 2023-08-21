@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.home.ui.screen
+package com.flaringapp.ligretto.feature.home.ui.home.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,9 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.home.ui.HomeIntent
-import com.flaringapp.ligretto.feature.home.ui.HomeState
-import com.flaringapp.ligretto.feature.home.ui.screen.preview.HomeStateProvider
+import com.flaringapp.ligretto.feature.home.ui.home.HomeIntent
+import com.flaringapp.ligretto.feature.home.ui.home.HomeState
+import com.flaringapp.ligretto.feature.home.ui.home.screen.preview.HomeStateProvider
 
 @Composable
 internal fun HomeScreenContent(
