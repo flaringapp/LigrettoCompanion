@@ -20,6 +20,12 @@ internal class ResumePreviousGameUseCaseImpl(
         val gameSnapshot = repository.previousGameFlow.firstOrNull() ?: return null
         if (gameSnapshot.game.id != activeGameId) return null
 
+        // TODO return reason
+        if (gameSnapshot.game.matchesEndConditions) {
+            repository.endGame()
+            return null
+        }
+
         repository.resumeGame(gameSnapshot)
 
         return gameSnapshot
