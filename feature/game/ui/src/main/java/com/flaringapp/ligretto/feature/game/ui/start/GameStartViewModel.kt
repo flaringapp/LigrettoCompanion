@@ -71,7 +71,7 @@ internal class GameStartViewModel(
     }
 
     private fun fetchDataFromLastGame(): GameStartState {
-        val game = getCachedPreviousGameUseCase() ?: return state
+        val game = getCachedPreviousGameUseCase()?.game ?: return state
 
         return GameStartState(
             players = mapUiGamePlayers(game.players),

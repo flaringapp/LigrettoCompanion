@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.feature.game.data.storage.StartGameStorageDto
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
@@ -18,7 +19,10 @@ internal interface GameRepositoryMapper {
 
     fun mapNewGame(config: GameConfig, dto: StartGameStorageDto): Game
 
-    fun mapGame(game: DatabaseGame, data: GameDataStorageDto): Game
+    fun mapGameSnapshot(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot
 }
 
 @Factory
@@ -48,7 +52,10 @@ internal class GameRepositoryMapperImpl(
         )
     }
 
-    override fun mapGame(game: DatabaseGame, data: GameDataStorageDto): Game {
+    override fun mapGameSnapshot(
+        game: DatabaseGame,
+        data: GameDataStorageDto,
+    ): GameSnapshot {
         return loadGameMapper.map(
             game = game,
             data = data,

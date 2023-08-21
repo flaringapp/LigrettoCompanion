@@ -6,6 +6,7 @@ import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSource
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
@@ -31,12 +32,12 @@ internal class GameRepositoryImpl(
     override val currentLapFlow: StateFlow<Lap?>
         get() = gameObservables.lapFlow.asStateFlow()
 
-    override val previousGameFlow: Flow<Game?>
-        get() = gameStorageDataSource.lastGameFlow.map { game ->
+    override val previousGameFlow: Flow<GameSnapshot?> = gameStorageDataSource.lastGameFlow
+        .map { game ->
             if (game == null) return@map null
 
             val gameData = gameStorageDataSource.getGameData(game.id)
-            mapper.mapGame(
+            mapper.mapGameSnapshot(
                 game = game,
                 data = gameData,
             )
@@ -44,7 +45,7 @@ internal class GameRepositoryImpl(
             gameCache.previousGame = it
         }
 
-    override fun getCachedPreviousGame(): Game? {
+    override fun getCachedPreviousGame(): GameSnapshot? {
         return gameCache.previousGame
     }
 

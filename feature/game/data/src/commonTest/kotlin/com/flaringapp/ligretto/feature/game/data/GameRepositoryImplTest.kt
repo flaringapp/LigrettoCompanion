@@ -8,6 +8,7 @@ import com.flaringapp.ligretto.feature.game.data.cache.GameCacheImpl
 import com.flaringapp.ligretto.feature.game.data.settings.GameSettingsImpl
 import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSourceImpl
 import com.flaringapp.ligretto.feature.game.model.GameConfig
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.AfterTest
@@ -140,10 +141,15 @@ internal class GameRepositoryImplTest {
         )
 
         val game = repository.startGame(gameConfig)
+        val gameSnapshot = GameSnapshot(
+            game = game,
+            activeLap = null,
+        )
+
         val flowGame = repository.previousGameFlow.firstOrNull()
 
-        assertEquals(game, flowGame)
-        assertEquals(game, repository.getCachedPreviousGame())
+        assertEquals(gameSnapshot, flowGame)
+        assertEquals(gameSnapshot, repository.getCachedPreviousGame())
     }
 
     @Test
@@ -215,13 +221,18 @@ internal class GameRepositoryImplTest {
         )
 
         val game = repository.startGame(gameConfig)
+        val gameSnapshot = GameSnapshot(
+            game = game,
+            activeLap = null,
+        )
+
         repository.endGame()
 
         val flowGame = repository.previousGameFlow.firstOrNull()
         val cachedGame = repository.getCachedPreviousGame()
 
-        assertEquals(game, flowGame)
-        assertEquals(game, cachedGame)
+        assertEquals(gameSnapshot, flowGame)
+        assertEquals(gameSnapshot, cachedGame)
     }
 
     @Test
@@ -332,6 +343,10 @@ internal class GameRepositoryImplTest {
                 it[player] = Score(8)
             },
         )
+        val gameSnapshot = GameSnapshot(
+            game = gameWithLap,
+            activeLap = null,
+        )
 
         repository.endLap(gameWithLap)
 
@@ -340,7 +355,7 @@ internal class GameRepositoryImplTest {
         val flowLap = repository.currentLapFlow.firstOrNull()
 
         assertEquals(gameWithLap, flowCurrentGame)
-        assertEquals(gameWithLap, flowPreviousGame)
+        assertEquals(gameSnapshot, flowPreviousGame)
         assertNull(flowLap)
     }
 }

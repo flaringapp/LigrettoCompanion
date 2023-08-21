@@ -1,15 +1,15 @@
 package com.flaringapp.ligretto.feature.game.data.cache
 
-import com.flaringapp.ligretto.feature.game.model.Game
+import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import org.koin.core.annotation.Single
 
 internal interface GameCache {
 
-    var previousGame: Game?
+    var previousGame: GameSnapshot?
 }
 
 @Single
 internal class GameCacheImpl : GameCache {
 
-    override var previousGame: Game? = null
+    override var previousGame: GameSnapshot? = null
 }
