@@ -17,7 +17,22 @@ import androidx.compose.runtime.Immutable
  * Do not mutate the argument from the outside.
  */
 @Immutable
-class UiList<T>(delegate: List<T>) : List<T> by delegate
+class UiList<T>(
+    private val delegate: List<T>,
+) : List<T> by delegate {
+
+    override fun equals(other: Any?): Boolean {
+        return delegate == other
+    }
+
+    override fun hashCode(): Int {
+        return delegate.hashCode()
+    }
+
+    override fun toString(): String {
+        return "UiList($delegate)"
+    }
+}
 
 fun <T> UiList<T>.asUiList() = this
 
