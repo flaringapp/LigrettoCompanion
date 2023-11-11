@@ -5,7 +5,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-@Suppress("unused")
 class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
