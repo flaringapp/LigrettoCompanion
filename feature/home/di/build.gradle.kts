@@ -1,16 +1,12 @@
-@file:Suppress("UNUSED_VARIABLE")
-
 plugins {
     id("ligretto.multiplatform.library")
 }
 
 kotlin {
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":feature:home:domain"))
-                implementation(libs.koin.core)
-            }
+        commonMain.dependencies {
+            implementation(project(":feature:home:domain"))
+            implementation(libs.koin.core)
         }
     }
 }

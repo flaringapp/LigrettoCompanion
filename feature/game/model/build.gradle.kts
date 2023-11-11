@@ -1,15 +1,11 @@
-@file:Suppress("UNUSED_VARIABLE")
-
 plugins {
     id("ligretto.multiplatform.library")
 }
 
 kotlin {
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.datetime)
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.datetime)
         }
     }
 }
