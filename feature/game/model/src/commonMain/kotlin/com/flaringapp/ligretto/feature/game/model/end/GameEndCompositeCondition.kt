@@ -9,6 +9,6 @@ internal data class GameEndCompositeCondition(
     override fun matches(game: Game): Boolean {
         if (conditions.isEmpty()) return false
 
-        return conditions.all { it.matches(game) }
+        return conditions.any { it.matches(game) }
     }
 }
