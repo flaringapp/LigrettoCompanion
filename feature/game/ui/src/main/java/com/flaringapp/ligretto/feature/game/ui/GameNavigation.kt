@@ -102,7 +102,6 @@ fun NavController.navigateResumeGame(openLap: Boolean) {
     }
 }
 
-
 private fun NavController.navigateGameScores() {
     navigate(GameScoreDestination.route()) {
         closeGameScreens()

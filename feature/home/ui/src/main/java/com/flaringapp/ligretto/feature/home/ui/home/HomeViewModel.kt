@@ -3,8 +3,8 @@ package com.flaringapp.ligretto.feature.home.ui.home
 import androidx.lifecycle.viewModelScope
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
-import com.flaringapp.ligretto.feature.home.domain.usecase.ResumePreviousGameUseCase
 import com.flaringapp.ligretto.feature.home.domain.usecase.GetHomeDataUseCase
+import com.flaringapp.ligretto.feature.home.domain.usecase.ResumePreviousGameUseCase
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
 
