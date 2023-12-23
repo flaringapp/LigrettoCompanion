@@ -7,7 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.game.ui.score.screen.GameScoreScreenContent
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal object GameScoreDestination : ScreenDestinationWithoutArguments() {
 
@@ -19,7 +19,7 @@ internal fun GameScoreScreen(
     openNextLap: () -> Unit,
     openClose: () -> Unit,
     openEnd: () -> Unit,
-    store: GameScoreViewModel = getViewModel(),
+    store: GameScoreViewModel = koinViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 

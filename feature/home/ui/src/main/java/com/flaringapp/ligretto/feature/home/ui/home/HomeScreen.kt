@@ -6,7 +6,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.home.ui.home.screen.HomeScreenContent
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
 
@@ -18,7 +18,7 @@ internal fun HomeScreen(
     openStartGame: (restartLastGame: Boolean) -> Unit,
     openResumeGame: (openLap: Boolean) -> Unit,
     openActiveGameEnded: () -> Unit,
-    store: HomeViewModel = getViewModel(),
+    store: HomeViewModel = koinViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 

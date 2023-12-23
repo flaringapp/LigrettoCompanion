@@ -7,7 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.game.ui.end.screen.GameEndScreenContent
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal object GameEndDestination : ScreenDestinationWithoutArguments() {
 
@@ -17,7 +17,7 @@ internal object GameEndDestination : ScreenDestinationWithoutArguments() {
 @Composable
 internal fun GameEndScreen(
     closeGame: () -> Unit,
-    store: GameEndViewModel = getViewModel(),
+    store: GameEndViewModel = koinViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 
