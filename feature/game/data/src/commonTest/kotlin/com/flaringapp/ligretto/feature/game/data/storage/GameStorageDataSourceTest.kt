@@ -6,7 +6,7 @@ import com.flaringapp.ligretto.core.database.test.TestDatabaseProvider
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest

@@ -2,7 +2,7 @@ package com.flaringapp.ligretto.feature.game.domain
 
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Lap
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Factory
 

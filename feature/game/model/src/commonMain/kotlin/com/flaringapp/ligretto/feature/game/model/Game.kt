@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.model
 
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
+import com.flaringapp.ligretto.feature.player.model.Player
 import kotlinx.datetime.Instant
 
 data class Game(

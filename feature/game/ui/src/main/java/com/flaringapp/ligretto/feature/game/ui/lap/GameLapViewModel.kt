@@ -11,7 +11,7 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsLeftUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsOnTableUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

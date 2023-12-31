@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.model
 
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
+import com.flaringapp.ligretto.feature.player.model.Player
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

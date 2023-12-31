@@ -7,7 +7,7 @@ import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCachedPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
 import com.flaringapp.ligretto.feature.game.model.GameConfig
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import org.koin.android.annotation.KoinViewModel

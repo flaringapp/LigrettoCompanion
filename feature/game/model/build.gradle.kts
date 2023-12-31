@@ -5,6 +5,8 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            api(project(":feature:player:model"))
+
             implementation(libs.kotlinx.datetime)
         }
     }

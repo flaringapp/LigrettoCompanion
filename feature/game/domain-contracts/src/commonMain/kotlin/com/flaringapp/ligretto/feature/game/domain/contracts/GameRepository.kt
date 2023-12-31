@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 

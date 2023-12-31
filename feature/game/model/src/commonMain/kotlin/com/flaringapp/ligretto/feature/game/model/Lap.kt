@@ -1,5 +1,7 @@
 package com.flaringapp.ligretto.feature.game.model
 
+import com.flaringapp.ligretto.feature.player.model.Player
+
 data class Lap(
     val id: LapId,
     val number: Int,

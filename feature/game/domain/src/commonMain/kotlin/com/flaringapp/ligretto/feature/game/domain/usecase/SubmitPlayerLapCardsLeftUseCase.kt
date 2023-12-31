@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.domain.usecase
 
 import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import org.koin.core.annotation.Single
 
 interface SubmitPlayerLapCardsLeftUseCase {

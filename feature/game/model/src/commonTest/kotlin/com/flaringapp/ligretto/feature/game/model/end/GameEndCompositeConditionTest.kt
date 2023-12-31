@@ -2,7 +2,7 @@ package com.flaringapp.ligretto.feature.game.model.end
 
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameId
-import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.player.model.Player
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
