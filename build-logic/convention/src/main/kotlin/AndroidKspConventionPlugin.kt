@@ -5,7 +5,6 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
-@Suppress("unused")
 class AndroidKspConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {

@@ -84,7 +84,8 @@ internal class GameStartViewModel(
     ): GameStartState.Players {
         val list = players.map { player ->
             GameStartState.Player(
-                id = player.id.toInt(), // TODO fix
+                // TODO fix
+                id = player.id.toInt(),
                 name = player.name,
             )
         }

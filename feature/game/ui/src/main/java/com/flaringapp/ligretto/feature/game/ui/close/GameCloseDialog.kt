@@ -13,7 +13,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.navigation.DialogDestination
 import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.game.ui.R
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.flaringapp.ligretto.core.ui.R as CoreUiR
 
 internal object GameCloseDestination : ScreenDestinationWithoutArguments(), DialogDestination {
@@ -28,7 +28,7 @@ internal fun GameCloseDialog(
     openEnd: () -> Unit,
     closeGame: () -> Unit,
     dismiss: () -> Unit,
-    store: GameCloseViewModel = getViewModel(),
+    store: GameCloseViewModel = koinViewModel(),
 ) {
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {

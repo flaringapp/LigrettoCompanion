@@ -31,6 +31,9 @@ android {
         checkAllWarnings = true
         checkDependencies = true
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
