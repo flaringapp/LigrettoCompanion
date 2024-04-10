@@ -52,7 +52,7 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 
 # Logging
-napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
+napier = { group = "io.github.aakira", name = "napier", version = "2.7.1" }
 
 # Database
 sqlDelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqlDelight" }
