@@ -45,17 +45,17 @@ internal class GameEndCompositeConditionTest {
     }
 
     @Test
-    fun `returns false given any of multiple conditions is false`() {
+    fun `returns true given any of multiple conditions is true`() {
         val condition = GameEndCompositeCondition(
             listOf(
                 GameEndFalseCondition,
                 GameEndTrueCondition,
-                GameEndTrueCondition,
-                GameEndTrueCondition,
+                GameEndFalseCondition,
+                GameEndFalseCondition,
             )
         )
 
-        assertFalse(condition.matches(mockGame()))
+        assertTrue(condition.matches(mockGame()))
     }
 
     private fun mockGame(): Game {
