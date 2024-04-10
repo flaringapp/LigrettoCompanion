@@ -1,13 +1,13 @@
 [versions]
-kotlin = "1.9.21"
-kotlinKsp = "1.9.21-1.0.16"
-kotlinCoroutines = "1.7.3"
-androidGradlePlugin = "8.2.0"
-androidxLifecycle = "2.6.2"
-composeCompiler = "1.5.7"
+kotlin = "1.9.23"
+kotlinKsp = "1.9.23-1.0.20"
+kotlinCoroutines = "1.8.0"
+androidGradlePlugin = "8.2.2"
+androidxLifecycle = "2.7.0"
+composeCompiler = "1.5.11"
 koin = "3.5.3"
-koinAnnotations = "1.3.0"
-sqlDelight = "2.0.1"
+koinAnnotations = "1.3.1"
+sqlDelight = "2.0.2"
 multiplatformSettings = "1.1.1"
 
 [libraries]
@@ -28,10 +28,10 @@ androidx-lifecycle-viewModel = { group = "androidx.lifecycle", name = "lifecycle
 # Android compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.8.2" }
 androidx-lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.6" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.7" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2023.10.01" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.04.00" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -52,7 +52,7 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 
 # Logging
-napier = { group = "io.github.aakira", name = "napier", version = "2.6.1" }
+napier = { group = "io.github.aakira", name = "napier", version = "2.7.1" }
 
 # Database
 sqlDelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqlDelight" }
@@ -67,10 +67,10 @@ multiplatform-settings-coroutines = { group = "com.russhwolf", name = "multiplat
 multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
 # Testing
-mockk = { group = "io.mockk", name = "mockk", version = "1.13.8" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.13.10" }
 
 # Lint
-slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.2.0" }
+slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.3.1" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -83,4 +83,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
-ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "12.0.3" }
+ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.0" }

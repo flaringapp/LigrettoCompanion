@@ -26,7 +26,7 @@ subprojects {
 }
 
 fun KtlintExtension.configure(buildDir: File) {
-    version.set("1.1.0")
+    version.set("1.2.1")
     android.set(true)
 
     filter {
