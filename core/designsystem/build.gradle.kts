@@ -8,8 +8,6 @@ android {
 }
 
 dependencies {
-    api(libs.androidx.core.ktx)
-
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui)
     api(libs.androidx.compose.ui.preview)
