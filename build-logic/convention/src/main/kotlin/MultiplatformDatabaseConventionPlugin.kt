@@ -1,5 +1,4 @@
 import com.flaringapp.ligretto.libs
-import com.flaringapp.ligretto.sourceSets
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -13,7 +12,7 @@ class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
-            sourceSets {
+            sourceSets.apply {
                 commonMain.dependencies {
                     api(libs.findLibrary("sqlDelight-coroutines").get())
                     api(libs.findLibrary("sqlDelight-runtime").get())

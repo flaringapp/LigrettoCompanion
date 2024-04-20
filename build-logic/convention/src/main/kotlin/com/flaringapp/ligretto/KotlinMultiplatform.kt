@@ -1,11 +1,8 @@
 package com.flaringapp.ligretto
 
 import org.gradle.api.JavaVersion
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
@@ -28,7 +25,7 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
-    sourceSets {
+    sourceSets.apply {
         commonMain.dependencies {
             implementation(libs.findLibrary("napier").get())
         }
@@ -41,10 +38,4 @@ internal fun Project.configureKotlinMultiplatform(
 private fun Project.resolveFullName(): String {
     val nonRootParent = parent?.takeIf { it != rootProject } ?: return name
     return "${nonRootParent.resolveFullName()}_$name"
-}
-
-internal fun KotlinMultiplatformExtension.sourceSets(
-    configure: NamedDomainObjectContainer<KotlinSourceSet>.() -> Unit
-) {
-    (this as ExtensionAware).extensions.configure("sourceSets", configure)
 }
