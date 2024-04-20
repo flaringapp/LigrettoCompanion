@@ -20,6 +20,7 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.compose.multiplatform.gradlePlugin)
 }
 
 gradlePlugin {
@@ -55,6 +56,10 @@ gradlePlugin {
         register("multiplatformLibrary") {
             id = "ligretto.multiplatform.library"
             implementationClass = "MultiplatformLibraryConventionPlugin"
+        }
+        register("multiplatformComposeLibrary") {
+            id = "ligretto.multiplatform.library.compose"
+            implementationClass = "MultiplatformComposeLibraryConventionPlugin"
         }
         register("multiplatformKoinKsp") {
             id = "ligretto.multiplatform.koin.ksp"
