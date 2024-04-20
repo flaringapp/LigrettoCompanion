@@ -20,8 +20,8 @@ class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
                 androidMain.dependencies {
                     implementation(libs.findLibrary("sqlDelight-driver-android").get())
                 }
-                iosMain.dependencies {
-                    implementation(libs.findLibrary("sqlDelight-driver-ios").get())
+                nativeMain.dependencies {
+                    implementation(libs.findLibrary("sqlDelight-driver-native").get())
                 }
             }
         }

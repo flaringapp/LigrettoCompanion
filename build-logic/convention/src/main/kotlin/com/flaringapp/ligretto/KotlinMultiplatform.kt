@@ -25,6 +25,14 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
+    targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
+    }
+
     sourceSets.apply {
         commonMain.dependencies {
             implementation(libs.findLibrary("napier").get())

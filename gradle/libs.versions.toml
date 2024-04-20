@@ -54,7 +54,7 @@ napier = { group = "io.github.aakira", name = "napier", version = "2.7.1" }
 # Database
 sqlDelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqlDelight" }
 sqlDelight-driver-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqlDelight" }
-sqlDelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqlDelight" }
+sqlDelight-driver-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqlDelight" }
 sqlDelight-driver-sqlite = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqlDelight" }
 sqlDelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqlDelight" }
 
