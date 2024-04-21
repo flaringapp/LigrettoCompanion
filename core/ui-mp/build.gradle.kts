@@ -11,6 +11,8 @@ kotlin {
             api(compose.runtime)
             api(compose.ui)
             api(compose.material3)
+
+            implementation(compose.components.resources)
         }
     }
 }
