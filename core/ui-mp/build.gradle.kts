@@ -17,6 +17,10 @@ kotlin {
     }
 }
 
+compose.resources {
+    publicResClass = true
+}
+
 android {
     namespace = "com.flaringapp.ligretto.core.ui"
 }
