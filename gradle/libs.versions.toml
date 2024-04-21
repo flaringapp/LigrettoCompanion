@@ -4,6 +4,7 @@ kotlinKsp = "1.9.23-1.0.20"
 kotlinCoroutines = "1.8.0"
 androidGradlePlugin = "8.2.2"
 androidxLifecycle = "2.7.0"
+multiplatformLifecycle = "2.8.0-alpha01"
 composeMultiplatform = "1.6.10-beta01"
 composeCompiler = "1.5.11"
 kmp-viewModel = "0.7.1"
@@ -42,6 +43,11 @@ androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-t
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 
+# MP Lifecycle
+lifecycle-multiplatform-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
+lifecycle-multiplatform-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
+lifecycle-multiplatform-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "multiplatformLifecycle" }
+
 #KMP View model
 kmp-viewModel-compose = { group = "io.github.hoc081098", name = "kmp-viewmodel-compose", version.ref = "kmp-viewModel" }
 kmp-viewModel-compose-koin = { group = "io.github.hoc081098", name = "kmp-viewmodel-koin-compose", version.ref = "kmp-viewModel" }
@@ -53,6 +59,7 @@ koin-annotations = { group = "io.insert-koin", name = "koin-annotations", versio
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-compose-multiplatform = { group = "io.insert-koin", name = "koin-compose", version = "1.1.5" }
 
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.7.1" }

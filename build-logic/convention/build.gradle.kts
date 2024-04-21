@@ -53,6 +53,10 @@ gradlePlugin {
             id = "ligretto.android.koin.ksp"
             implementationClass = "AndroidKoinKspConventionPlugin"
         }
+        register("multiplatformFeature") {
+            id = "ligretto.multiplatform.feature"
+            implementationClass = "MultiplatformFeatureConventionPlugin"
+        }
         register("multiplatformLibrary") {
             id = "ligretto.multiplatform.library"
             implementationClass = "MultiplatformLibraryConventionPlugin"
