@@ -9,6 +9,8 @@ kotlin {
             api(libs.kotlinx.coroutines.core)
 
             implementation(compose.runtime)
+
+            implementation(libs.kmp.viewModel.compose)
         }
     }
 }
