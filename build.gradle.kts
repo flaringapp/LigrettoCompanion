@@ -13,27 +13,28 @@ plugins {
 
 //region Ktlint configuration
 configure<KtlintExtension> {
-    configure(buildDir)
+    configure(layout.buildDirectory)
 }
 
 subprojects {
     apply(plugin = rootProject.libs.plugins.ktlintGradle.get().pluginId)
 
     configure<KtlintExtension> {
-        configure(buildDir)
+        configure(layout.buildDirectory)
     }
 }
 
-fun KtlintExtension.configure(buildDir: File) {
+fun KtlintExtension.configure(buildDir: DirectoryProperty) {
     version.set("1.2.1")
     android.set(true)
 
+    val buildDirFile = buildDir.get().asFile
     filter {
-        exclude { it.file.path.contains("${buildDir.name}/generated/") }
+        exclude { it.file.path.contains("${buildDirFile.name}/generated/") }
     }
 }
 //endregion
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
