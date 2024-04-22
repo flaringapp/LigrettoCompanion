@@ -10,6 +10,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.findPlugin("android-library").get().get().pluginId)
+            apply(libs.findPlugin("compose-multiplatform").get().get().pluginId)
         }
 
         extensions.configure<KotlinAndroidProjectExtension> {
