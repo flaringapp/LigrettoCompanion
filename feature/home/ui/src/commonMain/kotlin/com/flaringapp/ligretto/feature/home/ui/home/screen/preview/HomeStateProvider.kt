@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.home.ui.home.screen.preview
 
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.home.ui.home.HomeState
+import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class HomeStateProvider : PreviewParameterProvider<HomeState> {
 

@@ -10,13 +10,13 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.home.ui.home.HomeIntent
 import com.flaringapp.ligretto.feature.home.ui.home.HomeState
 import com.flaringapp.ligretto.feature.home.ui.home.screen.preview.HomeStateProvider
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun HomeScreenContent(
@@ -54,7 +54,7 @@ internal fun HomeScreenContent(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun Preview(
     @PreviewParameter(HomeStateProvider::class)

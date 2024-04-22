@@ -4,21 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
 import com.flaringapp.ligretto.feature.home.ui.home.screen.HomeScreenContent
-import org.koin.androidx.compose.koinViewModel
-
-internal object HomeScreenDestination : ScreenDestinationWithoutArguments() {
-
-    override val screenId: String = "home/main"
-}
+import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 
 @Composable
 internal fun HomeScreen(
     openStartGame: (restartLastGame: Boolean) -> Unit,
     openResumeGame: (openLap: Boolean) -> Unit,
     openActiveGameEnded: () -> Unit,
-    store: HomeViewModel = koinViewModel(),
+    store: HomeViewModel = koinKmpViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 
