@@ -1,14 +1,14 @@
 package com.flaringapp.ligretto
 
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
-internal fun Project.configureKotlinAndroid() {
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17.toString()
-        }
+@Suppress("UnusedReceiverParameter")
+internal fun Project.configureKotlinAndroid(
+    extension: KotlinAndroidProjectExtension,
+) = with(extension) {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }

@@ -1,9 +1,9 @@
-import com.android.build.api.dsl.ApplicationExtension
 import com.flaringapp.ligretto.configureAndroidCompose
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
 
@@ -12,7 +12,7 @@ class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
             apply(libs.findPlugin("android-application").get().get().pluginId)
         }
 
-        extensions.configure<ApplicationExtension> {
+        extensions.configure<KotlinAndroidProjectExtension> {
             configureAndroidCompose(this)
         }
     }

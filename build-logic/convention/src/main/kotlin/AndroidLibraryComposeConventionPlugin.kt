@@ -1,9 +1,9 @@
-import com.android.build.gradle.LibraryExtension
 import com.flaringapp.ligretto.configureAndroidCompose
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
 
@@ -12,7 +12,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
             apply(libs.findPlugin("android-library").get().get().pluginId)
         }
 
-        extensions.configure<LibraryExtension> {
+        extensions.configure<KotlinAndroidProjectExtension> {
             configureAndroidCompose(this)
         }
     }

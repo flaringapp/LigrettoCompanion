@@ -6,6 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
 
@@ -20,7 +21,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             defaultConfig.targetSdk = 34
         }
 
-        configureKotlinAndroid()
+        extensions.configure<KotlinAndroidProjectExtension> {
+            configureKotlinAndroid(this)
+        }
 
         dependencies {
             add("implementation", libs.findLibrary("napier").get())
