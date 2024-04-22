@@ -38,4 +38,12 @@ internal fun Project.configureComposeMultiplatform(
     dependencies {
         add("lintChecks", libs.findLibrary("slack-lint-compose").get())
     }
+
+    kotlinExtension.targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                freeCompilerArgs.addAll(buildComposeMetricsParameters())
+            }
+        }
+    }
 }
