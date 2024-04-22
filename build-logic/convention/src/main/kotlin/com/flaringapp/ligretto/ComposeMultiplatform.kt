@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 internal fun Project.configureComposeMultiplatform(
     kotlinExtension: KotlinMultiplatformExtension,
     composeExtension: ComposeExtension,
-    androidExtension: CommonExtension<*, *, *, *, *>,
+    androidExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     with(kotlinExtension) {
         sourceSets.apply {

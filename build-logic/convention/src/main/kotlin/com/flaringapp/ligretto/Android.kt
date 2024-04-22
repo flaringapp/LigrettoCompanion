@@ -6,7 +6,7 @@ import org.gradle.api.Project
 
 @Suppress("UnusedReceiverParameter")
 internal fun Project.configureAndroid(
-    extension: CommonExtension<*, *, *, *, *>,
+    extension: CommonExtension<*, *, *, *, *, *>,
 ) = with(extension) {
     compileSdk = 34
 
