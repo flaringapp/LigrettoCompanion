@@ -19,12 +19,9 @@ dependencyResolutionManagement {
 rootProject.name = "Ligretto_Companion"
 include(":androidApp")
 include(":core:util:database-test")
-include(":core:designsystem")
 include(":core:designsystem-mp")
-include(":core:ui")
 include(":core:ui-mp")
 include(":core:navigation")
-include(":core:arch")
 include(":core:arch-mp")
 include(":core:database")
 include(":core:database-test")
