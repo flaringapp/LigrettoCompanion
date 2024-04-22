@@ -1,8 +1,6 @@
 plugins {
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
-    id("ligretto.android.ksp")
-    id("ligretto.android.koin.ksp")
 }
 
 android {
