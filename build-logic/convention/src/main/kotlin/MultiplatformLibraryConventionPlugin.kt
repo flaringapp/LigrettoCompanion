@@ -1,5 +1,5 @@
 import com.android.build.gradle.LibraryExtension
-import com.flaringapp.ligretto.configureKotlinAndroid
+import com.flaringapp.ligretto.configureAndroid
 import com.flaringapp.ligretto.configureKotlinMultiplatform
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
@@ -20,7 +20,7 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
         }
 
         extensions.configure<LibraryExtension> {
-            configureKotlinAndroid(this)
+            configureAndroid(this)
         }
     }
 }

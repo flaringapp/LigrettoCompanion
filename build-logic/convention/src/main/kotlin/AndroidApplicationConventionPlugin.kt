@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.flaringapp.ligretto.configureAndroid
 import com.flaringapp.ligretto.configureKotlinAndroid
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
@@ -15,9 +16,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         }
 
         extensions.configure<ApplicationExtension> {
-            configureKotlinAndroid(this)
+            configureAndroid(this)
             defaultConfig.targetSdk = 34
         }
+
+        configureKotlinAndroid()
 
         dependencies {
             add("implementation", libs.findLibrary("napier").get())
