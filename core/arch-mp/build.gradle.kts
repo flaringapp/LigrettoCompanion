@@ -12,6 +12,9 @@ kotlin {
 
             implementation(libs.kmp.viewModel.compose)
         }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
     }
 }
 
