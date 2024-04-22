@@ -22,10 +22,11 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:designsystem-mp"))
                     implementation(project(":core:arch-mp"))
 
+                    implementation(libs.findLibrary("kotlinx-coroutines-core").get())
+
+
                     val compose = extensions.getByType<ComposeExtension>()
                     implementation(compose.dependencies.components.resources)
-
-                    implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 
                     implementation(
                         libs.findLibrary("lifecycle-multiplatform-runtime-compose").get()
