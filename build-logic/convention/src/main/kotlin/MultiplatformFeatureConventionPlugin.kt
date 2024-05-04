@@ -21,6 +21,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:ui-mp"))
                     implementation(project(":core:designsystem-mp"))
                     implementation(project(":core:arch-mp"))
+                    implementation(project(":core:navigation-mp"))
 
                     implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 
@@ -35,9 +36,6 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(libs.findLibrary("koin-compose-multiplatform").get())
 
                     implementation(libs.findLibrary("kmp-viewModel-compose-koin").get())
-                }
-                androidMain.dependencies {
-                    implementation(project(":core:navigation"))
                 }
             }
         }

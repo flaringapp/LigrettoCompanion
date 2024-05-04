@@ -37,7 +37,7 @@ android {
 dependencies {
     implementation(project(":core:designsystem-mp"))
     implementation(project(":core:ui-mp"))
-    implementation(project(":core:navigation"))
+    implementation(project(":core:navigation-mp"))
     implementation(project(":core:arch-mp"))
     implementation(project(":core:database"))
     implementation(project(":core:settings"))
