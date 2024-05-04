@@ -12,10 +12,6 @@ kotlin {
             api(compose.material3)
             api(compose.materialIconsExtended)
         }
-        androidMain.dependencies {
-            implementation(libs.androidx.compose.ui)
-            implementation(libs.androidx.compose.material3)
-        }
     }
 }
 
