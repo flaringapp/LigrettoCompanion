@@ -35,10 +35,9 @@ androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-t
 # Compose MP
 compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.7.0-alpha03" }
 
-# MP Lifecycle
-lifecycle-multiplatform-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
-lifecycle-multiplatform-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
-lifecycle-multiplatform-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "multiplatformLifecycle" }
+compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
+compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
+compose-multiplatform-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "multiplatformLifecycle" }
 
 #KMP View model
 kmp-viewModel-compose = { group = "io.github.hoc081098", name = "kmp-viewmodel-compose", version.ref = "kmp-viewModel" }
