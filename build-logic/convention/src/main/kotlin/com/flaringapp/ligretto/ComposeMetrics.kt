@@ -1,30 +1,22 @@
 package com.flaringapp.ligretto
 
 import org.gradle.api.Project
-import java.io.File
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
-fun Project.buildComposeMetricsParameters(): List<String> {
-    val buildDir = layout.buildDirectory.get().asFile
+fun Project.configureComposeMetricsParameters(
+    extension: ComposeCompilerGradlePluginExtension,
+) {
+    val buildDir = layout.buildDirectory
 
-    val metricParameters = mutableListOf<String>()
-    val enableMetricsProvider = project.providers.gradleProperty("enableComposeCompilerMetrics")
-    val enableMetrics = (enableMetricsProvider.orNull == "true")
-    if (enableMetrics) {
-        val metricsFolder = File(buildDir, "compose-metrics")
-        metricParameters.add("-P")
-        metricParameters.add(
-            "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + metricsFolder.absolutePath
-        )
+    val enableMetricsProvider = providers.gradleProperty("enableComposeCompilerMetrics")
+    if (enableMetricsProvider.orNull == "true") {
+        val metricsFolder = buildDir.dir("compose-metrics")
+        extension.metricsDestination.set(metricsFolder)
     }
 
-    val enableReportsProvider = project.providers.gradleProperty("enableComposeCompilerReports")
-    val enableReports = (enableReportsProvider.orNull == "true")
-    if (enableReports) {
-        val reportsFolder = File(buildDir, "compose-reports")
-        metricParameters.add("-P")
-        metricParameters.add(
-            "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + reportsFolder.absolutePath
-        )
+    val enableReportsProvider = providers.gradleProperty("enableComposeCompilerReports")
+    if (enableReportsProvider.orNull == "true") {
+        val reportsFolder = buildDir.dir("compose-reports")
+        extension.reportsDestination.set(reportsFolder)
     }
-    return metricParameters.toList()
 }

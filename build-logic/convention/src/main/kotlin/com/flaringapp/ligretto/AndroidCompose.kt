@@ -2,18 +2,14 @@ package com.flaringapp.ligretto
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
 internal fun Project.configureAndroidCompose(
-    kotlinExtension: KotlinAndroidProjectExtension,
+    composeCompilerExtension: ComposeCompilerGradlePluginExtension,
 ) {
     dependencies {
         add("lintChecks", libs.findLibrary("slack-lint-compose").get())
     }
 
-    with(kotlinExtension) {
-        compilerOptions {
-            freeCompilerArgs.addAll(buildComposeMetricsParameters())
-        }
-    }
+    configureComposeMetricsParameters(composeCompilerExtension)
 }

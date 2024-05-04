@@ -17,6 +17,7 @@ class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
         configureComposeMultiplatform(
             kotlinExtension = extensions.getByType(),
             composeExtension = extensions.getByType(),
+            composeCompilerExtension = extensions.getByType(),
             androidExtension = extensions.getByType<LibraryExtension>(),
         )
     }

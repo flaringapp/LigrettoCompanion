@@ -5,20 +5,16 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
 import org.jetbrains.compose.ComposeExtension
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-@OptIn(ExperimentalKotlinGradlePluginApi::class)
 internal fun Project.configureComposeMultiplatform(
     kotlinExtension: KotlinMultiplatformExtension,
     composeExtension: ComposeExtension,
+    composeCompilerExtension: ComposeCompilerGradlePluginExtension,
     androidExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     with(kotlinExtension) {
-        compilerOptions {
-            freeCompilerArgs.addAll(buildComposeMetricsParameters())
-        }
-
         sourceSets.apply {
             androidMain.dependencies {
                 val bom = libs.findLibrary("androidx-compose-bom").get()
@@ -30,6 +26,8 @@ internal fun Project.configureComposeMultiplatform(
             }
         }
     }
+
+    configureComposeMetricsParameters(composeCompilerExtension)
 
     with(androidExtension) {
         sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
