@@ -11,6 +11,7 @@ class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply(libs.findPlugin("kotlin-multiplatform").get().get().pluginId)
             apply(libs.findPlugin("compose-multiplatform").get().get().pluginId)
+            apply(libs.findPlugin("compose-multiplatform-compiler").get().get().pluginId)
         }
 
         configureComposeMultiplatform(

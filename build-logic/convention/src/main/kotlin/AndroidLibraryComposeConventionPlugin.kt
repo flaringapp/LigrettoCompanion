@@ -11,6 +11,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply(libs.findPlugin("android-library").get().get().pluginId)
             apply(libs.findPlugin("compose-multiplatform").get().get().pluginId)
+            apply(libs.findPlugin("compose-multiplatform-compiler").get().get().pluginId)
         }
 
         extensions.configure<KotlinAndroidProjectExtension> {
