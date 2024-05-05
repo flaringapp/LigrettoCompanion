@@ -7,6 +7,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":feature:game:data"))
             implementation(project(":feature:game:domain"))
+            implementation(project(":feature:game:ui"))
             implementation(libs.koin.core)
         }
     }
