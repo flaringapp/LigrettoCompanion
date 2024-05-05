@@ -38,6 +38,7 @@ compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation"
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "multiplatformLifecycle" }
+compose-multiplatform-lifecycle-viewModel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "multiplatformLifecycle" }
 
 #KMP View model
 kmp-viewModel-compose = { group = "io.github.hoc081098", name = "kmp-viewmodel-compose", version.ref = "kmp-viewModel" }
