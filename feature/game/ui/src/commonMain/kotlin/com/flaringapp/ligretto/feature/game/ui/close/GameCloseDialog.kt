@@ -8,8 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
+import com.flaringapp.ligretto.core.arch.koin.koinViewModel
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import ligretto_companion.core.ui_mp.generated.resources.cancel
 import ligretto_companion.core.ui_mp.generated.resources.yes
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -25,7 +25,7 @@ internal fun GameCloseDialog(
     openEnd: () -> Unit,
     closeGame: () -> Unit,
     dismiss: () -> Unit,
-    store: GameCloseViewModel = koinKmpViewModel(),
+    store: GameCloseViewModel = koinViewModel(),
 ) {
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {

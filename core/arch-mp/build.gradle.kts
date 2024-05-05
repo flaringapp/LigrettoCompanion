@@ -10,7 +10,7 @@ kotlin {
 
             implementation(compose.runtime)
 
-            implementation(libs.kmp.viewModel.compose)
+            implementation(libs.compose.multiplatform.lifecycle.viewModel)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)

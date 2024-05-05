@@ -5,13 +5,13 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
+import com.flaringapp.ligretto.core.arch.koin.koinViewModel
 import com.flaringapp.ligretto.feature.game.ui.end.screen.GameEndScreenContent
-import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 
 @Composable
 internal fun GameEndScreen(
     closeGame: () -> Unit,
-    store: GameEndViewModel = koinKmpViewModel(),
+    store: GameEndViewModel = koinViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 

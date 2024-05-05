@@ -5,8 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
+import com.flaringapp.ligretto.core.arch.koin.koinViewModel
 import com.flaringapp.ligretto.feature.game.ui.start.screen.GameStartScreenContent
-import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
@@ -14,7 +14,7 @@ internal fun GameStartScreen(
     restartLastGame: Boolean,
     openScore: () -> Unit,
     openClose: () -> Unit,
-    store: GameStartViewModel = koinKmpViewModel { parametersOf(restartLastGame) },
+    store: GameStartViewModel = koinViewModel { parametersOf(restartLastGame) },
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
 
