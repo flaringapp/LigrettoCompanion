@@ -35,23 +35,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:designsystem-mp"))
-    implementation(project(":core:ui-mp"))
-    implementation(project(":core:navigation-mp"))
-    implementation(project(":core:arch-mp"))
-    implementation(project(":core:database"))
-    implementation(project(":core:settings"))
-    implementation(project(":feature:home:ui"))
-    implementation(project(":feature:home:di"))
-    implementation(project(":feature:game:ui"))
-    implementation(project(":feature:game:di"))
-
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(project(":commonApp"))
 
     implementation(libs.androidx.core.splashScreen)
 
     implementation(libs.androidx.activity.compose)
 
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
+    implementation(compose.foundation)
 }

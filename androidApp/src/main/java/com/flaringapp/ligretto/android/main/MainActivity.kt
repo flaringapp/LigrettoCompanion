@@ -9,7 +9,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.common.ui.AppContent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,9 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SystemBarsUi(this)
 
-            AppTheme {
-                MainScreen()
-            }
+            AppContent()
         }
     }
 }

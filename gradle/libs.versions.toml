@@ -24,7 +24,6 @@ androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscree
 
 # Android compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.0" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.7" }
 
 # Android compose ui
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.05.00" }
