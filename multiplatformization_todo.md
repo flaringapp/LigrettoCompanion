@@ -4,10 +4,7 @@
 - Kotlin stable release
 - KSP Koin shitty config - see `MultiplatformKoinKspConventionPlugin`
 - Compose resources stability
-
-**iOS blockers**
-- Navigation
-- ViewModel
+- Compose Navigation/ViewModel stability
 
 **Other considerations**
 - ViewModel Koin DI - annotations impossible
