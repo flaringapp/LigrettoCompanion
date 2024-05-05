@@ -9,6 +9,7 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
+import org.koin.core.annotation.Factory
 import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
 private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 
+@Factory
 internal class GameStartViewModel(
     @InjectedParam restartLastGame: Boolean,
     private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,

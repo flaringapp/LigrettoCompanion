@@ -11,12 +11,14 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsL
 import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsOnTableUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
+import org.koin.core.annotation.Factory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
+@Factory
 internal class GameLapViewModel(
     private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
     private val getCurrentGameUseCase: GetCurrentGameUseCase,

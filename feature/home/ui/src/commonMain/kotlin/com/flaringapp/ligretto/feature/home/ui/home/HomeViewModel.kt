@@ -4,8 +4,10 @@ import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.feature.home.domain.usecase.GetHomeDataUseCase
 import com.flaringapp.ligretto.feature.home.domain.usecase.ResumePreviousGameUseCase
+import org.koin.core.annotation.Factory
 import kotlinx.coroutines.launch
 
+@Factory
 internal class HomeViewModel(
     private val getHomeDataUseCase: GetHomeDataUseCase,
     private val resumePreviousGameUseCase: ResumePreviousGameUseCase,

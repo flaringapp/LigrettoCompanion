@@ -8,11 +8,13 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Score
+import org.koin.core.annotation.Factory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+@Factory
 internal class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val startLapUseCase: StartLapUseCase,
