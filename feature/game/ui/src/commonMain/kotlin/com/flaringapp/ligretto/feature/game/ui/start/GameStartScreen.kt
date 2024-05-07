@@ -31,5 +31,6 @@ internal fun GameStartScreen(
     GameStartScreenContent(
         state = state,
         dispatch = store::dispatch,
+        close = openClose,
     )
 }

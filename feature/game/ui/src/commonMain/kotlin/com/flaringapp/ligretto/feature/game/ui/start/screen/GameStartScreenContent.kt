@@ -10,10 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,9 +56,20 @@ private const val KEY_HEADER_PLAYERS = "_players"
 internal fun GameStartScreenContent(
     state: GameStartState,
     dispatch: (GameStartIntent) -> Unit,
+    close: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         ActualContent(state, dispatch)
+
+        // TODO KMM remove with proper back navigation on iOS
+        IconButton(
+            onClick = close,
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
+                contentDescription = null,
+            )
+        }
     }
 }
 
@@ -238,6 +251,7 @@ private fun Preview(
         GameStartScreenContent(
             state = state,
             dispatch = {},
+            close = {},
         )
     }
 }
