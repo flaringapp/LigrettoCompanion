@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     id("ligretto.multiplatform.library")
     id("ligretto.multiplatform.library.compose")
@@ -21,6 +24,12 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
+        }
+    }
+
+    targets.withType<KotlinNativeTarget> {
+        binaries.withType<Framework> {
+            linkerOpts.add("-lsqlite3")
         }
     }
 }
