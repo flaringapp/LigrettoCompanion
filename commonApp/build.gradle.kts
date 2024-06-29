@@ -9,10 +9,10 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:designsystem-mp"))
-            implementation(project(":core:ui-mp"))
-            implementation(project(":core:navigation-mp"))
-            implementation(project(":core:arch-mp"))
+            implementation(project(":core:designsystem"))
+            implementation(project(":core:ui"))
+            implementation(project(":core:navigation"))
+            implementation(project(":core:arch"))
             implementation(project(":core:database"))
             implementation(project(":core:settings"))
             implementation(project(":feature:home:ui"))

@@ -5,13 +5,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import ligretto_companion.core.ui_mp.generated.resources.ok
+import ligretto_companion.core.ui.generated.resources.ok
 import ligretto_companion.feature.home.ui.generated.resources.Res
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_message
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
-import ligretto_companion.core.ui_mp.generated.resources.Res as CoreRes
+import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable

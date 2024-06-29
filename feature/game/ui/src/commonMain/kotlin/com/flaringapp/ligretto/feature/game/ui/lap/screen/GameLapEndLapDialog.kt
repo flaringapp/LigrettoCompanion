@@ -8,15 +8,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import ligretto_companion.core.ui_mp.generated.resources.cancel
-import ligretto_companion.core.ui_mp.generated.resources.yes
+import ligretto_companion.core.ui.generated.resources.cancel
+import ligretto_companion.core.ui.generated.resources.yes
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_end_lap_confirmation_message
 import ligretto_companion.feature.game.ui.generated.resources.lap_end_lap_confirmation_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import ligretto_companion.core.ui_mp.generated.resources.Res as CoreRes
+import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
 @Composable
 internal fun GameLapEndLapDialog(

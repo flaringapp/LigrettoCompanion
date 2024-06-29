@@ -18,11 +18,11 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
-                    implementation(project(":core:ui-mp"))
-                    implementation(project(":core:designsystem-mp"))
-                    implementation(project(":core:arch-mp"))
+                    implementation(project(":core:ui"))
+                    implementation(project(":core:designsystem"))
+                    implementation(project(":core:arch"))
                     implementation(project(":core:arch-koin"))
-                    implementation(project(":core:navigation-mp"))
+                    implementation(project(":core:navigation"))
 
                     implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 
