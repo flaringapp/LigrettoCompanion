@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.lap.screen
 
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +29,6 @@ import ligretto_companion.feature.game.ui.generated.resources.lap_decrement_card
 import ligretto_companion.feature.game.ui.generated.resources.lap_decrement_cards_on_table
 import ligretto_companion.feature.game.ui.generated.resources.lap_increment_cards_left
 import ligretto_companion.feature.game.ui.generated.resources.lap_increment_cards_on_table
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

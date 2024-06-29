@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.end.screen
 
 import androidx.compose.foundation.layout.Row
@@ -16,7 +14,6 @@ import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndPlayerR
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.end_first_place_one
 import ligretto_companion.feature.game.ui.generated.resources.end_first_place_two
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter

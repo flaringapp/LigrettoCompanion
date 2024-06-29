@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.start.screen
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +16,6 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_label
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_placeholder
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

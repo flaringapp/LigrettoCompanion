@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.score.screen
 
 import androidx.compose.foundation.layout.Box
@@ -29,7 +27,6 @@ import com.flaringapp.ligretto.feature.game.ui.score.screen.preview.GameScoreSta
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap
 import ligretto_companion.feature.game.ui.generated.resources.scores_title
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter

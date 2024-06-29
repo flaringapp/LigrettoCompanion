@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.start.screen
 
 import androidx.compose.foundation.layout.Box
@@ -38,7 +36,6 @@ import ligretto_companion.feature.game.ui.generated.resources.start_empty
 import ligretto_companion.feature.game.ui.generated.resources.start_start_game
 import ligretto_companion.feature.game.ui.generated.resources.start_title_end_conditions
 import ligretto_companion.feature.game.ui.generated.resources.start_title_players
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter

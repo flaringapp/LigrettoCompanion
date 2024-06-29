@@ -9,11 +9,9 @@ import ligretto_companion.core.ui.generated.resources.ok
 import ligretto_companion.feature.home.ui.generated.resources.Res
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_message
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_title
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun GameEndedDialog(
     dismiss: () -> Unit,

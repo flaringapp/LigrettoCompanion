@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.start.screen
 
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +21,6 @@ import ligretto_companion.feature.game.ui.generated.resources.start_time_end_con
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_label
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_minutes_placeholder
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_split
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

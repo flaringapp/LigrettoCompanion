@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
-
 package com.flaringapp.ligretto.feature.game.ui.close
 
 import androidx.compose.material3.AlertDialog
@@ -15,7 +13,6 @@ import ligretto_companion.core.ui.generated.resources.yes
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_close_message
 import ligretto_companion.feature.game.ui.generated.resources.game_close_title
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
