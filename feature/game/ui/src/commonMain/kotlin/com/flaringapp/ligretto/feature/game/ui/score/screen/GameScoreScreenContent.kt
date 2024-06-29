@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
+import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
@@ -47,7 +48,9 @@ internal fun GameScoreScreenContent(
     }
 
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .screenWindowInsetsPadding(),
         contentPadding = PaddingValues(vertical = 24.dp),
         verticalArrangement = remember { SnapLastItemToBottomArrangement() },
         horizontalAlignment = Alignment.CenterHorizontally,

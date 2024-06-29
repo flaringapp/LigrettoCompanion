@@ -31,17 +31,12 @@ internal class HomeViewModel(
         intent: HomeIntent,
     ): HomeState = when (intent) {
         is HomeIntent.UpdateData -> intent.state
-        HomeIntent.StartNewGame -> startNewGame()
-        HomeIntent.RestartLastGame -> restartLastGame()
+        HomeIntent.StartGame -> startGame()
         HomeIntent.ContinueActiveGame -> continueActiveGame()
     }
 
-    private fun startNewGame(): HomeState = state.also {
-        setEffect { HomeEffect.OpenStartGame(restartLastGame = false) }
-    }
-
-    private fun restartLastGame(): HomeState = state.also {
-        setEffect { HomeEffect.OpenStartGame(restartLastGame = true) }
+    private fun startGame(): HomeState = state.also {
+        setEffect { HomeEffect.OpenStartGame(restartLastGame = it.hasPreviousGame) }
     }
 
     private fun continueActiveGame(): HomeState = state.also {

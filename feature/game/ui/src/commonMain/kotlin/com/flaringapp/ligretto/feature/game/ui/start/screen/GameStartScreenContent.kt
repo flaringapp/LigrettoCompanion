@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
+import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartPlayersIntent
@@ -55,7 +56,11 @@ internal fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
     close: () -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .screenWindowInsetsPadding(),
+    ) {
         ActualContent(state, dispatch)
 
         // TODO KMM remove with proper back navigation on iOS

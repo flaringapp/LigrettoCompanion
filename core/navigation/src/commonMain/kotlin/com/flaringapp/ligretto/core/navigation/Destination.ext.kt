@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.core.navigation
 
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
@@ -12,7 +13,7 @@ import androidx.navigation.compose.navigation
 
 fun NavGraphBuilder.composable(
     destination: ScreenDestination,
-    content: @Composable (NavBackStackEntry) -> Unit,
+    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) = composable(
     route = destination.route,
     arguments = destination.arguments,

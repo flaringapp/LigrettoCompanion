@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
+import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
 import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndStateProvider
@@ -35,6 +36,7 @@ internal fun GameEndScreenContent(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .screenWindowInsetsPadding()
             .padding(24.dp),
     ) {
         state.winners?.let {

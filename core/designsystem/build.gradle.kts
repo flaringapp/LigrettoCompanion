@@ -11,6 +11,8 @@ kotlin {
 
             api(compose.material3)
             api(compose.materialIconsExtended)
+
+            implementation(compose.components.resources)
         }
     }
 }

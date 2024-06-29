@@ -8,9 +8,7 @@ internal sealed interface HomeIntent : UiIntent {
         val state: HomeState,
     ) : HomeIntent
 
-    object StartNewGame : HomeIntent
-
-    object RestartLastGame : HomeIntent
+    object StartGame : HomeIntent
 
     object ContinueActiveGame : HomeIntent
 }
