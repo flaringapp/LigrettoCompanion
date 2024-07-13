@@ -8,10 +8,10 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.flaringapp.ligretto.core.navigation.ScreenDestination
-import com.flaringapp.ligretto.core.navigation.composable
-import com.flaringapp.ligretto.core.navigation.dialog
-import com.flaringapp.ligretto.core.navigation.navigation
-import com.flaringapp.ligretto.core.navigation.popUpTo
+import com.flaringapp.ligretto.core.navigation.composableDestination
+import com.flaringapp.ligretto.core.navigation.dialogDestination
+import com.flaringapp.ligretto.core.navigation.navigationDestination
+import com.flaringapp.ligretto.core.navigation.popUpToDestination
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDestination
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndDestination
@@ -46,39 +46,39 @@ internal object GameDestination : ScreenDestination {
 }
 
 fun NavGraphBuilder.gameGraph(navController: NavController) {
-    navigation(
+    navigationDestination(
         startDestination = GameStartDestination,
         destination = GameDestination,
     ) {
-        composable(GameStartDestination) {
+        composableDestination(GameStartDestination) {
             GameStartScreen(
                 restartLastGame = GameDestination.restartLastGame(it),
                 openScore = navController::navigateGameScores,
                 openClose = navController::navigateGameClose,
             )
         }
-        composable(GameScoreDestination) {
+        composableDestination(GameScoreDestination) {
             GameScoreScreen(
                 openNextLap = navController::navigateGameLap,
                 openClose = navController::navigateGameClose,
                 openEnd = navController::navigateGameEnd,
             )
         }
-        composable(GameLapDestination) {
+        composableDestination(GameLapDestination) {
             GameLapScreen(
                 openScores = navController::navigateGameScores,
                 openClose = navController::navigateGameClose,
                 openEnd = navController::navigateGameEnd,
             )
         }
-        dialog(GameCloseDestination) {
+        dialogDestination(GameCloseDestination) {
             GameCloseDialog(
                 openEnd = navController::navigateGameEnd,
                 closeGame = navController::navigateCloseGame,
                 dismiss = { navController.popBackStack() }
             )
         }
-        composable(GameEndDestination) {
+        composableDestination(GameEndDestination) {
             GameEndScreen(
                 closeGame = navController::navigateCloseGame,
             )
@@ -129,5 +129,5 @@ private fun NavController.navigateCloseGame() {
 }
 
 private fun NavOptionsBuilder.closeGameScreens() {
-    popUpTo(GameDestination)
+    popUpToDestination(GameDestination)
 }

@@ -11,7 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 
-fun NavGraphBuilder.composable(
+fun NavGraphBuilder.composableDestination(
     destination: ScreenDestination,
     content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) = composable(
@@ -22,7 +22,7 @@ fun NavGraphBuilder.composable(
     content(entry)
 }
 
-fun NavGraphBuilder.navigation(
+fun NavGraphBuilder.navigationDestination(
     startDestination: ScreenDestination,
     destination: ScreenDestination,
     builder: NavGraphBuilder.() -> Unit,
@@ -34,7 +34,7 @@ fun NavGraphBuilder.navigation(
     builder = builder,
 )
 
-fun NavGraphBuilder.dialog(
+fun NavGraphBuilder.dialogDestination(
     destination: DialogDestination,
     content: @Composable (NavBackStackEntry) -> Unit,
 ) = dialog(
@@ -46,7 +46,7 @@ fun NavGraphBuilder.dialog(
     content(entry)
 }
 
-fun NavController.navigate(
+fun NavController.navigateDestination(
     destination: ScreenDestinationWithoutArguments,
     builder: NavOptionsBuilder.() -> Unit,
 ) {
@@ -56,7 +56,7 @@ fun NavController.navigate(
     )
 }
 
-fun NavOptionsBuilder.popUpTo(
+fun NavOptionsBuilder.popUpToDestination(
     destination: ScreenDestination,
     popUpToBuilder: PopUpToBuilder.() -> Unit = {},
 ) {
