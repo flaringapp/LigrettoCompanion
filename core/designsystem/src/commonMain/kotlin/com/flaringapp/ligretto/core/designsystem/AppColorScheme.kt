@@ -33,6 +33,13 @@ fun appLightColorScheme() = ColorScheme(
     outline = AppColorPalette.neutralVariant50,
     outlineVariant = AppColorPalette.neutral50,
     scrim = Color.Black,
+    surfaceBright = Color(0xFFFFF8F6),
+    surfaceDim = Color(0xFFE4D7D4),
+    surfaceContainer = Color(0xFFF8EBE8),
+    surfaceContainerHigh = Color(0xFFF3E5E2),
+    surfaceContainerHighest = Color(0xFFEDE0DC),
+    surfaceContainerLow = Color(0xFFFEF1ED),
+    surfaceContainerLowest = Color(0xFFFFFBFF),
 )
 
 fun appDarkColorScheme() = ColorScheme(
@@ -65,4 +72,11 @@ fun appDarkColorScheme() = ColorScheme(
     outline = AppColorPalette.neutralVariant60,
     outlineVariant = AppColorPalette.neutral60,
     scrim = Color.Black,
+    surfaceBright = Color(0xFF3F3835),
+    surfaceDim = Color(0xFF181210),
+    surfaceContainer = Color(0xFF251E1C),
+    surfaceContainerHigh = Color(0xFF2F2826),
+    surfaceContainerHighest = Color(0xFF3B3331),
+    surfaceContainerLow = Color(0xFF201A18),
+    surfaceContainerLowest = Color(0xFF120D0B),
 )
