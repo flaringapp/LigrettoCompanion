@@ -8,12 +8,13 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
 internal data class GameScoreState(
-    val scores: UiList<PlayerScore> = emptyUiList(),
+    val nextRoundNumber: Int = 0,
+    val playerScores: UiList<PlayerScore> = emptyUiList(),
     val endConditions: EndConditions? = null,
 ) : UiState {
 
     data class PlayerScore(
-        val id: Long,
+        val place: Int,
         val playerName: String,
         val score: Int,
     )

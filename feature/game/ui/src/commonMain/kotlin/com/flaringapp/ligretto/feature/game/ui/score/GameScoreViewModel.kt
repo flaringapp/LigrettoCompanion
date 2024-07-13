@@ -2,12 +2,10 @@ package com.flaringapp.ligretto.feature.game.ui.score
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
-import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
-import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Factory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -31,35 +29,36 @@ internal class GameScoreViewModel(
         intent: GameScoreIntent,
     ): GameScoreState = when (intent) {
         GameScoreIntent.LoadData -> loadData()
-        is GameScoreIntent.InitData -> initData(
-            scores = intent.scores,
-            endConditions = intent.endConditions,
-        )
+        is GameScoreIntent.InitData -> intent.state
         GameScoreIntent.StartNextLap -> startNewLap()
     }
 
     private fun loadData() = state.also {
         val game = getCurrentGameUseCase().value ?: return@also
-        val scores = mapScores(game)
+        val playerScores = mapPlayerScores(game)
         val endConditions = mapEndConditions(game)
 
         dispatch {
             GameScoreIntent.InitData(
-                scores = scores.asUiList(),
-                endConditions = endConditions,
+                GameScoreState(
+                    nextRoundNumber = game.pendingLapNumber,
+                    playerScores = playerScores.asUiList(),
+                    endConditions = endConditions,
+                )
             )
         }
     }
 
-    private fun mapScores(game: Game): List<GameScoreState.PlayerScore> {
-        return game.players.map { player ->
-            val score = game.scores[player] ?: Score.Zero
-            GameScoreState.PlayerScore(
-                id = player.id,
-                playerName = player.name,
-                score = score.value,
-            )
-        }
+    private fun mapPlayerScores(game: Game): List<GameScoreState.PlayerScore> {
+        return game.players
+            .sortedByDescending { game.scores[it] }
+            .mapIndexed { place, player ->
+                GameScoreState.PlayerScore(
+                    place = place + 1,
+                    playerName = player.name,
+                    score = game.scores[player]?.value ?: 0,
+                )
+            }
     }
 
     private fun mapEndConditions(game: Game): GameScoreState.EndConditions? {
@@ -76,16 +75,6 @@ internal class GameScoreViewModel(
         return GameScoreState.EndConditions(
             score = score,
             time = time,
-        )
-    }
-
-    private fun initData(
-        scores: UiList<GameScoreState.PlayerScore>,
-        endConditions: GameScoreState.EndConditions?,
-    ) = updateState {
-        copy(
-            scores = scores,
-            endConditions = endConditions,
         )
     }
 

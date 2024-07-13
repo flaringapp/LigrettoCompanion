@@ -2,31 +2,32 @@ package com.flaringapp.ligretto.feature.game.ui.score.screen.preview
 
 import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
-import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class GameScoreStateProvider : PreviewParameterProvider<GameScoreState> {
 
     override val values: Sequence<GameScoreState> = sequenceOf(
         GameScoreState(
-            scores = uiListOf(
-                PlayerScore(1, "Andreo", 51),
-                PlayerScore(2, "Mario", 24),
-                PlayerScore(3, "Olenkka", 75),
+            nextRoundNumber = 2,
+            playerScores = uiListOf(
+                GameScorePlayerScoreProvider.firstPlace(),
+                GameScorePlayerScoreProvider.secondPlace(),
+                GameScorePlayerScoreProvider.thirdPlace(),
             ),
         ),
         GameScoreState(
-            scores = uiListOf(
-                PlayerScore(1, "Brad", 12),
-                PlayerScore(2, "Lucio", 23),
-                PlayerScore(3, "Helen", 72),
-                PlayerScore(4, "Kate", -14),
-                PlayerScore(5, "Tony", 51),
-                PlayerScore(6, "Tom", -21),
-                PlayerScore(7, "Mark", 44),
-                PlayerScore(8, "Dan", 0),
-                PlayerScore(9, "May", 8),
-                PlayerScore(10, "Jordan", 80),
+            nextRoundNumber = 3,
+            playerScores = uiListOf(
+                GameScorePlayerScoreProvider.firstPlace(),
+                GameScorePlayerScoreProvider.secondPlace(),
+                GameScorePlayerScoreProvider.thirdPlace(),
+                GameScorePlayerScoreProvider.forthPlace(),
+                GameScorePlayerScoreProvider.forthPlace(),
+                GameScorePlayerScoreProvider.forthPlace().copy(place = 5),
+                GameScorePlayerScoreProvider.forthPlace().copy(place = 6),
+                GameScorePlayerScoreProvider.forthPlace().copy(place = 7),
+                GameScorePlayerScoreProvider.forthPlace().copy(place = 8),
+                GameScorePlayerScoreProvider.forthPlace().copy(place = 9),
             ),
             endConditions = GameScoreEndConditionsProvider.scoreAndTime(),
         )
