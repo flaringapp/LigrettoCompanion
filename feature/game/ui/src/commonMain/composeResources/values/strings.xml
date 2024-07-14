@@ -41,6 +41,9 @@
     <string name="lap_cards_left_title">Round %d.1</string>
     <string name="lap_cards_left_explanation">How many cards are left in each player's hand and face-up?</string>
     <string name="lap_cards_left_next">Next</string>
+    <string name="lap_cards_on_table_title">Round %d.2</string>
+    <string name="lap_cards_on_table_explanation">How many cards were played onto the communal piles?</string>
+    <string name="lap_cards_on_table_finish_round">Finish Round</string>
 
     <string name="game_close_title">Leave game</string>
     <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
