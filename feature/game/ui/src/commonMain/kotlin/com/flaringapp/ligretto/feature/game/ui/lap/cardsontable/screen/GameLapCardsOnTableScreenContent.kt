@@ -7,6 +7,7 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTa
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableState
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.preview.GameLapCardsOnTableStateProvider
 import com.flaringapp.ligretto.feature.game.ui.lap.common.content.GenericGameLapContent
+import com.flaringapp.ligretto.feature.game.ui.lap.end.GameLapEndLapDialog
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_explanation
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_finish_round
@@ -34,6 +35,13 @@ internal fun GameLapCardsOnTableScreenContent(
         onFooterButtonClick = { dispatch(GameLapCardsOnTableIntent.EndLap) },
         onBackClick = onBackClick,
     )
+
+    if (state.showConfirmEndLap) {
+        GameLapEndLapDialog(
+            onConfirm = { dispatch(GameLapCardsOnTableIntent.EndLapConfirmed) },
+            onDismiss = { dispatch(GameLapCardsOnTableIntent.HideEndLapConfirmation) },
+        )
+    }
 }
 
 @Preview
