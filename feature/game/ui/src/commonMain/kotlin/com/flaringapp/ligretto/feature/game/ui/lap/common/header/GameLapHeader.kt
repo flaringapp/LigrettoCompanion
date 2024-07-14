@@ -21,7 +21,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun GameLapHeader(
+internal fun GameLapHeader(
     phaseExplanationMessage: String,
     cardScoreValue: Int,
     modifier: Modifier = Modifier,
