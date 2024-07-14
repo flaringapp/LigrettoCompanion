@@ -38,6 +38,9 @@
     <string name="lap_end_lap">End current lap</string>
     <string name="lap_end_lap_confirmation_title">End lap</string>
     <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
+    <string name="lap_cards_left_title">Round %d.1</string>
+    <string name="lap_cards_left_explanation">How many cards are left in each player's hand and face-up?</string>
+    <string name="lap_cards_left_next">Next</string>
 
     <string name="game_close_title">Leave game</string>
     <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
