@@ -140,7 +140,9 @@ private fun CardsCountContent(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Remove,
-                    contentDescription = stringResource(Res.string.lap_player_cards_count_decrement),
+                    contentDescription = stringResource(
+                        Res.string.lap_player_cards_count_decrement
+                    ),
                 )
             }
 
@@ -158,7 +160,9 @@ private fun CardsCountContent(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Add,
-                    contentDescription = stringResource(Res.string.lap_player_cards_count_increment),
+                    contentDescription = stringResource(
+                        Res.string.lap_player_cards_count_increment
+                    ),
                 )
             }
         }
