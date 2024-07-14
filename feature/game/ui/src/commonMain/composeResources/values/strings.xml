@@ -20,6 +20,12 @@
     <string name="scores_start_next_lap">Round %1$d</string>
 
     <string name="lap_title">Lap cards</string>
+    <string name="lap_card_score_value_part_1">1 card =</string>
+    <plurals name="lap_card_score_value_part_2">
+        <item quantity="one">Point</item>
+        <item quantity="other">Points</item>
+    </plurals>
+    <string name="lap_card_score_value_part_2">1 card =</string>
     <string name="lap_player_total_score">Total</string>
     <string name="lap_player_cards_count_decrement">Decrement</string>
     <string name="lap_player_cards_count_increment">Increment</string>
