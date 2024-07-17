@@ -30,10 +30,10 @@
     <string name="lap_player_cards_count_increment">Increment</string>
     <string name="lap_end_lap_confirmation_title">End lap</string>
     <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
-    <string name="lap_cards_left_title">Round %d.1</string>
+    <string name="lap_cards_left_title">Round %1$d.1</string>
     <string name="lap_cards_left_explanation">How many cards are left in each player's hand and face-up?</string>
     <string name="lap_cards_left_next">Next</string>
-    <string name="lap_cards_on_table_title">Round %d.2</string>
+    <string name="lap_cards_on_table_title">Round %1$d.2</string>
     <string name="lap_cards_on_table_explanation">How many cards were played onto the communal piles?</string>
     <string name="lap_cards_on_table_finish_round">Finish Round</string>
 
