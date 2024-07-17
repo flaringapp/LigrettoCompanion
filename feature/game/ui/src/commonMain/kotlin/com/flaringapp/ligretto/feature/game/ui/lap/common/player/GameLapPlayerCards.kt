@@ -137,6 +137,7 @@ private fun CardsCountContent(
         ) {
             FilledTonalIconButton(
                 onClick = decrement,
+                enabled = cardsCount > 0,
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Remove,

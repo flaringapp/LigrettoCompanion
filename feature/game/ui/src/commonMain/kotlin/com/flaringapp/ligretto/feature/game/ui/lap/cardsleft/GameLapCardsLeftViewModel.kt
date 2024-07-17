@@ -95,7 +95,7 @@ internal class GameLapCardsLeftViewModel(
     ) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
-        val cardsLeft = (lap.cardsLeft[player] ?: 0) + delta
+        val cardsLeft = ((lap.cardsLeft[player] ?: 0) + delta).coerceAtLeast(0)
 
         // TODO Synchronize?
         viewModelScope.launch {

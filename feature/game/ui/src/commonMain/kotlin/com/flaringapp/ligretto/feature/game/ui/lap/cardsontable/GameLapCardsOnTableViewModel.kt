@@ -101,7 +101,7 @@ internal class GameLapCardsOnTableViewModel(
     private fun changeCardsOnTable(playerId: Long, delta: Int) = state.also {
         val player = findPlayer(playerId) ?: return@also
         val lap = getCurrentLapUseCase().value ?: return@also
-        val cardsOnTable = (lap.cardsOnTable[player] ?: 0) + delta
+        val cardsOnTable = ((lap.cardsOnTable[player] ?: 0) + delta).coerceAtLeast(0)
 
         // TODO Synchronize?
         viewModelScope.launch {
