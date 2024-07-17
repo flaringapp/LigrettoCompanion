@@ -1,5 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.content
 
+import androidx.compose.animation.core.Transition
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -7,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -18,8 +23,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
@@ -51,6 +58,8 @@ internal fun GenericGameLapContent(
     modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
 ) {
+    val contentListState = rememberLazyListState()
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -58,6 +67,10 @@ internal fun GenericGameLapContent(
                 roundNumber = roundNumber,
                 title = topBarTitle,
                 onBackClick = onBackClick,
+                isElevatedTransition = updateTransition(
+                    label = "IsElevatedTransition",
+                    targetState = contentListState.canScrollBackward,
+                ),
             )
         },
         bottomBar = {
@@ -72,6 +85,7 @@ internal fun GenericGameLapContent(
                 modifier = Modifier
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding),
+                state = contentListState,
                 playerCards = playerCards,
                 playerCardIncrement = playerCardIncrement,
                 playerCardDecrement = playerCardDecrement,
@@ -86,8 +100,17 @@ private fun ScreenTopAppBar(
     roundNumber: Int,
     title: String,
     onBackClick: (() -> Unit)?,
+    isElevatedTransition: Transition<Boolean>,
 ) {
+    val elevation by isElevatedTransition.animateDp(
+        label = "ShadowElevation",
+        targetValueByState = { if (it) 4.dp else 0.dp },
+    )
+
     CenterAlignedTopAppBar(
+        modifier = Modifier.graphicsLayer {
+            shadowElevation = elevation.toPx()
+        },
         title = {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -121,6 +144,7 @@ private fun ScreenTopAppBar(
 
 @Composable
 private fun ScrollableContent(
+    state: LazyListState,
     playerCards: UiList<GameLapPlayerCardsState>,
     playerCardIncrement: (playerId: Long) -> Unit,
     playerCardDecrement: (playerId: Long) -> Unit,
@@ -130,6 +154,7 @@ private fun ScrollableContent(
         modifier = modifier
             .fillMaxSize()
             .fadingEdges(PaddingValues(bottom = 24.dp)),
+        state = state,
         contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp, start = 16.dp, end = 16.dp)
     ) {
         itemsIndexed(
