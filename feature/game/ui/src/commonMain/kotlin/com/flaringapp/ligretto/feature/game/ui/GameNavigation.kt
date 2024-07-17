@@ -16,8 +16,10 @@ import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDestination
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndDestination
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndScreen
-import com.flaringapp.ligretto.feature.game.ui.lap.GameLapDestination
-import com.flaringapp.ligretto.feature.game.ui.lap.GameLapScreen
+import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftDestination
+import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftScreen
+import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableDestination
+import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableScreen
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreDestination
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
@@ -59,15 +61,21 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         }
         composableDestination(GameScoreDestination) {
             GameScoreScreen(
-                openNextLap = navController::navigateGameLap,
+                openNextLap = navController::navigateGameLapCardsLeft,
                 openClose = navController::navigateGameClose,
                 openEnd = navController::navigateGameEnd,
             )
         }
-        composableDestination(GameLapDestination) {
-            GameLapScreen(
-                openScores = navController::navigateGameScores,
+        composableDestination(GameLapCardsLeftDestination) {
+            GameLapCardsLeftScreen(
+                openCardsOnTable = navController::navigateGameLapCardsOnTable,
                 openClose = navController::navigateGameClose,
+            )
+        }
+        composableDestination(GameLapCardsOnTableDestination) {
+            GameLapCardsOnTableScreen(
+                openCardsLeft = navController::navigateGameLapCardsLeft,
+                openScores = navController::navigateGameScores,
                 openEnd = navController::navigateGameEnd,
             )
         }
@@ -96,7 +104,7 @@ fun NavController.navigateResumeGame(openLap: Boolean) {
     navigateNewGame(restartLastGame = false)
 
     if (openLap) {
-        navigateGameLap()
+        navigateGameLapCardsLeft()
     } else {
         navigateGameScores()
     }
@@ -108,8 +116,14 @@ private fun NavController.navigateGameScores() {
     }
 }
 
-private fun NavController.navigateGameLap() {
-    navigate(GameLapDestination.route()) {
+private fun NavController.navigateGameLapCardsLeft() {
+    navigate(GameLapCardsLeftDestination.route()) {
+        closeGameScreens()
+    }
+}
+
+private fun NavController.navigateGameLapCardsOnTable() {
+    navigate(GameLapCardsOnTableDestination.route()) {
         closeGameScreens()
     }
 }

@@ -19,7 +19,6 @@
     <string name="scores_time_limit">%1$s:%2$s:%3$s</string>
     <string name="scores_start_next_lap">Round %1$d</string>
 
-    <string name="lap_title">Lap cards</string>
     <string name="lap_card_score_value_part_1">1 card =</string>
     <plurals name="lap_card_score_value_part_2">
         <item quantity="one">Point</item>
@@ -29,13 +28,6 @@
     <string name="lap_player_total_score">Total</string>
     <string name="lap_player_cards_count_decrement">Decrement</string>
     <string name="lap_player_cards_count_increment">Increment</string>
-    <string name="lap_cards_left">Cards left</string>
-    <string name="lap_increment_cards_left">Increment cards left for player %1$s</string>
-    <string name="lap_decrement_cards_left">Decrement cards left for player %1$s</string>
-    <string name="lap_cards_on_table">Cards on table</string>
-    <string name="lap_increment_cards_on_table">Increment cards on table for player %1$s</string>
-    <string name="lap_decrement_cards_on_table">Decrement cards on table for player %1$s</string>
-    <string name="lap_end_lap">End current lap</string>
     <string name="lap_end_lap_confirmation_title">End lap</string>
     <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
     <string name="lap_cards_left_title">Round %d.1</string>

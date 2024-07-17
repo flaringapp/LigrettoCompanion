@@ -12,7 +12,6 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.screen.GameLapCa
 internal fun GameLapCardsOnTableScreen(
     openCardsLeft: () -> Unit,
     openScores: () -> Unit,
-    openClose: () -> Unit,
     openEnd: () -> Unit,
     store: GameLapCardsOnTableViewModel = koinViewModel(),
 ) {
@@ -26,7 +25,7 @@ internal fun GameLapCardsOnTableScreen(
     }
 
     AndroidBackHandler(true) {
-        openClose()
+        openCardsLeft()
     }
 
     GameLapCardsOnTableScreenContent(
