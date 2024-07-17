@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.content
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,33 +14,35 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.core.ui.ext.uiListOf
-import com.flaringapp.ligretto.feature.game.ui.lap.common.header.GameLapHeader
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCards
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsStateProvider
 import ligretto_companion.core.ui.generated.resources.back
+import ligretto_companion.feature.game.ui.generated.resources.Res
+import ligretto_companion.feature.game.ui.generated.resources.lap_round_number
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
-private const val TYPE_HEADER = "header"
 private const val TYPE_PLAYER_CARDS = "player_cards"
 
 @Composable
 internal fun GenericGameLapContent(
+    roundNumber: Int,
     topBarTitle: String,
-    phaseExplanationMessage: String,
-    cardScoreValue: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
     footerButtonText: String,
     playerCardIncrement: (playerId: Long) -> Unit,
@@ -52,6 +55,7 @@ internal fun GenericGameLapContent(
         modifier = modifier,
         topBar = {
             ScreenTopAppBar(
+                roundNumber = roundNumber,
                 title = topBarTitle,
                 onBackClick = onBackClick,
             )
@@ -68,8 +72,6 @@ internal fun GenericGameLapContent(
                 modifier = Modifier
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding),
-                phaseExplanationMessage = phaseExplanationMessage,
-                cardScoreValue = cardScoreValue,
                 playerCards = playerCards,
                 playerCardIncrement = playerCardIncrement,
                 playerCardDecrement = playerCardDecrement,
@@ -81,12 +83,26 @@ internal fun GenericGameLapContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ScreenTopAppBar(
+    roundNumber: Int,
     title: String,
     onBackClick: (() -> Unit)?,
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(text = title)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(Res.string.lap_round_number, roundNumber),
+                    style = MaterialTheme.typography.titleSmall,
+                )
+
+                Text(
+                    text = title,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
         },
         navigationIcon = {
             if (onBackClick == null) return@CenterAlignedTopAppBar
@@ -105,8 +121,6 @@ private fun ScreenTopAppBar(
 
 @Composable
 private fun ScrollableContent(
-    phaseExplanationMessage: String,
-    cardScoreValue: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
     playerCardIncrement: (playerId: Long) -> Unit,
     playerCardDecrement: (playerId: Long) -> Unit,
@@ -115,17 +129,9 @@ private fun ScrollableContent(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .fadingEdges(PaddingValues(bottom = 32.dp)),
-        contentPadding = PaddingValues(top = 24.dp, bottom = 32.dp, start = 16.dp, end = 16.dp)
+            .fadingEdges(PaddingValues(bottom = 24.dp)),
+        contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp, start = 16.dp, end = 16.dp)
     ) {
-        item(key = TYPE_HEADER, contentType = TYPE_HEADER) {
-            GameLapHeader(
-                modifier = Modifier.fillMaxWidth(),
-                phaseExplanationMessage = phaseExplanationMessage,
-                cardScoreValue = cardScoreValue,
-            )
-        }
-
         itemsIndexed(
             items = playerCards,
             key = { _, item -> "${TYPE_PLAYER_CARDS}_${item.playerId}" },
@@ -134,7 +140,7 @@ private fun ScrollableContent(
             GameLapPlayerCards(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = if (index == 0) 24.dp else 12.dp),
+                    .padding(top = if (index == 0) 0.dp else 12.dp),
                 state = item,
                 increment = { playerCardIncrement(item.playerId) },
                 decrement = { playerCardDecrement(item.playerId) },
@@ -148,9 +154,8 @@ private fun ScrollableContent(
 private fun Preview() {
     AppTheme {
         GenericGameLapContent(
-            topBarTitle = "Round 1.1",
-            phaseExplanationMessage = "How many cards are left in each player's hand and face-up?",
-            cardScoreValue = -2,
+            roundNumber = 1,
+            topBarTitle = "Cards on table",
             playerCards = uiListOf(
                 GameLapPlayerCardsStateProvider.zeroCards(1),
                 GameLapPlayerCardsStateProvider.negativeCards(2),

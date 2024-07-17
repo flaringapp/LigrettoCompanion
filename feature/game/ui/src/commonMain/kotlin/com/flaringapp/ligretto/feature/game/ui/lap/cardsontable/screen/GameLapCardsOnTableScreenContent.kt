@@ -9,7 +9,6 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.preview.GameLapC
 import com.flaringapp.ligretto.feature.game.ui.lap.common.content.GenericGameLapContent
 import com.flaringapp.ligretto.feature.game.ui.lap.end.GameLapEndLapDialog
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_explanation
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_finish_round
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_title
 import org.jetbrains.compose.resources.stringResource
@@ -25,9 +24,8 @@ internal fun GameLapCardsOnTableScreenContent(
 ) {
     GenericGameLapContent(
         modifier = modifier,
-        topBarTitle = stringResource(Res.string.lap_cards_on_table_title, state.roundNumber),
-        phaseExplanationMessage = stringResource(Res.string.lap_cards_on_table_explanation),
-        cardScoreValue = 1,
+        roundNumber = state.roundNumber,
+        topBarTitle = stringResource(Res.string.lap_cards_on_table_title),
         playerCards = state.playerCards,
         footerButtonText = stringResource(Res.string.lap_cards_on_table_finish_round),
         playerCardIncrement = { dispatch(GameLapCardsOnTableIntent.IncrementCards(it)) },
