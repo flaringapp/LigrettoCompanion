@@ -34,7 +34,7 @@ fun NavGraphBuilder.homeGraph(
         }
         dialogDestination(GameEndedDestination) {
             GameEndedDialog(
-                dismiss = { navController.popBackStack() },
+                dismiss = navController::navigateUp,
             )
         }
     }

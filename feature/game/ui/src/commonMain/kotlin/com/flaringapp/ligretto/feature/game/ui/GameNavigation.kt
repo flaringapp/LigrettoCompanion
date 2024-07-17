@@ -83,7 +83,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
             GameCloseDialog(
                 openEnd = navController::navigateGameEnd,
                 closeGame = navController::navigateCloseGame,
-                dismiss = { navController.popBackStack() }
+                dismiss = navController::navigateUp,
             )
         }
         composableDestination(GameEndDestination) {
