@@ -90,7 +90,7 @@ internal fun GenericGameLapContent(
                 playerCardIncrement = playerCardIncrement,
                 playerCardDecrement = playerCardDecrement,
             )
-        }
+        },
     )
 }
 
@@ -155,7 +155,7 @@ private fun ScrollableContent(
             .fillMaxSize()
             .fadingEdges(PaddingValues(bottom = 24.dp)),
         state = state,
-        contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp, start = 16.dp, end = 16.dp)
+        contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
     ) {
         itemsIndexed(
             items = playerCards,

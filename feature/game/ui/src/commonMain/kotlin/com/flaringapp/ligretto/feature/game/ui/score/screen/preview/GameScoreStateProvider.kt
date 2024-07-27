@@ -30,6 +30,6 @@ internal class GameScoreStateProvider : PreviewParameterProvider<GameScoreState>
                 GameScorePlayerScoreProvider.forthPlace().copy(place = 9),
             ),
             endConditions = GameScoreEndConditionsProvider.scoreAndTime(),
-        )
+        ),
     )
 }

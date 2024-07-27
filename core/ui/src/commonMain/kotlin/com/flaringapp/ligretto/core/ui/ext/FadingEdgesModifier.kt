@@ -112,19 +112,19 @@ private fun ContentDrawScope.drawFadingEdges(offset: PaddingValues) {
 @Composable
 private fun Preview(
     @PreviewParameter(SampleFadingEdgesOffsetProvider::class)
-    offset: PaddingValues
+    offset: PaddingValues,
 ) {
     Box(
         modifier = Modifier
             .size(100.dp)
             .fadingEdges(offset)
-            .background(Color.Blue)
+            .background(Color.Blue),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(10.dp)
-                .background(Color.Yellow)
+                .background(Color.Yellow),
         )
     }
 }

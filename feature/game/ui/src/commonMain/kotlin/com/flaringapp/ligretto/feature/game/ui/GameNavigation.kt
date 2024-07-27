@@ -96,7 +96,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
 
 fun NavController.navigateNewGame(restartLastGame: Boolean) {
     navigate(
-        GameDestination.route(restartLastGame = restartLastGame)
+        GameDestination.route(restartLastGame = restartLastGame),
     )
 }
 

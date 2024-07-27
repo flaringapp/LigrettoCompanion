@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun AppTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
 //    val colors = run {
 //        platformDynamicColorScheme(isDarkTheme)
@@ -27,6 +27,6 @@ fun AppTheme(
         colorScheme = colors,
         typography = typography,
         shapes = shapes,
-        content = content
+        content = content,
     )
 }

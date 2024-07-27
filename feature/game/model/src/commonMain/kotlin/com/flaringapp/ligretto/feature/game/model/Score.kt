@@ -4,7 +4,7 @@ import kotlin.jvm.JvmInline
 
 @JvmInline
 value class Score(
-    val value: Int
+    val value: Int,
 ) : Comparable<Score> {
 
     companion object {

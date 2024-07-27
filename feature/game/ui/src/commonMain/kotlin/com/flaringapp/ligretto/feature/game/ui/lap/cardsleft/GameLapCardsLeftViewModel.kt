@@ -23,7 +23,7 @@ internal class GameLapCardsLeftViewModel(
 ) : MviViewModel<GameLapCardsLeftState, GameLapCardsLeftIntent, GameLapCardsLeftEffect>(
     GameLapCardsLeftState(
         roundNumber = getCurrentLapUseCase().value?.number ?: 0,
-    )
+    ),
 ) {
 
     init {
@@ -68,7 +68,7 @@ internal class GameLapCardsLeftViewModel(
     }
 
     private fun updatePlayerCards(
-        intent: GameLapCardsLeftIntent.UpdatePlayerCards
+        intent: GameLapCardsLeftIntent.UpdatePlayerCards,
     ) = updateState {
         copy(
             playerCards = intent.playerCards,

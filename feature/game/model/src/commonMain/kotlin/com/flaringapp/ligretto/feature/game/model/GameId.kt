@@ -4,5 +4,5 @@ import kotlin.jvm.JvmInline
 
 @JvmInline
 value class GameId(
-    val value: Long
+    val value: Long,
 )

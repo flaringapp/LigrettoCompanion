@@ -40,7 +40,7 @@ internal fun GameLapEndLapDialog(
             TextButton(onClick = onDismiss) {
                 Text(text = stringResource(CoreRes.string.cancel))
             }
-        }
+        },
     )
 }
 

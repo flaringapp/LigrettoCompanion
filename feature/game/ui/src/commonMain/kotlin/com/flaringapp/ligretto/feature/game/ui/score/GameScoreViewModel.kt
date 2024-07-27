@@ -44,7 +44,7 @@ internal class GameScoreViewModel(
                     nextRoundNumber = game.pendingLapNumber,
                     playerScores = playerScores.asUiList(),
                     endConditions = endConditions,
-                )
+                ),
             )
         }
     }

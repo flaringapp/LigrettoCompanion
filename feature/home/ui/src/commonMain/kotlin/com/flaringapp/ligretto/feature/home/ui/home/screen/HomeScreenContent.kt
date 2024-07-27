@@ -67,7 +67,7 @@ internal fun HomeScreenContent(
                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
             )
             .consumeWindowInsets(
-                WindowInsets.screen.only(WindowInsetsSides.Top)
+                WindowInsets.screen.only(WindowInsetsSides.Top),
             ),
         verticalArrangement = Arrangement.spacedBy(-contentCornerSize),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -230,7 +230,7 @@ private fun ContinueGameButton(
 @Composable
 private fun Preview(
     @PreviewParameter(HomeStateProvider::class)
-    state: HomeState
+    state: HomeState,
 ) {
     AppTheme {
         HomeScreenContent(

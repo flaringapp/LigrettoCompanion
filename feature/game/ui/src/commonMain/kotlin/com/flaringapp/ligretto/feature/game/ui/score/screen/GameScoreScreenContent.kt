@@ -62,7 +62,7 @@ internal fun GameScoreScreenContent(
                     .padding(innerPadding),
                 playerScores = state.playerScores,
             )
-        }
+        },
     )
 }
 
@@ -83,7 +83,7 @@ private fun ScoresContentContent(
     ) {
         playerScores.forEach { playerScore ->
             GameScorePlayer(
-                state = playerScore
+                state = playerScore,
             )
         }
     }
@@ -100,7 +100,7 @@ private fun NextRoundButton(
         onClick = onClick,
     ) {
         Text(
-            text = stringResource(Res.string.scores_start_next_lap, roundNumber)
+            text = stringResource(Res.string.scores_start_next_lap, roundNumber),
         )
 
         Icon(
@@ -114,7 +114,7 @@ private fun NextRoundButton(
 @Preview
 @Composable
 private fun Preview(
-    @PreviewParameter(GameScoreStateProvider::class) state: GameScoreState
+    @PreviewParameter(GameScoreStateProvider::class) state: GameScoreState,
 ) {
     AppTheme {
         GameScoreScreenContent(

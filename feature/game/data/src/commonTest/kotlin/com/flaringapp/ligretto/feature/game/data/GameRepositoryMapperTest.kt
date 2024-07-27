@@ -55,7 +55,7 @@ class GameRepositoryMapperTest {
         val startGameDto = StartGameStorageDto(
             id = 1,
             timeStarted = timeStarted.toEpochMilliseconds(),
-            playerIds = listOf(1, 2, 3)
+            playerIds = listOf(1, 2, 3),
         )
 
         val expected = Game(
@@ -67,7 +67,7 @@ class GameRepositoryMapperTest {
             endConditions = GameEndConditions(
                 score = null,
                 time = null,
-            )
+            ),
         )
 
         val actual = mapper.mapNewGame(
@@ -97,7 +97,7 @@ class GameRepositoryMapperTest {
         val startGameDto = StartGameStorageDto(
             id = 1,
             timeStarted = timeStarted.toEpochMilliseconds(),
-            playerIds = listOf(1, 2, 3, 4)
+            playerIds = listOf(1, 2, 3, 4),
         )
 
         val expected = Game(
@@ -114,7 +114,7 @@ class GameRepositoryMapperTest {
                     gameDuration = gameConfig.timeLimit!!,
                     clock = clock,
                 ),
-            )
+            ),
         )
 
         val actual = mapper.mapNewGame(

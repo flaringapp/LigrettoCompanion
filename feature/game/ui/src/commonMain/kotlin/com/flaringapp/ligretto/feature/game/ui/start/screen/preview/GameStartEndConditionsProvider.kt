@@ -15,7 +15,7 @@ internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndCond
             score = EndConditions.ScoreLimit(
                 isEnabled = true,
                 value = "132",
-            )
+            ),
         )
 
         fun all() = scoreOnly().copy(
@@ -23,7 +23,7 @@ internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndCond
                 isEnabled = true,
                 hours = "1",
                 minutes = "30",
-            )
+            ),
         )
     }
 

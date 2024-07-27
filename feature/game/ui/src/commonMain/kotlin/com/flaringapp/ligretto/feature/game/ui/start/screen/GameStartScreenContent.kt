@@ -247,7 +247,7 @@ private fun StartGameButton(
 @Preview
 @Composable
 private fun Preview(
-    @PreviewParameter(GameStartStateProvider::class) state: GameStartState
+    @PreviewParameter(GameStartStateProvider::class) state: GameStartState,
 ) {
     AppTheme {
         GameStartScreenContent(

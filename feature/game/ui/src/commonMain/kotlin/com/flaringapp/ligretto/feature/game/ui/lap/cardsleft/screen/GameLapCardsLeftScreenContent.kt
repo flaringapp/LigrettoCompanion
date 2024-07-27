@@ -36,7 +36,7 @@ internal fun GameLapCardsLeftScreenContent(
 @Composable
 private fun Preview(
     @PreviewParameter(GameLapCardsLeftStateProvider::class)
-    state: GameLapCardsLeftState
+    state: GameLapCardsLeftState,
 ) {
     AppTheme {
         GameLapCardsLeftScreenContent(

@@ -12,11 +12,11 @@ internal sealed interface GameLapCardsLeftIntent : UiIntent {
     ) : GameLapCardsLeftIntent
 
     data class IncrementCards(
-        val playerId: Long
+        val playerId: Long,
     ) : GameLapCardsLeftIntent
 
     data class DecrementCards(
-        val playerId: Long
+        val playerId: Long,
     ) : GameLapCardsLeftIntent
 
     data object OpenCardsOnTable : GameLapCardsLeftIntent

@@ -30,7 +30,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(compose.dependencies.components.resources)
 
                     implementation(
-                        libs.findLibrary("compose-multiplatform-lifecycle-runtime-compose").get()
+                        libs.findLibrary("compose-multiplatform-lifecycle-runtime-compose").get(),
                     )
 
                     implementation(libs.findLibrary("koin-compose-multiplatform").get())

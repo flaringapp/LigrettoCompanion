@@ -168,7 +168,7 @@ internal class LoadGameRepositoryMapperTest {
             ),
             endConditions = GameEndConditions(
                 score = GameEndScoreCondition(
-                    targetScore = Score(121)
+                    targetScore = Score(121),
                 ),
                 time = GameEndTimeCondition(
                     gameDuration = 1.hours + 12.minutes,

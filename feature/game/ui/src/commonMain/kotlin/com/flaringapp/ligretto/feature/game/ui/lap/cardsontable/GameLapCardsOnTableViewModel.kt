@@ -28,7 +28,7 @@ internal class GameLapCardsOnTableViewModel(
 ) : MviViewModel<GameLapCardsOnTableState, GameLapCardsOnTableIntent, GameLapCardsOnTableEffect>(
     GameLapCardsOnTableState(
         roundNumber = getCurrentLapUseCase().value?.number ?: 0,
-    )
+    ),
 ) {
 
     private var endLapJob: Job? = null
@@ -77,7 +77,7 @@ internal class GameLapCardsOnTableViewModel(
     }
 
     private fun updatePlayerCards(
-        intent: GameLapCardsOnTableIntent.UpdatePlayerCards
+        intent: GameLapCardsOnTableIntent.UpdatePlayerCards,
     ) = updateState {
         copy(
             playerCards = intent.playerCards,

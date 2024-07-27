@@ -63,7 +63,7 @@ private fun GameCloseDialogContent(
             TextButton(onClick = dismiss) {
                 Text(text = stringResource(CoreRes.string.cancel))
             }
-        }
+        },
     )
 }
 

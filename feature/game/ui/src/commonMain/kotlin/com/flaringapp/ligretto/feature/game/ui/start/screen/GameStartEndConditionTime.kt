@@ -53,14 +53,14 @@ internal fun GameStartEndConditionTime(
             )
 
             Text(
-                text = stringResource(Res.string.start_time_end_condition_split)
+                text = stringResource(Res.string.start_time_end_condition_split),
             )
 
             ValueInput(
                 modifier = Modifier.width(80.dp),
                 value = minutes,
                 placeholder = stringResource(
-                    Res.string.start_time_end_condition_minutes_placeholder
+                    Res.string.start_time_end_condition_minutes_placeholder,
                 ),
                 imeAction = ImeAction.Done,
                 onValueChange = onMinutesChange,

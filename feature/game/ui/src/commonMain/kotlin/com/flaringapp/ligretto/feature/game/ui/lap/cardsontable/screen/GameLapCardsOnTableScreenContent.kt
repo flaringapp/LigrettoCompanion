@@ -46,7 +46,7 @@ internal fun GameLapCardsOnTableScreenContent(
 @Composable
 private fun Preview(
     @PreviewParameter(GameLapCardsOnTableStateProvider::class)
-    state: GameLapCardsOnTableState
+    state: GameLapCardsOnTableState,
 ) {
     AppTheme {
         GameLapCardsOnTableScreenContent(

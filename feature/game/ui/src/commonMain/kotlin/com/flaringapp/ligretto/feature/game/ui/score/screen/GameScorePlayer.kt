@@ -120,7 +120,7 @@ private fun PlaceImage(
     Image(
         modifier = modifier
             .height(
-                with(LocalDensity.current) { textStyle.lineHeight.toDp() }
+                with(LocalDensity.current) { textStyle.lineHeight.toDp() },
             ),
         painter = painterResource(imageRes),
         contentDescription = null,
@@ -172,7 +172,7 @@ private fun ScoreText(
 @Composable
 private fun Preview(
     @PreviewParameter(GameScorePlayerScoreProvider::class)
-    state: PlayerScore
+    state: PlayerScore,
 ) {
     AppTheme {
         GameScorePlayer(

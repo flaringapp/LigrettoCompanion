@@ -19,8 +19,8 @@ internal class GameScoreEndConditionsProvider : PreviewParameterProvider<EndCond
                 timeEnd = Instant.parse("2023-04-09T18:00:00.00Z"),
                 clock = object : Clock {
                     override fun now(): Instant = Instant.parse("2023-04-09T17:32:26.00Z")
-                }
-            )
+                },
+            ),
         )
     }
 

@@ -142,7 +142,7 @@ private fun CardsCountContent(
                 Icon(
                     imageVector = Icons.Rounded.Remove,
                     contentDescription = stringResource(
-                        Res.string.lap_player_cards_count_decrement
+                        Res.string.lap_player_cards_count_decrement,
                     ),
                 )
             }
@@ -162,7 +162,7 @@ private fun CardsCountContent(
                 Icon(
                     imageVector = Icons.Rounded.Add,
                     contentDescription = stringResource(
-                        Res.string.lap_player_cards_count_increment
+                        Res.string.lap_player_cards_count_increment,
                     ),
                 )
             }
@@ -174,7 +174,7 @@ private fun CardsCountContent(
 @Composable
 private fun Preview(
     @PreviewParameter(GameLapPlayerCardsStateProvider::class)
-    state: GameLapPlayerCardsState
+    state: GameLapPlayerCardsState,
 ) {
     AppTheme {
         GameLapPlayerCards(

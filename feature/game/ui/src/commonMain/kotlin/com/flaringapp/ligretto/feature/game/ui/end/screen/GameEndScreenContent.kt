@@ -130,7 +130,7 @@ private fun CloseButton(
         onClick = onClick,
     ) {
         Text(
-            text = stringResource(Res.string.end_close)
+            text = stringResource(Res.string.end_close),
         )
     }
 }
@@ -138,7 +138,7 @@ private fun CloseButton(
 @Preview
 @Composable
 private fun Preview(
-    @PreviewParameter(GameEndStateProvider::class) state: GameEndState
+    @PreviewParameter(GameEndStateProvider::class) state: GameEndState,
 ) {
     AppTheme {
         GameEndScreenContent(
