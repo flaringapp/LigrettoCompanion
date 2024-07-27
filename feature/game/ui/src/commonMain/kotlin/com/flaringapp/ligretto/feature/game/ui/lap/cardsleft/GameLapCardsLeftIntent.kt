@@ -14,6 +14,7 @@ internal sealed interface GameLapCardsLeftIntent : UiIntent {
     data class IncrementCards(
         val playerId: Long
     ) : GameLapCardsLeftIntent
+
     data class DecrementCards(
         val playerId: Long
     ) : GameLapCardsLeftIntent

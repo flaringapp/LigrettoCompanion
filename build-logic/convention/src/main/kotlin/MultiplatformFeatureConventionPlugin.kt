@@ -26,7 +26,6 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
 
                     implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 
-
                     val compose = extensions.getByType<ComposeExtension>()
                     implementation(compose.dependencies.components.resources)
 

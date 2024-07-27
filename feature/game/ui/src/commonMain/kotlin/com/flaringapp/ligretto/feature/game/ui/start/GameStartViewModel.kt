@@ -47,21 +47,26 @@ internal class GameStartViewModel(
             id = intent.id,
             isFocused = intent.isFocused,
         )
+
         is GameStartPlayersIntent.Remove -> removePlayer(intent.id)
         //endregion
         //region End Conditions
         is GameStartScoreEndConditionIntent.SetEnabled -> {
             setScoreEndConditionEnabled(intent.isEnabled)
         }
+
         is GameStartScoreEndConditionIntent.ValueChange -> {
             changeScoreEndConditionValue(intent.value)
         }
+
         is GameStartTimeEndConditionIntent.SetEnabled -> {
             setTimeEndConditionEnabled(intent.isEnabled)
         }
+
         is GameStartTimeEndConditionIntent.HourChange -> {
             changeTimeEndConditionHour(intent.value)
         }
+
         is GameStartTimeEndConditionIntent.MinuteChange -> {
             changeTimeEndConditionMinute(intent.value)
         }
