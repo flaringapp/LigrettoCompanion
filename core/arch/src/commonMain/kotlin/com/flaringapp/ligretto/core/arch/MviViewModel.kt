@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 
 abstract class MviViewModel<State : UiState, Intent : UiIntent, Effect : UiEffect>(
     emptyState: State,
-) : ViewModel(), Store<State, Intent, Effect>, Reducer<State, Intent> {
+) : ViewModel(),
+    Store<State, Intent, Effect>,
+    Reducer<State, Intent> {
 
     protected val state
         get() = stateFlow.value

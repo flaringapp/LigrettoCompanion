@@ -23,23 +23,35 @@ internal sealed interface GameStartPlayersIntent : GameStartIntent {
         val isFocused: Boolean,
     ) : GameStartPlayersIntent
 
-    data class Remove(val id: Int) : GameStartPlayersIntent
+    data class Remove(
+        val id: Int
+    ) : GameStartPlayersIntent
 }
 
 internal sealed interface GameStartEndConditionsIntent : GameStartIntent
 
 internal sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
 
-    data class SetEnabled(val isEnabled: Boolean) : GameStartScoreEndConditionIntent
+    data class SetEnabled(
+        val isEnabled: Boolean
+    ) : GameStartScoreEndConditionIntent
 
-    data class ValueChange(val value: String) : GameStartScoreEndConditionIntent
+    data class ValueChange(
+        val value: String
+    ) : GameStartScoreEndConditionIntent
 }
 
 internal sealed interface GameStartTimeEndConditionIntent : GameStartEndConditionsIntent {
 
-    data class SetEnabled(val isEnabled: Boolean) : GameStartTimeEndConditionIntent
+    data class SetEnabled(
+        val isEnabled: Boolean
+    ) : GameStartTimeEndConditionIntent
 
-    data class HourChange(val value: String) : GameStartTimeEndConditionIntent
+    data class HourChange(
+        val value: String
+    ) : GameStartTimeEndConditionIntent
 
-    data class MinuteChange(val value: String) : GameStartTimeEndConditionIntent
+    data class MinuteChange(
+        val value: String
+    ) : GameStartTimeEndConditionIntent
 }
