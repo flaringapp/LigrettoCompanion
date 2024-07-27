@@ -26,7 +26,7 @@ subprojects {
 }
 
 fun KtlintExtension.configure(buildDir: DirectoryProperty) {
-    version.set("1.2.1")
+    version.set("1.3.1")
     android.set(true)
 
     val buildDirFile = buildDir.get().asFile
