@@ -3,8 +3,8 @@ kotlin = "2.0.21"
 kotlinKsp = "2.0.21-1.0.25"
 kotlinCoroutines = "1.9.0"
 androidGradlePlugin = "8.7.0"
-multiplatformLifecycle = "2.8.0"
-composeMultiplatform = "1.7.0-alpha01"
+multiplatformLifecycle = "2.8.2"
+composeMultiplatform = "1.7.0-rc01"
 koin = "3.5.6"
 koinAnnotations = "1.3.1"
 sqlDelight = "2.0.2"
@@ -23,15 +23,15 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscreen", version = "1.0.1" }
 
 # Android compose
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.1" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.2" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.06.00" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.09.03" }
 androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 # Compose MP
-compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.8.0-alpha08" }
+compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.8.0-alpha10" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
@@ -65,7 +65,7 @@ multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-s
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.12" }
 
 # Lint
-slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.3.1" }
+slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.1" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
