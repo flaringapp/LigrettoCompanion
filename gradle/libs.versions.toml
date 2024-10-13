@@ -62,7 +62,7 @@ multiplatform-settings-coroutines = { group = "com.russhwolf", name = "multiplat
 multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
 # Testing
-mockk = { group = "io.mockk", name = "mockk", version = "1.13.12" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.13.13" }
 
 # Lint
 slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.1" }
