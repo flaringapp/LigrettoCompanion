@@ -1,4 +1,5 @@
 import com.flaringapp.ligretto.libs
+import com.google.devtools.ksp.gradle.KspExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -26,6 +27,10 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
                     kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 }
             }
+        }
+
+        extensions.configure<KspExtension> {
+            arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
         }
 
         dependencies {
