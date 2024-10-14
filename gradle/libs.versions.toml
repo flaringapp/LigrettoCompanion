@@ -44,7 +44,7 @@ koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin"
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
-koin-compose-multiplatform = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+koin-compose-multiplatform = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin" }
 
 # Logging
 napier = { group = "io.github.aakira", name = "napier", version = "2.7.1" }
