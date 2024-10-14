@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
-import com.flaringapp.ligretto.core.arch.koin.koinViewModel
 import com.flaringapp.ligretto.feature.home.ui.home.screen.HomeScreenContent
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun HomeScreen(

@@ -6,13 +6,13 @@ import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
-import org.koin.core.annotation.Factory
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-@Factory
+@KoinViewModel
 internal class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val startLapUseCase: StartLapUseCase,
