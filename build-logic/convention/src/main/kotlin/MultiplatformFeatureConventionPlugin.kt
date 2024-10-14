@@ -21,7 +21,6 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:ui"))
                     implementation(project(":core:designsystem"))
                     implementation(project(":core:arch"))
-                    implementation(project(":core:arch-koin"))
                     implementation(project(":core:navigation"))
 
                     implementation(libs.findLibrary("kotlinx-coroutines-core").get())
