@@ -5,6 +5,8 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -26,7 +28,7 @@ private fun RootScreen(
     val navController = rememberNavController()
 
     NavHost(
-        modifier = modifier,
+        modifier = modifier.background(MaterialTheme.colorScheme.background),
         navController = navController,
         startDestination = HomeDestination.screenId,
         enterTransition = {
