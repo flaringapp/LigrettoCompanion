@@ -6,7 +6,7 @@ androidGradlePlugin = "8.7.0"
 multiplatformLifecycle = "2.8.2"
 composeMultiplatform = "1.7.0-rc01"
 koin = "4.0.0"
-koinAnnotations = "1.4.0-RC4"
+koinAnnotations = "2.0.0-Beta1"
 sqlDelight = "2.0.2"
 multiplatformSettings = "1.2.0"
 

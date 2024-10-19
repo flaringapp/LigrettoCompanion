@@ -14,7 +14,7 @@ import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class GameLapCardsLeftViewModel(
     private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
     private val getCurrentGameUseCase: GetCurrentGameUseCase,

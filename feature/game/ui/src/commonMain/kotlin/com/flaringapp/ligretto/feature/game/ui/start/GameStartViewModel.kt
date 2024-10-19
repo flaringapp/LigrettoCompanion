@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 private typealias ScoreEndConditionState = GameStartState.EndConditions.ScoreLimit
 private typealias TimeEndConditionState = GameStartState.EndConditions.TimeLimit
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class GameStartViewModel(
     @InjectedParam restartLastGame: Boolean,
     private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,

@@ -18,7 +18,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class GameLapCardsOnTableViewModel(
     private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
     private val getCurrentGameUseCase: GetCurrentGameUseCase,

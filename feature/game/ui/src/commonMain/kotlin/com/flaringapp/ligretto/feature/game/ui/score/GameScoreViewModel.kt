@@ -12,7 +12,7 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class GameScoreViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val startLapUseCase: StartLapUseCase,

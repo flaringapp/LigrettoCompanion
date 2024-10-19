@@ -7,7 +7,7 @@ import com.flaringapp.ligretto.feature.home.domain.usecase.ResumePreviousGameUse
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class HomeViewModel(
     private val getHomeDataUseCase: GetHomeDataUseCase,
     private val resumePreviousGameUseCase: ResumePreviousGameUseCase,

@@ -20,7 +20,7 @@ internal sealed interface GameCloseEffect : UiEffect {
     object Dismiss : GameCloseEffect
 }
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class GameCloseViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
 ) : MviViewModel<GameCloseState, GameCloseIntent, GameCloseEffect>(GameCloseState) {
