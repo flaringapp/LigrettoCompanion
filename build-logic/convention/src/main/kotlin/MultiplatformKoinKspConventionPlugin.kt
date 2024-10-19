@@ -4,7 +4,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
@@ -37,26 +36,15 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
             val koin = libs.findLibrary("koin-compiler").get()
 
             add("kspCommonMainMetadata", koin)
-
-            // TODO KSP workaround below remove when fixed
-//            add("kspAndroid", koin)
-//            add("kspIosX64", koin)
-//            add("kspIosArm64", koin)
-//            add("kspIosSimulatorArm64", koin)
+            add("kspAndroid", koin)
+            add("kspIosX64", koin)
+            add("kspIosArm64", koin)
+            add("kspIosSimulatorArm64", koin)
         }
 
-        // TODO KSP workaround remove when fixed
-        tasks.withType<KotlinCompilationTask<*>>().configureEach {
+        project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
             if (name != "kspCommonMainKotlinMetadata") {
                 dependsOn("kspCommonMainKotlinMetadata")
-            }
-        }
-        afterEvaluate {
-            tasks.filter {
-                it.name.contains("SourcesJar", true)
-            }.forEach {
-                println("SourceJarTask====>${it.name}")
-                it.dependsOn("kspCommonMainKotlinMetadata")
             }
         }
     }
