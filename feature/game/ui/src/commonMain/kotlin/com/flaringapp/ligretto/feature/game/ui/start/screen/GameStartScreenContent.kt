@@ -15,6 +15,7 @@ import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -56,21 +57,23 @@ internal fun GameStartScreenContent(
     dispatch: (GameStartIntent) -> Unit,
     close: () -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .screenWindowInsetsPadding(),
+    Surface(
+        modifier = Modifier.fillMaxSize(),
     ) {
-        ActualContent(state, dispatch)
-
-        // TODO KMM remove with proper back navigation on iOS
-        IconButton(
-            onClick = close,
+        Box(
+            modifier = Modifier.screenWindowInsetsPadding(),
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
-                contentDescription = null,
-            )
+            ActualContent(state, dispatch)
+
+            // TODO KMM remove with proper back navigation on iOS
+            IconButton(
+                onClick = close,
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
+                    contentDescription = null,
+                )
+            }
         }
     }
 }

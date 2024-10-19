@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,23 +34,26 @@ internal fun GameEndScreenContent(
     state: GameEndState,
     dispatch: (GameEndIntent) -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .screenWindowInsetsPadding()
-            .padding(24.dp),
+    Surface(
+        modifier = Modifier.fillMaxSize(),
     ) {
-        state.winners?.let {
-            ActualContent(
-                modifier = Modifier.align(Alignment.Center),
-                winners = it,
+        Box(
+            modifier = Modifier
+                .screenWindowInsetsPadding()
+                .padding(24.dp),
+        ) {
+            state.winners?.let {
+                ActualContent(
+                    modifier = Modifier.align(Alignment.Center),
+                    winners = it,
+                )
+            }
+
+            CloseButton(
+                modifier = Modifier.align(Alignment.BottomCenter),
+                onClick = { dispatch(GameEndIntent.Finish) },
             )
         }
-
-        CloseButton(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            onClick = { dispatch(GameEndIntent.Finish) },
-        )
     }
 }
 
