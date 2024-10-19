@@ -56,7 +56,7 @@ internal class LoadGameRepositoryMapperImpl(
             val lastLap = completedLaps.lastOrNull() ?: return@run null
             if (lastLap.id.value == game.completed_lap_id) return@run null
 
-            completedLaps.removeLast()
+            completedLaps.removeAt(completedLaps.lastIndex)
         }
 
         val domainGame = Game(
