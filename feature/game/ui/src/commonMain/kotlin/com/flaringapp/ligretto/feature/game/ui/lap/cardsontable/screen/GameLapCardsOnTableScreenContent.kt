@@ -25,6 +25,7 @@ internal fun GameLapCardsOnTableScreenContent(
     GenericGameLapContent(
         modifier = modifier,
         roundNumber = state.roundNumber,
+        roundPhaseNumber = 2,
         cardScoreDelta = 1,
         topBarTitle = stringResource(Res.string.lap_cards_on_table_title),
         playerCards = state.playerCards,

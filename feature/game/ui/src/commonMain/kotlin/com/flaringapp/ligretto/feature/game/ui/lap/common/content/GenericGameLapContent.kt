@@ -59,6 +59,7 @@ private const val TYPE_PLAYER_CARDS = "player_cards"
 @Composable
 internal fun GenericGameLapContent(
     roundNumber: Int,
+    roundPhaseNumber: Int,
     topBarTitle: String,
     cardScoreDelta: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
@@ -76,6 +77,7 @@ internal fun GenericGameLapContent(
         topBar = {
             ScreenTopAppBar(
                 roundNumber = roundNumber,
+                roundPhaseNumber = roundPhaseNumber,
                 title = topBarTitle,
                 onBackClick = onBackClick,
                 isElevatedTransition = updateTransition(
@@ -110,6 +112,7 @@ internal fun GenericGameLapContent(
 @Composable
 private fun ScreenTopAppBar(
     roundNumber: Int,
+    roundPhaseNumber: Int,
     title: String,
     onBackClick: (() -> Unit)?,
     isElevatedTransition: Transition<Boolean>,
@@ -127,8 +130,9 @@ private fun ScreenTopAppBar(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+                val roundText = "${roundNumber}.${roundPhaseNumber}"
                 Text(
-                    text = stringResource(Res.string.lap_round_number, roundNumber),
+                    text = stringResource(Res.string.lap_round_number, roundText),
                     style = MaterialTheme.typography.titleSmall,
                 )
 
@@ -233,6 +237,7 @@ private fun Preview() {
     AppTheme {
         GenericGameLapContent(
             roundNumber = 1,
+            roundPhaseNumber = 1,
             topBarTitle = "Cards on table",
             cardScoreDelta = -2,
             playerCards = uiListOf(
