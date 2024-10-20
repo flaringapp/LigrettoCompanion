@@ -27,11 +27,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
+import com.flaringapp.ligretto.core.ui.ext.appendWhitespace
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCards
@@ -39,17 +45,22 @@ import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCa
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsStateProvider
 import ligretto_companion.core.ui.generated.resources.back
 import ligretto_companion.feature.game.ui.generated.resources.Res
+import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_delta_part_1
+import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_delta_part_2
 import ligretto_companion.feature.game.ui.generated.resources.lap_round_number
+import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
+private const val TYPE_CARD_SCORE_DELTA = "card_score_delta"
 private const val TYPE_PLAYER_CARDS = "player_cards"
 
 @Composable
 internal fun GenericGameLapContent(
     roundNumber: Int,
     topBarTitle: String,
+    cardScoreDelta: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
     footerButtonText: String,
     playerCardIncrement: (playerId: Long) -> Unit,
@@ -86,6 +97,7 @@ internal fun GenericGameLapContent(
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding),
                 state = contentListState,
+                cardScoreDelta = cardScoreDelta,
                 playerCards = playerCards,
                 playerCardIncrement = playerCardIncrement,
                 playerCardDecrement = playerCardDecrement,
@@ -145,6 +157,7 @@ private fun ScreenTopAppBar(
 @Composable
 private fun ScrollableContent(
     state: LazyListState,
+    cardScoreDelta: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
     playerCardIncrement: (playerId: Long) -> Unit,
     playerCardDecrement: (playerId: Long) -> Unit,
@@ -155,8 +168,17 @@ private fun ScrollableContent(
             .fillMaxSize()
             .fadingEdges(PaddingValues(bottom = 24.dp)),
         state = state,
-        contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
+        contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
     ) {
+        item(key = TYPE_CARD_SCORE_DELTA, contentType = TYPE_CARD_SCORE_DELTA) {
+            CardScoreDeltaText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 24.dp),
+                cardScoreDelta = cardScoreDelta,
+            )
+        }
+
         itemsIndexed(
             items = playerCards,
             key = { _, item -> "${TYPE_PLAYER_CARDS}_${item.playerId}" },
@@ -174,6 +196,37 @@ private fun ScrollableContent(
     }
 }
 
+@Composable
+private fun CardScoreDeltaText(
+    cardScoreDelta: Int,
+    modifier: Modifier = Modifier,
+) {
+    val text = buildAnnotatedString {
+        append(
+            stringResource(Res.string.lap_card_score_delta_part_1),
+        )
+
+        appendWhitespace()
+
+        withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+            append(
+                pluralStringResource(
+                    Res.plurals.lap_card_score_delta_part_2,
+                    cardScoreDelta,
+                    cardScoreDelta,
+                ),
+            )
+        }
+    }
+
+    Text(
+        modifier = modifier,
+        text = text,
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.bodyLarge,
+    )
+}
+
 @Preview
 @Composable
 private fun Preview() {
@@ -181,6 +234,7 @@ private fun Preview() {
         GenericGameLapContent(
             roundNumber = 1,
             topBarTitle = "Cards on table",
+            cardScoreDelta = -2,
             playerCards = uiListOf(
                 GameLapPlayerCardsStateProvider.zeroCards(1),
                 GameLapPlayerCardsStateProvider.negativeCards(2),

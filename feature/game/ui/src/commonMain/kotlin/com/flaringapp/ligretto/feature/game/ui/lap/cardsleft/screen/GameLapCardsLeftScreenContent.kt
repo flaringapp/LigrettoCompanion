@@ -23,6 +23,7 @@ internal fun GameLapCardsLeftScreenContent(
     GenericGameLapContent(
         modifier = modifier,
         roundNumber = state.roundNumber,
+        cardScoreDelta = -2,
         topBarTitle = stringResource(Res.string.lap_cards_left_title),
         playerCards = state.playerCards,
         footerButtonText = stringResource(Res.string.lap_cards_left_next),

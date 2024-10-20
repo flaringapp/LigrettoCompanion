@@ -22,6 +22,11 @@
     <string name="lap_round_number">Round %1$d</string>
     <string name="lap_cards_left_title">Cards in hand</string>
     <string name="lap_cards_on_table_title">Cards on table</string>
+    <string name="lap_card_score_delta_part_1">1 card =</string>
+    <plurals name="lap_card_score_delta_part_2">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
     <string name="lap_player_total_score">Total</string>
     <string name="lap_player_cards_count_decrement">Decrement</string>
     <string name="lap_player_cards_count_increment">Increment</string>
