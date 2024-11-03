@@ -36,10 +36,12 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
             val koin = libs.findLibrary("koin-compiler").get()
 
             add("kspCommonMainMetadata", koin)
-            add("kspAndroid", koin)
-            add("kspIosX64", koin)
-            add("kspIosArm64", koin)
-            add("kspIosSimulatorArm64", koin)
+
+            // TODO KSP workaround below remove when fixed
+//            add("kspAndroid", koin)
+//            add("kspIosX64", koin)
+//            add("kspIosArm64", koin)
+//            add("kspIosSimulatorArm64", koin)
         }
 
         project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
