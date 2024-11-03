@@ -1,8 +1,8 @@
 [versions]
 kotlin = "2.0.21"
-kotlinKsp = "2.0.21-1.0.25"
+kotlinKsp = "2.0.21-1.0.26"
 kotlinCoroutines = "1.9.0"
-androidGradlePlugin = "8.7.1"
+androidGradlePlugin = "8.7.2"
 multiplatformLifecycle = "2.8.3"
 composeMultiplatform = "1.7.0"
 koin = "4.0.0"
@@ -26,7 +26,7 @@ androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscree
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.3" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.10.00" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.10.01" }
 androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
@@ -65,7 +65,7 @@ multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-s
 mockk = { group = "io.mockk", name = "mockk", version = "1.13.13" }
 
 # Lint
-slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.1" }
+slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.2" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
