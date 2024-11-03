@@ -130,7 +130,7 @@ private fun ScreenTopAppBar(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                val roundText = "${roundNumber}.${roundPhaseNumber}"
+                val roundText = "$roundNumber.$roundPhaseNumber"
                 Text(
                     text = stringResource(Res.string.lap_round_number, roundText),
                     style = MaterialTheme.typography.titleSmall,
