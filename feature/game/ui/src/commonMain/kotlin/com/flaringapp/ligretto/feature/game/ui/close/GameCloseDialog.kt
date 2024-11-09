@@ -6,14 +6,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.core.ui.generated.resources.cancel
 import ligretto_companion.core.ui.generated.resources.yes
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_close_message
 import ligretto_companion.feature.game.ui.generated.resources.game_close_title
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
@@ -39,7 +37,7 @@ internal fun GameCloseDialog(
 }
 
 @Composable
-private fun GameCloseDialogContent(
+fun GameCloseDialogContent(
     approve: () -> Unit,
     dismiss: () -> Unit,
 ) {
@@ -65,15 +63,4 @@ private fun GameCloseDialogContent(
             }
         },
     )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    AppTheme {
-        GameCloseDialogContent(
-            approve = {},
-            dismiss = {},
-        )
-    }
 }
