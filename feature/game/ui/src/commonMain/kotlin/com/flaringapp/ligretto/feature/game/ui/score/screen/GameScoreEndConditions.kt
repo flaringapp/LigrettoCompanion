@@ -8,16 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.Ticker
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
-import com.flaringapp.ligretto.feature.game.ui.score.screen.preview.GameScoreEndConditionsProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.scores_score_limit
 import ligretto_companion.feature.game.ui.generated.resources.scores_time_limit
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -96,14 +92,3 @@ private fun TimeLeftText(
 }
 
 private fun Long.formatTimeUnit() = toString().padStart(2, '0')
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameScoreEndConditionsProvider::class)
-    state: GameScoreState.EndConditions,
-) {
-    AppTheme {
-        GameScoreEndConditions(state)
-    }
-}

@@ -18,20 +18,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
-import com.flaringapp.ligretto.feature.game.ui.score.screen.preview.GameScoreStateProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap
 import ligretto_companion.feature.game.ui.generated.resources.scores_title
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -107,19 +103,6 @@ private fun NextRoundButton(
             modifier = Modifier.padding(start = 8.dp),
             imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
             contentDescription = null,
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameScoreStateProvider::class) state: GameScoreState,
-) {
-    AppTheme {
-        GameScoreScreenContent(
-            state = state,
-            dispatch = {},
         )
     }
 }

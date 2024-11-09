@@ -20,17 +20,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
-import com.flaringapp.ligretto.feature.game.ui.score.screen.preview.GameScorePlayerScoreProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.ic_first_place
 import ligretto_companion.feature.game.ui.generated.resources.ic_second_place
 import ligretto_companion.feature.game.ui.generated.resources.ic_third_place
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 private val PlaceTextStyle: TextStyle
     @Composable
@@ -166,17 +162,4 @@ private fun ScoreText(
         text = score.toString(),
         style = MaterialTheme.typography.headlineMedium,
     )
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameScorePlayerScoreProvider::class)
-    state: PlayerScore,
-) {
-    AppTheme {
-        GameScorePlayer(
-            state = state,
-        )
-    }
 }

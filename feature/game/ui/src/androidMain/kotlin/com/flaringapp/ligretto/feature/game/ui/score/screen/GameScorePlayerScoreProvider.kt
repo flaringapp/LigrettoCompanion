@@ -1,7 +1,7 @@
-package com.flaringapp.ligretto.feature.game.ui.score.screen.preview
+package com.flaringapp.ligretto.feature.game.ui.score.screen
 
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class GameScorePlayerScoreProvider : PreviewParameterProvider<PlayerScore> {
 
