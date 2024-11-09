@@ -20,14 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_increment
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_total_score
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun GameLapPlayerCards(
@@ -167,20 +164,5 @@ private fun CardsCountContent(
                 )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameLapPlayerCardsStateProvider::class)
-    state: GameLapPlayerCardsState,
-) {
-    AppTheme {
-        GameLapPlayerCards(
-            state = state,
-            increment = {},
-            decrement = {},
-        )
     }
 }

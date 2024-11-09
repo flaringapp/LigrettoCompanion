@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.player
 
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class GameLapPlayerCardsStateProvider : PreviewParameterProvider<GameLapPlayerCardsState> {
 

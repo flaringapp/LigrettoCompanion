@@ -34,15 +34,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.appendWhitespace
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
-import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCards
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
-import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsStateProvider
 import ligretto_companion.core.ui.generated.resources.back
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_delta_part_1
@@ -50,7 +47,6 @@ import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_del
 import ligretto_companion.feature.game.ui.generated.resources.lap_round_number
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
 private const val TYPE_CARD_SCORE_DELTA = "card_score_delta"
@@ -229,32 +225,4 @@ private fun CardScoreDeltaText(
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.bodyLarge,
     )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    AppTheme {
-        GenericGameLapContent(
-            roundNumber = 1,
-            roundPhaseNumber = 1,
-            topBarTitle = "Cards on table",
-            cardScoreDelta = -2,
-            playerCards = uiListOf(
-                GameLapPlayerCardsStateProvider.zeroCards(1),
-                GameLapPlayerCardsStateProvider.negativeCards(2),
-                GameLapPlayerCardsStateProvider.positiveCards(3),
-                GameLapPlayerCardsStateProvider.positiveCards(4),
-                GameLapPlayerCardsStateProvider.zeroCards(5),
-                GameLapPlayerCardsStateProvider.negativeCards(6),
-                GameLapPlayerCardsStateProvider.negativeCards(7),
-                GameLapPlayerCardsStateProvider.positiveCards(8),
-            ),
-            footerButtonText = "Next",
-            playerCardDecrement = {},
-            playerCardIncrement = {},
-            onFooterButtonClick = {},
-            onBackClick = {},
-        )
-    }
 }
