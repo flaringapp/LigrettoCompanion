@@ -24,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -201,6 +202,14 @@ private fun CardScoreDeltaText(
     cardScoreDelta: Int,
     modifier: Modifier = Modifier,
 ) {
+    val cardScoreDeltaWithSign = remember(cardScoreDelta) {
+        val sign = when {
+            cardScoreDelta > 0 -> "+"
+            else -> ""
+        }
+        "$sign$cardScoreDelta"
+    }
+
     val text = buildAnnotatedString {
         append(
             stringResource(Res.string.lap_card_score_delta_part_1),
@@ -213,7 +222,7 @@ private fun CardScoreDeltaText(
                 pluralStringResource(
                     Res.plurals.lap_card_score_delta_part_2,
                     cardScoreDelta,
-                    cardScoreDelta,
+                    cardScoreDeltaWithSign,
                 ),
             )
         }
