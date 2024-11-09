@@ -8,11 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
-import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndPlayerResultProvider
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun GameEndOtherPlace(
@@ -58,18 +54,4 @@ private fun RowScope.PlaceText(
         text = placePrefix,
         style = MaterialTheme.typography.titleSmall,
     )
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameEndPlayerResultProvider::class) state: PlayerResult,
-) {
-    AppTheme {
-        GameEndOtherPlace(
-            state,
-            placeNumber = "2",
-            placePrefix = "nd",
-        )
-    }
 }

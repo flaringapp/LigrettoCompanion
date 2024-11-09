@@ -12,12 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
 import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
-import com.flaringapp.ligretto.feature.game.ui.end.screen.preview.GameEndStateProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.end_close
 import ligretto_companion.feature.game.ui.generated.resources.end_second_place_one
@@ -26,8 +24,6 @@ import ligretto_companion.feature.game.ui.generated.resources.end_third_place_on
 import ligretto_companion.feature.game.ui.generated.resources.end_third_place_two
 import ligretto_companion.feature.game.ui.generated.resources.end_title
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun GameEndScreenContent(
@@ -135,19 +131,6 @@ private fun CloseButton(
     ) {
         Text(
             text = stringResource(Res.string.end_close),
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameEndStateProvider::class) state: GameEndState,
-) {
-    AppTheme {
-        GameEndScreenContent(
-            state = state,
-            dispatch = {},
         )
     }
 }
