@@ -12,12 +12,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_label
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_placeholder
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun GameStartEndConditionScore(
@@ -65,18 +63,4 @@ private fun ScoreInput(
         ),
         singleLine = true,
     )
-}
-
-@Preview
-@Composable
-private fun PreviewEnabled() {
-    AppTheme {
-        GameStartEndConditionScore(
-            modifier = Modifier.fillMaxWidth(),
-            isEnabled = true,
-            value = "100",
-            onEnabledChange = {},
-            onValueChange = {},
-        )
-    }
 }

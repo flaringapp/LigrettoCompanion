@@ -15,14 +15,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_hours_placeholder
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_label
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_minutes_placeholder
 import ligretto_companion.feature.game.ui.generated.resources.start_time_end_condition_split
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun GameStartEndConditionTime(
@@ -95,20 +93,4 @@ private fun ValueInput(
         ),
         singleLine = true,
     )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    AppTheme {
-        GameStartEndConditionTime(
-            modifier = Modifier.fillMaxWidth(),
-            isEnabled = true,
-            hours = "1",
-            minutes = "15",
-            onEnabledChange = {},
-            onHoursChange = {},
-            onMinutesChange = {},
-        )
-    }
 }

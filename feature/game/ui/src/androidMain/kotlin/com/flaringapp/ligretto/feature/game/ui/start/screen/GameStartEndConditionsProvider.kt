@@ -1,7 +1,7 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.preview
+package com.flaringapp.ligretto.feature.game.ui.start.screen
 
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndConditions> {
 

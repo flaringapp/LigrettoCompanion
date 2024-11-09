@@ -24,14 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.HeaderText
 import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.core.ui.misc.SnapLastItemToBottomArrangement
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState
-import com.flaringapp.ligretto.feature.game.ui.start.screen.preview.GameStartStateProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_add_player
 import ligretto_companion.feature.game.ui.generated.resources.start_empty
@@ -39,8 +37,6 @@ import ligretto_companion.feature.game.ui.generated.resources.start_start_game
 import ligretto_companion.feature.game.ui.generated.resources.start_title_end_conditions
 import ligretto_companion.feature.game.ui.generated.resources.start_title_players
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 private const val CONTENT_TYPE_HEADER = "header"
 private const val CONTENT_TYPE_END_CONDITIONS = "end_conditions"
@@ -243,20 +239,6 @@ private fun StartGameButton(
         Icon(
             painter = rememberVectorPainter(Icons.AutoMirrored.Rounded.KeyboardArrowRight),
             contentDescription = stringResource(Res.string.start_start_game),
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameStartStateProvider::class) state: GameStartState,
-) {
-    AppTheme {
-        GameStartScreenContent(
-            state = state,
-            dispatch = {},
-            close = {},
         )
     }
 }

@@ -1,9 +1,9 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.preview
+package com.flaringapp.ligretto.feature.game.ui.start.screen
 
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.core.ui.ext.uiListOf
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Player
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Players
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 internal class GameStartPlayersProvider : PreviewParameterProvider<Players> {
 

@@ -22,12 +22,10 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_player_placeholder
 import ligretto_companion.feature.game.ui.generated.resources.start_player_remove
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun GameStartPlayer(
@@ -93,33 +91,5 @@ private fun PlayerNameInput(
 
     LaunchedEffect(isFocused) {
         if (isFocused) focusRequester.requestFocus()
-    }
-}
-
-@Preview
-@Composable
-private fun PreviewEmpty() {
-    AppTheme {
-        GameStartPlayer(
-            name = "",
-            isFocused = false,
-            onNameChange = {},
-            onFocusChanged = {},
-            onRemoveClick = {},
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun PreviewFilled() {
-    AppTheme {
-        GameStartPlayer(
-            name = "Player",
-            isFocused = true,
-            onNameChange = {},
-            onFocusChanged = {},
-            onRemoveClick = {},
-        )
     }
 }

@@ -19,8 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 private const val ANIM_TIME = 200
 
@@ -74,32 +72,6 @@ private fun Header(
             modifier = Modifier.padding(start = 16.dp),
             checked = isEnabled,
             onCheckedChange = onEnabledChange,
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun PreviewEnabled() {
-    AppTheme {
-        GameStartEndConditionItem(
-            label = "Label",
-            isEnabled = true,
-            onEnabledChange = {},
-            content = { Text("Content") },
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun PreviewDisabled() {
-    AppTheme {
-        GameStartEndConditionItem(
-            label = "Label",
-            isEnabled = false,
-            onEnabledChange = {},
-            content = { Text("Content") },
         )
     }
 }

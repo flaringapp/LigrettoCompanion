@@ -6,14 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartTimeEndConditionIntent
-import com.flaringapp.ligretto.feature.game.ui.start.screen.preview.GameStartEndConditionsProvider
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun GameStartEndConditions(
@@ -51,19 +47,6 @@ internal fun GameStartEndConditions(
             onMinutesChange = { value ->
                 dispatch(GameStartTimeEndConditionIntent.MinuteChange(value))
             },
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(GameStartEndConditionsProvider::class) state: EndConditions,
-) {
-    AppTheme {
-        GameStartEndConditions(
-            state = state,
-            dispatch = {},
         )
     }
 }
