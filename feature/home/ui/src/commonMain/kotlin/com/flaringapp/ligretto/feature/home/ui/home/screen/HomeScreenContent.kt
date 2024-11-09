@@ -31,7 +31,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.AnimateInitialEnter
 import com.flaringapp.ligretto.core.ui.ext.animateInitialEnter
 import com.flaringapp.ligretto.core.ui.ext.screen
@@ -39,7 +38,6 @@ import com.flaringapp.ligretto.core.ui.ext.screenStatusBarScrim
 import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.feature.home.ui.home.HomeIntent
 import com.flaringapp.ligretto.feature.home.ui.home.HomeState
-import com.flaringapp.ligretto.feature.home.ui.home.screen.preview.HomeStateProvider
 import ligretto_companion.feature.home.ui.generated.resources.Res
 import ligretto_companion.feature.home.ui.generated.resources.home_continue_game_button
 import ligretto_companion.feature.home.ui.generated.resources.home_message
@@ -49,8 +47,6 @@ import ligretto_companion.feature.home.ui.generated.resources.home_title
 import ligretto_companion.feature.home.ui.generated.resources.img_home_header
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 private val contentCornerSize: Dp
     get() = 32.dp
@@ -222,20 +218,6 @@ private fun ContinueGameButton(
     ) {
         Text(
             text = stringResource(Res.string.home_continue_game_button),
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview(
-    @PreviewParameter(HomeStateProvider::class)
-    state: HomeState,
-) {
-    AppTheme {
-        HomeScreenContent(
-            state = state,
-            dispatch = {},
         )
     }
 }
