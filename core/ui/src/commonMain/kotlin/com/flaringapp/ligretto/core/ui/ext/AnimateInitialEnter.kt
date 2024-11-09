@@ -9,6 +9,7 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
 
 @Composable
 fun AnimateInitialEnter(
@@ -18,6 +19,18 @@ fun AnimateInitialEnter(
     animate: Boolean = true,
     content: @Composable AnimatedVisibilityScope.() -> Unit,
 ) {
+    // TODO remove when compose figures itself previews should render visible state
+    if (LocalInspectionMode.current) {
+        AnimatedVisibility(
+            modifier = modifier,
+            visible = true,
+            enter = transition,
+            exit = ExitTransition.None,
+            content = content,
+        )
+        return
+    }
+
     val visibleState = remember(animate) { MutableTransitionState(!animate) }
     if (animate) {
         visibleState.targetState = true
