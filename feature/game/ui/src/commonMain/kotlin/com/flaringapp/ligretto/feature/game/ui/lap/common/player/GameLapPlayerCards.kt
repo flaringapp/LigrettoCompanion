@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,7 @@ import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_increment
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_total_score
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -132,17 +134,12 @@ private fun CardsCountContent(
         Row(
             modifier = Modifier.padding(horizontal = 48.dp, vertical = 20.dp),
         ) {
-            FilledTonalIconButton(
-                onClick = decrement,
+            CardsCountChangeButton(
+                icon = Icons.Rounded.Remove,
+                contentDescription = Res.string.lap_player_cards_count_decrement,
                 enabled = cardsCount > 0,
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Remove,
-                    contentDescription = stringResource(
-                        Res.string.lap_player_cards_count_decrement,
-                    ),
-                )
-            }
+                onChange = decrement,
+            )
 
             Text(
                 modifier = Modifier
@@ -153,16 +150,31 @@ private fun CardsCountContent(
                 style = MaterialTheme.typography.headlineLarge,
             )
 
-            FilledTonalIconButton(
-                onClick = increment,
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Add,
-                    contentDescription = stringResource(
-                        Res.string.lap_player_cards_count_increment,
-                    ),
-                )
-            }
+            CardsCountChangeButton(
+                icon = Icons.Rounded.Add,
+                contentDescription = Res.string.lap_player_cards_count_increment,
+                onChange = increment,
+            )
         }
+    }
+}
+
+@Composable
+private fun CardsCountChangeButton(
+    icon: ImageVector,
+    contentDescription: StringResource,
+    onChange: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    FilledTonalIconButton(
+        modifier = modifier,
+        onClick = onChange,
+        enabled = enabled,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = stringResource(contentDescription),
+        )
     }
 }
