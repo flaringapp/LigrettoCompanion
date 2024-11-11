@@ -13,6 +13,7 @@ internal fun GameLapCardsOnTableScreen(
     openCardsLeft: () -> Unit,
     openScores: () -> Unit,
     openEnd: () -> Unit,
+    openClose: () -> Unit,
     store: GameLapCardsOnTableViewModel = koinViewModel(),
 ) {
     val state by store.observeState().collectAsStateWithLifecycle()
@@ -32,5 +33,6 @@ internal fun GameLapCardsOnTableScreen(
         state = state,
         dispatch = store::dispatch,
         onBackClick = openCardsLeft,
+        onFinish = openClose,
     )
 }

@@ -16,6 +16,7 @@ internal fun GameLapCardsOnTableScreenContent(
     state: GameLapCardsOnTableState,
     dispatch: (GameLapCardsOnTableIntent) -> Unit,
     onBackClick: () -> Unit,
+    onFinish: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     GenericGameLapContent(
@@ -30,6 +31,7 @@ internal fun GameLapCardsOnTableScreenContent(
         playerCardDecrement = { dispatch(GameLapCardsOnTableIntent.DecrementCards(it)) },
         onFooterButtonClick = { dispatch(GameLapCardsOnTableIntent.EndLap) },
         onBackClick = onBackClick,
+        onFinishGameClick = onFinish,
     )
 
     if (state.showConfirmEndLap) {

@@ -14,6 +14,7 @@ import org.jetbrains.compose.resources.stringResource
 internal fun GameLapCardsLeftScreenContent(
     state: GameLapCardsLeftState,
     dispatch: (GameLapCardsLeftIntent) -> Unit,
+    onFinish: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     GenericGameLapContent(
@@ -27,5 +28,6 @@ internal fun GameLapCardsLeftScreenContent(
         playerCardIncrement = { dispatch(GameLapCardsLeftIntent.IncrementCards(it)) },
         playerCardDecrement = { dispatch(GameLapCardsLeftIntent.DecrementCards(it)) },
         onFooterButtonClick = { dispatch(GameLapCardsLeftIntent.OpenCardsOnTable) },
+        onFinishGameClick = onFinish,
     )
 }

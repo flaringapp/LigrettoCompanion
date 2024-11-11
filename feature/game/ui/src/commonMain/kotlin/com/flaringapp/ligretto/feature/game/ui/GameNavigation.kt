@@ -77,6 +77,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
                 openCardsLeft = navController::navigateUp,
                 openScores = navController::navigateGameScores,
                 openEnd = navController::navigateGameEnd,
+                openClose = navController::navigateGameClose,
             )
         }
         dialogDestination(GameCloseDestination) {

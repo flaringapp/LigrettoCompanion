@@ -29,5 +29,6 @@ internal fun GameLapCardsLeftScreen(
     GameLapCardsLeftScreenContent(
         state = state,
         dispatch = store::dispatch,
+        onFinish = openClose,
     )
 }
