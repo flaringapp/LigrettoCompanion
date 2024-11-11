@@ -45,7 +45,10 @@ internal fun GameInProgressTopBarOverflowIconWithMenu(
         offset = DpOffset(x = (-8).dp, y = 0.dp),
     ) {
         DropdownMenuItem(
-            onClick = onFinishGameClick,
+            onClick = {
+                onFinishGameClick()
+                showOverflowMenu = false
+            },
             text = {
                 Text(text = stringResource(Res.string.game_menu_finish_button))
             },
