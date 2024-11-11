@@ -1,7 +1,9 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.player
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,11 +24,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
+import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
@@ -200,15 +205,29 @@ private fun CardsCountChangeButton(
         },
     )
 
-    FilledTonalIconButton(
+    val padding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+    UnboundedPaddingLayout(
         modifier = modifier,
-        onClick = {},
-        enabled = enabled,
-        interactionSource = interactionSource,
+        padding = padding,
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = stringResource(contentDescription),
-        )
+        FilledTonalIconButton(
+            modifier = Modifier
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    role = Role.Button,
+                    onClick = {},
+                )
+                .semantics(mergeDescendants = true) {}
+                .padding(padding),
+            onClick = {},
+            enabled = enabled,
+            interactionSource = interactionSource,
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = stringResource(contentDescription),
+            )
+        }
     }
 }
