@@ -1,13 +1,12 @@
 package com.flaringapp.ligretto.feature.game.ui.end.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -90,16 +89,26 @@ private fun ActualContent(
         )
 
         if (scoreboard.size > 3) {
-            Spacer(
-                modifier = Modifier.height(24.dp),
+            OtherPlacesContent(
+                modifier = Modifier.padding(top = 24.dp),
+                scoreboard = scoreboard,
             )
         }
+    }
+}
 
+@Composable
+private fun OtherPlacesContent(
+    scoreboard: UiList<GameEndState.PlayerResult>,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
         scoreboard.asSequence().drop(3).forEachIndexed { index, player ->
             GameEndOtherPlace(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp),
+                modifier = Modifier.fillMaxWidth(),
                 place = index + 4,
                 state = player,
             )

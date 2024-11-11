@@ -1,13 +1,14 @@
 package com.flaringapp.ligretto.feature.game.ui.end.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_end_player_score
@@ -21,15 +22,22 @@ internal fun GameEndOtherPlace(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         PlaceText(
             place = place,
         )
 
+        GamePlayerImage(
+            modifier = Modifier.padding(start = 16.dp, end = 12.dp),
+            name = state.name,
+            size = 56.dp,
+        )
+
         PlayerNameText(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 16.dp),
             name = state.name,
         )
 
