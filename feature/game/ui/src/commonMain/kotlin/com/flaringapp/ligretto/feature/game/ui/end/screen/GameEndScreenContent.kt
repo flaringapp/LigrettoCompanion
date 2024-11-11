@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
@@ -45,12 +46,12 @@ internal fun GameEndScreenContent(
             }
         },
         content = { innerPadding ->
-            state.winners?.let {
+            state.scoreboard?.let {
                 ActualContent(
                     modifier = Modifier
                         .consumeWindowInsets(innerPadding)
                         .padding(innerPadding),
-                    winners = it,
+                    scoreboard = it,
                 )
             }
         },
@@ -59,7 +60,7 @@ internal fun GameEndScreenContent(
 
 @Composable
 private fun ActualContent(
-    winners: GameEndState.Winners,
+    scoreboard: UiList<GameEndState.PlayerResult>,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -71,28 +72,30 @@ private fun ActualContent(
     ) {
         Header()
 
-        GameEndFirstPlace(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 24.dp),
-            state = winners.firstPlace,
-        )
+        scoreboard.firstOrNull()?.let {
+            GameEndFirstPlace(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 24.dp),
+                state = it,
+            )
+        }
 
         SecondAndThirdPlaces(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 32.dp),
-            secondPlace = winners.secondPlace,
-            thirdPlace = winners.thirdPlace,
+            secondPlace = scoreboard.getOrNull(1),
+            thirdPlace = scoreboard.getOrNull(2),
         )
 
-        if (winners.otherPlaces.isNotEmpty()) {
+        if (scoreboard.size > 3) {
             Spacer(
                 modifier = Modifier.height(24.dp),
             )
         }
 
-        winners.otherPlaces.forEachIndexed { index, player ->
+        scoreboard.asSequence().drop(3).forEachIndexed { index, player ->
             GameEndOtherPlace(
                 modifier = Modifier
                     .fillMaxWidth()

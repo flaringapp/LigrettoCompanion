@@ -1,8 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.end.screen
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.asUiList
-import com.flaringapp.ligretto.core.ui.ext.emptyUiList
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
 
 internal class GameEndStateProvider : PreviewParameterProvider<GameEndState> {
@@ -10,38 +10,25 @@ internal class GameEndStateProvider : PreviewParameterProvider<GameEndState> {
     companion object {
 
         fun one() = GameEndState(
-            winners = GameEndState.Winners(
-                firstPlace = GameEndPlayerResultProvider.default(),
-                secondPlace = null,
-                thirdPlace = null,
-                otherPlaces = emptyUiList(),
-            ),
+            scoreboard = generateWinners(count = 1),
         )
 
-        fun two() = with(one()) {
-            copy(
-                winners = winners?.copy(
-                    secondPlace = GameEndPlayerResultProvider.default(),
-                ),
-            )
-        }
+        fun two() = GameEndState(
+            scoreboard = generateWinners(count = 2),
+        )
 
-        fun three() = with(two()) {
-            copy(
-                winners = winners?.copy(
-                    thirdPlace = GameEndPlayerResultProvider.default(),
-                ),
-            )
-        }
+        fun three() = GameEndState(
+            scoreboard = generateWinners(count = 3),
+        )
 
-        fun aLot() = with(three()) {
-            copy(
-                winners = winners?.copy(
-                    otherPlaces = List(5) {
-                        GameEndPlayerResultProvider.default()
-                    }.asUiList(),
-                ),
-            )
+        fun aLot() = GameEndState(
+            scoreboard = generateWinners(count = 15),
+        )
+
+        private fun generateWinners(count: Int): UiList<GameEndState.PlayerResult> {
+            return List(count) {
+                GameEndPlayerResultProvider.default()
+            }.asUiList()
         }
     }
 

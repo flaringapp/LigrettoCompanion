@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.end
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
@@ -21,19 +22,19 @@ internal class GameEndViewModel(
         intent: GameEndIntent,
     ): GameEndState = when (intent) {
         GameEndIntent.LoadData -> loadData()
-        is GameEndIntent.InitData -> initData(intent.winners)
+        is GameEndIntent.InitData -> initData(intent.scoreboard)
         GameEndIntent.Finish -> finish()
     }
 
     private fun loadData() = state.also {
         val game = endGameUseCase() ?: return@also
-        val winners = mapWinners(game) ?: return@also
+        val scoreboard = mapScoreboard(game)
 
-        dispatch { GameEndIntent.InitData(winners) }
+        dispatch { GameEndIntent.InitData(scoreboard) }
     }
 
-    private fun mapWinners(game: Game): GameEndState.Winners? {
-        val scoreboard = game.scores.entries.asSequence()
+    private fun mapScoreboard(game: Game): UiList<GameEndState.PlayerResult> {
+        return game.scores.entries.asSequence()
             .sortedByDescending { (_, score) -> score.value }
             .map { (player, score) ->
                 GameEndState.PlayerResult(
@@ -42,17 +43,11 @@ internal class GameEndViewModel(
                 )
             }
             .toList()
-
-        return GameEndState.Winners(
-            firstPlace = scoreboard.firstOrNull() ?: return null,
-            secondPlace = scoreboard.getOrNull(1),
-            thirdPlace = scoreboard.getOrNull(2),
-            otherPlaces = scoreboard.drop(3).asUiList(),
-        )
+            .asUiList()
     }
 
-    private fun initData(winners: GameEndState.Winners) = updateState {
-        copy(winners = winners)
+    private fun initData(scoreboard: UiList<GameEndState.PlayerResult>) = updateState {
+        copy(scoreboard = scoreboard)
     }
 
     private fun finish() = state.also {
