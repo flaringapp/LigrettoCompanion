@@ -7,13 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.ui.components.HeaderText
 import com.flaringapp.ligretto.core.ui.ext.screenWindowInsetsPadding
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
@@ -23,7 +24,7 @@ import ligretto_companion.feature.game.ui.generated.resources.end_second_place_o
 import ligretto_companion.feature.game.ui.generated.resources.end_second_place_two
 import ligretto_companion.feature.game.ui.generated.resources.end_third_place_one
 import ligretto_companion.feature.game.ui.generated.resources.end_third_place_two
-import ligretto_companion.feature.game.ui.generated.resources.end_title
+import ligretto_companion.feature.game.ui.generated.resources.game_end_title
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -91,9 +92,11 @@ private fun ActualContent(
 private fun Header(
     modifier: Modifier = Modifier,
 ) {
-    HeaderText(
+    Text(
         modifier = modifier,
-        text = stringResource(Res.string.end_title),
+        text = stringResource(Res.string.game_end_title),
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.headlineMedium,
     )
 }
 

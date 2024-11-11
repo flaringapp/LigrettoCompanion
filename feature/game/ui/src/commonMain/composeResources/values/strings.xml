@@ -38,7 +38,7 @@
     <string name="game_close_title">Leave game</string>
     <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
 
-    <string name="end_title">Congratulations!</string>
+    <string name="game_end_title">The winner is...</string>
     <string name="end_first_place_one">1</string>
     <string name="end_first_place_two">st</string>
     <string name="end_second_place_one">2</string>
