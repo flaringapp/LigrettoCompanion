@@ -20,6 +20,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -185,11 +187,16 @@ private fun CardsCountChangeButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
+    val haptic = LocalHapticFeedback.current
+
     val interactionSource = remember { MutableInteractionSource() }
 
     HandleClickAndHold(
         interactionSource = interactionSource,
-        action = onChange,
+        action = {
+            onChange()
+            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+        },
     )
 
     FilledTonalIconButton(
