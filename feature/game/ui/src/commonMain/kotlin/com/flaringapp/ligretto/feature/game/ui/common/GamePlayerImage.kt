@@ -27,7 +27,11 @@ fun GamePlayerImage(
             return@remember "?"
         }
 
-        val parts = name.split(' ')
+        val parts = name.split(' ').filter { it.isNotEmpty() }
+        if (parts.isEmpty()) {
+            return@remember "?"
+        }
+
         if (parts.size == 1) {
             return@remember name.take(2).uppercase()
         }
