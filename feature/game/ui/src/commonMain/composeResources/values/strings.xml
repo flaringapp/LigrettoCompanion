@@ -45,5 +45,9 @@
     <string name="end_second_place_two">nd</string>
     <string name="end_third_place_one">3</string>
     <string name="end_third_place_two">rd</string>
+    <plurals name="game_end_player_score">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
     <string name="end_close">Exit</string>
 </resources>
