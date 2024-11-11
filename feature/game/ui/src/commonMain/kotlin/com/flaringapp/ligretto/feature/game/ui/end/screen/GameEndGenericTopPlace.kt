@@ -1,17 +1,23 @@
 package com.flaringapp.ligretto.feature.game.ui.end.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_end_player_score
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.pluralStringResource
 
 @Composable
@@ -26,12 +32,14 @@ internal fun GameEndGenericTopPlace(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        PlaceIcon(
-            place = place,
-        )
+        GamePlayerPlaceIcon.resolve(place)?.let { imageRes ->
+            PlaceImage(
+                modifier = Modifier.padding(bottom = 12.dp),
+                imageRes = imageRes,
+            )
+        }
 
         PlayerNameText(
-            modifier = Modifier.padding(top = 12.dp),
             name = state.name,
             style = nameTextStyle,
         )
@@ -45,13 +53,15 @@ internal fun GameEndGenericTopPlace(
 }
 
 @Composable
-private fun PlaceIcon(
-    place: Int,
+private fun PlaceImage(
+    imageRes: DrawableResource,
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        modifier = modifier,
-        text = place.toString(),
+    Image(
+        modifier = modifier.width(22.dp),
+        painter = painterResource(imageRes),
+        contentDescription = null,
+        contentScale = ContentScale.FillWidth,
     )
 }
 
