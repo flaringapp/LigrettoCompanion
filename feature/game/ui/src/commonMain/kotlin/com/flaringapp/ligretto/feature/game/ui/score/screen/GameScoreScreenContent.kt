@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
+import com.flaringapp.ligretto.feature.game.ui.common.menu.GameInProgressTopBarOverflowIconWithMenu
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
@@ -34,6 +35,7 @@ import org.jetbrains.compose.resources.stringResource
 internal fun GameScoreScreenContent(
     state: GameScoreState,
     dispatch: (GameScoreIntent) -> Unit,
+    onFinishGameClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -43,6 +45,11 @@ internal fun GameScoreScreenContent(
                 title = {
                     Text(text = stringResource(Res.string.scores_title))
                 },
+                actions = {
+                    GameInProgressTopBarOverflowIconWithMenu(
+                        onFinishGameClick = onFinishGameClick,
+                    )
+                }
             )
         },
         bottomBar = {

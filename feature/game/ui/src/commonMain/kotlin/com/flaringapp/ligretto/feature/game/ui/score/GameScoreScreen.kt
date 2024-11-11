@@ -31,5 +31,6 @@ internal fun GameScoreScreen(
     GameScoreScreenContent(
         state = state,
         dispatch = store::dispatch,
+        onFinishGameClick = openClose,
     )
 }
