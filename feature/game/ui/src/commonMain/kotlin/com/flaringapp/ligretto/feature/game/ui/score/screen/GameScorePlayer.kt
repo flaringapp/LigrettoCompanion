@@ -20,11 +20,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
-import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.ic_first_place
-import ligretto_companion.feature.game.ui.generated.resources.ic_second_place
-import ligretto_companion.feature.game.ui.generated.resources.ic_third_place
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -80,12 +77,7 @@ private fun Place(
     place: Int,
     modifier: Modifier = Modifier,
 ) {
-    val placeImageRes = when (place) {
-        1 -> Res.drawable.ic_first_place
-        2 -> Res.drawable.ic_second_place
-        3 -> Res.drawable.ic_third_place
-        else -> null
-    }
+    val placeImageRes = GamePlayerPlaceIcon.resolve(place)
     val textStyle = PlaceTextStyle
 
     Box(
