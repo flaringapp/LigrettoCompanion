@@ -49,5 +49,5 @@
         <item quantity="one">%1$d point</item>
         <item quantity="other">%1$d points</item>
     </plurals>
-    <string name="end_close">Exit</string>
+    <string name="game_end_close_button">Close</string>
 </resources>
