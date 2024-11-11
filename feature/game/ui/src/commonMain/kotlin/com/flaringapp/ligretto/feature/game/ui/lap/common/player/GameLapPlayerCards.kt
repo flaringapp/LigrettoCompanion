@@ -153,6 +153,7 @@ private fun CardsCountContent(
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 48.dp, vertical = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             CardsCountChangeButton(
                 icon = Icons.Rounded.Remove,
