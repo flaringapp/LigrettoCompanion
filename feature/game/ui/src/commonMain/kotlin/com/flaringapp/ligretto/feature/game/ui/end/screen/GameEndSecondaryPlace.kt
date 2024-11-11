@@ -17,6 +17,7 @@ internal fun GameEndSecondaryPlace(
         modifier = modifier.padding(horizontal = 16.dp),
         place = place,
         state = state,
+        imageSize = 56.dp,
         nameTextStyle = MaterialTheme.typography.titleMedium,
         scoreTextStyle = MaterialTheme.typography.labelMedium,
     )

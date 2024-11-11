@@ -23,6 +23,7 @@ internal fun GameEndFirstPlace(
             modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
             place = 1,
             state = state,
+            imageSize = 80.dp,
             nameTextStyle = MaterialTheme.typography.headlineSmall,
             scoreTextStyle = MaterialTheme.typography.labelLarge,
         )
