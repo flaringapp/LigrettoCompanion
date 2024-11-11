@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 
@@ -19,6 +20,7 @@ fun GamePlayerImage(
     name: String,
     size: Dp,
     modifier: Modifier = Modifier,
+    shape: Shape = CircleShape,
 ) {
     val initials = remember(name) {
         if (name.isEmpty()) {
@@ -40,7 +42,7 @@ fun GamePlayerImage(
     Box(
         modifier = modifier
             .size(size)
-            .clip(CircleShape)
+            .clip(shape)
             .background(MaterialTheme.colorScheme.secondary),
         contentAlignment = Alignment.Center,
     ) {

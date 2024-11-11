@@ -22,14 +22,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
+import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_increment
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_total_score
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+
+private val HeaderCornerSize: Dp
+    get() = 16.dp
 
 @Composable
 internal fun GameLapPlayerCards(
@@ -63,22 +68,32 @@ private fun HeaderContent(
     Surface(
         modifier = modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.surfaceContainerHighest,
-        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+        shape = RoundedCornerShape(topStart = HeaderCornerSize, topEnd = HeaderCornerSize),
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            PlayerNameText(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 16.dp),
-                playerName = playerName,
+            GamePlayerImage(
+                name = playerName,
+                size = 40.dp,
+                shape = RoundedCornerShape(bottomEnd = HeaderCornerSize),
             )
 
-            TotalScore(
-                score = totalScore,
-            )
+            Row(
+                modifier = Modifier.padding(start = 12.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                PlayerNameText(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 16.dp),
+                    playerName = playerName,
+                )
+
+                TotalScore(
+                    score = totalScore,
+                )
+            }
         }
     }
 }
