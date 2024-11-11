@@ -12,10 +12,9 @@ private fun Preview(
     @PreviewParameter(GameEndPlayerResultProvider::class) state: PlayerResult,
 ) {
     AppTheme {
-        GameEndOtherPlace(
-            state,
-            placeNumber = "2",
-            placePrefix = "nd",
+        GameEndSecondaryPlace(
+            place = 2,
+            state = state,
         )
     }
 }

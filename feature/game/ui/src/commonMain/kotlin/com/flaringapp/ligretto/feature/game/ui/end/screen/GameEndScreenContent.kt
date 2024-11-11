@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.end.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,10 +21,6 @@ import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.end_close
-import ligretto_companion.feature.game.ui.generated.resources.end_second_place_one
-import ligretto_companion.feature.game.ui.generated.resources.end_second_place_two
-import ligretto_companion.feature.game.ui.generated.resources.end_third_place_one
-import ligretto_companion.feature.game.ui.generated.resources.end_third_place_two
 import ligretto_companion.feature.game.ui.generated.resources.game_end_title
 import org.jetbrains.compose.resources.stringResource
 
@@ -73,18 +70,14 @@ private fun ActualContent(
                 .padding(top = 24.dp),
             state = winners.firstPlace,
         )
-        winners.secondPlace?.let {
-            SecondPlace(
-                modifier = Modifier.padding(top = 16.dp),
-                state = it,
-            )
-        }
-        winners.thirdPlace?.let {
-            ThirdPlace(
-                modifier = Modifier.padding(top = 8.dp),
-                state = it,
-            )
-        }
+
+        SecondAndThirdPlaces(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 32.dp),
+            secondPlace = winners.secondPlace,
+            thirdPlace = winners.thirdPlace,
+        )
     }
 }
 
@@ -101,29 +94,34 @@ private fun Header(
 }
 
 @Composable
-private fun SecondPlace(
-    state: GameEndState.PlayerResult,
+private fun SecondAndThirdPlaces(
+    secondPlace: GameEndState.PlayerResult?,
+    thirdPlace: GameEndState.PlayerResult?,
     modifier: Modifier = Modifier,
 ) {
-    GameEndOtherPlace(
-        modifier = modifier,
-        state = state,
-        placeNumber = stringResource(Res.string.end_second_place_one),
-        placePrefix = stringResource(Res.string.end_second_place_two),
-    )
-}
+    if (secondPlace == null && thirdPlace == null) {
+        return
+    }
 
-@Composable
-private fun ThirdPlace(
-    state: GameEndState.PlayerResult,
-    modifier: Modifier = Modifier,
-) {
-    GameEndOtherPlace(
+    Row(
         modifier = modifier,
-        state = state,
-        placeNumber = stringResource(Res.string.end_third_place_one),
-        placePrefix = stringResource(Res.string.end_third_place_two),
-    )
+    ) {
+        secondPlace?.let {
+            GameEndSecondaryPlace(
+                modifier = Modifier.weight(1f),
+                place = 2,
+                state = it,
+            )
+        }
+
+        thirdPlace?.let {
+            GameEndSecondaryPlace(
+                modifier = Modifier.weight(1f),
+                place = 3,
+                state = it,
+            )
+        }
+    }
 }
 
 @Composable
