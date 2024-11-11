@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.end
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import org.koin.android.annotation.KoinViewModel
@@ -32,9 +33,8 @@ internal class GameEndViewModel(
     }
 
     private fun mapWinners(game: Game): GameEndState.Winners? {
-        val leaders = game.scores.entries.asSequence()
+        val scoreboard = game.scores.entries.asSequence()
             .sortedByDescending { (_, score) -> score.value }
-            .take(3)
             .map { (player, score) ->
                 GameEndState.PlayerResult(
                     name = player.name,
@@ -44,9 +44,10 @@ internal class GameEndViewModel(
             .toList()
 
         return GameEndState.Winners(
-            firstPlace = leaders.firstOrNull() ?: return null,
-            secondPlace = leaders.getOrNull(1),
-            thirdPlace = leaders.getOrNull(2),
+            firstPlace = scoreboard.firstOrNull() ?: return null,
+            secondPlace = scoreboard.getOrNull(1),
+            thirdPlace = scoreboard.getOrNull(2),
+            otherPlaces = scoreboard.drop(3).asUiList(),
         )
     }
 
