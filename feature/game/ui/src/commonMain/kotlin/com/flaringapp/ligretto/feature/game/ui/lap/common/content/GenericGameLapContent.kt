@@ -15,11 +15,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,9 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -45,12 +39,11 @@ import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.appendWhitespace
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
+import com.flaringapp.ligretto.feature.game.ui.common.menu.GameInProgressTopBarOverflowIconWithMenu
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCards
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
 import ligretto_companion.core.ui.generated.resources.back
-import ligretto_companion.core.ui.generated.resources.overflow_description
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.game_menu_finish_button
 import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_delta_part_1
 import ligretto_companion.feature.game.ui.generated.resources.lap_card_score_delta_part_2
 import ligretto_companion.feature.game.ui.generated.resources.lap_round_number
@@ -164,34 +157,9 @@ private fun ScreenTopAppBar(
             }
         },
         actions = {
-            var showOverflowMenu by remember { mutableStateOf(false) }
-
-            IconButton(
-                onClick = { showOverflowMenu = !showOverflowMenu },
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.MoreVert,
-                    contentDescription = stringResource(CoreRes.string.overflow_description),
-                )
-            }
-
-            DropdownMenu(
-                expanded = showOverflowMenu,
-                onDismissRequest = { showOverflowMenu = false },
-            ) {
-                DropdownMenuItem(
-                    onClick = onFinishGameClick,
-                    text = {
-                        Text(text = stringResource(Res.string.game_menu_finish_button))
-                    },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.CheckCircle,
-                            contentDescription = null,
-                        )
-                    },
-                )
-            }
+            GameInProgressTopBarOverflowIconWithMenu(
+                onFinishGameClick = onFinishGameClick,
+            )
         },
     )
 }
