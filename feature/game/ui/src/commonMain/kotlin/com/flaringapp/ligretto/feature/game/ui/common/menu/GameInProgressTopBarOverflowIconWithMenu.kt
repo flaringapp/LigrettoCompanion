@@ -14,6 +14,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.unit.dp
 import ligretto_companion.core.ui.generated.resources.overflow_description
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_menu_finish_button
@@ -40,6 +42,7 @@ internal fun GameInProgressTopBarOverflowIconWithMenu(
     DropdownMenu(
         expanded = showOverflowMenu,
         onDismissRequest = { showOverflowMenu = false },
+        offset = DpOffset(x = (-8).dp, y = 0.dp),
     ) {
         DropdownMenuItem(
             onClick = onFinishGameClick,
