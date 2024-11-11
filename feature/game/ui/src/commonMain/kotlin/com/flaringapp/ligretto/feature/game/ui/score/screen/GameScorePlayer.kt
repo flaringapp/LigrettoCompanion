@@ -20,6 +20,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 import org.jetbrains.compose.resources.DrawableResource
@@ -59,10 +60,16 @@ private fun ActualContent(
             place = state.place,
         )
 
+        GamePlayerImage(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            name = state.playerName,
+            size = 56.dp,
+        )
+
         PlayerNameText(
             modifier = Modifier
                 .weight(1f)
-                .padding(start = 8.dp, end = 16.dp),
+                .padding(end = 16.dp),
             name = state.playerName,
         )
 
