@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.player
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,12 +16,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_increment
@@ -167,10 +170,18 @@ private fun CardsCountChangeButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    HandleClickAndHold(
+        interactionSource = interactionSource,
+        action = onChange,
+    )
+
     FilledTonalIconButton(
         modifier = modifier,
-        onClick = onChange,
+        onClick = {},
         enabled = enabled,
+        interactionSource = interactionSource,
     ) {
         Icon(
             imageVector = icon,
