@@ -8,6 +8,8 @@ kotlin {
             implementation(project(":feature:home:domain"))
 
             implementation(compose.components.resources)
+
+            implementation(libs.compose.multiplatform.adaptive)
         }
     }
 }
