@@ -5,15 +5,19 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.scaleIn
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
@@ -24,13 +28,16 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.flaringapp.ligretto.core.ui.ext.AnimateInitialEnter
 import com.flaringapp.ligretto.core.ui.ext.animateInitialEnter
 import com.flaringapp.ligretto.core.ui.ext.screen
@@ -56,9 +63,34 @@ internal fun HomeScreenContent(
     state: HomeState,
     dispatch: (HomeIntent) -> Unit,
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        propagateMinConstraints = true,
+    ) {
+        if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED) {
+            ExpandedWindowContent(
+                state = state,
+                dispatch = dispatch,
+            )
+        } else {
+            CompactWindowContent(
+                state = state,
+                dispatch = dispatch,
+            )
+        }
+    }
+}
+
+@Composable
+private fun CompactWindowContent(
+    state: HomeState,
+    dispatch: (HomeIntent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
             .screenStatusBarScrim(
                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
             )
@@ -75,7 +107,9 @@ internal fun HomeScreenContent(
                 animationSpec = spring(stiffness = Spring.StiffnessLow),
             ),
         ) {
-            HeaderImage()
+            HeaderImage(
+                fillWidth = true,
+            )
         }
 
         AnimateInitialEnter(
@@ -92,6 +126,59 @@ internal fun HomeScreenContent(
                 modifier = Modifier.fillMaxSize(),
                 state = state,
                 dispatch = dispatch,
+                shape = RoundedCornerShape(
+                    topStart = contentCornerSize,
+                    topEnd = contentCornerSize,
+                ),
+            )
+        }
+    }
+}
+
+@Composable
+private fun ExpandedWindowContent(
+    state: HomeState,
+    dispatch: (HomeIntent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(-contentCornerSize),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        AnimateInitialEnter(
+            label = "HeaderImageInitialAnimation",
+            transition = fadeIn() + scaleIn(
+                initialScale = 1.4f,
+                animationSpec = spring(stiffness = Spring.StiffnessLow),
+            ),
+        ) {
+            HeaderImage(
+                modifier = Modifier.screenStatusBarScrim(
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
+                ),
+                fillWidth = false,
+            )
+        }
+
+        AnimateInitialEnter(
+            label = "ContentUnderHeaderInitialAnimation",
+            transition = slideInHorizontally(
+                initialOffsetX = { it / 4 },
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessLow,
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                ),
+            ),
+        ) {
+            ContentUnderHeader(
+                modifier = Modifier.fillMaxSize(),
+                state = state,
+                dispatch = dispatch,
+                shape = RoundedCornerShape(
+                    topStart = contentCornerSize,
+                    bottomStart = contentCornerSize,
+                ),
             )
         }
     }
@@ -99,13 +186,16 @@ internal fun HomeScreenContent(
 
 @Composable
 private fun HeaderImage(
+    fillWidth: Boolean,
     modifier: Modifier = Modifier,
 ) {
+    val sizeModifier = if (fillWidth) Modifier.fillMaxWidth() else Modifier.fillMaxHeight()
+
     Image(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.then(sizeModifier),
         painter = painterResource(Res.drawable.img_home_header),
         contentDescription = null,
-        contentScale = ContentScale.FillWidth,
+        contentScale = if (fillWidth) ContentScale.FillWidth else ContentScale.FillHeight,
     )
 }
 
@@ -113,11 +203,12 @@ private fun HeaderImage(
 private fun AnimatedVisibilityScope.ContentUnderHeader(
     state: HomeState,
     dispatch: (HomeIntent) -> Unit,
+    shape: Shape,
     modifier: Modifier = Modifier,
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
-        shape = RoundedCornerShape(topStart = contentCornerSize, topEnd = contentCornerSize),
+        shape = shape,
     ) {
         Column(
             modifier = Modifier
