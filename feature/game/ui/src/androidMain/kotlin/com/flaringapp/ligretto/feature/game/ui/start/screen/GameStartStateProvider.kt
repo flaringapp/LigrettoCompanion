@@ -8,15 +8,15 @@ internal class GameStartStateProvider : PreviewParameterProvider<GameStartState>
     override val values: Sequence<GameStartState> = sequenceOf(
         GameStartState(
             players = GameStartPlayersProvider.empty(),
-            GameStartEndConditionsProvider.none(),
+            endConditions = GameStartState.EndConditions(),
         ),
         GameStartState(
             players = GameStartPlayersProvider.short(),
-            GameStartEndConditionsProvider.scoreOnly(),
+            endConditions = GameStartState.EndConditions(),
         ),
         GameStartState(
             players = GameStartPlayersProvider.long(),
-            GameStartEndConditionsProvider.all(),
+            endConditions = GameStartState.EndConditions(),
         ),
     )
 }

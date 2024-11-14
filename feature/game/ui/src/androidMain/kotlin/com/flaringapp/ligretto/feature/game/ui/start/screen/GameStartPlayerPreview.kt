@@ -10,7 +10,9 @@ private fun PreviewEmpty() {
     AppTheme {
         GameStartPlayer(
             name = "",
-            isFocused = false,
+            number = 1,
+            canRemove = false,
+            requestFocus = false,
             onNameChange = {},
             onFocusChanged = {},
             onRemoveClick = {},
@@ -24,7 +26,9 @@ private fun PreviewFilled() {
     AppTheme {
         GameStartPlayer(
             name = "Player",
-            isFocused = true,
+            number = 4,
+            canRemove = true,
+            requestFocus = true,
             onNameChange = {},
             onFocusChanged = {},
             onRemoveClick = {},

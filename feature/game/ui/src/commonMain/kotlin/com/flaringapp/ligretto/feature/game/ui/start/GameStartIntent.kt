@@ -28,7 +28,10 @@ internal sealed interface GameStartPlayersIntent : GameStartIntent {
     ) : GameStartPlayersIntent
 }
 
-internal sealed interface GameStartEndConditionsIntent : GameStartIntent
+internal sealed interface GameStartEndConditionsIntent : GameStartIntent {
+
+    data object SubmitStep : GameStartEndConditionsIntent
+}
 
 internal sealed interface GameStartScoreEndConditionIntent : GameStartEndConditionsIntent {
 
@@ -37,7 +40,13 @@ internal sealed interface GameStartScoreEndConditionIntent : GameStartEndConditi
     ) : GameStartScoreEndConditionIntent
 
     data class ValueChange(
-        val value: String,
+        val score: Int,
+    ) : GameStartScoreEndConditionIntent
+
+    data object SelectCustomValue : GameStartScoreEndConditionIntent
+
+    data class CustomValueSelected(
+        val score: Int,
     ) : GameStartScoreEndConditionIntent
 }
 
@@ -47,11 +56,13 @@ internal sealed interface GameStartTimeEndConditionIntent : GameStartEndConditio
         val isEnabled: Boolean,
     ) : GameStartTimeEndConditionIntent
 
-    data class HourChange(
-        val value: String,
+    data class ValueChange(
+        val minutes: Int,
     ) : GameStartTimeEndConditionIntent
 
-    data class MinuteChange(
-        val value: String,
-    ) : GameStartTimeEndConditionIntent
+    data object SelectCustomValue : GameStartTimeEndConditionIntent
+
+    data class CustomValueSelected(
+        val minutes: Int,
+    ) : GameStartScoreEndConditionIntent
 }

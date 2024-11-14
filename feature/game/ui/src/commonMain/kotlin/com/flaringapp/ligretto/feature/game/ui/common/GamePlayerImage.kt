@@ -20,16 +20,17 @@ fun GamePlayerImage(
     name: String,
     size: Dp,
     modifier: Modifier = Modifier,
+    fallbackText: String = "?",
     shape: Shape = CircleShape,
 ) {
     val initials = remember(name) {
         if (name.isEmpty()) {
-            return@remember "?"
+            return@remember fallbackText
         }
 
         val parts = name.split(' ').filter { it.isNotEmpty() }
         if (parts.isEmpty()) {
-            return@remember "?"
+            return@remember fallbackText
         }
 
         if (parts.size == 1) {

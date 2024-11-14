@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen
+package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -9,10 +9,11 @@ import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndCondition
 @Preview(showBackground = true)
 @Composable
 private fun Preview(
-    @PreviewParameter(GameStartEndConditionsProvider::class) state: EndConditions,
+    @PreviewParameter(GameStartEndConditionsProvider::class)
+    state: EndConditions,
 ) {
     AppTheme {
-        GameStartEndConditions(
+        GameStartEndConditionsScope.GenericContent(
             state = state,
             dispatch = {},
         )

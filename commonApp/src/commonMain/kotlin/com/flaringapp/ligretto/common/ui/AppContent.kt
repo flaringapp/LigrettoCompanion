@@ -1,10 +1,11 @@
 package com.flaringapp.ligretto.common.ui
 
-import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -33,30 +34,28 @@ private fun RootScreen(
         startDestination = HomeDestination.screenId,
         enterTransition = {
             fadeIn(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
-            ) + slideIntoContainer(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
-                towards = SlideDirection.Start,
-                initialOffset = { it / 3 },
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+            ) + slideInHorizontally(
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+                initialOffsetX = { it / 3 },
             )
         },
         exitTransition = {
             fadeOut(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
             )
         },
         popEnterTransition = {
             fadeIn(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
             )
         },
         popExitTransition = {
             fadeOut(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
-            ) + slideOutOfContainer(
-                animationSpec = spring(stiffness = Spring.StiffnessMedium),
-                towards = SlideDirection.End,
-                targetOffset = { it / 3 },
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+            ) + slideOutHorizontally(
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+                targetOffsetX = { it / 3 },
             )
         },
         builder = { appNavGraph(navController) },
