@@ -11,7 +11,8 @@ import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 @Preview(showBackground = true)
 @Composable
 private fun Preview(
-    @PreviewParameter(GameEndPlayerResultProvider::class) state: PlayerResult,
+    @PreviewParameter(GameEndPlayerResultProvider::class)
+    state: PlayerResult,
 ) {
     AppTheme {
         GameEndGenericTopPlace(
