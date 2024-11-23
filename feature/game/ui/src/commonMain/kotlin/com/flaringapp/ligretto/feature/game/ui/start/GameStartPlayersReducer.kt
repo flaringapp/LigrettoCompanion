@@ -17,7 +17,7 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
         is GameStartPlayersIntent.ChangeName -> {
             state.changePlayerName(
                 id = intent.id,
-                name = intent.name
+                name = intent.name,
             )
         }
 

@@ -27,6 +27,16 @@
     <string name="scores_title">Scores</string>
     <string name="scores_score_limit">Playing until score %1$s!</string>
     <string name="scores_time_limit">%1$s:%2$s:%3$s</string>
+    <string name="scores_end_condition_score_label">Target score</string>
+    <string name="scores_end_condition_time_label">Time left</string>
+    <plurals name="scores_end_condition_score_value">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
+    <plurals name="scores_end_condition_time_value">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="scores_start_next_lap">Round %1$d</string>
 
     <string name="lap_round_number">Round %1$s</string>

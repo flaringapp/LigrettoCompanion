@@ -13,6 +13,6 @@ private fun Preview(
     state: GameScoreState.EndConditions,
 ) {
     AppTheme {
-        GameScoreEndConditions(state)
+        GameScoreEndConditionContent(state)
     }
 }

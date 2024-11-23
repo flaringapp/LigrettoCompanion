@@ -92,4 +92,3 @@ private fun ScoreText(
         style = MaterialTheme.typography.labelMedium,
     )
 }
-

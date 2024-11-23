@@ -19,12 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.components.FooterButton
-import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.common.menu.GameInProgressTopBarOverflowIconWithMenu
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
-import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap
 import ligretto_companion.feature.game.ui.generated.resources.scores_title
@@ -49,7 +47,7 @@ internal fun GameScoreScreenContent(
                     GameInProgressTopBarOverflowIconWithMenu(
                         onFinishGameClick = onFinishGameClick,
                     )
-                }
+                },
             )
         },
         bottomBar = {
@@ -63,7 +61,7 @@ internal fun GameScoreScreenContent(
                 modifier = Modifier
                     .consumeWindowInsets(innerPadding)
                     .padding(innerPadding),
-                playerScores = state.playerScores,
+                state = state,
             )
         },
     )
@@ -71,7 +69,7 @@ internal fun GameScoreScreenContent(
 
 @Composable
 private fun ScoresContentContent(
-    playerScores: UiList<PlayerScore>,
+    state: GameScoreState,
     modifier: Modifier = Modifier,
 ) {
     // TODO end conditions
@@ -84,9 +82,16 @@ private fun ScoresContentContent(
             .padding(top = 24.dp, bottom = 32.dp, start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        playerScores.forEach { playerScore ->
+        state.playerScores.forEach { playerScore ->
             GameScorePlayer(
                 state = playerScore,
+            )
+        }
+
+        state.endConditions?.let {
+            GameScoreEndConditionContent(
+                modifier = Modifier.padding(vertical = 24.dp),
+                state = it,
             )
         }
     }

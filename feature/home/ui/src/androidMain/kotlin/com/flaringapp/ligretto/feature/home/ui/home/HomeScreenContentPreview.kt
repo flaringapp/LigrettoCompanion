@@ -10,7 +10,7 @@ import com.flaringapp.ligretto.feature.home.ui.home.screen.HomeScreenContent
 @Composable
 private fun Preview(
     @PreviewParameter(HomeStateProvider::class)
-    state: HomeState
+    state: HomeState,
 ) {
     AppTheme {
         HomeScreenContent(
