@@ -12,7 +12,7 @@ import org.koin.core.parameter.parametersOf
 @Composable
 internal fun GameStartScreen(
     restartLastGame: Boolean,
-    openScore: () -> Unit,
+    openGame: () -> Unit,
     openClose: () -> Unit,
     store: GameStartViewModel = koinViewModel { parametersOf(restartLastGame) },
 ) {
@@ -20,7 +20,7 @@ internal fun GameStartScreen(
 
     ConsumeEffects(store.observeEffect()) { effect ->
         when (effect) {
-            GameStartEffect.StartGame -> openScore()
+            GameStartEffect.StartGame -> openGame()
         }
     }
 

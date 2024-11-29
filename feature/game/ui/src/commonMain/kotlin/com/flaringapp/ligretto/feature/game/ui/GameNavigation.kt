@@ -55,7 +55,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composableDestination(GameStartDestination) {
             GameStartScreen(
                 restartLastGame = GameDestination.restartLastGame(it),
-                openScore = navController::navigateGameScores,
+                openGame = navController::navigateGameLapCardsLeft,
                 openClose = navController::navigateGameClose,
             )
         }
