@@ -3,7 +3,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformFeatureConventionPlugin : Plugin<Project> {
@@ -25,8 +25,8 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
 
                     implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 
-                    val compose = extensions.getByType<ComposeExtension>()
-                    implementation(compose.dependencies.components.resources)
+                    val composeDependencies = extensions.getByType<ComposePlugin.Dependencies>()
+                    implementation(composeDependencies.components.resources)
 
                     implementation(
                         libs.findLibrary("compose-multiplatform-lifecycle-runtime-compose").get(),

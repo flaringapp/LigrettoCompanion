@@ -4,13 +4,13 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
-import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureComposeMultiplatform(
     kotlinExtension: KotlinMultiplatformExtension,
-    composeExtension: ComposeExtension,
+    composeDependencies: ComposePlugin.Dependencies,
     composeCompilerExtension: ComposeCompilerGradlePluginExtension,
     androidExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
@@ -22,7 +22,7 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(libs.findLibrary("androidx-compose-ui-preview").get())
             }
             commonMain.dependencies {
-                implementation(composeExtension.dependencies.components.uiToolingPreview)
+                implementation(composeDependencies.components.uiToolingPreview)
             }
         }
     }
