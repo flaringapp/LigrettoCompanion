@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.options.OptionPill
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.options.OptionsRow
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_label

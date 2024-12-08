@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.settings
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.options
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScope
 
 @Composable
-internal inline fun GameStartEndConditionsScope.OptionsRow(
+internal inline fun GameEndConditionsScope.OptionsRow(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     content: @Composable () -> Unit,
