@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.settings
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

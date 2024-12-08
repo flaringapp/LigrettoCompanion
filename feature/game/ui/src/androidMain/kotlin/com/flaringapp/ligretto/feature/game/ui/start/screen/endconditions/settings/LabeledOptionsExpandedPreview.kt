@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.ScoreOptions
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
 @Preview(showBackground = true)
