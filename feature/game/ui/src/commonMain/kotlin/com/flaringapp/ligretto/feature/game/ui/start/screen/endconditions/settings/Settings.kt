@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.AnimatedContentVisibility
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.ScoreOptions
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent

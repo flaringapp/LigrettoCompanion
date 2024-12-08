@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.settings
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.expandVertically
@@ -9,10 +9,10 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
 @Composable
-fun <T> GameStartEndConditionsScope.AnimatedContentVisibility(
+fun <T> GameEndConditionsScope.AnimatedContentVisibility(
     componentName: String,
     visible: Boolean,
     state: T,
