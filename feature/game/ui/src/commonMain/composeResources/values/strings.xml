@@ -56,6 +56,9 @@
     <string name="lap_end_lap_confirmation_title">End lap</string>
     <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
 
+    <string name="game_settings_title">Change game settings</string>
+    <string name="game_settings_save_button">Save</string>
+
     <string name="game_close_title">Leave game</string>
     <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
 
