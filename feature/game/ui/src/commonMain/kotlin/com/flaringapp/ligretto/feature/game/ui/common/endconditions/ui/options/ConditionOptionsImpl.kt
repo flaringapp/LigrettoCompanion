@@ -9,8 +9,8 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.start_end_condition_option_custom
-import ligretto_companion.feature.game.ui.generated.resources.start_end_condition_option_custom_with_value
+import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom
+import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom_with_value
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -84,9 +84,9 @@ private fun GameEndConditionsScope.CustomValueOption(
     modifier: Modifier = Modifier,
 ) {
     val text = value?.let {
-        stringResource(Res.string.start_end_condition_option_custom_with_value, it)
+        stringResource(Res.string.end_condition_option_custom_with_value, it)
     } ?: run {
-        stringResource(Res.string.start_end_condition_option_custom)
+        stringResource(Res.string.end_condition_option_custom)
     }
 
     OptionPill(

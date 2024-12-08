@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="end_condition_option_custom">Custom</string>
+    <string name="end_condition_option_custom_with_value">Custom  (%1$s)</string>
+
     <string name="start_title">New Game</string>
     <string name="start_next_step_button">Next</string>
     <string name="start_end_conditions_label">Duration</string>
@@ -14,8 +17,6 @@
     <string name="start_time_end_condition_top_level_expanded_message">Highest score at the end of the timer wins.</string>
     <string name="start_time_end_condition_expanded_title">Set Time</string>
     <string name="start_time_end_condition_expanded_message">Determine the time limit for the game.</string>
-    <string name="start_end_condition_option_custom">Custom</string>
-    <string name="start_end_condition_option_custom_with_value">Custom  (%1$s)</string>
     <string name="start_title_players">Add the Players</string>
     <string name="start_player_hint">Player %1$d</string>
     <string name="start_player_remove">Remove player %1$s</string>
