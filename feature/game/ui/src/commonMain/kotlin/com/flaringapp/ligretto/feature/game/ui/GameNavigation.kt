@@ -22,6 +22,8 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTa
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableScreen
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreDestination
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
+import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDestination
+import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDialog
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
 
@@ -78,6 +80,11 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
                 openScores = navController::navigateGameScores,
                 openEnd = navController::navigateGameEnd,
                 openClose = navController::navigateGameClose,
+            )
+        }
+        dialogDestination(GameSettingsDestination) {
+            GameSettingsDialog(
+                close = navController::navigateUp,
             )
         }
         dialogDestination(GameCloseDestination) {
