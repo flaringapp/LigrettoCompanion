@@ -8,8 +8,8 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsTimeProvider
 
 @Preview(showBackground = true)
 @Composable
@@ -25,7 +25,7 @@ private fun PreviewPadded() = with(GameStartEndConditionsScope) {
             },
         ) {
             TimeOptions(
-                state = GameStartEndConditionsTimeProvider.enabled(),
+                state = GameEndConditionsTimeLimitStateProvider.enabled(),
                 dispatch = {},
             )
         }

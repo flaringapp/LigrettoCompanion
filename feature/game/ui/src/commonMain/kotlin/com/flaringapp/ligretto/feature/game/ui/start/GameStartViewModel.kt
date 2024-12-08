@@ -10,6 +10,8 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import org.koin.android.annotation.KoinViewModel
 import org.koin.core.annotation.InjectedParam
 import kotlin.time.Duration
@@ -85,18 +87,18 @@ internal class GameStartViewModel(
         endConditions: GameEndConditions,
     ): GameStartState.EndConditions {
         val score = endConditions.score?.let {
-            GameStartState.EndConditions.ScoreLimit(
+            GameEndConditionScoreLimitState(
                 isEnabled = true,
                 selectedScore = it.targetScore.value,
             )
-        } ?: GameStartState.EndConditions.ScoreLimit()
+        } ?: GameEndConditionScoreLimitState()
 
         val time = endConditions.time?.let {
-            GameStartState.EndConditions.TimeLimit(
+            GameEndConditionTimeLimitState(
                 isEnabled = true,
                 selectedMinutes = it.gameDuration.inWholeMinutes.toInt(),
             )
-        } ?: GameStartState.EndConditions.TimeLimit()
+        } ?: GameEndConditionTimeLimitState()
 
         return GameStartState.EndConditions(
             score = score,

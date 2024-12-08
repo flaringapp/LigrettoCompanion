@@ -1,13 +1,13 @@
-package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.ScoreLimit
 
-internal class GameStartEndConditionsScoreProvider : PreviewParameterProvider<ScoreLimit> {
+internal class GameEndConditionsScoreLimitStateProvider :
+    PreviewParameterProvider<GameEndConditionScoreLimitState> {
 
     companion object {
 
-        fun disabled() = ScoreLimit()
+        fun disabled() = GameEndConditionScoreLimitState()
 
         fun enabled() = disabled().copy(isEnabled = true)
 
@@ -17,7 +17,7 @@ internal class GameStartEndConditionsScoreProvider : PreviewParameterProvider<Sc
         )
     }
 
-    override val values: Sequence<ScoreLimit> = sequenceOf(
+    override val values: Sequence<GameEndConditionScoreLimitState> = sequenceOf(
         disabled(),
         enabled(),
         customSelected(),

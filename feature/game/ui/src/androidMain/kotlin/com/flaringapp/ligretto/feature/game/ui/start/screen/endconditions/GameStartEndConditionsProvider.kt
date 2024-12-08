@@ -1,6 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 
 internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndConditions> {
@@ -8,8 +10,8 @@ internal class GameStartEndConditionsProvider : PreviewParameterProvider<EndCond
     companion object {
 
         fun conditions() = EndConditions(
-            score = EndConditions.ScoreLimit(isEnabled = true),
-            time = EndConditions.TimeLimit(isEnabled = true),
+            score = GameEndConditionScoreLimitState(isEnabled = true),
+            time = GameEndConditionTimeLimitState(isEnabled = true),
         )
 
         fun settingsExpanded() = conditions().copy(

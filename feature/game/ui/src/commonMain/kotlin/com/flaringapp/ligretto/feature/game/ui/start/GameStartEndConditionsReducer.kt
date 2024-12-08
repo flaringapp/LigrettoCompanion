@@ -1,6 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.Reducer
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreReducer
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeReducer
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 
 internal object GameStartEndConditionsReducer :
@@ -14,62 +16,20 @@ internal object GameStartEndConditionsReducer :
             state.submitStep()
         }
 
-        is GameStartScoreEndConditionIntent.SetEnabled -> {
+        is GameStartEndConditionsIntent.Score -> {
             state.copy(
-                score = state.score.copy(
-                    isEnabled = intent.isEnabled,
+                score = GameEndConditionsScoreReducer.reduce(
+                    state = state.score,
+                    intent = intent.intent,
                 ),
             )
         }
 
-        is GameStartScoreEndConditionIntent.ValueChange -> {
+        is GameStartEndConditionsIntent.Time -> {
             state.copy(
-                score = state.score.copy(
-                    selectedScore = intent.score,
-                ),
-            )
-        }
-
-        is GameStartScoreEndConditionIntent.SelectCustomValue -> {
-            // TODO complete
-            state
-        }
-
-        is GameStartScoreEndConditionIntent.CustomValueSelected -> {
-            state.copy(
-                score = state.score.copy(
-                    selectedScore = intent.score,
-                    lastCustomScore = intent.score,
-                ),
-            )
-        }
-
-        is GameStartTimeEndConditionIntent.SetEnabled -> {
-            state.copy(
-                time = state.time.copy(
-                    isEnabled = intent.isEnabled,
-                ),
-            )
-        }
-
-        is GameStartTimeEndConditionIntent.ValueChange -> {
-            state.copy(
-                time = state.time.copy(
-                    selectedMinutes = intent.minutes,
-                ),
-            )
-        }
-
-        is GameStartTimeEndConditionIntent.SelectCustomValue -> {
-            // TODO complete
-            state
-        }
-
-        is GameStartTimeEndConditionIntent.CustomValueSelected -> {
-            state.copy(
-                time = state.time.copy(
-                    selectedMinutes = intent.minutes,
-                    lastCustomMinutes = intent.minutes,
+                time = GameEndConditionsTimeReducer.reduce(
+                    state = state.time,
+                    intent = intent.intent,
                 ),
             )
         }

@@ -10,10 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartTimeEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.selection.ConditionsSelectionExpanded
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.settings.Settings
 
@@ -52,10 +52,12 @@ private fun GameStartEndConditionsScope.ActualContent(
             scoreSelected = state.score.isEnabled,
             timeSelected = state.time.isEnabled,
             onScoreSelectionChange = {
-                dispatch(GameStartScoreEndConditionIntent.SetEnabled(it))
+                val intent = GameEndConditionScoreIntent.SetEnabled(it)
+                dispatch(GameStartEndConditionsIntent.Score(intent))
             },
             onTimeSelectionChange = {
-                dispatch(GameStartTimeEndConditionIntent.SetEnabled(it))
+                val intent = GameEndConditionTimeIntent.SetEnabled(it)
+                dispatch(GameStartEndConditionsIntent.Time(intent))
             },
         )
         return

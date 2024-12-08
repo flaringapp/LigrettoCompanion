@@ -3,12 +3,12 @@ package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.setti
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.flaringapp.ligretto.core.ui.ext.UiList
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionPill
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionsRow
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.ScoreLimit
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.TimeLimit
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartTimeEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_end_condition_option_custom
@@ -17,8 +17,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun GameStartEndConditionsScope.ScoreOptions(
-    state: ScoreLimit,
-    dispatch: (GameStartScoreEndConditionIntent) -> Unit,
+    state: GameEndConditionScoreLimitState,
+    dispatch: (GameEndConditionScoreIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     SpecificOptionsRow(
@@ -26,16 +26,16 @@ internal fun GameStartEndConditionsScope.ScoreOptions(
         staticValueOptions = state.staticOptions,
         selectedValue = state.selectedScore,
         customValue = state.lastCustomScore,
-        onValueSelect = { dispatch(GameStartScoreEndConditionIntent.ValueChange(it)) },
-        onCustomValueSelect = { dispatch(GameStartScoreEndConditionIntent.SelectCustomValue) },
+        onValueSelect = { dispatch(GameEndConditionScoreIntent.ValueChange(it)) },
+        onCustomValueSelect = { dispatch(GameEndConditionScoreIntent.SelectCustomValue) },
         formatValue = { it.toString() },
     )
 }
 
 @Composable
 internal fun GameStartEndConditionsScope.TimeOptions(
-    state: TimeLimit,
-    dispatch: (GameStartTimeEndConditionIntent) -> Unit,
+    state: GameEndConditionTimeLimitState,
+    dispatch: (GameEndConditionTimeIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     SpecificOptionsRow(
@@ -43,8 +43,8 @@ internal fun GameStartEndConditionsScope.TimeOptions(
         staticValueOptions = state.staticOptions,
         selectedValue = state.selectedMinutes,
         customValue = state.lastCustomMinutes,
-        onValueSelect = { dispatch(GameStartTimeEndConditionIntent.ValueChange(it)) },
-        onCustomValueSelect = { dispatch(GameStartTimeEndConditionIntent.SelectCustomValue) },
+        onValueSelect = { dispatch(GameEndConditionTimeIntent.ValueChange(it)) },
+        onCustomValueSelect = { dispatch(GameEndConditionTimeIntent.SelectCustomValue) },
         formatValue = { "${it}m" },
     )
 }

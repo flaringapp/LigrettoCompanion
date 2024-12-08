@@ -3,8 +3,8 @@ package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.setti
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScoreProvider
 
 @Preview(showBackground = true)
 @Composable
@@ -15,7 +15,7 @@ private fun Preview() = with(GameStartEndConditionsScope) {
             message = "Select the target score to win the game",
         ) {
             ScoreOptions(
-                state = GameStartEndConditionsScoreProvider.enabled(),
+                state = GameEndConditionsScoreLimitStateProvider.enabled(),
                 dispatch = {},
             )
         }

@@ -4,17 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.ScoreLimit
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.TimeLimit
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScoreProvider
-import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsTimeProvider
 
 @Preview(showBackground = true)
 @Composable
 private fun PreviewScore(
-    @PreviewParameter(GameStartEndConditionsScoreProvider::class)
-    state: ScoreLimit,
+    @PreviewParameter(GameEndConditionsScoreLimitStateProvider::class)
+    state: GameEndConditionScoreLimitState,
 ) {
     AppTheme {
         GameStartEndConditionsScope.ScoreOptions(
@@ -27,8 +27,8 @@ private fun PreviewScore(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewTime(
-    @PreviewParameter(GameStartEndConditionsTimeProvider::class)
-    state: TimeLimit,
+    @PreviewParameter(GameEndConditionsTimeLimitStateProvider::class)
+    state: GameEndConditionTimeLimitState,
 ) {
     AppTheme {
         GameStartEndConditionsScope.TimeOptions(

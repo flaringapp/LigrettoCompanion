@@ -16,10 +16,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartTimeEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_end_conditions_label
@@ -55,10 +55,12 @@ internal fun GameStartEndConditionsScope.Settings(
                 scoreSelected = state.score.isEnabled,
                 timeSelected = state.time.isEnabled,
                 onScoreClick = {
-                    dispatch(GameStartScoreEndConditionIntent.SetEnabled(!state.score.isEnabled))
+                    val intent = GameEndConditionScoreIntent.SetEnabled(!state.score.isEnabled)
+                    dispatch(GameStartEndConditionsIntent.Score(intent))
                 },
                 onTimeClick = {
-                    dispatch(GameStartTimeEndConditionIntent.SetEnabled(!state.time.isEnabled))
+                    val intent = GameEndConditionTimeIntent.SetEnabled(!state.time.isEnabled)
+                    dispatch(GameStartEndConditionsIntent.Time(intent))
                 },
             )
         }
@@ -130,7 +132,9 @@ private fun GameStartEndConditionsScope.ExpandedOptions(
             ) {
                 ScoreOptions(
                     state = currentState,
-                    dispatch = dispatch,
+                    dispatch = {
+                        dispatch(GameStartEndConditionsIntent.Score(it))
+                    },
                 )
             }
         }
@@ -147,7 +151,9 @@ private fun GameStartEndConditionsScope.ExpandedOptions(
             ) {
                 TimeOptions(
                     state = currentState,
-                    dispatch = dispatch,
+                    dispatch = {
+                        dispatch(GameStartEndConditionsIntent.Time(it))
+                    },
                 )
             }
         }
@@ -181,7 +187,9 @@ private fun GameStartEndConditionsScope.CompactOptions(
             ) {
                 ScoreOptions(
                     state = currentState,
-                    dispatch = dispatch,
+                    dispatch = {
+                        dispatch(GameStartEndConditionsIntent.Score(it))
+                    },
                 )
             }
         }
@@ -200,7 +208,9 @@ private fun GameStartEndConditionsScope.CompactOptions(
             ) {
                 TimeOptions(
                     state = currentState,
-                    dispatch = dispatch,
+                    dispatch = {
+                        dispatch(GameStartEndConditionsIntent.Time(it))
+                    },
                 )
             }
         }
