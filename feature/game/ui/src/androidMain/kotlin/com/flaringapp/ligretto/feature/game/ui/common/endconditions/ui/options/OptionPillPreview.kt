@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.common.endconditions.options
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
@@ -6,7 +6,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScope
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
 @Preview(showBackground = true)
 @Composable

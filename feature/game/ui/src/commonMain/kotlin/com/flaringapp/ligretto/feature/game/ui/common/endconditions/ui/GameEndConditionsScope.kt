@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.common.endconditions
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui
 
 import androidx.compose.runtime.Immutable
 

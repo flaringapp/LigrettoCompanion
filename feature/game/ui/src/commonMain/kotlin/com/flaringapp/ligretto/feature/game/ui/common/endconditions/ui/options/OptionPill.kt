@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.common.endconditions.options
+package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
@@ -14,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScope
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
 @Composable
 internal fun GameEndConditionsScope.OptionPill(

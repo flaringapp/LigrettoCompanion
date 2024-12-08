@@ -3,8 +3,8 @@ package com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.setti
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.flaringapp.ligretto.core.ui.ext.UiList
-import com.flaringapp.ligretto.feature.game.ui.common.endconditions.options.OptionPill
-import com.flaringapp.ligretto.feature.game.ui.common.endconditions.options.OptionsRow
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionPill
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionsRow
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScoreEndConditionIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.ScoreLimit
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions.TimeLimit
