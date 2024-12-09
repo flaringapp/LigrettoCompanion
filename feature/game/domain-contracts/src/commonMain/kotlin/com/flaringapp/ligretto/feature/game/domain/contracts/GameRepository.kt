@@ -6,6 +6,8 @@ import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.Score
+import kotlin.time.Duration
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -29,6 +31,11 @@ interface GameRepository {
     //region Game in progress
     suspend fun startGame(gameConfig: GameConfig): Game
     fun endGame(): Game?
+
+    suspend fun changeGameSettings(
+        targetScore: Score?,
+        timeLimit: Duration?,
+    )
 
     suspend fun startNextLap(): Lap
 

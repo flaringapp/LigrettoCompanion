@@ -21,6 +21,11 @@ insert:
 INSERT INTO game(time_started, target_score, duration_hours, duration_minutes)
 VALUES (?, ?, ?, ?);
 
+updateSettings:
+UPDATE game
+SET target_score = ?, duration_hours = ?, duration_minutes = ?
+WHERE id = ?;
+
 updateCompletedLapId:
 UPDATE game
 SET completed_lap_id = ?

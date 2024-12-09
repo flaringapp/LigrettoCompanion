@@ -11,7 +11,9 @@ import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Single
+import kotlin.time.Duration
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -84,6 +86,19 @@ internal class GameRepositoryImpl(
             gameObservables.lapFlow.value = null
             gameObservables.gameFlow.value = null
         }
+    }
+
+    override suspend fun changeGameSettings(
+        targetScore: Score?,
+        timeLimit: Duration?,
+    ) {
+        val game = requireNotNull(currentGameFlow.value)
+
+        gameStorageDataSource.changeGameSettings(
+            gameId = game.id,
+            targetScore = targetScore,
+            timeLimit = timeLimit,
+        )
     }
 
     override suspend fun startNextLap(): Lap {

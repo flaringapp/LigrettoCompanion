@@ -10,6 +10,7 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Score
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,6 +25,12 @@ internal interface GameStorageDataSource {
     suspend fun getGameData(gameId: Long): GameDataStorageDto
 
     suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto
+
+    suspend fun changeGameSettings(
+        gameId: GameId,
+        targetScore: Score?,
+        timeLimit: Duration?,
+    )
 
     suspend fun startNextLap(
         gameId: GameId,
@@ -127,6 +134,27 @@ internal class GameStorageDataSourceImpl(
                 id = gameId,
                 timeStarted = timeStarted,
                 playerIds = playerIds,
+            )
+        }
+    }
+
+    override suspend fun changeGameSettings(
+        gameId: GameId,
+        targetScore: Score?,
+        timeLimit: Duration?,
+    ) {
+        val hoursToMinutes = timeLimit?.let {
+            val hours = it.inWholeHours.hours
+            val minutes = (it - hours).inWholeMinutes.minutes
+            hours.inWholeHours to minutes.inWholeMinutes
+        }
+
+        database.transaction {
+            database.gameQueries.updateSettings(
+                id = gameId.value,
+                target_score = targetScore?.value?.toLong(),
+                duration_hours = hoursToMinutes?.first,
+                duration_minutes = hoursToMinutes?.second,
             )
         }
     }
