@@ -1,8 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.settings.screen.endconditions
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,12 +18,8 @@ internal inline fun GameSettingsEndConditionsScope.LabeledOptions(
         modifier = modifier,
     ) {
         LabelText(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(bottom = 8.dp, start = 16.dp, end = 16.dp),
             label = label,
-        )
-
-        Spacer(
-            modifier = Modifier.height(12.dp),
         )
 
         optionsContent()
