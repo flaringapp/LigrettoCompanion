@@ -57,6 +57,10 @@
     <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
 
     <string name="game_settings_title">Change game settings</string>
+    <string name="game_settings_score_end_condition_name">Play for a Set Score</string>
+    <string name="game_settings_score_end_condition_label">Select the target score to win the game.</string>
+    <string name="game_settings_time_end_condition_name">Play for a Set Time</string>
+    <string name="game_settings_time_end_condition_label">Determine the time limit for the game.</string>
     <string name="game_settings_save_button">Save</string>
 
     <string name="game_close_title">Leave game</string>
