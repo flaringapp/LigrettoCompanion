@@ -13,6 +13,7 @@ internal fun GameLapCardsOnTableScreen(
     openCardsLeft: () -> Unit,
     openScores: () -> Unit,
     openEnd: () -> Unit,
+    openSettings: () -> Unit,
     openClose: () -> Unit,
     store: GameLapCardsOnTableViewModel = koinViewModel(),
 ) {
@@ -33,6 +34,7 @@ internal fun GameLapCardsOnTableScreen(
         state = state,
         dispatch = store::dispatch,
         onBackClick = openCardsLeft,
+        onChangeSettings = openSettings,
         onFinish = openClose,
     )
 }

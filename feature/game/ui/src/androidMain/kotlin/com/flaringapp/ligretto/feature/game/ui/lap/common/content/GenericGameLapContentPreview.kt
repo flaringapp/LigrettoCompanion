@@ -30,6 +30,7 @@ private fun Preview() {
             playerCardIncrement = {},
             onFooterButtonClick = {},
             onBackClick = {},
+            onChangeSettingsClick = {},
             onFinishGameClick = {},
         )
     }

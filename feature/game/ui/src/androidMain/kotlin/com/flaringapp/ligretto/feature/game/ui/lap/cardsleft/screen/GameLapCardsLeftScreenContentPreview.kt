@@ -16,6 +16,7 @@ private fun Preview(
         GameLapCardsLeftScreenContent(
             state = state,
             dispatch = {},
+            onChangeSettings = {},
             onFinish = {},
         )
     }

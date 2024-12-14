@@ -11,6 +11,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 internal fun GameScoreScreen(
     openNextLap: () -> Unit,
+    openSettings: () -> Unit,
     openClose: () -> Unit,
     openEnd: () -> Unit,
     store: GameScoreViewModel = koinViewModel(),
@@ -31,6 +32,7 @@ internal fun GameScoreScreen(
     GameScoreScreenContent(
         state = state,
         dispatch = store::dispatch,
+        onChangeSettingsClick = openSettings,
         onFinishGameClick = openClose,
     )
 }

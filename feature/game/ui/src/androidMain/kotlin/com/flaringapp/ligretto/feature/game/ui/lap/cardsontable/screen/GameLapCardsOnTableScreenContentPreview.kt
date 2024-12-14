@@ -17,6 +17,7 @@ private fun Preview(
             state = state,
             dispatch = {},
             onBackClick = {},
+            onChangeSettings = {},
             onFinish = {},
         )
     }

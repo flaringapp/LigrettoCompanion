@@ -11,6 +11,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 internal fun GameLapCardsLeftScreen(
     openCardsOnTable: () -> Unit,
+    openSettings: () -> Unit,
     openClose: () -> Unit,
     store: GameLapCardsLeftViewModel = koinViewModel(),
 ) {
@@ -29,6 +30,7 @@ internal fun GameLapCardsLeftScreen(
     GameLapCardsLeftScreenContent(
         state = state,
         dispatch = store::dispatch,
+        onChangeSettings = openSettings,
         onFinish = openClose,
     )
 }

@@ -64,6 +64,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composableDestination(GameScoreDestination) {
             GameScoreScreen(
                 openNextLap = navController::navigateGameLapCardsLeft,
+                openSettings = navController::navigateGameSettings,
                 openClose = navController::navigateGameClose,
                 openEnd = navController::navigateGameEnd,
             )
@@ -71,6 +72,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composableDestination(GameLapCardsLeftDestination) {
             GameLapCardsLeftScreen(
                 openCardsOnTable = navController::navigateGameLapCardsOnTable,
+                openSettings = navController::navigateGameSettings,
                 openClose = navController::navigateGameClose,
             )
         }
@@ -79,6 +81,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
                 openCardsLeft = navController::navigateUp,
                 openScores = navController::navigateGameScores,
                 openEnd = navController::navigateGameEnd,
+                openSettings = navController::navigateGameSettings,
                 openClose = navController::navigateGameClose,
             )
         }
@@ -132,6 +135,10 @@ private fun NavController.navigateGameLapCardsLeft() {
 
 private fun NavController.navigateGameLapCardsOnTable() {
     navigate(GameLapCardsOnTableDestination.route())
+}
+
+private fun NavController.navigateGameSettings() {
+    navigate(GameSettingsDestination.route())
 }
 
 private fun NavController.navigateGameClose() {

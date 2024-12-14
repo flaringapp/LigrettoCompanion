@@ -17,6 +17,7 @@ private fun Preview() {
         ) {
             GameInProgressTopBarOverflowIconWithMenu(
                 modifier = Modifier.align(Alignment.TopEnd),
+                onChangeSettingsClick = {},
                 onFinishGameClick = {},
             )
         }

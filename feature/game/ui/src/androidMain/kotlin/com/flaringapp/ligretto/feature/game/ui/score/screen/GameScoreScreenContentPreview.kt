@@ -15,6 +15,7 @@ private fun Preview(
         GameScoreScreenContent(
             state = state,
             dispatch = {},
+            onChangeSettingsClick = {},
             onFinishGameClick = {},
         )
     }

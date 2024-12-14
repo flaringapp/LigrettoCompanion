@@ -33,6 +33,7 @@ import org.jetbrains.compose.resources.stringResource
 internal fun GameScoreScreenContent(
     state: GameScoreState,
     dispatch: (GameScoreIntent) -> Unit,
+    onChangeSettingsClick: () -> Unit,
     onFinishGameClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -45,6 +46,7 @@ internal fun GameScoreScreenContent(
                 },
                 actions = {
                     GameInProgressTopBarOverflowIconWithMenu(
+                        onChangeSettingsClick = onChangeSettingsClick,
                         onFinishGameClick = onFinishGameClick,
                     )
                 },

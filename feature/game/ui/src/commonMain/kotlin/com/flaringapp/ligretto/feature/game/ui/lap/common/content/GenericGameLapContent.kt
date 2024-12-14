@@ -67,6 +67,7 @@ internal fun GenericGameLapContent(
     onFooterButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
+    onChangeSettingsClick: () -> Unit,
     onFinishGameClick: () -> Unit,
 ) {
     val contentListState = rememberLazyListState()
@@ -79,6 +80,7 @@ internal fun GenericGameLapContent(
                 roundPhaseNumber = roundPhaseNumber,
                 title = topBarTitle,
                 onBackClick = onBackClick,
+                onChangeSettingsClick = onChangeSettingsClick,
                 onFinishGameClick = onFinishGameClick,
                 isElevatedTransition = updateTransition(
                     label = "IsElevatedTransition",
@@ -115,6 +117,7 @@ private fun ScreenTopAppBar(
     roundPhaseNumber: Int,
     title: String,
     onBackClick: (() -> Unit)?,
+    onChangeSettingsClick: () -> Unit,
     onFinishGameClick: () -> Unit,
     isElevatedTransition: Transition<Boolean>,
 ) {
@@ -158,6 +161,7 @@ private fun ScreenTopAppBar(
         },
         actions = {
             GameInProgressTopBarOverflowIconWithMenu(
+                onChangeSettingsClick = onChangeSettingsClick,
                 onFinishGameClick = onFinishGameClick,
             )
         },
