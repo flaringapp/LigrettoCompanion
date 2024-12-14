@@ -2,8 +2,10 @@ package com.flaringapp.ligretto.feature.game.ui.settings.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.SettingsInputComposite
 import androidx.compose.material3.AlertDialog
@@ -13,6 +15,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
@@ -43,7 +46,13 @@ internal fun GameSettingsDialogContent(
     close: () -> Unit,
 ) {
     AlertDialog(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            // Since android dialog works on window, we request max height here for proper size
+            // animation, otherwise it glitches
+            .fillMaxHeight()
+            .wrapContentHeight(),
+        properties = DialogProperties(dismissOnClickOutside = false),
         onDismissRequest = close,
         icon = {
             Icon(
