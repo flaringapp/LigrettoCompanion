@@ -130,6 +130,7 @@ private fun TotalScore(
     ) {
         Text(
             text = stringResource(Res.string.lap_player_total_score),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyMedium,
         )
 
@@ -153,7 +154,7 @@ private fun CardsCountContent(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        color = MaterialTheme.colorScheme.surfaceContainer,
         shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp),
     ) {
         Row(
