@@ -20,7 +20,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -210,10 +210,9 @@ private fun ContinueGameButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Button(
+    FilledTonalButton(
         modifier = modifier,
         onClick = onClick,
-        colors = ButtonDefaults.filledTonalButtonColors(),
         contentPadding = PaddingValues(vertical = 14.dp, horizontal = 24.dp),
     ) {
         Text(
