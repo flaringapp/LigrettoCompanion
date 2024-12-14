@@ -35,7 +35,7 @@ interface GameRepository {
     suspend fun changeGameSettings(
         targetScore: Score?,
         timeLimit: Duration?,
-    )
+    ): Game
 
     suspend fun startNextLap(): Lap
 

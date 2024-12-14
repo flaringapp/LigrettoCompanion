@@ -91,7 +91,7 @@ internal class GameRepositoryImpl(
     override suspend fun changeGameSettings(
         targetScore: Score?,
         timeLimit: Duration?,
-    ) {
+    ): Game {
         val game = requireNotNull(currentGameFlow.value)
 
         gameStorageDataSource.changeGameSettings(
@@ -99,6 +99,17 @@ internal class GameRepositoryImpl(
             targetScore = targetScore,
             timeLimit = timeLimit,
         )
+
+        // TODO rework - should be coming from DB
+        val updatedGame = game.copy(
+            endConditions = mapper.mapGameEndConditions(
+                targetScore = targetScore,
+                timeLimit = timeLimit,
+            ),
+        )
+
+        gameObservables.gameFlow.value = updatedGame
+        return updatedGame
     }
 
     override suspend fun startNextLap(): Lap {
