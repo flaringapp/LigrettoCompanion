@@ -4,8 +4,8 @@ import com.flaringapp.ligretto.core.arch.UiIntent
 
 internal sealed interface GameScoreIntent : UiIntent {
 
-    object LoadData : GameScoreIntent
-    data class InitData(
+    object Init : GameScoreIntent
+    data class UpdateData(
         val state: GameScoreState,
     ) : GameScoreIntent
 

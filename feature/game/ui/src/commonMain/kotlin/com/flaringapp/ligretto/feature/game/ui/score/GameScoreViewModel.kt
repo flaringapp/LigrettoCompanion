@@ -10,6 +10,7 @@ import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @KoinViewModel(binds = [])
@@ -21,25 +22,32 @@ internal class GameScoreViewModel(
     private var startLapJob: Job? = null
 
     init {
-        dispatch { GameScoreIntent.LoadData }
+        dispatch { GameScoreIntent.Init }
     }
 
     override fun reduce(
         state: GameScoreState,
         intent: GameScoreIntent,
     ): GameScoreState = when (intent) {
-        GameScoreIntent.LoadData -> loadData()
-        is GameScoreIntent.InitData -> intent.state
+        GameScoreIntent.Init -> init()
+        is GameScoreIntent.UpdateData -> intent.state
         GameScoreIntent.StartNextLap -> startNewLap()
     }
 
-    private fun loadData() = state.also {
-        val game = getCurrentGameUseCase().value ?: return@also
+    private fun init() = state.also {
+        viewModelScope.launch {
+            getCurrentGameUseCase()
+                .filterNotNull()
+                .collect(::handleGameUpdated)
+        }
+    }
+
+    private fun handleGameUpdated(game: Game) {
         val playerScores = mapPlayerScores(game)
         val endConditions = mapEndConditions(game)
 
         dispatch {
-            GameScoreIntent.InitData(
+            GameScoreIntent.UpdateData(
                 GameScoreState(
                     nextRoundNumber = game.pendingLapNumber,
                     playerScores = playerScores.asUiList(),
