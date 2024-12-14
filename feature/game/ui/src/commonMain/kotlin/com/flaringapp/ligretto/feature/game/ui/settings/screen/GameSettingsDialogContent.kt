@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.settings.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -12,6 +13,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
@@ -53,11 +55,14 @@ internal fun GameSettingsDialogContent(
             Text(text = stringResource(Res.string.game_settings_title))
         },
         text = {
-            ActualContent(
-                modifier = Modifier.padding(top = 8.dp),
-                state = state,
-                dispatch = dispatch,
-            )
+            val padding = PaddingValues(horizontal = 16.dp)
+            UnboundedPaddingLayout(padding) {
+                ActualContent(
+                    modifier = Modifier.padding(top = 8.dp),
+                    state = state,
+                    dispatch = dispatch,
+                )
+            }
         },
         confirmButton = {
             TextButton(
