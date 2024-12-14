@@ -5,11 +5,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 internal class HomeStateProvider : PreviewParameterProvider<HomeState> {
 
     override val values: Sequence<HomeState> = sequenceOf(
+        HomeState(),
         HomeState(
-            hasPreviousGame = true,
-        ),
-        HomeState(
-            hasPreviousGame = false,
+            hasActiveGame = true,
         ),
     )
 }
