@@ -1,6 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.settings.screen.endconditions
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -45,11 +47,17 @@ internal fun GameSettingsEndConditionsScope.ConditionSettings(
         AnimatedVisibility(
             label = "OptionsContentVisibilityAnimation",
             visible = selected,
-            enter = fadeIn() + expandVertically(
+            enter = fadeIn(
+                animationSpec = spring(stiffness = Spring.StiffnessMedium),
+            ) + expandVertically(
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
                 expandFrom = Alignment.Top,
                 clip = false,
             ),
-            exit = fadeOut() + shrinkVertically(
+            exit = fadeOut(
+                animationSpec = spring(stiffness = Spring.StiffnessMedium),
+            ) + shrinkVertically(
+                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
                 shrinkTowards = Alignment.Top,
                 clip = false,
             ),
