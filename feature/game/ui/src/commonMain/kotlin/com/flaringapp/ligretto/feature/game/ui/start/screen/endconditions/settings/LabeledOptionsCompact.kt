@@ -35,7 +35,7 @@ internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
 ) {
     Surface(
         modifier = modifier,
-        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        color = MaterialTheme.colorScheme.surfaceContainer,
         shape = RoundedCornerShape(12.dp),
     ) {
         Row(
