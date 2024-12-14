@@ -77,7 +77,7 @@ private fun SelectionContainer(
 
     val surfaceColor by animateColorAsState(
         label = "SurfaceColorAnimation",
-        targetValue = if (selected) colors.tertiaryContainer else colors.surfaceContainerLow,
+        targetValue = if (selected) colors.tertiaryContainer else colors.surfaceContainer,
     )
     val contentColor by animateColorAsState(
         label = "ContentColorAnimation",
@@ -154,7 +154,7 @@ private fun ControlIcon(
 
     val backgroundColor by animateColorAsState(
         label = "IconBackgroundColorAnimation",
-        targetValue = if (selected) colors.inverseSurface else colors.surfaceContainerHighest,
+        targetValue = if (selected) colors.onTertiaryContainer else colors.surfaceDim,
     )
     val tintColor by animateColorAsState(
         label = "IconTintColorAnimation",
