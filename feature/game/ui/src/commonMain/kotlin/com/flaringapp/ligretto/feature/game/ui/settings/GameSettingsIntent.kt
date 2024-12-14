@@ -6,6 +6,12 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 
 internal sealed interface GameSettingsIntent : UiIntent {
 
+    data object LoadData : GameSettingsIntent
+
+    data class InitData(
+        val state: GameSettingsState,
+    ) : GameSettingsIntent
+
     sealed interface EndConditions : GameSettingsIntent {
 
         data class Score(
