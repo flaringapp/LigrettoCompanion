@@ -29,7 +29,7 @@ private fun RootScreen(
     val navController = rememberNavController()
 
     NavHost(
-        modifier = modifier.background(MaterialTheme.colorScheme.background),
+        modifier = modifier.background(MaterialTheme.colorScheme.surface),
         navController = navController,
         startDestination = HomeDestination.screenId,
         enterTransition = {
