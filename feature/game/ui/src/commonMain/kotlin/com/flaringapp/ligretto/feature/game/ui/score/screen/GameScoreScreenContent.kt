@@ -74,8 +74,6 @@ private fun ScoresContentContent(
     state: GameScoreState,
     modifier: Modifier = Modifier,
 ) {
-    // TODO end conditions
-
     Column(
         modifier = modifier
             .fillMaxSize()
