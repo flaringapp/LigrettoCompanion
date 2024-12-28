@@ -20,6 +20,8 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftDes
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftScreen
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableDestination
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableScreen
+import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartDestination
+import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartScreen
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreDestination
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDestination
@@ -57,16 +59,21 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         composableDestination(GameStartDestination) {
             GameStartScreen(
                 restartLastGame = GameDestination.restartLastGame(it),
-                openGame = navController::navigateGameLapCardsLeft,
+                openGame = navController::navigateGameLapStart,
                 openClose = navController::navigateGameClose,
             )
         }
         composableDestination(GameScoreDestination) {
             GameScoreScreen(
-                openNextLap = navController::navigateGameLapCardsLeft,
+                openNextLap = navController::navigateGameLapStart,
                 openSettings = navController::navigateGameSettings,
                 openClose = navController::navigateGameClose,
                 openEnd = navController::navigateGameEnd,
+            )
+        }
+        composableDestination(GameLapStartDestination) {
+            GameLapStartScreen(
+                openLap = navController::navigateGameLapCardsLeft,
             )
         }
         composableDestination(GameLapCardsLeftDestination) {
@@ -123,6 +130,12 @@ fun NavController.navigateResumeGame(openLap: Boolean) {
 
 private fun NavController.navigateGameScores() {
     navigate(GameScoreDestination.route()) {
+        closeGameScreens()
+    }
+}
+
+private fun NavController.navigateGameLapStart() {
+    navigate(GameLapStartDestination.route()) {
         closeGameScreens()
     }
 }
