@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -14,6 +15,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppFixedColorScheme
+import com.flaringapp.ligretto.core.designsystem.fixedOrDynamicContentColorFor
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
 @Composable
@@ -29,13 +32,25 @@ internal fun GameEndConditionsScope.OptionPill(
         targetValue = if (selected) 1f else 0f,
     )
 
+    val colorScheme = MaterialTheme.colorScheme
+    val surfaceColor = when {
+        LocalContentColor.current == colorScheme.onSurfaceVariant -> {
+            AppFixedColorScheme.SecondaryFixedDim
+        }
+
+        else -> {
+            colorScheme.secondaryContainer
+        }
+    }
+    val contentColor = fixedOrDynamicContentColorFor(surfaceColor)
+
     Surface(
         modifier = modifier.heightIn(min = 32.dp),
-        color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = selectionAlphaAnimation),
-        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+        color = surfaceColor.copy(alpha = selectionAlphaAnimation),
+        contentColor = contentColor,
         border = BorderStroke(
             width = 1.dp,
-            color = MaterialTheme.colorScheme.outline.copy(alpha = 1f - selectionAlphaAnimation),
+            color = colorScheme.outline.copy(alpha = 1f - selectionAlphaAnimation),
         ),
         shape = CircleShape,
         onClick = onClick,
