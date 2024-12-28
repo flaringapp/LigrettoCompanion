@@ -3,6 +3,8 @@ package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.designsystem.AppTheme
@@ -29,6 +31,23 @@ private fun PreviewSelected() {
             selected = true,
             onClick = {},
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSelectedFixedColor() {
+    AppTheme {
+        Surface(
+            color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        ) {
+            GameEndConditionsScope.OptionPill(
+                text = "30m",
+                selected = true,
+                onClick = {},
+            )
+        }
     }
 }
 
