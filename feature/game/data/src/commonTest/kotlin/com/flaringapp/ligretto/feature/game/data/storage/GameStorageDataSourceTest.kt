@@ -96,10 +96,7 @@ internal class GameStorageDataSourceTest {
 
         val expectedTimeStarted = clockTime.toEpochMilliseconds()
         val expectedScoreLimit = gameConfig.targetScore?.value?.toLong()
-        val expectedDurationHours = gameConfig.timeLimit?.inWholeHours
-        val expectedDurationMinutes = gameConfig.timeLimit?.let {
-            (it - expectedDurationHours!!.hours).inWholeMinutes
-        }
+        val expectedDurationMinutes = gameConfig.timeLimit?.inWholeMinutes
         val expectedGamePlayers = gameConfig.players.map {
             DatabaseGamePlayer(player_id = it.id, score = 0)
         }

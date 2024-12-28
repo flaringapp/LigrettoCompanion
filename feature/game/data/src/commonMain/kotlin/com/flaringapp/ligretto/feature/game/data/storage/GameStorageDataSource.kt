@@ -11,8 +11,6 @@ import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
@@ -95,20 +93,13 @@ internal class GameStorageDataSourceImpl(
     }
 
     override suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto {
-        val hoursToMinutes = gameConfig.timeLimit?.let {
-            val hours = it.inWholeHours.hours
-            val minutes = (it - hours).inWholeMinutes.minutes
-            hours.inWholeHours to minutes.inWholeMinutes
-        }
-
         val timeStarted = clock.now().toEpochMilliseconds()
 
         return database.transactionWithResult {
             database.gameQueries.insert(
                 time_started = timeStarted,
                 target_score = gameConfig.targetScore?.value?.toLong(),
-                duration_hours = hoursToMinutes?.first,
-                duration_minutes = hoursToMinutes?.second,
+                duration_minutes = gameConfig.timeLimit?.inWholeMinutes,
             )
             val gameId = database.gameQueries.rowid().awaitAsOne()
 
@@ -143,18 +134,11 @@ internal class GameStorageDataSourceImpl(
         targetScore: Score?,
         timeLimit: Duration?,
     ) {
-        val hoursToMinutes = timeLimit?.let {
-            val hours = it.inWholeHours.hours
-            val minutes = (it - hours).inWholeMinutes.minutes
-            hours.inWholeHours to minutes.inWholeMinutes
-        }
-
         database.transaction {
             database.gameQueries.updateSettings(
                 id = gameId.value,
                 target_score = targetScore?.value?.toLong(),
-                duration_hours = hoursToMinutes?.first,
-                duration_minutes = hoursToMinutes?.second,
+                duration_minutes = timeLimit?.inWholeMinutes,
             )
         }
     }
