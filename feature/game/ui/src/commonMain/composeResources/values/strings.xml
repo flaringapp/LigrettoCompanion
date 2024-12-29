@@ -41,6 +41,9 @@
     </plurals>
     <string name="scores_start_next_lap">Round %1$d</string>
 
+    <string name="lap_start_round_label">Round</string>
+    <string name="lap_start_go_text">Go</string>
+
     <string name="lap_round_number">Round %1$s</string>
     <string name="lap_cards_left_title">Cards in hand</string>
     <string name="lap_cards_on_table_title">Cards on table</string>
