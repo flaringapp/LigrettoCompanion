@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.start.screen
 
 import androidx.compose.animation.core.ExperimentalTransitionApi
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.TransitionState
@@ -8,6 +9,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.createChildTransition
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -153,8 +155,27 @@ private fun LapNumberText(
 private fun CardImage(
     modifier: Modifier = Modifier,
 ) {
+    val animateTransitionState = remember { MutableTransitionState(false) }
+    animateTransitionState.targetState = true
+
+    val animateTransition = rememberTransition(animateTransitionState)
+
+    val rotation = animateTransition.animateFloat(
+        targetValueByState = { if (it) 360f * 4 else 0f },
+        transitionSpec = {
+            tween(
+                durationMillis = 3_000,
+                easing = LinearOutSlowInEasing,
+            )
+        },
+    )
+
     Image(
-        modifier = modifier.height(200.dp),
+        modifier = modifier
+            .height(200.dp)
+            .graphicsLayer {
+                rotationZ = rotation.value
+            },
         painter = painterResource(CoreRes.drawable.img_card_blue),
         contentDescription = null,
     )
