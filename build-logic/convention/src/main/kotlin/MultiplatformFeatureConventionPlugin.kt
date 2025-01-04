@@ -25,7 +25,6 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:ui"))
                     implementation(project(":core:designsystem"))
                     implementation(project(":core:arch"))
-                    implementation(project(":core:navigation"))
 
                     implementation(libs.kotlinx.coroutines.core)
 
@@ -36,6 +35,8 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(composeDependencies.components.resources)
 
                     implementation(libs.compose.multiplatform.lifecycle.runtime.compose)
+
+                    implementation(libs.compose.multiplatform.navigation)
 
                     implementation(libs.koin.compose.multiplatform)
                 }

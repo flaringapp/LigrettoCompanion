@@ -11,7 +11,6 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core:designsystem"))
             implementation(project(":core:ui"))
-            implementation(project(":core:navigation"))
             implementation(project(":core:arch"))
             implementation(project(":core:database"))
             implementation(project(":core:settings"))
@@ -19,6 +18,8 @@ kotlin {
             implementation(project(":feature:home:di"))
             implementation(project(":feature:game:ui"))
             implementation(project(":feature:game:di"))
+
+            implementation(libs.compose.multiplatform.navigation)
 
             implementation(libs.koin.core)
         }
