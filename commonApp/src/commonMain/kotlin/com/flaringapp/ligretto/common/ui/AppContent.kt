@@ -1,11 +1,11 @@
 package com.flaringapp.ligretto.common.ui
 
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.EaseInQuart
+import androidx.compose.animation.core.EaseOutQuart
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -34,30 +34,54 @@ private fun RootScreen(
         startDestination = HomeDestination,
         enterTransition = {
             fadeIn(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-            ) + slideInHorizontally(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-                initialOffsetX = { it / 3 },
+                animationSpec = enterAnimationSpec(),
+            ) + slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                animationSpec = enterAnimationSpec(),
+                initialOffset = { it.slideFraction },
             )
         },
         exitTransition = {
             fadeOut(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+                animationSpec = exitAnimationSpec(),
+            ) + slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                animationSpec = exitAnimationSpec(),
+                targetOffset = { it.slideFraction },
             )
         },
         popEnterTransition = {
             fadeIn(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+                animationSpec = enterAnimationSpec(),
+            ) + slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.End,
+                animationSpec = enterAnimationSpec(),
+                initialOffset = { it.slideFraction },
             )
         },
         popExitTransition = {
             fadeOut(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-            ) + slideOutHorizontally(
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-                targetOffsetX = { it / 3 },
+                animationSpec = exitAnimationSpec(),
+            ) + slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.End,
+                animationSpec = exitAnimationSpec(),
+                targetOffset = { it.slideFraction },
             )
         },
         builder = { appNavGraph(navController) },
     )
 }
+
+private fun <T> enterAnimationSpec() = tween<T>(
+    durationMillis = 450,
+    delayMillis = 180,
+    easing = EaseOutQuart,
+)
+
+private fun <T> exitAnimationSpec() = tween<T>(
+    durationMillis = 200,
+    easing = EaseInQuart,
+)
+
+private val Int.slideFraction: Int
+    get() = this / 10
