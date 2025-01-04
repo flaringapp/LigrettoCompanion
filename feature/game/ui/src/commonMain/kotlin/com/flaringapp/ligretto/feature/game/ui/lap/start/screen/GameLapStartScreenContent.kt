@@ -1,5 +1,13 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.start.screen
 
+import androidx.compose.animation.core.ExperimentalTransitionApi
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.Transition
+import androidx.compose.animation.core.TransitionState
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.createChildTransition
+import androidx.compose.animation.core.rememberTransition
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,8 +17,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,6 +34,7 @@ import ligretto_companion.feature.game.ui.generated.resources.lap_start_go_text
 import ligretto_companion.feature.game.ui.generated.resources.lap_start_round_label
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import kotlinx.coroutines.delay
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
 
 @Composable
@@ -43,6 +55,7 @@ internal fun GameLapStartScreenContent(
 
         ActualContent(
             lapNumber = lapNumber,
+            dispatch = dispatch,
         )
     }
 }
@@ -50,25 +63,39 @@ internal fun GameLapStartScreenContent(
 @Composable
 private fun ActualContent(
     lapNumber: Int,
+    dispatch: (GameLapStartIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val screenTransitionState = rememberScreenTransitionState(
+        dispatch = dispatch,
+    )
+    val screenTransition = rememberTransition(screenTransitionState)
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(56.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         RoundNumberContent(
+            screenTransition = screenTransition,
             lapNumber = lapNumber,
         )
 
         CardImage()
 
-        GoText()
+        GoText(
+            modifier = Modifier
+                .visibilityAnimationModifierBy(
+                    transition = screenTransition,
+                    visibleSelector = { it.showGo },
+                ),
+        )
     }
 }
 
 @Composable
 private fun RoundNumberContent(
+    screenTransition: Transition<ScreenTransitionState>,
     lapNumber: Int,
     modifier: Modifier = Modifier,
 ) {
@@ -76,9 +103,20 @@ private fun RoundNumberContent(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        RoundLabelText()
+        RoundLabelText(
+            modifier = Modifier
+                .visibilityAnimationModifierBy(
+                    transition = screenTransition,
+                    visibleSelector = { it.showRoundLabel },
+                ),
+        )
 
         LapNumberText(
+            modifier = Modifier
+                .visibilityAnimationModifierBy(
+                    transition = screenTransition,
+                    visibleSelector = { it.showLapNumber },
+                ),
             lapNumber = lapNumber,
         )
     }
@@ -135,3 +173,63 @@ private fun GoText(
         style = MaterialTheme.typography.displayLarge,
     )
 }
+
+@Composable
+private fun rememberScreenTransitionState(
+    dispatch: (GameLapStartIntent) -> Unit,
+): TransitionState<ScreenTransitionState> {
+    val transitionState = remember { MutableTransitionState(ScreenTransitionState()) }
+
+    LaunchedEffect(Unit) {
+        delay(500)
+        transitionState.targetState = transitionState.currentState.copy(showRoundLabel = true)
+
+        delay(500)
+        transitionState.targetState = transitionState.currentState.copy(showLapNumber = true)
+
+        delay(1500)
+        transitionState.targetState = transitionState.currentState.copy(showGo = true)
+
+        delay(1000)
+
+        dispatch(GameLapStartIntent.StartLap)
+    }
+
+    return transitionState
+}
+
+@OptIn(ExperimentalTransitionApi::class)
+@Composable
+private inline fun Modifier.visibilityAnimationModifierBy(
+    transition: Transition<ScreenTransitionState>,
+    visibleSelector: (ScreenTransitionState) -> Boolean,
+): Modifier {
+    val visibleTransition = transition.createChildTransition { visibleSelector(it) }
+
+    val alpha = visibleTransition.animateFloat { visible ->
+        if (visible) 1f else 0f
+    }
+
+    val scale = visibleTransition.animateFloat(
+        transitionSpec = {
+            spring(
+                dampingRatio = 0.4f,
+                stiffness = 800f,
+            )
+        },
+    ) { visible ->
+        if (visible) 1f else 0.5f
+    }
+
+    return graphicsLayer {
+        this.alpha = alpha.value
+        scaleX = scale.value
+        scaleY = scale.value
+    }
+}
+
+private data class ScreenTransitionState(
+    val showRoundLabel: Boolean = false,
+    val showLapNumber: Boolean = false,
+    val showGo: Boolean = false,
+)
