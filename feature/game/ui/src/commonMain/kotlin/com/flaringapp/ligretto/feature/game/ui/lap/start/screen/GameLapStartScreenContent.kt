@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartIntent
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartState
-import ligretto_companion.core.ui.generated.resources.img_card_blue
+import ligretto_companion.core.ui.generated.resources.img_card_red
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.img_lap_start_go
 import ligretto_companion.feature.game.ui.generated.resources.lap_start_go_text
@@ -180,7 +180,7 @@ private fun CardImage(
             .graphicsLayer {
                 rotationZ = rotation.value
             },
-        painter = painterResource(CoreRes.drawable.img_card_blue),
+        painter = painterResource(CoreRes.drawable.img_card_red),
         contentDescription = null,
     )
 }
