@@ -203,13 +203,13 @@ private fun rememberScreenTransitionState(
 
     LaunchedEffect(Unit) {
         delay(500)
-        transitionState.targetState = transitionState.currentState.copy(showRoundLabel = true)
+        transitionState.targetState = transitionState.targetState.copy(showRoundLabel = true)
 
         delay(500)
-        transitionState.targetState = transitionState.currentState.copy(showLapNumber = true)
+        transitionState.targetState = transitionState.targetState.copy(showLapNumber = true)
 
         delay(1500)
-        transitionState.targetState = transitionState.currentState.copy(showGo = true)
+        transitionState.targetState = transitionState.targetState.copy(showGo = true)
 
         delay(1000)
 
