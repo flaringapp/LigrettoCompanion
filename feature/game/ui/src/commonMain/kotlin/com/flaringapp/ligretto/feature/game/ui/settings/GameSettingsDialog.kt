@@ -6,6 +6,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.settings.screen.GameSettingsDialogContent
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data object GameSettingsDestination
 
 @Composable
 internal fun GameSettingsDialog(

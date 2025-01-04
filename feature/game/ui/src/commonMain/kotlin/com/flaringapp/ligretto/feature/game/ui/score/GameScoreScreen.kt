@@ -7,6 +7,10 @@ import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.score.screen.GameScoreScreenContent
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data object GameScoreDestination
 
 @Composable
 internal fun GameScoreScreen(

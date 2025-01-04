@@ -7,6 +7,10 @@ import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.lap.start.screen.GameLapStartScreenContent
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data object GameLapStartDestination
 
 @Composable
 internal fun GameLapStartScreen(

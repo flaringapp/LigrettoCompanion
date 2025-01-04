@@ -13,7 +13,11 @@ import ligretto_companion.feature.game.ui.generated.resources.game_close_message
 import ligretto_companion.feature.game.ui.generated.resources.game_close_title
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
+
+@Serializable
+internal data object GameCloseDestination
 
 @Composable
 internal fun GameCloseDialog(

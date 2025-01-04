@@ -7,6 +7,10 @@ import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.end.screen.GameEndScreenContent
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data object GameEndDestination
 
 @Composable
 internal fun GameEndScreen(

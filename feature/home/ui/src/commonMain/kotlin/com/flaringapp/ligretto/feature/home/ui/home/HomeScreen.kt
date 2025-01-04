@@ -6,6 +6,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.home.ui.home.screen.HomeScreenContent
 import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data object HomeScreenDestination
 
 @Composable
 internal fun HomeScreen(

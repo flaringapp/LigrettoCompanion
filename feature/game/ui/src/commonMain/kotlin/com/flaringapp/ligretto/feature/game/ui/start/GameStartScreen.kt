@@ -8,6 +8,12 @@ import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.start.screen.GameStartScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data class GameStartDestination(
+    val restartLastGame: Boolean,
+)
 
 @Composable
 internal fun GameStartScreen(
