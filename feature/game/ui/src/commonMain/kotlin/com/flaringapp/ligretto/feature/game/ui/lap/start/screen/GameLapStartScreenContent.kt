@@ -23,7 +23,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -32,6 +35,7 @@ import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartIntent
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartState
 import ligretto_companion.core.ui.generated.resources.img_card_blue
 import ligretto_companion.feature.game.ui.generated.resources.Res
+import ligretto_companion.feature.game.ui.generated.resources.img_lap_start_go
 import ligretto_companion.feature.game.ui.generated.resources.lap_start_go_text
 import ligretto_companion.feature.game.ui.generated.resources.lap_start_round_label
 import org.jetbrains.compose.resources.painterResource
@@ -85,7 +89,7 @@ private fun ActualContent(
 
         CardImage()
 
-        GoText(
+        GoImage(
             modifier = Modifier
                 .visibilityAnimationModifierBy(
                     transition = screenTransition,
@@ -182,16 +186,19 @@ private fun CardImage(
 }
 
 @Composable
-private fun GoText(
+private fun GoImage(
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        modifier = modifier,
-        text = stringResource(Res.string.lap_start_go_text),
-        fontSize = 80.sp,
-        fontWeight = FontWeight.Bold,
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.displayLarge,
+    val height = with(LocalDensity.current) {
+        60.sp.toDp()
+    }
+
+    Image(
+        modifier = modifier.height(height),
+        painter = painterResource(Res.drawable.img_lap_start_go),
+        contentDescription = stringResource(Res.string.lap_start_go_text),
+        contentScale = ContentScale.FillHeight,
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.tertiary),
     )
 }
 
