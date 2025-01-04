@@ -31,7 +31,7 @@ private fun RootScreen(
     NavHost(
         modifier = modifier.background(MaterialTheme.colorScheme.surface),
         navController = navController,
-        startDestination = HomeDestination.screenId,
+        startDestination = HomeDestination,
         enterTransition = {
             fadeIn(
                 animationSpec = spring(stiffness = Spring.StiffnessMediumLow),

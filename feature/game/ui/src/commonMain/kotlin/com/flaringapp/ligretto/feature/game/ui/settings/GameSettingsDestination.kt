@@ -1,14 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.settings
 
-import androidx.compose.ui.window.DialogProperties
-import com.flaringapp.ligretto.core.navigation.DialogDestination
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import kotlinx.serialization.Serializable
 
-internal object GameSettingsDestination : ScreenDestinationWithoutArguments(), DialogDestination {
-
-    override val screenId: String = "game/settings"
-
-    override val dialogProperties: DialogProperties = DialogProperties(
-        dismissOnClickOutside = false,
-    )
-}
+@Serializable
+internal data object GameSettingsDestination

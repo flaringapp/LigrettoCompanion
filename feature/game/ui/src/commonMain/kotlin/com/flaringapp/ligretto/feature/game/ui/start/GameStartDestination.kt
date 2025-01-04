@@ -1,8 +1,8 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import kotlinx.serialization.Serializable
 
-internal object GameStartDestination : ScreenDestinationWithoutArguments() {
-
-    override val screenId: String = "game/start"
-}
+@Serializable
+internal data class GameStartDestination(
+    val restartLastGame: Boolean,
+)

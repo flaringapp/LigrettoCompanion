@@ -1,8 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.cardsleft
 
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import kotlinx.serialization.Serializable
 
-internal object GameLapCardsLeftDestination : ScreenDestinationWithoutArguments() {
-
-    override val screenId: String = "game/lap-cards-left"
-}
+@Serializable
+internal data object GameLapCardsLeftDestination

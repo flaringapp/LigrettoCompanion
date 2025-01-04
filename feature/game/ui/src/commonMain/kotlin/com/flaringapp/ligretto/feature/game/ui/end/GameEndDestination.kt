@@ -1,8 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.end
 
-import com.flaringapp.ligretto.core.navigation.ScreenDestinationWithoutArguments
+import kotlinx.serialization.Serializable
 
-internal object GameEndDestination : ScreenDestinationWithoutArguments() {
-
-    override val screenId: String = "game/end"
-}
+@Serializable
+internal data object GameEndDestination
