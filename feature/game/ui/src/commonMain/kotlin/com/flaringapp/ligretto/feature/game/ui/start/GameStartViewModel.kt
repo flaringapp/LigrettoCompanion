@@ -109,6 +109,8 @@ internal class GameStartViewModel(
     private fun startGame() = state.also {
         if (startGameJob?.isActive == true) return@also
 
+        if (state.players.list.isEmpty()) return@also
+
         val hasEmptyNames = state.players.list.any { it.name.isBlank() }
         if (hasEmptyNames) return@also
 
