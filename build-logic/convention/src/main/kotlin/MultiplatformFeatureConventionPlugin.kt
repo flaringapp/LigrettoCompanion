@@ -1,3 +1,4 @@
+import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,6 +14,9 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
             apply("ligretto.multiplatform.library")
             apply("ligretto.multiplatform.library.compose")
             apply("ligretto.multiplatform.koin.ksp")
+
+            // Required for type safe navigation
+            alias(libs.plugins.kotlin.serialization)
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
@@ -24,6 +28,9 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:navigation"))
 
                     implementation(libs.kotlinx.coroutines.core)
+
+                    // Required for type safe navigation
+                    implementation(libs.kotlinx.serialization.json)
 
                     val composeDependencies = extensions.getByType<ComposePlugin.Dependencies>()
                     implementation(composeDependencies.components.resources)
