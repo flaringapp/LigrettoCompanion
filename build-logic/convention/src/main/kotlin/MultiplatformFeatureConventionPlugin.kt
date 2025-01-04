@@ -23,16 +23,14 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     implementation(project(":core:arch"))
                     implementation(project(":core:navigation"))
 
-                    implementation(libs.findLibrary("kotlinx-coroutines-core").get())
+                    implementation(libs.kotlinx.coroutines.core)
 
                     val composeDependencies = extensions.getByType<ComposePlugin.Dependencies>()
                     implementation(composeDependencies.components.resources)
 
-                    implementation(
-                        libs.findLibrary("compose-multiplatform-lifecycle-runtime-compose").get(),
-                    )
+                    implementation(libs.compose.multiplatform.lifecycle.runtime.compose)
 
-                    implementation(libs.findLibrary("koin-compose-multiplatform").get())
+                    implementation(libs.koin.compose.multiplatform)
                 }
             }
         }

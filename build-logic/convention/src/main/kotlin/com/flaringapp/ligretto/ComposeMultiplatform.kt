@@ -17,9 +17,8 @@ internal fun Project.configureComposeMultiplatform(
     with(kotlinExtension) {
         sourceSets.apply {
             androidMain.dependencies {
-                val bom = libs.findLibrary("androidx-compose-bom").get()
-                implementation(project.dependencies.platform(bom))
-                implementation(libs.findLibrary("androidx-compose-ui-preview").get())
+                implementation(project.dependencies.platform(libs.androidx.compose.bom))
+                implementation(libs.androidx.compose.ui.preview)
             }
             commonMain.dependencies {
                 implementation(composeDependencies.components.uiToolingPreview)
@@ -35,11 +34,11 @@ internal fun Project.configureComposeMultiplatform(
         sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
         dependencies {
-            add("debugImplementation", libs.findLibrary("androidx-compose-ui-debugTooling").get())
+            add("debugImplementation", libs.androidx.compose.ui.debugTooling)
         }
     }
 
     dependencies {
-        add("lintChecks", libs.findLibrary("slack-lint-compose").get())
+        add("lintChecks", libs.slack.lint.compose)
     }
 }

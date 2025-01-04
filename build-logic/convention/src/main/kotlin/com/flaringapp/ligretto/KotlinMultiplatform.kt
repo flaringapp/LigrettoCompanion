@@ -31,10 +31,10 @@ internal fun Project.configureKotlinMultiplatform(
 
     sourceSets.apply {
         commonMain.dependencies {
-            implementation(libs.findLibrary("napier").get())
+            implementation(libs.napier)
         }
         commonTest.dependencies {
-            implementation(libs.findLibrary("kotlin-test").get())
+            implementation(libs.kotlin.test)
         }
     }
 }

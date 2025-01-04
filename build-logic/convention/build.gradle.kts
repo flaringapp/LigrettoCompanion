@@ -1,3 +1,5 @@
+import org.gradle.initialization.DependenciesAccessors
+import org.gradle.kotlin.dsl.support.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -23,6 +25,11 @@ dependencies {
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.compose.multiplatform.gradlePlugin)
     compileOnly(libs.compose.multiplatform.compiler.gradlePlugin)
+
+    // Enable version catalog accessor generation
+    gradle.serviceOf<DependenciesAccessors>().classes.asFiles.forEach {
+        compileOnly(files(it.absolutePath))
+    }
 }
 
 gradlePlugin {

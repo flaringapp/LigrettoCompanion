@@ -1,3 +1,4 @@
+import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -8,20 +9,20 @@ class MultiplatformDatabaseConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply(libs.findPlugin("sqlDelight").get().get().pluginId)
+            alias(libs.plugins.sqlDelight)
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
-                    api(libs.findLibrary("sqlDelight-coroutines").get())
-                    api(libs.findLibrary("sqlDelight-runtime").get())
+                    api(libs.sqlDelight.coroutines)
+                    api(libs.sqlDelight.runtime)
                 }
                 androidMain.dependencies {
-                    implementation(libs.findLibrary("sqlDelight-driver-android").get())
+                    implementation(libs.sqlDelight.driver.android)
                 }
                 nativeMain.dependencies {
-                    implementation(libs.findLibrary("sqlDelight-driver-native").get())
+                    implementation(libs.sqlDelight.driver.native)
                 }
             }
         }

@@ -1,3 +1,4 @@
+import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.libs
 import com.google.devtools.ksp.gradle.KspExtension
 import org.gradle.api.Plugin
@@ -11,14 +12,14 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply(libs.findPlugin("ksp").get().get().pluginId)
+            alias(libs.plugins.ksp)
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
-                    implementation(libs.findLibrary("koin-core").get())
-                    implementation(libs.findLibrary("koin-annotations").get())
+                    implementation(libs.koin.core)
+                    implementation(libs.koin.annotations)
                 }
 
                 // TODO KSP remove when fixed
@@ -33,7 +34,7 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
         }
 
         dependencies {
-            val koin = libs.findLibrary("koin-compiler").get()
+            val koin = libs.koin.compiler
 
             add("kspCommonMainMetadata", koin)
 

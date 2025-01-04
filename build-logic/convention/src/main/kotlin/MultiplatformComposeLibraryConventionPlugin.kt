@@ -1,4 +1,5 @@
 import com.android.build.gradle.LibraryExtension
+import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.configureComposeMultiplatform
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
@@ -10,9 +11,9 @@ class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply(libs.findPlugin("kotlin-multiplatform").get().get().pluginId)
-            apply(libs.findPlugin("compose-multiplatform").get().get().pluginId)
-            apply(libs.findPlugin("compose-multiplatform-compiler").get().get().pluginId)
+            alias(libs.plugins.kotlin.multiplatform)
+            alias(libs.plugins.compose.multiplatform)
+            alias(libs.plugins.compose.multiplatform.compiler)
         }
 
         configureComposeMultiplatform(

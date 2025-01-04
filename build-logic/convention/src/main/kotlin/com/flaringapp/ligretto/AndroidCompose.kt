@@ -8,7 +8,7 @@ internal fun Project.configureAndroidCompose(
     composeCompilerExtension: ComposeCompilerGradlePluginExtension,
 ) {
     dependencies {
-        add("lintChecks", libs.findLibrary("slack-lint-compose").get())
+        add("lintChecks", libs.slack.lint.compose)
     }
 
     configureComposeMetricsParameters(composeCompilerExtension)

@@ -1,3 +1,4 @@
+import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.configureAndroidCompose
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
@@ -9,9 +10,9 @@ class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply(libs.findPlugin("android-application").get().get().pluginId)
-            apply(libs.findPlugin("compose-multiplatform").get().get().pluginId)
-            apply(libs.findPlugin("compose-multiplatform-compiler").get().get().pluginId)
+            alias(libs.plugins.android.application)
+            alias(libs.plugins.compose.multiplatform)
+            alias(libs.plugins.compose.multiplatform.compiler)
         }
 
         extensions.configure<ComposeCompilerGradlePluginExtension> {
