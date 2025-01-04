@@ -164,7 +164,7 @@ private fun CardImage(
         targetValueByState = { if (it) 360f * 4 else 0f },
         transitionSpec = {
             tween(
-                durationMillis = 3_000,
+                durationMillis = 2_000,
                 easing = LinearOutSlowInEasing,
             )
         },
@@ -202,13 +202,13 @@ private fun rememberScreenTransitionState(
     val transitionState = remember { MutableTransitionState(ScreenTransitionState()) }
 
     LaunchedEffect(Unit) {
-        delay(500)
+        delay(250)
         transitionState.targetState = transitionState.targetState.copy(showRoundLabel = true)
 
-        delay(500)
+        delay(250)
         transitionState.targetState = transitionState.targetState.copy(showLapNumber = true)
 
-        delay(1500)
+        delay(750)
         transitionState.targetState = transitionState.targetState.copy(showGo = true)
 
         delay(1000)
