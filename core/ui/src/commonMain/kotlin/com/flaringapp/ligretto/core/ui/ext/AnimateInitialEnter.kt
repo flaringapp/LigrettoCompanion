@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -46,7 +45,6 @@ fun AnimateInitialEnter(
     )
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 fun Modifier.animateInitialEnter(
     // TODO use context receiver when released
     scope: AnimatedVisibilityScope,
