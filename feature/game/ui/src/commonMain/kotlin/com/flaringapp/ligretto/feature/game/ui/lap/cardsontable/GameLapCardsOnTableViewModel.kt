@@ -127,7 +127,7 @@ internal class GameLapCardsOnTableViewModel(
 
         // TODO loading/disable button?
         // TODO error handling
-        viewModelScope.launch(Dispatchers.IO) {
+        endLapJob = viewModelScope.launch(Dispatchers.IO) {
             val game = endLapUseCase()
             if (game?.matchesEndConditions == true) {
                 setEffect { GameLapCardsOnTableEffect.EndGame }
