@@ -16,17 +16,17 @@ internal sealed interface GameStartPlayersIntent : GameStartIntent {
     object AddNew : GameStartPlayersIntent
 
     data class ChangeName(
-        val id: Int,
+        val id: GameStartState.PlayerId,
         val name: String,
     ) : GameStartPlayersIntent
 
     data class FocusChanged(
-        val id: Int,
+        val id: GameStartState.PlayerId,
         val isFocused: Boolean,
     ) : GameStartPlayersIntent
 
     data class Remove(
-        val id: Int,
+        val id: GameStartState.PlayerId,
     ) : GameStartPlayersIntent
 }
 

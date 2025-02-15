@@ -72,14 +72,12 @@ internal class GameStartViewModel(
     ): GameStartState.Players {
         val list = players.map { player ->
             GameStartState.Player(
-                // TODO fix
-                id = player.id.toInt(),
+                id = GameStartState.PlayerId.Existing(player.id),
                 name = player.name,
             )
         }
         return GameStartState.Players(
             list = list.asUiList(),
-            playersIdCounter = (list.maxOfOrNull { it.id } ?: 0) + 1,
         )
     }
 
@@ -130,8 +128,13 @@ internal class GameStartViewModel(
 
     private fun createGameConfig(): GameConfig {
         val players = state.players.list.map { player ->
+            val id = when (player.id) {
+                is GameStartState.PlayerId.Existing -> player.id.value
+                is GameStartState.PlayerId.New -> -1
+            }
+
             Player(
-                id = player.id.toLong(),
+                id = id,
                 name = player.name,
             )
         }

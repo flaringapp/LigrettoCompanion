@@ -14,13 +14,19 @@ internal data class GameStartState(
     data class Players(
         val list: UiList<Player> = emptyUiList(),
         val playersIdCounter: Int = 0,
-        val focusedPlayerId: Int? = null,
+        val focusedPlayerId: PlayerId? = null,
     ) : UiState
 
     data class Player(
-        val id: Int,
+        val id: PlayerId,
         val name: String,
     )
+
+    sealed class PlayerId {
+
+        data class Existing(val value: Long) : PlayerId()
+        data class New(val value: Long) : PlayerId()
+    }
 
     data class EndConditions(
         val isExpandedConditionsCompleted: Boolean = false,

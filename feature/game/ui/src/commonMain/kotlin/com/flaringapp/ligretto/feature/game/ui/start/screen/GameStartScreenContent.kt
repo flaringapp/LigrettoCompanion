@@ -32,6 +32,7 @@ import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsInten
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState
+import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.PlayerId
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GenericContent
 import ligretto_companion.core.ui.generated.resources.back
@@ -133,7 +134,13 @@ private fun ActualContent(
 
         itemsIndexed(
             items = state.players.list,
-            key = { _, player -> "$CONTENT_TYPE_PLAYER${player.id}" },
+            key = { _, player ->
+                val idKey = when (player.id) {
+                    is PlayerId.Existing -> "existing_${player.id.value}"
+                    is PlayerId.New -> "new_${player.id.value}"
+                }
+                "$CONTENT_TYPE_PLAYER$idKey"
+            },
             contentType = { _, _ -> CONTENT_TYPE_PLAYER },
         ) { index, player ->
             val paddingModifier =

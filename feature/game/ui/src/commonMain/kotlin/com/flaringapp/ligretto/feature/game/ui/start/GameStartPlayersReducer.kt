@@ -36,16 +36,20 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
     }
 
     private fun Players.addNewPlayer(): Players {
-        val id = playersIdCounter + 1
+        val idValue = playersIdCounter + 1
+        val id = GameStartState.PlayerId.New(idValue.toLong())
         val newList = list + GameStartState.Player(id, "")
         return copy(
             list = newList.asUiList(),
-            playersIdCounter = id,
+            playersIdCounter = idValue,
             focusedPlayerId = id,
         )
     }
 
-    private fun Players.changePlayerName(id: Int, name: String): Players {
+    private fun Players.changePlayerName(
+        id: GameStartState.PlayerId,
+        name: String,
+    ): Players {
         val newList = list.map { player ->
             if (player.id != id) return@map player
             player.copy(name = name)
@@ -53,7 +57,10 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
         return copy(list = newList.asUiList())
     }
 
-    private fun Players.handlePlayerFocusChanged(id: Int, isFocused: Boolean): Players {
+    private fun Players.handlePlayerFocusChanged(
+        id: GameStartState.PlayerId,
+        isFocused: Boolean,
+    ): Players {
         val newFocusedPlayerId = run {
             if (isFocused) return@run id
             focusedPlayerId.takeIf { it != id }
@@ -61,7 +68,7 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
         return copy(focusedPlayerId = newFocusedPlayerId)
     }
 
-    private fun Players.removePlayer(id: Int): Players {
+    private fun Players.removePlayer(id: GameStartState.PlayerId): Players {
         val newList = list.filterNot { it.id == id }
         return copy(list = newList.asUiList())
     }
