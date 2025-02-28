@@ -1,10 +1,10 @@
 [versions]
 kotlin = "2.1.10"
-kotlinKsp = "2.1.10-1.0.29"
+kotlinKsp = "2.1.10-1.0.31"
 kotlinCoroutines = "1.10.1"
-androidGradlePlugin = "8.8.0"
+androidGradlePlugin = "8.8.2"
 multiplatformLifecycle = "2.8.4"
-composeMultiplatform = "1.7.3"
+composeMultiplatform = "1.8.0-alpha03"
 koin = "4.0.2"
 koinAnnotations = "2.0.0-RC1"
 sqlDelight = "2.0.2"
@@ -19,21 +19,21 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.8.0" }
 
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.6.1" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.6.2" }
 
 # Android core
 androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscreen", version = "1.0.1" }
 
 # Android compose
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.10.0" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.10.1" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2025.01.01" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2025.02.00" }
 androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 # Compose MP
-compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.8.0-alpha12" }
+compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.8.0-alpha13" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
@@ -64,7 +64,7 @@ multiplatform-settings-coroutines = { group = "com.russhwolf", name = "multiplat
 multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
 # Testing
-mockk = { group = "io.mockk", name = "mockk", version = "1.13.16" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.13.17" }
 
 # Lint
 slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.2" }
@@ -86,4 +86,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 compose-multiplatform-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
-ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.2" }
+ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
