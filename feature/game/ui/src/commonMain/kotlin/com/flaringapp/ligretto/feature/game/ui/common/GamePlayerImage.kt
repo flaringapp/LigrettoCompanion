@@ -23,7 +23,7 @@ fun GamePlayerImage(
     fallbackText: String = "?",
     shape: Shape = CircleShape,
 ) {
-    val initials = remember(name) {
+    val initials = remember(name, fallbackText) {
         if (name.isEmpty()) {
             return@remember fallbackText
         }
