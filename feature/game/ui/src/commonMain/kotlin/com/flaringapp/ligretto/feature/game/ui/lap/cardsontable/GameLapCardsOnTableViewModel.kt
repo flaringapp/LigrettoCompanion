@@ -3,6 +3,7 @@ package com.flaringapp.ligretto.feature.game.ui.lap.cardsontable
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
+import com.flaringapp.ligretto.core.util.common.isRunning
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
@@ -113,7 +114,7 @@ internal class GameLapCardsOnTableViewModel(
     }
 
     private fun endLap() = updateState {
-        if (endLapJob?.isActive == true) return@updateState this
+        if (endLapJob.isRunning) return@updateState this
 
         copy(showConfirmEndLap = true)
     }
@@ -123,7 +124,7 @@ internal class GameLapCardsOnTableViewModel(
     }
 
     private fun endLapConfirmed() = hideEndLapConfirmation().also {
-        if (endLapJob?.isActive == true) return@also
+        if (endLapJob.isRunning) return@also
 
         // TODO loading/disable button?
         // TODO error handling

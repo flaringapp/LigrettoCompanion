@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.settings
 
 import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
+import com.flaringapp.ligretto.core.util.common.isRunning
 import com.flaringapp.ligretto.feature.game.domain.usecase.ChangeGameSettingsUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Score
@@ -95,7 +96,7 @@ internal class GameSettingsViewModel(
     }
 
     private fun save() = state.also {
-        if (saveJob?.isCompleted == false) {
+        if (saveJob.isRunning) {
             return@also
         }
 

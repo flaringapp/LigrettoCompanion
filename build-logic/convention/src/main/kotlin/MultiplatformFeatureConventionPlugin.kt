@@ -22,6 +22,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
+                    implementation(project(":core:util:common"))
                     implementation(project(":core:ui"))
                     implementation(project(":core:designsystem"))
                     implementation(project(":core:arch"))
