@@ -24,8 +24,13 @@ internal data class GameStartState(
 
     sealed class PlayerId {
 
-        data class Existing(val value: Long) : PlayerId()
-        data class New(val value: Long) : PlayerId()
+        data class Existing(
+            val value: Long,
+        ) : PlayerId()
+
+        data class New(
+            val value: Long,
+        ) : PlayerId()
     }
 
     data class EndConditions(
