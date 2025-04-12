@@ -67,6 +67,17 @@
     <string name="game_settings_time_end_condition_label">Determine the time limit for the game.</string>
     <string name="game_settings_save_button">Save</string>
 
+    <string name="game_settings_custom_score_title">Enter custom score</string>
+    <string name="game_settings_custom_score_label">Custom score</string>
+    <string name="game_settings_custom_score_invalid_error">Enter a valid score</string>
+    <string name="game_settings_custom_score_too_long_error">Whoa! Too large score - let's keep it under %1$d</string>
+    <string name="game_settings_custom_time_title">Enter custom time</string>
+    <string name="game_settings_custom_time_label">Custom time</string>
+    <string name="game_settings_custom_time_minutes_suffix">Minutes</string>
+    <string name="game_settings_custom_time_invalid_error">Enter a valid time</string>
+    <string name="game_settings_custom_time_too_long_error">Whoa! Too long game - let's keep it under %1$d minutes</string>
+    <string name="game_settings_custom_value_save_button">Save</string>
+
     <string name="game_close_title">Leave game</string>
     <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
 

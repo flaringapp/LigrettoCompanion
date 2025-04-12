@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
@@ -33,7 +34,7 @@ internal fun GameEndConditionsScope.OptionPill(
     )
 
     val colorScheme = MaterialTheme.colorScheme
-    val surfaceColor = when {
+    val selectedSurfaceColor = when {
         LocalContentColor.current == colorScheme.onSurfaceVariant -> {
             AppFixedColorScheme.SecondaryFixedDim
         }
@@ -42,11 +43,19 @@ internal fun GameEndConditionsScope.OptionPill(
             colorScheme.secondaryContainer
         }
     }
-    val contentColor = fixedOrDynamicContentColorFor(surfaceColor)
+
+    val contentColor by animateColorAsState(
+        label = "ContentColorAnimation",
+        targetValue = if (selected) {
+            fixedOrDynamicContentColorFor(selectedSurfaceColor)
+        } else {
+            LocalContentColor.current
+        },
+    )
 
     Surface(
         modifier = modifier.heightIn(min = 32.dp),
-        color = surfaceColor.copy(alpha = selectionAlphaAnimation),
+        color = selectedSurfaceColor.copy(alpha = selectionAlphaAnimation),
         contentColor = contentColor,
         border = BorderStroke(
             width = 1.dp,

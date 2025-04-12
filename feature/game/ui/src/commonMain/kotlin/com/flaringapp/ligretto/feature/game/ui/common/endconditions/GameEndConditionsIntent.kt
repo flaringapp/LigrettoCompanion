@@ -14,9 +14,12 @@ internal sealed interface GameEndConditionScoreIntent : UiIntent {
 
     data object SelectCustomValue : GameEndConditionScoreIntent
 
-    data class CustomValueSelected(
-        val score: Int,
+    data class NewCustomValueChange(
+        val score: String,
     ) : GameEndConditionScoreIntent
+
+    data object SubmitNewCustomValue : GameEndConditionScoreIntent
+    data object DismissNewCustomValue : GameEndConditionScoreIntent
 }
 
 internal sealed interface GameEndConditionTimeIntent : UiIntent {
@@ -31,7 +34,10 @@ internal sealed interface GameEndConditionTimeIntent : UiIntent {
 
     data object SelectCustomValue : GameEndConditionTimeIntent
 
-    data class CustomValueSelected(
-        val minutes: Int,
+    data class NewCustomValueChange(
+        val minutes: String,
     ) : GameEndConditionTimeIntent
+
+    data object SubmitNewCustomValue : GameEndConditionTimeIntent
+    data object DismissNewCustomValue : GameEndConditionTimeIntent
 }

@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 @KoinViewModel(binds = [])
 internal class GameStartViewModel(
     @InjectedParam restartLastGame: Boolean,
+    private val endConditionsReducer: GameStartEndConditionsReducer,
     private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
     private val startLapUseCase: StartLapUseCase,
@@ -50,7 +51,7 @@ internal class GameStartViewModel(
         )
 
         is GameStartEndConditionsIntent -> state.copy(
-            endConditions = GameStartEndConditionsReducer.reduce(
+            endConditions = endConditionsReducer.reduce(
                 state = state.endConditions,
                 intent = intent,
             ),

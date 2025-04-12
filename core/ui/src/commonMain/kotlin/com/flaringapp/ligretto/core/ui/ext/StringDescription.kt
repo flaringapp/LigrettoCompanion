@@ -34,6 +34,15 @@ data class StringDescriptionRes(
     override fun resolve(): String = stringResource(resource)
 }
 
+data class StringDescriptionResWithArgs(
+    val resource: StringResource,
+    val args: List<Any>,
+) : StringDescription {
+
+    @Composable
+    override fun resolve(): String = stringResource(resource, *args.toTypedArray())
+}
+
 fun StringResource.asDescription(): StringDescription = StringDescriptionRes(this)
 
 fun String.asDescription(): StringDescription = StringDescriptionRaw(this)

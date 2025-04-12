@@ -8,6 +8,8 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.custom.CustomScoreInputDialog
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.custom.CustomTimeInputDialog
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom
 import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom_with_value
@@ -28,6 +30,13 @@ internal fun GameEndConditionsScope.ScoreOptions(
         onCustomValueSelect = { dispatch(GameEndConditionScoreIntent.SelectCustomValue) },
         formatValue = { it.toString() },
     )
+
+    state.customScoreInput?.let {
+        CustomScoreInputDialog(
+            state = it,
+            dispatch = dispatch,
+        )
+    }
 }
 
 @Composable
@@ -45,6 +54,13 @@ internal fun GameEndConditionsScope.TimeOptions(
         onCustomValueSelect = { dispatch(GameEndConditionTimeIntent.SelectCustomValue) },
         formatValue = { "${it}m" },
     )
+
+    state.customMinutesInput?.let {
+        CustomTimeInputDialog(
+            state = it,
+            dispatch = dispatch,
+        )
+    }
 }
 
 @Composable

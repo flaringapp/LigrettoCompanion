@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
 
 @KoinViewModel
 internal class GameSettingsViewModel(
+    private val endConditionsScoreReducer: GameEndConditionsScoreReducer,
+    private val endConditionsTimeReducer: GameEndConditionsTimeReducer,
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val changeGameSettingsUseCase: ChangeGameSettingsUseCase,
 ) : MviViewModel<GameSettingsState, GameSettingsIntent, GameSettingsEffect>(
@@ -44,7 +46,7 @@ internal class GameSettingsViewModel(
 
         is GameSettingsIntent.EndConditions.Score -> {
             state.copy(
-                score = GameEndConditionsScoreReducer.reduce(
+                score = endConditionsScoreReducer.reduce(
                     state = state.score,
                     intent = intent.intent,
                 ),
@@ -53,7 +55,7 @@ internal class GameSettingsViewModel(
 
         is GameSettingsIntent.EndConditions.Time -> {
             state.copy(
-                time = GameEndConditionsTimeReducer.reduce(
+                time = endConditionsTimeReducer.reduce(
                     state = state.time,
                     intent = intent.intent,
                 ),

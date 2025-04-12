@@ -4,9 +4,13 @@ import com.flaringapp.ligretto.core.arch.Reducer
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreReducer
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeReducer
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
+import org.koin.core.annotation.Factory
 
-internal object GameStartEndConditionsReducer :
-    Reducer<EndConditions, GameStartEndConditionsIntent> {
+@Factory
+internal class GameStartEndConditionsReducer(
+    private val scoreReducer: GameEndConditionsScoreReducer,
+    private val timeReducer: GameEndConditionsTimeReducer,
+) : Reducer<EndConditions, GameStartEndConditionsIntent> {
 
     override fun reduce(
         state: EndConditions,
@@ -18,7 +22,7 @@ internal object GameStartEndConditionsReducer :
 
         is GameStartEndConditionsIntent.Score -> {
             state.copy(
-                score = GameEndConditionsScoreReducer.reduce(
+                score = scoreReducer.reduce(
                     state = state.score,
                     intent = intent.intent,
                 ),
@@ -27,7 +31,7 @@ internal object GameStartEndConditionsReducer :
 
         is GameStartEndConditionsIntent.Time -> {
             state.copy(
-                time = GameEndConditionsTimeReducer.reduce(
+                time = timeReducer.reduce(
                     state = state.time,
                     intent = intent.intent,
                 ),
