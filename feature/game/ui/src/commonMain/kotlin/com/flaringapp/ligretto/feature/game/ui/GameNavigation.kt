@@ -64,7 +64,7 @@ fun NavGraphBuilder.gameGraph(navController: NavController) {
         }
         composable<GameLapCardsOnTableDestination> {
             GameLapCardsOnTableScreen(
-                openCardsLeft = navController::navigateUp,
+                navigateBack = navController::navigateUp,
                 openScores = navController::navigateGameScores,
                 openEnd = navController::navigateGameEnd,
                 openSettings = navController::navigateGameSettings,
