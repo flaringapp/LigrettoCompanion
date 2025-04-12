@@ -2,8 +2,9 @@ package com.flaringapp.ligretto.feature.game.ui.start
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.start.screen.GameStartScreenContent
 import org.koin.compose.viewmodel.koinViewModel
@@ -15,6 +16,7 @@ internal data class GameStartDestination(
     val restartLastGame: Boolean,
 )
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun GameStartScreen(
     restartLastGame: Boolean,
@@ -30,7 +32,7 @@ internal fun GameStartScreen(
         }
     }
 
-    AndroidBackHandler(true) {
+    BackHandler(true) {
         openClose()
     }
 

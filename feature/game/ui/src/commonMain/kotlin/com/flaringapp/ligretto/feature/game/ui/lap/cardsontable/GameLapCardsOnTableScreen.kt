@@ -2,8 +2,9 @@ package com.flaringapp.ligretto.feature.game.ui.lap.cardsontable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.flaringapp.ligretto.core.arch.AndroidBackHandler
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.screen.GameLapCardsOnTableScreenContent
 import org.koin.compose.viewmodel.koinViewModel
@@ -12,6 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data object GameLapCardsOnTableDestination
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun GameLapCardsOnTableScreen(
     openCardsLeft: () -> Unit,
@@ -30,7 +32,7 @@ internal fun GameLapCardsOnTableScreen(
         }
     }
 
-    AndroidBackHandler(true) {
+    BackHandler(true) {
         openCardsLeft()
     }
 

@@ -34,6 +34,7 @@ androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-t
 
 # Compose MP
 compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.0-alpha16" }
+compose-multiplatform-backHandler = { group = "org.jetbrains.compose.ui", name = "ui-backhandler", version.ref = "composeMultiplatform" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
