@@ -1,9 +1,10 @@
 **MP TODOs**
 
-**Merge blockers**
-- KSP Koin shitty config - see `MultiplatformKoinKspConventionPlugin`
-- Compose Navigation/ViewModel stability
+**iOS blockers**
+- Compose Navigation stability
 
 **Other considerations**
-- Back handler - use out-of-box solution when ready - see `com.flaringapp.ligretto.core.arch.AndroidBackHandler`
 - M3 dynamic colors on iOS?
+  - unavailable atm
+- KSP Koin shitty config - see `MultiplatformKoinKspConventionPlugin`
+  - Not fixable atm
