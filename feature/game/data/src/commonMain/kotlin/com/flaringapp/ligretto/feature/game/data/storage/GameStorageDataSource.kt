@@ -10,8 +10,7 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Score
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
@@ -24,6 +23,12 @@ internal interface GameStorageDataSource {
     suspend fun getGameData(gameId: Long): GameDataStorageDto
 
     suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto
+
+    suspend fun changeGameSettings(
+        gameId: GameId,
+        targetScore: Score?,
+        timeLimit: Duration?,
+    )
 
     suspend fun startNextLap(
         gameId: GameId,
@@ -88,20 +93,13 @@ internal class GameStorageDataSourceImpl(
     }
 
     override suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto {
-        val hoursToMinutes = gameConfig.timeLimit?.let {
-            val hours = it.inWholeHours.hours
-            val minutes = (it - hours).inWholeMinutes.minutes
-            hours.inWholeHours to minutes.inWholeMinutes
-        }
-
         val timeStarted = clock.now().toEpochMilliseconds()
 
         return database.transactionWithResult {
             database.gameQueries.insert(
                 time_started = timeStarted,
                 target_score = gameConfig.targetScore?.value?.toLong(),
-                duration_hours = hoursToMinutes?.first,
-                duration_minutes = hoursToMinutes?.second,
+                duration_minutes = gameConfig.timeLimit?.inWholeMinutes,
             )
             val gameId = database.gameQueries.rowid().awaitAsOne()
 
@@ -127,6 +125,20 @@ internal class GameStorageDataSourceImpl(
                 id = gameId,
                 timeStarted = timeStarted,
                 playerIds = playerIds,
+            )
+        }
+    }
+
+    override suspend fun changeGameSettings(
+        gameId: GameId,
+        targetScore: Score?,
+        timeLimit: Duration?,
+    ) {
+        database.transaction {
+            database.gameQueries.updateSettings(
+                id = gameId.value,
+                target_score = targetScore?.value?.toLong(),
+                duration_minutes = timeLimit?.inWholeMinutes,
             )
         }
     }

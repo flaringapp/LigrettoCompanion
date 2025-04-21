@@ -19,7 +19,7 @@ internal class GameEndTimeConditionTest {
         val result = matches(
             gameStartTime = Instant.parse("2023-04-04T18:00:00.00Z"),
             nowTime = Instant.parse("2023-04-04T18:20:00.00Z"),
-            gameDuration = 30.minutes
+            gameDuration = 30.minutes,
         )
 
         assertFalse(result)
@@ -30,7 +30,7 @@ internal class GameEndTimeConditionTest {
         val result = matches(
             gameStartTime = Instant.parse("2023-04-04T18:00:00.00Z"),
             nowTime = Instant.parse("2023-04-04T19:00:00.00Z"),
-            gameDuration = 40.minutes
+            gameDuration = 40.minutes,
         )
 
         assertTrue(result)

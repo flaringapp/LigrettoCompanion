@@ -51,7 +51,6 @@ internal class LoadGameRepositoryMapperTest {
             time_started = timeStarted.toEpochMilliseconds(),
             completed_lap_id = null,
             target_score = null,
-            duration_hours = null,
             duration_minutes = null,
         )
         val playersDto = listOf(
@@ -108,8 +107,7 @@ internal class LoadGameRepositoryMapperTest {
             time_started = timeStarted.toEpochMilliseconds(),
             completed_lap_id = 1,
             target_score = 121,
-            duration_hours = 1,
-            duration_minutes = 12,
+            duration_minutes = 72,
         )
 
         val playersDto = listOf(
@@ -168,7 +166,7 @@ internal class LoadGameRepositoryMapperTest {
             ),
             endConditions = GameEndConditions(
                 score = GameEndScoreCondition(
-                    targetScore = Score(121)
+                    targetScore = Score(121),
                 ),
                 time = GameEndTimeCondition(
                     gameDuration = 1.hours + 12.minutes,
@@ -198,7 +196,6 @@ internal class LoadGameRepositoryMapperTest {
             time_started = timeStarted.toEpochMilliseconds(),
             completed_lap_id = 2,
             target_score = null,
-            duration_hours = null,
             duration_minutes = null,
         )
         val playersDto = listOf(

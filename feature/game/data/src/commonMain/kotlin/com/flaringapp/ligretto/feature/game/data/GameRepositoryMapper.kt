@@ -7,10 +7,12 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
 import org.koin.core.annotation.Factory
+import kotlin.time.Duration
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
@@ -23,6 +25,11 @@ internal interface GameRepositoryMapper {
         game: DatabaseGame,
         data: GameDataStorageDto,
     ): GameSnapshot
+
+    fun mapGameEndConditions(
+        targetScore: Score?,
+        timeLimit: Duration?,
+    ): GameEndConditions
 }
 
 @Factory
@@ -59,6 +66,16 @@ internal class GameRepositoryMapperImpl(
         return loadGameMapper.map(
             game = game,
             data = data,
+        )
+    }
+
+    override fun mapGameEndConditions(
+        targetScore: Score?,
+        timeLimit: Duration?,
+    ): GameEndConditions {
+        return GameEndConditions(
+            score = targetScore?.let { GameEndScoreCondition(it) },
+            time = timeLimit?.let { GameEndTimeCondition(it, clock) },
         )
     }
 }

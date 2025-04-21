@@ -12,7 +12,6 @@ import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
 import org.koin.core.annotation.Factory
-import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -56,7 +55,7 @@ internal class LoadGameRepositoryMapperImpl(
             val lastLap = completedLaps.lastOrNull() ?: return@run null
             if (lastLap.id.value == game.completed_lap_id) return@run null
 
-            completedLaps.removeLast()
+            completedLaps.removeAt(completedLaps.lastIndex)
         }
 
         val domainGame = Game(
@@ -132,12 +131,9 @@ internal class LoadGameRepositoryMapperImpl(
             )
         }
 
-        val timeEndCondition = run {
-            val hours = game.duration_hours?.hours ?: return@run null
-            val minutes = game.duration_minutes?.minutes ?: return@run null
-
+        val timeEndCondition = game.duration_minutes?.let {
             GameEndTimeCondition(
-                gameDuration = hours + minutes,
+                gameDuration = it.minutes,
                 clock = clock,
             )
         }

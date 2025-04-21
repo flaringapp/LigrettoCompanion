@@ -17,7 +17,6 @@ internal class GameQueriesTest : QueriesTest<GameQueries>() {
         testInsertAndSelectLast(
             timeStarted = Instant.parse("2023-08-13T18:00:00.00Z").toEpochMilliseconds(),
             targetScore = null,
-            durationHours = null,
             durationMinutes = null,
         )
     }
@@ -27,21 +26,18 @@ internal class GameQueriesTest : QueriesTest<GameQueries>() {
         testInsertAndSelectLast(
             timeStarted = Instant.parse("2023-08-13T18:00:00.00Z").toEpochMilliseconds(),
             targetScore = 150,
-            durationHours = 1,
-            durationMinutes = 24,
+            durationMinutes = 84,
         )
     }
 
     private suspend fun testInsertAndSelectLast(
         timeStarted: Long,
         targetScore: Long?,
-        durationHours: Long?,
         durationMinutes: Long?,
     ) {
         queries.insert(
             time_started = timeStarted,
             target_score = targetScore,
-            duration_hours = durationHours,
             duration_minutes = durationMinutes,
         )
 
@@ -51,7 +47,6 @@ internal class GameQueriesTest : QueriesTest<GameQueries>() {
 
         assertEquals(timeStarted, actual.time_started)
         assertEquals(targetScore, actual.target_score)
-        assertEquals(durationHours, actual.duration_hours)
         assertEquals(durationMinutes, actual.duration_minutes)
     }
 
@@ -60,7 +55,6 @@ internal class GameQueriesTest : QueriesTest<GameQueries>() {
         queries.insert(
             time_started = Instant.parse("2023-08-13T18:00:00.00Z").toEpochMilliseconds(),
             target_score = null,
-            duration_hours = null,
             duration_minutes = null,
         )
 

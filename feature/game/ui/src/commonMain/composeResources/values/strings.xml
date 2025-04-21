@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="end_condition_option_custom">Custom</string>
+    <string name="end_condition_option_custom_with_value">Custom  (%1$s)</string>
+
+    <string name="start_title">New Game</string>
+    <string name="start_next_step_button">Next</string>
+    <string name="start_end_conditions_label">Duration</string>
+    <string name="start_end_conditions_expanded_label">Choose Game Duration</string>
+    <string name="start_score_end_condition_label">Score</string>
+    <string name="start_score_end_condition_top_level_expanded_title">Play to a Set Score</string>
+    <string name="start_score_end_condition_top_level_expanded_message">First to reach a target score wins.</string>
+    <string name="start_score_end_condition_expanded_title">Set Score</string>
+    <string name="start_score_end_condition_expanded_message">Select the target score to win the game.</string>
+    <string name="start_time_end_condition_label">Time</string>
+    <string name="start_time_end_condition_top_level_expanded_title">Play for a Set Time</string>
+    <string name="start_time_end_condition_top_level_expanded_message">Highest score at the end of the timer wins.</string>
+    <string name="start_time_end_condition_expanded_title">Set Time</string>
+    <string name="start_time_end_condition_expanded_message">Determine the time limit for the game.</string>
+    <string name="start_title_players">Add the Players</string>
+    <string name="start_player_hint">Player %1$d</string>
+    <string name="start_player_remove">Remove player %1$s</string>
+    <string name="start_add_player">Add another player </string>
+    <string name="start_start_game">Start!</string>
+
+    <string name="game_menu_change_settings_button">Change settings</string>
+    <string name="game_menu_finish_button">Finish</string>
+
+    <string name="scores_title">Scores</string>
+    <string name="scores_score_limit">Playing until score %1$s!</string>
+    <string name="scores_time_limit">%1$s:%2$s:%3$s</string>
+    <string name="scores_end_condition_score_label">Target score</string>
+    <string name="scores_end_condition_time_label">Time left</string>
+    <plurals name="scores_end_condition_score_value">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
+    <plurals name="scores_end_condition_time_value">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="scores_start_next_lap">Round %1$d</string>
+
+    <string name="lap_start_round_label">Round</string>
+    <string name="lap_start_go_text">Go</string>
+
+    <string name="lap_round_number">Round %1$s</string>
+    <string name="lap_cards_left_title">Cards in hand</string>
+    <string name="lap_cards_on_table_title">Cards on table</string>
+    <string name="lap_card_score_delta_part_1">1 card =</string>
+    <plurals name="lap_card_score_delta_part_2">
+        <item quantity="one">%1$s point</item>
+        <item quantity="other">%1$s points</item>
+    </plurals>
+    <string name="lap_player_total_score">Total</string>
+    <string name="lap_player_cards_count_decrement">Decrement</string>
+    <string name="lap_player_cards_count_increment">Increment</string>
+    <string name="lap_cards_left_next">Next</string>
+    <string name="lap_cards_on_table_finish_round">Finish Round</string>
+    <string name="lap_end_lap_confirmation_title">End lap</string>
+    <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
+
+    <string name="game_settings_title">Change game settings</string>
+    <string name="game_settings_score_end_condition_name">Play for a Set Score</string>
+    <string name="game_settings_score_end_condition_label">Select the target score to win the game.</string>
+    <string name="game_settings_time_end_condition_name">Play for a Set Time</string>
+    <string name="game_settings_time_end_condition_label">Determine the time limit for the game.</string>
+    <string name="game_settings_save_button">Save</string>
+
+    <string name="game_settings_custom_score_title">Enter custom score</string>
+    <string name="game_settings_custom_score_label">Custom score</string>
+    <string name="game_settings_custom_score_invalid_error">Enter a valid score</string>
+    <string name="game_settings_custom_score_too_long_error">Whoa! Too large score - let's keep it under %1$d</string>
+    <string name="game_settings_custom_time_title">Enter custom time</string>
+    <string name="game_settings_custom_time_label">Custom time</string>
+    <string name="game_settings_custom_time_minutes_suffix">Minutes</string>
+    <string name="game_settings_custom_time_invalid_error">Enter a valid time</string>
+    <string name="game_settings_custom_time_too_long_error">Whoa! Too long game - let's keep it under %1$d minutes</string>
+    <string name="game_settings_custom_value_save_button">Save</string>
+
+    <string name="game_close_title">Leave game</string>
+    <string name="game_close_message">Go you really want to leave current game? You will lose all the progress</string>
+
+    <string name="game_end_title">The winner is...</string>
+    <plurals name="game_end_player_score">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
+    <string name="game_end_close_button">Close</string>
+</resources>

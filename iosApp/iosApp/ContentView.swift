@@ -1,15 +1,20 @@
 import SwiftUI
-import shared
+import commonApp
 
-struct ContentView: View {
-
-	var body: some View {
-		Text("Hello")
-	}
+struct ComposeView: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainViewControllerKt.MainViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+struct ContentView: View {
+    
+    var body: some View {
+        ComposeView()
+            .ignoresSafeArea(edges: .all)
+            .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
+    }
 }

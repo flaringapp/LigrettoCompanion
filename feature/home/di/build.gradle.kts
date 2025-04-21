@@ -6,6 +6,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":feature:home:domain"))
+            implementation(project(":feature:home:ui"))
             implementation(libs.koin.core)
         }
     }

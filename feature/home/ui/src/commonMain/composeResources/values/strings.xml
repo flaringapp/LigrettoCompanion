@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Welcome to\nLigretto Companion</string>
+    <string name="home_message">Your Ultimate Scorekeeping Partner!</string>
+    <string name="home_start_first_game_button">Start Game</string>
+    <string name="home_start_next_game_button">Start New Game</string>
+    <string name="home_continue_game_button">Continue Previous Game</string>
+
+    <string name="game_ended_title">Current game has ended</string>
+    <string name="game_ended_message">Time limit of the current game has ended. Start a new one, or restart the previous</string>
+</resources>

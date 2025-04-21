@@ -1,8 +1,6 @@
 plugins {
     id("ligretto.android.application")
     id("ligretto.android.application.compose")
-    id("ligretto.android.ksp")
-    id("ligretto.android.koin.ksp")
 }
 
 android {
@@ -23,8 +21,9 @@ android {
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     lint {
@@ -37,20 +36,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:navigation"))
-    implementation(project(":core:arch"))
-    implementation(project(":core:database"))
-    implementation(project(":core:settings"))
-    implementation(project(":feature:home:ui"))
-    implementation(project(":feature:home:di"))
-    implementation(project(":feature:game:ui"))
-    implementation(project(":feature:game:di"))
-
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(project(":commonApp"))
 
     implementation(libs.androidx.core.splashScreen)
 
     implementation(libs.androidx.activity.compose)
+
+    implementation(compose.foundation)
 }

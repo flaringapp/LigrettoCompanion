@@ -1,3 +1,5 @@
+import org.gradle.initialization.DependenciesAccessors
+import org.gradle.kotlin.dsl.support.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -20,6 +22,14 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.compose.multiplatform.gradlePlugin)
+    compileOnly(libs.compose.multiplatform.compiler.gradlePlugin)
+
+    // Enable version catalog accessor generation
+    gradle.serviceOf<DependenciesAccessors>().classes.asFiles.forEach {
+        compileOnly(files(it.absolutePath))
+    }
 }
 
 gradlePlugin {
@@ -40,21 +50,17 @@ gradlePlugin {
             id = "ligretto.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
-        register("androidFeature") {
-            id = "ligretto.android.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
-        }
-        register("androidKsp") {
-            id = "ligretto.android.ksp"
-            implementationClass = "AndroidKspConventionPlugin"
-        }
-        register("androidKoinKsp") {
-            id = "ligretto.android.koin.ksp"
-            implementationClass = "AndroidKoinKspConventionPlugin"
+        register("multiplatformFeature") {
+            id = "ligretto.multiplatform.feature"
+            implementationClass = "MultiplatformFeatureConventionPlugin"
         }
         register("multiplatformLibrary") {
             id = "ligretto.multiplatform.library"
             implementationClass = "MultiplatformLibraryConventionPlugin"
+        }
+        register("multiplatformComposeLibrary") {
+            id = "ligretto.multiplatform.library.compose"
+            implementationClass = "MultiplatformComposeLibraryConventionPlugin"
         }
         register("multiplatformKoinKsp") {
             id = "ligretto.multiplatform.koin.ksp"

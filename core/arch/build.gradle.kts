@@ -1,17 +1,23 @@
 plugins {
-    id("ligretto.android.library")
-    id("ligretto.android.library.compose")
+    id("ligretto.multiplatform.library")
+    id("ligretto.multiplatform.library.compose")
+}
+
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            api(libs.kotlinx.coroutines.core)
+
+            implementation(compose.runtime)
+
+            implementation(libs.compose.multiplatform.lifecycle.viewModel)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
+    }
 }
 
 android {
     namespace = "com.flaringapp.ligretto.core.arch"
-}
-
-dependencies {
-    api(libs.kotlinx.coroutines.android)
-
-    api(libs.androidx.lifecycle.core)
-    api(libs.androidx.lifecycle.viewModel)
-
-    api(libs.androidx.compose.runtime)
 }

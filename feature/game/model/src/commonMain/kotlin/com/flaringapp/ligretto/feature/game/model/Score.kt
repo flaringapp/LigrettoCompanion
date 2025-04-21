@@ -3,7 +3,9 @@ package com.flaringapp.ligretto.feature.game.model
 import kotlin.jvm.JvmInline
 
 @JvmInline
-value class Score(val value: Int) : Comparable<Score> {
+value class Score(
+    val value: Int,
+) : Comparable<Score> {
 
     companion object {
         val Zero: Score = Score(0)

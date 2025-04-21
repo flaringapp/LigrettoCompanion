@@ -1,17 +1,15 @@
 package com.flaringapp.ligretto
 
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
 ): Unit = with(extension) {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -25,20 +23,16 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
-    targets.all {
-        compilations.all {
-            compilerOptions.configure {
-                freeCompilerArgs.add("-Xexpect-actual-classes")
-            }
-        }
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
     sourceSets.apply {
         commonMain.dependencies {
-            implementation(libs.findLibrary("napier").get())
+            implementation(libs.napier)
         }
         commonTest.dependencies {
-            implementation(libs.findLibrary("kotlin-test").get())
+            implementation(libs.kotlin.test)
         }
     }
 }

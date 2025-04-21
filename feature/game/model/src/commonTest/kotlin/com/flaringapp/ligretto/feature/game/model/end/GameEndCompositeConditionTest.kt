@@ -52,7 +52,7 @@ internal class GameEndCompositeConditionTest {
                 GameEndTrueCondition,
                 GameEndFalseCondition,
                 GameEndFalseCondition,
-            )
+            ),
         )
 
         assertTrue(condition.matches(mockGame()))

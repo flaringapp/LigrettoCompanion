@@ -1,20 +1,26 @@
 plugins {
-    id("ligretto.android.library")
-    id("ligretto.android.library.compose")
+    id("ligretto.multiplatform.library")
+    id("ligretto.multiplatform.library.compose")
+}
+
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            api(project(":core:designsystem"))
+
+            api(compose.runtime)
+            api(compose.ui)
+            api(compose.material3)
+
+            implementation(compose.components.resources)
+        }
+    }
+}
+
+compose.resources {
+    publicResClass = true
 }
 
 android {
     namespace = "com.flaringapp.ligretto.core.ui"
-}
-
-dependencies {
-    api(project(":core:designsystem"))
-
-    api(libs.androidx.compose.runtime)
-    api(libs.androidx.compose.ui)
-    api(libs.androidx.compose.ui.preview)
-    debugApi(libs.androidx.compose.ui.debugTooling)
-
-    api(libs.androidx.compose.material3)
-    api(libs.androidx.compose.material.icons)
 }
