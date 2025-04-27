@@ -43,7 +43,9 @@ internal class GameEndConditionsScoreReducer(
                 state.lastCustomScore == state.selectedScore
             ) {
                 state.copy(
-                    customScoreInput = GameEndConditionScoreLimitState.CustomInput(),
+                    customScoreInput = GameEndConditionScoreLimitState.CustomInput(
+                        value = state.lastCustomScore?.toString() ?: "",
+                    ),
                 )
             } else {
                 state.copy(
@@ -149,7 +151,9 @@ internal class GameEndConditionsTimeReducer(
                 state.lastCustomMinutes == state.selectedMinutes
             ) {
                 state.copy(
-                    customMinutesInput = GameEndConditionTimeLimitState.CustomInput(),
+                    customMinutesInput = GameEndConditionTimeLimitState.CustomInput(
+                        value = state.lastCustomMinutes?.toString() ?: "",
+                    ),
                 )
             } else {
                 state.copy(
