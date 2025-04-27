@@ -2,9 +2,9 @@
 kotlin = "2.1.20"
 kotlinKsp = "2.1.20-2.0.0"
 kotlinCoroutines = "1.10.2"
-androidGradlePlugin = "8.9.1"
+androidGradlePlugin = "8.9.2"
 multiplatformLifecycle = "2.8.4"
-composeMultiplatform = "1.8.0-beta02"
+composeMultiplatform = "1.8.0-rc01"
 koin = "4.0.4"
 koinAnnotations = "2.0.0-RC1"
 sqlDelight = "2.0.2"
@@ -28,12 +28,12 @@ androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscree
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.10.1" }
 
 # Android compose ui
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2025.04.00" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2025.04.01" }
 androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 # Compose MP
-compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.0-alpha16" }
+compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.0-alpha17" }
 compose-multiplatform-backHandler = { group = "org.jetbrains.compose.ui", name = "ui-backhandler", version.ref = "composeMultiplatform" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
