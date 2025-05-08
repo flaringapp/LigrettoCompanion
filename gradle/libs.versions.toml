@@ -1,10 +1,10 @@
 [versions]
 kotlin = "2.1.20"
-kotlinKsp = "2.1.20-2.0.0"
+kotlinKsp = "2.1.20-2.0.1"
 kotlinCoroutines = "1.10.2"
 androidGradlePlugin = "8.9.2"
-multiplatformLifecycle = "2.8.4"
-composeMultiplatform = "1.8.0-rc01"
+multiplatformLifecycle = "2.9.0-beta01"
+composeMultiplatform = "1.8.0"
 koin = "4.0.4"
 koinAnnotations = "2.0.0-RC1"
 sqlDelight = "2.0.2"
@@ -33,7 +33,7 @@ androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 # Compose MP
-compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.0-alpha17" }
+compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.0-beta01" }
 compose-multiplatform-backHandler = { group = "org.jetbrains.compose.ui", name = "ui-backhandler", version.ref = "composeMultiplatform" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
@@ -65,7 +65,7 @@ multiplatform-settings-coroutines = { group = "com.russhwolf", name = "multiplat
 multiplatform-settings-test = { group = "com.russhwolf", name = "multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
 # Testing
-mockk = { group = "io.mockk", name = "mockk", version = "1.14.0" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.14.2" }
 
 # Lint
 slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.2" }
