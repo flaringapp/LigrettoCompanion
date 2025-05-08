@@ -9,7 +9,7 @@ internal data class GameEndConditionScoreLimitState(
     val staticOptions: UiList<Int> = uiListOf(50, 100, 150),
     val isEnabled: Boolean = false,
     val selectedScore: Int = staticOptions.first(),
-    val lastCustomScore: Int? = null,
+    val lastCustomScore: Int? = selectedScore.takeIf { !staticOptions.contains(it) },
     val customScoreInput: CustomInput? = null,
 ) : UiState {
 
@@ -23,7 +23,7 @@ internal data class GameEndConditionTimeLimitState(
     val staticOptions: UiList<Int> = uiListOf(15, 30, 60),
     val isEnabled: Boolean = false,
     val selectedMinutes: Int = staticOptions.first(),
-    val lastCustomMinutes: Int? = null,
+    val lastCustomMinutes: Int? = selectedMinutes.takeIf { !staticOptions.contains(it) },
     val customMinutesInput: CustomInput? = null,
 ) : UiState {
 
