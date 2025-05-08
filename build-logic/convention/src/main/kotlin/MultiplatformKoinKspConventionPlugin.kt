@@ -18,6 +18,7 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
+                    implementation(project(":core:di"))
                     implementation(libs.koin.core)
                     implementation(libs.koin.annotations)
                 }
