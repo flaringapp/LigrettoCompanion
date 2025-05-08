@@ -9,6 +9,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":core:di"))
             implementation(project(":core:designsystem"))
             implementation(project(":core:ui"))
             implementation(project(":core:arch"))
