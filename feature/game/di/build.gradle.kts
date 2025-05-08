@@ -5,6 +5,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":core:di"))
             implementation(project(":feature:game:data"))
             implementation(project(":feature:game:domain"))
             implementation(project(":feature:game:ui"))

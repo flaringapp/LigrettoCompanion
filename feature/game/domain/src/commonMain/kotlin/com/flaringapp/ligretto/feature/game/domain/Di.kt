@@ -1,13 +1,13 @@
 package com.flaringapp.ligretto.feature.game.domain
 
-import org.koin.core.KoinApplication
+import com.flaringapp.ligretto.core.di.DiDefinitionScope
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Module
 import org.koin.ksp.generated.module
 import kotlinx.datetime.Clock
 
-fun KoinApplication.gameDomainModule() = modules(DomainModule().module)
+fun DiDefinitionScope.gameDomainModule() = DomainModule().module
 
 @Module
 @ComponentScan

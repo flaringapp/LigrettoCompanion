@@ -1,13 +1,13 @@
 package com.flaringapp.ligretto.core.database
 
-import org.koin.core.KoinApplication
+import com.flaringapp.ligretto.core.di.DiDefinitionScope
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import org.koin.dsl.module
 import org.koin.ksp.generated.module
 import kotlinx.coroutines.runBlocking
 
-fun KoinApplication.coreDatabaseModule() = modules(
+fun DiDefinitionScope.coreDatabaseModules() = listOf(
     platformDatabaseModule(),
     DatabaseModule().module,
 )

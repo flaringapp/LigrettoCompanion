@@ -18,6 +18,7 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.apply {
                 commonMain.dependencies {
+                    implementation(project(":core:di"))
                     implementation(libs.koin.core)
                     implementation(libs.koin.annotations)
                 }
@@ -31,6 +32,7 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
 
         extensions.configure<KspExtension> {
             arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
+            arg("KOIN_DEFAULT_MODULE", "false")
         }
 
         dependencies {

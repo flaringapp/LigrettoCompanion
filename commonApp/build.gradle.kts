@@ -9,6 +9,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":core:di"))
             implementation(project(":core:designsystem"))
             implementation(project(":core:ui"))
             implementation(project(":core:arch"))
@@ -22,6 +23,9 @@ kotlin {
             implementation(libs.compose.multiplatform.navigation)
 
             implementation(libs.koin.core)
+        }
+        commonTest.dependencies {
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
