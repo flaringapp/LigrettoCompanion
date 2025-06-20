@@ -13,8 +13,6 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeReducer
 import org.koin.android.annotation.KoinViewModel
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -109,7 +107,7 @@ internal class GameSettingsViewModel(
             selectedMinutes.takeIf { isEnabled }?.minutes
         }
 
-        saveJob = viewModelScope.launch(Dispatchers.IO) {
+        saveJob = viewModelScope.launch {
             changeGameSettingsUseCase.invoke(
                 targetScore = score,
                 timeLimit = time,
