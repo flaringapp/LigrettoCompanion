@@ -6,10 +6,12 @@ import app.cash.sqldelight.async.coroutines.awaitAsOneOrNull
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToOneOrNull
 import com.flaringapp.ligretto.core.database.Database
+import com.flaringapp.ligretto.core.di.DispatcherType
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Score
+import org.koin.core.annotation.Single
 import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -50,9 +52,11 @@ internal interface GameStorageDataSource {
     )
 }
 
+@Single
 internal class GameStorageDataSourceImpl(
     private val database: Database,
     private val clock: Clock,
+    @DispatcherType.IO
     private val dispatcher: CoroutineDispatcher,
 ) : GameStorageDataSource {
 
