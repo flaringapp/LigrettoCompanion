@@ -8,8 +8,6 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import org.koin.android.annotation.KoinViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
@@ -98,7 +96,7 @@ internal class GameScoreViewModel(
 
         // TODO loading/disable button?
         // TODO error handling
-        startLapJob = viewModelScope.launch(Dispatchers.IO) {
+        startLapJob = viewModelScope.launch {
             startLapUseCase()
             setEffect { GameScoreEffect.OpenNextLap }
         }

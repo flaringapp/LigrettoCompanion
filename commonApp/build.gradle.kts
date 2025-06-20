@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("ligretto.multiplatform.library")
     id("ligretto.multiplatform.library.compose")
+    id("ligretto.multiplatform.koin.ksp")
 }
 
 kotlin {
