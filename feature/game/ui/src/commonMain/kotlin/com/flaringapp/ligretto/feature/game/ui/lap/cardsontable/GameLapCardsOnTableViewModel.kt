@@ -13,8 +13,6 @@ import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
 import org.koin.android.annotation.KoinViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
@@ -128,7 +126,7 @@ internal class GameLapCardsOnTableViewModel(
 
         // TODO loading/disable button?
         // TODO error handling
-        endLapJob = viewModelScope.launch(Dispatchers.IO) {
+        endLapJob = viewModelScope.launch {
             val game = endLapUseCase()
             if (game?.matchesEndConditions == true) {
                 setEffect { GameLapCardsOnTableEffect.EndGame }
