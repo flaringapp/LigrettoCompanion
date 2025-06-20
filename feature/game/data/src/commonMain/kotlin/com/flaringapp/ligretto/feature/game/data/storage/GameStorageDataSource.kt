@@ -13,6 +13,7 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
 
@@ -52,7 +53,7 @@ internal interface GameStorageDataSource {
 internal class GameStorageDataSourceImpl(
     private val database: Database,
     private val clock: Clock,
-    dispatcher: CoroutineDispatcher,
+    private val dispatcher: CoroutineDispatcher,
 ) : GameStorageDataSource {
 
     override val lastGameFlow: Flow<DatabaseGame?> =
@@ -61,8 +62,10 @@ internal class GameStorageDataSourceImpl(
             .asFlow()
             .mapToOneOrNull(dispatcher)
 
-    override suspend fun getGameData(gameId: Long): GameDataStorageDto {
-        return database.transactionWithResult {
+    override suspend fun getGameData(
+        gameId: Long,
+    ): GameDataStorageDto = withContext(dispatcher) {
+        database.transactionWithResult {
             val gamePlayers = database.gamePlayerQueries
                 .selectAllByGameId(gameId)
                 .awaitAsList()
@@ -92,10 +95,12 @@ internal class GameStorageDataSourceImpl(
         }
     }
 
-    override suspend fun startGame(gameConfig: GameConfig): StartGameStorageDto {
+    override suspend fun startGame(
+        gameConfig: GameConfig,
+    ): StartGameStorageDto = withContext(dispatcher) {
         val timeStarted = clock.now().toEpochMilliseconds()
 
-        return database.transactionWithResult {
+        database.transactionWithResult {
             database.gameQueries.insert(
                 time_started = timeStarted,
                 target_score = gameConfig.targetScore?.value?.toLong(),
@@ -133,7 +138,7 @@ internal class GameStorageDataSourceImpl(
         gameId: GameId,
         targetScore: Score?,
         timeLimit: Duration?,
-    ) {
+    ) = withContext(dispatcher) {
         database.transaction {
             database.gameQueries.updateSettings(
                 id = gameId.value,
@@ -146,8 +151,8 @@ internal class GameStorageDataSourceImpl(
     override suspend fun startNextLap(
         gameId: GameId,
         lapNumber: Int,
-    ): Long {
-        return database.transactionWithResult {
+    ): Long = withContext(dispatcher) {
+        database.transactionWithResult {
             val gamePlayers = database.gamePlayerQueries
                 .selectAllByGameId(gameId.value)
                 .awaitAsList()
@@ -174,7 +179,7 @@ internal class GameStorageDataSourceImpl(
         playerId: Long,
         cardsLeft: Int,
         cardsOnTable: Int,
-    ) {
+    ): Unit = withContext(dispatcher) {
         database.lapPlayerQueries.updateCards(
             lap_id = lapId.value,
             player_id = playerId,
@@ -187,7 +192,7 @@ internal class GameStorageDataSourceImpl(
         gameId: GameId,
         lapId: LapId,
         playerScores: Map<Long, Score>,
-    ) {
+    ) = withContext(dispatcher) {
         database.transaction {
             database.gameQueries.updateCompletedLapId(
                 id = gameId.value,
