@@ -41,7 +41,7 @@ compose-multiplatform-components-uiToolingPreview = { group = "org.jetbrains.com
 compose-multiplatform-materialIconsExtended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version = "1.7.3" }
 compose-multiplatform-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version = "1.9.0" }
 compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.2" }
-compose-multiplatform-backHandler = { group = "org.jetbrains.compose.ui", name = "ui-backhandler", version.ref = "composeMultiplatform" }
+compose-multiplatform-navigationEvent = { group = "org.jetbrains.androidx.navigationevent", name = "navigationevent-compose", version = "1.0.1" }
 
 compose-multiplatform-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime", version.ref = "multiplatformLifecycle" }
