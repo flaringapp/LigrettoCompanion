@@ -8,11 +8,11 @@ kotlin {
         commonMain.dependencies {
             api(project(":core:designsystem"))
 
-            api(compose.runtime)
-            api(compose.ui)
-            api(compose.material3)
+            api(libs.compose.multiplatform.runtime)
+            api(libs.compose.multiplatform.ui)
+            api(libs.compose.multiplatform.material3)
 
-            implementation(compose.components.resources)
+            implementation(libs.compose.multiplatform.components.resources)
         }
     }
 }

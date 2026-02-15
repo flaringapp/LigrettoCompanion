@@ -33,6 +33,13 @@ androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-debugTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 # Compose MP
+compose-multiplatform-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "composeMultiplatform" }
+compose-multiplatform-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
+compose-multiplatform-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "composeMultiplatform" }
+compose-multiplatform-components-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "composeMultiplatform" }
+compose-multiplatform-components-uiToolingPreview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "composeMultiplatform" }
+compose-multiplatform-materialIconsExtended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version = "1.7.3" }
+compose-multiplatform-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version = "1.9.0" }
 compose-multiplatform-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version = "2.9.2" }
 compose-multiplatform-backHandler = { group = "org.jetbrains.compose.ui", name = "ui-backhandler", version.ref = "composeMultiplatform" }
 
