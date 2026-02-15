@@ -1,4 +1,3 @@
-import com.android.build.gradle.LibraryExtension
 import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.configureComposeMultiplatform
 import com.flaringapp.ligretto.libs
@@ -18,7 +17,6 @@ class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
         configureComposeMultiplatform(
             kotlinExtension = extensions.getByType(),
             composeCompilerExtension = extensions.getByType(),
-            androidExtension = extensions.getByType<LibraryExtension>(),
         )
     }
 }
