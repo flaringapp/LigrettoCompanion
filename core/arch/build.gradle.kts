@@ -8,7 +8,7 @@ kotlin {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
 
-            implementation(compose.runtime)
+            implementation(libs.compose.multiplatform.runtime)
 
             implementation(libs.compose.multiplatform.lifecycle.viewModel)
         }

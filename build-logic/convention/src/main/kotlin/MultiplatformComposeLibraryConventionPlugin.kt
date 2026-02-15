@@ -5,7 +5,6 @@ import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposeExtension
 
 class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
 
@@ -18,7 +17,6 @@ class MultiplatformComposeLibraryConventionPlugin : Plugin<Project> {
 
         configureComposeMultiplatform(
             kotlinExtension = extensions.getByType(),
-            composeDependencies = extensions.getByType<ComposeExtension>().dependencies,
             composeCompilerExtension = extensions.getByType(),
             androidExtension = extensions.getByType<LibraryExtension>(),
         )

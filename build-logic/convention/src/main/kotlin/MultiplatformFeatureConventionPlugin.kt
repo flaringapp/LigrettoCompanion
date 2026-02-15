@@ -3,8 +3,6 @@ import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformFeatureConventionPlugin : Plugin<Project> {
@@ -32,8 +30,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
                     // Required for type safe navigation
                     implementation(libs.kotlinx.serialization.json)
 
-                    val composeDependencies = extensions.getByType<ComposePlugin.Dependencies>()
-                    implementation(composeDependencies.components.resources)
+                    implementation(libs.compose.multiplatform.components.resources)
 
                     implementation(libs.compose.multiplatform.lifecycle.runtime.compose)
 

@@ -9,7 +9,7 @@ kotlin {
 
             implementation(libs.kotlinx.datetime)
 
-            implementation(compose.components.resources)
+            implementation(libs.compose.multiplatform.components.resources)
         }
     }
 }

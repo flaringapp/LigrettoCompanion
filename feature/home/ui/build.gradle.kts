@@ -7,7 +7,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":feature:home:domain"))
 
-            implementation(compose.components.resources)
+            implementation(libs.compose.multiplatform.components.resources)
         }
     }
 }
