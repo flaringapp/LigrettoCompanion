@@ -4,7 +4,7 @@ import app.cash.sqldelight.async.coroutines.awaitAsOne
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal class GameQueriesTest : QueriesTest<GameQueries>() {
 

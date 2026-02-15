@@ -2,8 +2,8 @@ package com.flaringapp.ligretto.feature.game.ui.score.screen
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.EndConditions
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 internal class GameScoreEndConditionsProvider : PreviewParameterProvider<EndConditions> {
 
