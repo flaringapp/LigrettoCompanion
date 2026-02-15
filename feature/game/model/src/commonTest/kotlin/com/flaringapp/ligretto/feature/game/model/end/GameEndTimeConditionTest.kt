@@ -7,9 +7,9 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Clock
 import kotlin.time.Instant
 
 internal class GameEndTimeConditionTest {

@@ -12,11 +12,11 @@ import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Score
 import org.koin.core.annotation.Single
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import kotlin.time.Clock
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
 
 internal interface GameStorageDataSource {

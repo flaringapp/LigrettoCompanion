@@ -1,8 +1,8 @@
 package com.flaringapp.ligretto.feature.game.model.end
 
 import com.flaringapp.ligretto.feature.game.model.Game
-import kotlin.time.Duration
 import kotlin.time.Clock
+import kotlin.time.Duration
 
 data class GameEndTimeCondition(
     val gameDuration: Duration,
