@@ -8,7 +8,7 @@ import org.gradle.api.Project
 internal fun Project.configureAndroid(
     extension: CommonExtension<*, *, *, *, *, *>,
 ) = with(extension) {
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
