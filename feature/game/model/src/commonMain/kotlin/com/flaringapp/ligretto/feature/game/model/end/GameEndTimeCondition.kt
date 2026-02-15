@@ -2,7 +2,7 @@ package com.flaringapp.ligretto.feature.game.model.end
 
 import com.flaringapp.ligretto.feature.game.model.Game
 import kotlin.time.Duration
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 data class GameEndTimeCondition(
     val gameDuration: Duration,

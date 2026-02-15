@@ -4,8 +4,8 @@ import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.emptyUiList
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 internal data class GameScoreState(
     val nextRoundNumber: Int = 0,

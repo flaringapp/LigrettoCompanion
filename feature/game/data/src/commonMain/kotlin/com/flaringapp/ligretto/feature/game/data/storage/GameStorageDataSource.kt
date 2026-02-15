@@ -16,7 +16,7 @@ import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
 
 internal interface GameStorageDataSource {

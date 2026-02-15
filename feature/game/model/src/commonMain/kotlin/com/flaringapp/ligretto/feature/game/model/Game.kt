@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.model
 
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 data class Game(
     val id: GameId,

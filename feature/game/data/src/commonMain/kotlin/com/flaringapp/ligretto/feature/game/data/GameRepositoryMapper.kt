@@ -13,8 +13,8 @@ import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
 import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
 import org.koin.core.annotation.Factory
 import kotlin.time.Duration
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 import com.flaringapp.ligretto.core.database.Game as DatabaseGame
 
 internal interface GameRepositoryMapper {
