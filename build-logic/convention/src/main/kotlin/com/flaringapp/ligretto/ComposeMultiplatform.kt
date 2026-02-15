@@ -19,7 +19,7 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(libs.androidx.compose.ui.preview)
             }
             commonMain.dependencies {
-                implementation(libs.compose.multiplatform.components.uiToolingPreview)
+                implementation(libs.compose.multiplatform.uiToolingPreview)
             }
         }
     }
