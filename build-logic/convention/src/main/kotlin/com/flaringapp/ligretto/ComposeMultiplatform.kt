@@ -14,10 +14,6 @@ internal fun Project.configureComposeMultiplatform(
 ) {
     with(kotlinExtension) {
         sourceSets.apply {
-            androidMain.dependencies {
-                implementation(project.dependencies.platform(libs.androidx.compose.bom))
-                implementation(libs.androidx.compose.ui.preview)
-            }
             commonMain.dependencies {
                 implementation(libs.compose.multiplatform.uiToolingPreview)
             }
@@ -32,7 +28,7 @@ internal fun Project.configureComposeMultiplatform(
         sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
         dependencies {
-            add("debugImplementation", libs.androidx.compose.ui.debugTooling)
+            add("debugImplementation", libs.compose.multiplatform.uiTooling)
         }
     }
 
