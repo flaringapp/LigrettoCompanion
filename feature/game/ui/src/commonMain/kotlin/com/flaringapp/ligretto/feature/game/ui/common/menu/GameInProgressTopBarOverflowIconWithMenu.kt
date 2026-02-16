@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.common.menu
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.SettingsInputComposite
@@ -32,51 +33,54 @@ internal fun GameInProgressTopBarOverflowIconWithMenu(
 ) {
     var showOverflowMenu by remember { mutableStateOf(false) }
 
-    IconButton(
+    Box(
         modifier = modifier,
-        onClick = { showOverflowMenu = !showOverflowMenu },
     ) {
-        Icon(
-            imageVector = Icons.Rounded.MoreVert,
-            contentDescription = stringResource(CoreRes.string.overflow_description),
-        )
-    }
+        IconButton(
+            onClick = { showOverflowMenu = !showOverflowMenu },
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.MoreVert,
+                contentDescription = stringResource(CoreRes.string.overflow_description),
+            )
+        }
 
-    DropdownMenu(
-        expanded = showOverflowMenu,
-        onDismissRequest = { showOverflowMenu = false },
-        offset = DpOffset(x = (-8).dp, y = 0.dp),
-    ) {
-        DropdownMenuItem(
-            onClick = {
-                onChangeSettingsClick()
-                showOverflowMenu = false
-            },
-            text = {
-                Text(text = stringResource(Res.string.game_menu_change_settings_button))
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Outlined.SettingsInputComposite,
-                    contentDescription = null,
-                )
-            },
-        )
+        DropdownMenu(
+            expanded = showOverflowMenu,
+            onDismissRequest = { showOverflowMenu = false },
+            offset = DpOffset(x = (-8).dp, y = 0.dp),
+        ) {
+            DropdownMenuItem(
+                onClick = {
+                    onChangeSettingsClick()
+                    showOverflowMenu = false
+                },
+                text = {
+                    Text(text = stringResource(Res.string.game_menu_change_settings_button))
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.SettingsInputComposite,
+                        contentDescription = null,
+                    )
+                },
+            )
 
-        DropdownMenuItem(
-            onClick = {
-                onFinishGameClick()
-                showOverflowMenu = false
-            },
-            text = {
-                Text(text = stringResource(Res.string.game_menu_finish_button))
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Outlined.CheckCircle,
-                    contentDescription = null,
-                )
-            },
-        )
+            DropdownMenuItem(
+                onClick = {
+                    onFinishGameClick()
+                    showOverflowMenu = false
+                },
+                text = {
+                    Text(text = stringResource(Res.string.game_menu_finish_button))
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.CheckCircle,
+                        contentDescription = null,
+                    )
+                },
+            )
+        }
     }
 }

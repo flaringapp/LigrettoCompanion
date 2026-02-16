@@ -221,18 +221,17 @@ private fun ScreenFooterButton(
     dispatch: (GameStartIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (!state.endConditions.isExpandedCompleted) {
+    if (state.endConditions.isExpandedCompleted) {
+        StartGameButton(
+            modifier = modifier,
+            onClick = { dispatch(GameStartIntent.StartGame) },
+        )
+    } else {
         NextStepButton(
             modifier = modifier,
             onClick = { dispatch(GameStartEndConditionsIntent.SubmitStep) },
         )
-        return
     }
-
-    StartGameButton(
-        modifier = modifier,
-        onClick = { dispatch(GameStartIntent.StartGame) },
-    )
 }
 
 @Composable

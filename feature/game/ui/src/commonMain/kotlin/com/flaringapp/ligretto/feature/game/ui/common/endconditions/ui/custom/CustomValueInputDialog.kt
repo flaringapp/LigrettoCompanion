@@ -96,18 +96,19 @@ internal fun GameEndConditionsScope.CustomTimeInputDialog(
     )
 }
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 private fun GameEndConditionsScope.CustomValueInputDialog(
     icon: ImageVector,
     title: String,
     label: String,
-    suffix: String? = null,
     value: String,
     onValueChange: (String) -> Unit,
     filterInput: (String) -> String,
     error: String?,
     save: () -> Unit,
     dismiss: () -> Unit,
+    suffix: String? = null,
 ) {
     AlertDialog(
         onDismissRequest = dismiss,

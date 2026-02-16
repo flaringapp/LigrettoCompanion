@@ -64,8 +64,9 @@ fun GameStartEndConditionsScope.TimeSelectorExpanded(
     )
 }
 
+@Suppress("UnusedReceiverParameter")
 @Composable
-private fun SelectionContainer(
+private fun GameStartEndConditionsScope.SelectionContainer(
     selected: Boolean,
     icon: ImageVector,
     title: String,

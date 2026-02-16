@@ -65,10 +65,10 @@ internal fun GenericGameLapContent(
     playerCardIncrement: (playerId: Long) -> Unit,
     playerCardDecrement: (playerId: Long) -> Unit,
     onFooterButtonClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    onBackClick: (() -> Unit)? = null,
     onChangeSettingsClick: () -> Unit,
     onFinishGameClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onBackClick: (() -> Unit)? = null,
 ) {
     val contentListState = rememberLazyListState()
 

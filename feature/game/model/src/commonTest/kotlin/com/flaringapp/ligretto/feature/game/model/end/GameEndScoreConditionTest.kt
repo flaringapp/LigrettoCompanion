@@ -12,7 +12,7 @@ import kotlin.time.Instant
 internal class GameEndScoreConditionTest {
 
     @Test
-    fun `returns false fiven all players have less score than target`() {
+    fun `returns false given all players have less score than target`() {
         val scores = mapOf(
             Player(1, "Andreo") to Score(10),
             Player(1, "Mario") to Score(32),

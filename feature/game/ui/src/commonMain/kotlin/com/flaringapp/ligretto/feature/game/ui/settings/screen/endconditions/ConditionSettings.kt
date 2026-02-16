@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal fun GameSettingsEndConditionsScope.ConditionSettings(
     conditionName: String,

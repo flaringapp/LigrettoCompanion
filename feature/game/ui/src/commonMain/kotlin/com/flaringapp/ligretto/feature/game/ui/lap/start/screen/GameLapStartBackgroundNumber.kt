@@ -31,7 +31,6 @@ internal fun GameLapStartBackgroundNumber(
 
         if (lapNumber < 10) {
             SingleDigitLapNumber(
-                modifier = modifier,
                 digit = lapNumber.coerceAtLeast(0).toString(),
                 screenHeight = screenHeight,
             )
@@ -40,7 +39,6 @@ internal fun GameLapStartBackgroundNumber(
 
         val lapNumberString = lapNumber.toString()
         TwoDigitLapNumber(
-            modifier = modifier,
             firstDigit = lapNumberString[lapNumberString.lastIndex - 1].toString(),
             secondDigit = lapNumberString[lapNumberString.lastIndex].toString(),
             screenHeight = screenHeight,
@@ -108,10 +106,10 @@ private fun TwoDigitLapNumber(
 
 @Composable
 private fun DigitText(
-    modifier: Modifier = Modifier,
     digit: String,
     fontSize: TextUnit,
     alignment: Alignment,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         modifier = modifier.wrapContentSize(unbounded = true, align = alignment),
