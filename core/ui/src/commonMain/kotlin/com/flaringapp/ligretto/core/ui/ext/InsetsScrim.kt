@@ -19,8 +19,8 @@ fun Modifier.screenStatusBarScrim(
 
 @Composable
 fun Modifier.screenStatusBarScrim(
-    insets: WindowInsets = WindowInsets.statusBars,
     color: Color,
+    insets: WindowInsets = WindowInsets.statusBars,
 ): Modifier = drawWithContent {
     drawContent()
     drawRect(

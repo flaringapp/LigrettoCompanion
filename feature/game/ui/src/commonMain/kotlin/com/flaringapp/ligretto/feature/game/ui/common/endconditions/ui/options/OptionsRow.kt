@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal inline fun GameEndConditionsScope.OptionsRow(
     modifier: Modifier = Modifier,

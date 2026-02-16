@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal inline fun GameStartEndConditionsScope.LabeledOptionsExpanded(
     title: String,

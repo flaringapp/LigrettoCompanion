@@ -26,6 +26,7 @@ internal object GameStartEndConditionLabeledOptionsCompactDefaults {
         get() = MaterialTheme.typography.titleMedium
 }
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
     label: String,

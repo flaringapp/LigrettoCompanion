@@ -20,6 +20,7 @@ import com.flaringapp.ligretto.core.designsystem.AppFixedColorScheme
 import com.flaringapp.ligretto.core.designsystem.fixedOrDynamicContentColorFor
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal fun GameEndConditionsScope.OptionPill(
     text: String,
