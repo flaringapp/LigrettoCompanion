@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.core.ui.generated.resources.ok
 import ligretto_companion.feature.home.ui.generated.resources.Res
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_message
@@ -37,4 +39,14 @@ internal fun GameEndedDialog(
             }
         },
     )
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    AppTheme {
+        GameEndedDialog(
+            dismiss = {},
+        )
+    }
 }

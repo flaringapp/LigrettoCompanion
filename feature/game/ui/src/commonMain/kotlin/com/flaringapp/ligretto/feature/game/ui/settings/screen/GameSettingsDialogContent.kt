@@ -14,8 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
@@ -25,6 +28,7 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.S
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsIntent
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsState
+import com.flaringapp.ligretto.feature.game.ui.settings.preview.GameSettingsStateProvider
 import com.flaringapp.ligretto.feature.game.ui.settings.screen.endconditions.ConditionSettings
 import com.flaringapp.ligretto.feature.game.ui.settings.screen.endconditions.GameSettingsEndConditionsScope
 import com.flaringapp.ligretto.feature.game.ui.settings.screen.endconditions.LabeledOptions
@@ -163,5 +167,20 @@ private fun GameSettingsEndConditionsScope.EndConditionsTimeContent(
                 },
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview(
+    @PreviewParameter(GameSettingsStateProvider::class)
+    state: GameSettingsState,
+) {
+    AppTheme {
+        GameSettingsDialogContent(
+            state = state,
+            dispatch = {},
+            close = {},
+        )
     }
 }

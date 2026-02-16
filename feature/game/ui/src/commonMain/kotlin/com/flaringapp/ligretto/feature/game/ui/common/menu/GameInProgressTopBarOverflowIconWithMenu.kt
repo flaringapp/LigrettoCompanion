@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.common.menu
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.SettingsInputComposite
@@ -15,9 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.core.ui.generated.resources.overflow_description
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_menu_change_settings_button
@@ -80,6 +84,22 @@ internal fun GameInProgressTopBarOverflowIconWithMenu(
                         contentDescription = null,
                     )
                 },
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview() {
+    AppTheme {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            GameInProgressTopBarOverflowIconWithMenu(
+                modifier = Modifier.align(Alignment.TopEnd),
+                onChangeSettingsClick = {},
+                onFinishGameClick = {},
             )
         }
     }

@@ -6,7 +6,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsTimeLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
 
 @Suppress("UnusedReceiverParameter")
 @Composable
@@ -37,4 +41,19 @@ private fun LabelText(
         text = label,
         style = MaterialTheme.typography.bodySmall,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview() = with(GameSettingsEndConditionsScope) {
+    AppTheme {
+        LabeledOptions(
+            label = "Select the target score to win the game.",
+        ) {
+            TimeOptions(
+                state = GameEndConditionsTimeLimitStateProvider.enabled(),
+                dispatch = {},
+            )
+        }
+    }
 }

@@ -2,14 +2,20 @@ package com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsScoreLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsTimeLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.custom.CustomScoreInputDialog
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.custom.CustomTimeInputDialog
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom
 import ligretto_companion.feature.game.ui.generated.resources.end_condition_option_custom_with_value
@@ -111,4 +117,32 @@ private fun GameEndConditionsScope.CustomValueOption(
         selected = selected,
         onClick = onClick,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewScore(
+    @PreviewParameter(GameEndConditionsScoreLimitStateProvider::class)
+    state: GameEndConditionScoreLimitState,
+) {
+    AppTheme {
+        GameStartEndConditionsScope.ScoreOptions(
+            state = state,
+            dispatch = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewTime(
+    @PreviewParameter(GameEndConditionsTimeLimitStateProvider::class)
+    state: GameEndConditionTimeLimitState,
+) {
+    AppTheme {
+        GameStartEndConditionsScope.TimeOptions(
+            state = state,
+            dispatch = {},
+        )
+    }
 }

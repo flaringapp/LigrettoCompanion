@@ -16,8 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
+import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.bg_winner
 import ligretto_companion.feature.game.ui.generated.resources.game_end_title
@@ -95,4 +99,17 @@ private fun HeaderText(
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.headlineMedium,
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun Preview(
+    @PreviewParameter(GameEndPlayerResultProvider::class)
+    state: GameEndState.PlayerResult,
+) {
+    AppTheme {
+        GameEndFirstPlaceCard(
+            state = state,
+        )
+    }
 }

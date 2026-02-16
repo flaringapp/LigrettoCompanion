@@ -2,8 +2,12 @@ package com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableIntent
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableState
+import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.preview.GameLapCardsOnTableStateProvider
 import com.flaringapp.ligretto.feature.game.ui.lap.common.content.GenericGameLapContent
 import com.flaringapp.ligretto.feature.game.ui.lap.end.GameLapEndLapDialog
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -40,6 +44,23 @@ internal fun GameLapCardsOnTableScreenContent(
         GameLapEndLapDialog(
             onConfirm = { dispatch(GameLapCardsOnTableIntent.EndLapConfirmed) },
             onDismiss = { dispatch(GameLapCardsOnTableIntent.HideEndLapConfirmation) },
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun Preview(
+    @PreviewParameter(GameLapCardsOnTableStateProvider::class)
+    state: GameLapCardsOnTableState,
+) {
+    AppTheme {
+        GameLapCardsOnTableScreenContent(
+            state = state,
+            dispatch = {},
+            onBackClick = {},
+            onChangeSettings = {},
+            onFinish = {},
         )
     }
 }
