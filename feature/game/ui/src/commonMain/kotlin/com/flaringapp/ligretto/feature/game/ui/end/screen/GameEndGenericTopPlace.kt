@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,11 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
+import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_end_player_score
 import org.jetbrains.compose.resources.DrawableResource
@@ -126,4 +131,21 @@ private fun ScoreText(
         textAlign = TextAlign.Center,
         style = style,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview(
+    @PreviewParameter(GameEndPlayerResultProvider::class)
+    state: PlayerResult,
+) {
+    AppTheme {
+        GameEndGenericTopPlace(
+            place = 1,
+            state = state,
+            imageSize = 48.dp,
+            nameTextStyle = MaterialTheme.typography.headlineSmall,
+            scoreTextStyle = MaterialTheme.typography.labelLarge,
+        )
+    }
 }

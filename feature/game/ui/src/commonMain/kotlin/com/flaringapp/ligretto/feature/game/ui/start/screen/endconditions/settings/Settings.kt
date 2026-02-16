@@ -14,8 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.AnimatedContentVisibility
@@ -23,6 +26,7 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.S
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
+import com.flaringapp.ligretto.feature.game.ui.start.preview.GameStartEndConditionsProvider
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_end_conditions_label
@@ -236,5 +240,20 @@ private fun measureMaxLabelWidth(
             textMeasurer.measure(text = it, style = textStyle).size.width
         }
         with(density) { maxWidth.toDp() }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewPadded(
+    @PreviewParameter(GameStartEndConditionsProvider::class)
+    state: EndConditions,
+) {
+    AppTheme {
+        GameStartEndConditionsScope.Settings(
+            modifier = Modifier.padding(16.dp),
+            state = state,
+            dispatch = {},
+        )
     }
 }

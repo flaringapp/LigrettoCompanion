@@ -13,10 +13,16 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isUnspecified
+import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsTimeLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
 internal object GameStartEndConditionLabeledOptionsCompactDefaults {
@@ -63,6 +69,27 @@ internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
             )
 
             optionsContent()
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewPadded() = with(GameStartEndConditionsScope) {
+    AppTheme {
+        LabeledOptionsCompact(
+            modifier = Modifier.padding(16.dp),
+            label = "Time",
+            labelWidth = run {
+                rememberTextMeasurer().measure("Time").size.width.let {
+                    with(LocalDensity.current) { it.toDp() }
+                }
+            },
+        ) {
+            TimeOptions(
+                state = GameEndConditionsTimeLimitStateProvider.enabled(),
+                dispatch = {},
+            )
         }
     }
 }

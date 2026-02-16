@@ -9,7 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsScoreLimitStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.ScoreOptions
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
 @Suppress("UnusedReceiverParameter")
@@ -65,4 +69,20 @@ private fun MessageText(
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.bodyMedium,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview() = with(GameStartEndConditionsScope) {
+    AppTheme {
+        LabeledOptionsExpanded(
+            title = "Set Score",
+            message = "Select the target score to win the game",
+        ) {
+            ScoreOptions(
+                state = GameEndConditionsScoreLimitStateProvider.enabled(),
+                dispatch = {},
+            )
+        }
+    }
 }
