@@ -20,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppFixedColorScheme
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.designsystem.fixedOrDynamicContentColorFor
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
@@ -42,7 +41,7 @@ internal fun GameEndConditionsScope.OptionPill(
     val colorScheme = MaterialTheme.colorScheme
     val selectedSurfaceColor = when {
         LocalContentColor.current == colorScheme.onSurfaceVariant -> {
-            AppFixedColorScheme.SecondaryFixedDim
+            colorScheme.secondaryFixedDim
         }
 
         else -> {
