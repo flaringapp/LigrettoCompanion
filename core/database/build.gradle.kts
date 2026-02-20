@@ -5,6 +5,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.core.database"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
@@ -15,10 +19,6 @@ kotlin {
             implementation(libs.kotlinx.coroutines.test)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.core.database"
 }
 
 sqldelight {

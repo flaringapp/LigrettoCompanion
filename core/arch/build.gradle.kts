@@ -4,6 +4,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.core.arch"
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
@@ -16,8 +20,4 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.core.arch"
 }

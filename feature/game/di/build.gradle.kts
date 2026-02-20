@@ -3,6 +3,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.game.di"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core:di"))
@@ -12,8 +16,4 @@ kotlin {
             implementation(libs.koin.core)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.game.di"
 }

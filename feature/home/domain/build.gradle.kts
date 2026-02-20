@@ -4,6 +4,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.home.domain"
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(project(":feature:game:model"))
@@ -11,8 +15,4 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.home.domain"
 }

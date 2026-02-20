@@ -2,7 +2,7 @@
 kotlin = "2.3.10"
 kotlinKsp = "2.3.5"
 kotlinCoroutines = "1.10.2"
-androidGradlePlugin = "8.10.1"
+androidGradlePlugin = "9.0.1"
 multiplatformLifecycle = "2.9.6"
 composeMultiplatform = "1.10.1"
 koin = "4.1.1"
@@ -74,7 +74,7 @@ mockk = { group = "io.mockk", name = "mockk", version = "1.14.9" }
 slack-lint-compose = { group = "com.slack.lint.compose", name = "compose-lint-checks", version = "1.4.2" }
 
 # Dependencies of the included build-logic
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kotlinKsp" }
 compose-multiplatform-gradlePlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "composeMultiplatform" }
@@ -83,8 +83,8 @@ compose-multiplatform-compiler-gradlePlugin = { group = "org.jetbrains.kotlin.pl
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }

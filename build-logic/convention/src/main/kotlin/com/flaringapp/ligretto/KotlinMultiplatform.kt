@@ -1,16 +1,17 @@
 package com.flaringapp.ligretto
 
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
 ): Unit = with(extension) {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+    jvmToolchain(17)
+
+    extension.configure<KotlinMultiplatformAndroidLibraryTarget> {
+        configureAndroidKmp(this)
     }
 
     listOf(
