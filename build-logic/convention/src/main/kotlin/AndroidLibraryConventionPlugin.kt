@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.flaringapp.ligretto.alias
 import com.flaringapp.ligretto.configureAndroid
 import com.flaringapp.ligretto.configureKotlinAndroid
@@ -14,7 +14,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             alias(libs.plugins.android.library)
-            alias(libs.plugins.kotlin.android)
         }
 
         extensions.configure<LibraryExtension> {

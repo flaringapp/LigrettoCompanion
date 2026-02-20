@@ -4,6 +4,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.game.data"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core:database"))
@@ -19,8 +23,4 @@ kotlin {
             implementation(libs.kotlinx.coroutines.test)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.game.data"
 }

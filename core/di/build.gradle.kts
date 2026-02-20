@@ -3,13 +3,13 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.core.di"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.koin.annotations)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.core.di"
 }

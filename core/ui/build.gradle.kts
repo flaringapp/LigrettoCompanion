@@ -4,6 +4,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.core.ui"
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(project(":core:designsystem"))
@@ -19,8 +23,4 @@ kotlin {
 
 compose.resources {
     publicResClass = true
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.core.ui"
 }
