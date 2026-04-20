@@ -5,7 +5,8 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState
 
-internal class GameStartEndConditionsProvider : PreviewParameterProvider<GameStartState.EndConditions> {
+internal class GameStartEndConditionsProvider :
+    PreviewParameterProvider<GameStartState.EndConditions> {
 
     companion object {
 

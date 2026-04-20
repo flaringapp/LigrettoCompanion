@@ -15,25 +15,20 @@ plugins {
 
 //region Ktlint configuration
 configure<KtlintExtension> {
-    configure(layout.buildDirectory)
+    configure()
 }
 
 subprojects {
     apply(plugin = rootProject.libs.plugins.ktlintGradle.get().pluginId)
 
     configure<KtlintExtension> {
-        configure(layout.buildDirectory)
+        configure()
     }
 }
 
-fun KtlintExtension.configure(buildDir: DirectoryProperty) {
-    version.set("1.4.0")
+fun KtlintExtension.configure() {
+    version.set("1.8.0")
     android.set(true)
-
-    val buildDirFile = buildDir.get().asFile
-    filter {
-        exclude { it.file.path.contains("${buildDirFile.name}/generated/") }
-    }
 }
 //endregion
 

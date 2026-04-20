@@ -52,5 +52,12 @@ class MultiplatformKoinKspConventionPlugin : Plugin<Project> {
                 dependsOn("kspCommonMainKotlinMetadata")
             }
         }
+
+        project.tasks.matching {
+            it.name == "runKtlintCheckOverCommonMainSourceSet" ||
+                it.name == "runKtlintFormatOverCommonMainSourceSet"
+        }.configureEach {
+            mustRunAfter("kspCommonMainKotlinMetadata")
+        }
     }
 }
