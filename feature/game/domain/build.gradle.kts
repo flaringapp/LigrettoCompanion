@@ -4,6 +4,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.game.domain"
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(project(":feature:game:model"))
@@ -12,8 +16,4 @@ kotlin {
             implementation(libs.kotlinx.datetime)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.game.domain"
 }

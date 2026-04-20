@@ -8,6 +8,10 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.common"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core:di"))
@@ -38,8 +42,4 @@ kotlin {
             linkerOpts.add("-lsqlite3")
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.common"
 }

@@ -3,15 +3,15 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.home.ui"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":feature:home:domain"))
 
-            implementation(compose.components.resources)
+            implementation(libs.compose.multiplatform.components.resources)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.home.ui"
 }

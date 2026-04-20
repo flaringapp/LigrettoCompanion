@@ -5,7 +5,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.core.ui.generated.resources.cancel
 import ligretto_companion.core.ui.generated.resources.yes
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -67,4 +69,15 @@ fun GameCloseDialogContent(
             }
         },
     )
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    AppTheme {
+        GameCloseDialogContent(
+            approve = {},
+            dismiss = {},
+        )
+    }
 }

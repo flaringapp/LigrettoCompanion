@@ -25,7 +25,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
@@ -33,6 +36,7 @@ import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartPlayersIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.PlayerId
+import com.flaringapp.ligretto.feature.game.ui.start.preview.GameStartStateProvider
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GenericContent
 import ligretto_companion.core.ui.generated.resources.back
@@ -221,18 +225,17 @@ private fun ScreenFooterButton(
     dispatch: (GameStartIntent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (!state.endConditions.isExpandedCompleted) {
+    if (state.endConditions.isExpandedCompleted) {
+        StartGameButton(
+            modifier = modifier,
+            onClick = { dispatch(GameStartIntent.StartGame) },
+        )
+    } else {
         NextStepButton(
             modifier = modifier,
             onClick = { dispatch(GameStartEndConditionsIntent.SubmitStep) },
         )
-        return
     }
-
-    StartGameButton(
-        modifier = modifier,
-        onClick = { dispatch(GameStartIntent.StartGame) },
-    )
 }
 
 @Composable
@@ -267,6 +270,20 @@ private fun StartGameButton(
             modifier = Modifier.padding(start = 8.dp),
             imageVector = Icons.Rounded.RocketLaunch,
             contentDescription = null,
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun Preview(
+    @PreviewParameter(GameStartStateProvider::class) state: GameStartState,
+) {
+    AppTheme {
+        GameStartScreenContent(
+            state = state,
+            dispatch = {},
+            close = {},
         )
     }
 }

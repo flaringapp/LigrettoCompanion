@@ -6,7 +6,7 @@ import com.flaringapp.ligretto.feature.game.model.Player
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal class GameEndCompositeConditionTest {
 

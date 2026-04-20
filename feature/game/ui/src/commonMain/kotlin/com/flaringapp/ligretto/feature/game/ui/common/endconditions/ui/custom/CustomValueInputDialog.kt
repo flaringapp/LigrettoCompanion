@@ -20,13 +20,18 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.window.DialogProperties
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.rememberDefaultTextFieldValueToStringInterop
 import com.flaringapp.ligretto.core.util.common.getDigits
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsScoreLimitCustomValueStateProvider
+import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsTimeLimitCustomValueStateProvider
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 import ligretto_companion.core.ui.generated.resources.cancel
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -96,18 +101,19 @@ internal fun GameEndConditionsScope.CustomTimeInputDialog(
     )
 }
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 private fun GameEndConditionsScope.CustomValueInputDialog(
     icon: ImageVector,
     title: String,
     label: String,
-    suffix: String? = null,
     value: String,
     onValueChange: (String) -> Unit,
     filterInput: (String) -> String,
     error: String?,
     save: () -> Unit,
     dismiss: () -> Unit,
+    suffix: String? = null,
 ) {
     AlertDialog(
         onDismissRequest = dismiss,
@@ -178,4 +184,32 @@ private fun GameEndConditionsScope.CustomValueInputDialog(
             }
         },
     )
+}
+
+@Preview
+@Composable
+private fun PreviewScore(
+    @PreviewParameter(GameEndConditionsScoreLimitCustomValueStateProvider::class)
+    state: GameEndConditionScoreLimitState.CustomInput,
+) {
+    AppTheme {
+        GameEndConditionsScope.CustomScoreInputDialog(
+            state = state,
+            dispatch = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewTime(
+    @PreviewParameter(GameEndConditionsTimeLimitCustomValueStateProvider::class)
+    state: GameEndConditionTimeLimitState.CustomInput,
+) {
+    AppTheme {
+        GameEndConditionsScope.CustomTimeInputDialog(
+            state = state,
+            dispatch = {},
+        )
+    }
 }

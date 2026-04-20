@@ -4,11 +4,15 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.core.arch"
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
 
-            implementation(compose.runtime)
+            implementation(libs.compose.multiplatform.runtime)
 
             implementation(libs.compose.multiplatform.lifecycle.viewModel)
         }
@@ -16,8 +20,4 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.core.arch"
 }

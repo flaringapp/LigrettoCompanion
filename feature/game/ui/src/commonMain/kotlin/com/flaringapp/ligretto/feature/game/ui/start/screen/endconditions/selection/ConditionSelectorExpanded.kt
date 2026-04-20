@@ -21,9 +21,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_top_level_expanded_message
@@ -64,8 +69,9 @@ fun GameStartEndConditionsScope.TimeSelectorExpanded(
     )
 }
 
+@Suppress("UnusedReceiverParameter")
 @Composable
-private fun SelectionContainer(
+private fun GameStartEndConditionsScope.SelectionContainer(
     selected: Boolean,
     icon: ImageVector,
     title: String,
@@ -193,4 +199,32 @@ private fun MessageText(
         text = text,
         style = MaterialTheme.typography.bodySmall,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewScoreDeselectedPadded() {
+    var selected by remember { mutableStateOf(false) }
+
+    AppTheme {
+        GameStartEndConditionsScope.ScoreSelectorExpanded(
+            modifier = Modifier.padding(16.dp),
+            selected = selected,
+            onSelectionChange = { selected = it },
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewTimeSelectedPadded() {
+    var selected by remember { mutableStateOf(true) }
+
+    AppTheme {
+        GameStartEndConditionsScope.TimeSelectorExpanded(
+            modifier = Modifier.padding(16.dp),
+            selected = selected,
+            onSelectionChange = { selected = it },
+        )
+    }
 }

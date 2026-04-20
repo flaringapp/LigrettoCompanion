@@ -7,12 +7,12 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal class GameEndScoreConditionTest {
 
     @Test
-    fun `returns false fiven all players have less score than target`() {
+    fun `returns false given all players have less score than target`() {
         val scores = mapOf(
             Player(1, "Andreo") to Score(10),
             Player(1, "Mario") to Score(32),

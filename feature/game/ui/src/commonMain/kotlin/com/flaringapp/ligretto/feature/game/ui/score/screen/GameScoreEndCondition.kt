@@ -16,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.scores_end_condition_score_label
 import ligretto_companion.feature.game.ui.generated.resources.scores_end_condition_score_value
@@ -135,4 +137,24 @@ private fun EndConditionValueText(
         fontWeight = FontWeight.Bold,
         style = MaterialTheme.typography.bodyLarge,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewScore() {
+    AppTheme {
+        GameScoreEndConditionScore(
+            score = 100,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewTime() {
+    AppTheme {
+        GameScoreEndConditionTime(
+            minutes = 30,
+        )
+    }
 }

@@ -13,7 +13,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionPill
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionsRow
@@ -86,4 +88,32 @@ private fun GameStartEndConditionsScope.ConditionFlag(
             }
         },
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewDeselected() {
+    PreviewBase(selected = false)
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSelected() {
+    PreviewBase(selected = true)
+}
+
+@Composable
+private fun PreviewBase(
+    selected: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    AppTheme {
+        GameStartEndConditionsScope.ConditionsSelectionCompact(
+            modifier = modifier,
+            scoreSelected = selected,
+            timeSelected = selected,
+            onScoreClick = {},
+            onTimeClick = {},
+        )
+    }
 }
