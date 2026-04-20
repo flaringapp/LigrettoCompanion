@@ -27,4 +27,6 @@ internal fun Project.configureAndroidKmp(
 ) = with(extension) {
     compileSdk = 36
     minSdk = 24
+
+    withHostTest { }
 }
