@@ -25,7 +25,9 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -158,5 +160,37 @@ private fun RemoveButton(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewEmpty() {
+    AppTheme {
+        GameStartPlayer(
+            name = "",
+            number = 1,
+            canRemove = false,
+            requestFocus = false,
+            onNameChange = {},
+            onFocusChanged = {},
+            onRemoveClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewFilled() {
+    AppTheme {
+        GameStartPlayer(
+            name = "Player",
+            number = 4,
+            canRemove = true,
+            requestFocus = true,
+            onNameChange = {},
+            onFocusChanged = {},
+            onRemoveClick = {},
+        )
     }
 }

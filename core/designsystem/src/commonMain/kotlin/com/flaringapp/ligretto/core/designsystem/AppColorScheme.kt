@@ -1,7 +1,11 @@
 package com.flaringapp.ligretto.core.designsystem
 
 import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.contentColorFor
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.takeOrElse
 
 fun appLightColorScheme() = ColorScheme(
     primary = AppColorPalette.primary40,
@@ -40,6 +44,18 @@ fun appLightColorScheme() = ColorScheme(
     surfaceContainerHighest = Color(0xFFEDE0DC),
     surfaceContainerLow = Color(0xFFFEF1ED),
     surfaceContainerLowest = Color(0xFFFFFBFF),
+    primaryFixed = AppColorPalette.primary90,
+    primaryFixedDim = AppColorPalette.primary80,
+    onPrimaryFixed = AppColorPalette.primary10,
+    onPrimaryFixedVariant = AppColorPalette.primary30,
+    secondaryFixed = AppColorPalette.secondary90,
+    secondaryFixedDim = AppColorPalette.secondary80,
+    onSecondaryFixed = AppColorPalette.secondary10,
+    onSecondaryFixedVariant = AppColorPalette.secondary30,
+    tertiaryFixed = AppColorPalette.tertiary90,
+    tertiaryFixedDim = AppColorPalette.tertiary80,
+    onTertiaryFixed = AppColorPalette.tertiary10,
+    onTertiaryFixedVariant = AppColorPalette.tertiary30,
 )
 
 fun appDarkColorScheme() = ColorScheme(
@@ -79,4 +95,33 @@ fun appDarkColorScheme() = ColorScheme(
     surfaceContainerHighest = Color(0xFF3B3331),
     surfaceContainerLow = Color(0xFF201A18),
     surfaceContainerLowest = Color(0xFF120D0B),
+    primaryFixed = AppColorPalette.primary90,
+    primaryFixedDim = AppColorPalette.primary80,
+    onPrimaryFixed = AppColorPalette.primary10,
+    onPrimaryFixedVariant = AppColorPalette.primary30,
+    secondaryFixed = AppColorPalette.secondary90,
+    secondaryFixedDim = AppColorPalette.secondary80,
+    onSecondaryFixed = AppColorPalette.secondary10,
+    onSecondaryFixedVariant = AppColorPalette.secondary30,
+    tertiaryFixed = AppColorPalette.tertiary90,
+    tertiaryFixedDim = AppColorPalette.tertiary80,
+    onTertiaryFixed = AppColorPalette.tertiary10,
+    onTertiaryFixedVariant = AppColorPalette.tertiary30,
 )
+
+@Composable
+fun fixedOrDynamicContentColorFor(backgroundColor: Color): Color =
+    MaterialTheme.colorScheme.fixedContentColorFor(backgroundColor)
+        .takeOrElse { contentColorFor(backgroundColor) }
+
+private fun ColorScheme.fixedContentColorFor(
+    fixedBackgroundColor: Color,
+): Color = when (fixedBackgroundColor) {
+    primaryFixed -> onPrimaryFixed
+    primaryFixedDim -> onPrimaryFixedVariant
+    secondaryFixed -> onSecondaryFixed
+    secondaryFixedDim -> onSecondaryFixedVariant
+    tertiaryFixed -> onTertiaryFixed
+    tertiaryFixedDim -> onTertiaryFixedVariant
+    else -> Color.Unspecified
+}

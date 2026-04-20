@@ -28,8 +28,11 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
@@ -230,5 +233,20 @@ private fun CardsCountChangeButton(
                 contentDescription = stringResource(contentDescription),
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun Preview(
+    @PreviewParameter(GameLapPlayerCardsStateProvider::class)
+    state: GameLapPlayerCardsState,
+) {
+    AppTheme {
+        GameLapPlayerCards(
+            state = state,
+            increment = {},
+            decrement = {},
+        )
     }
 }

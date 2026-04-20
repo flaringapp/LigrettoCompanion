@@ -3,17 +3,17 @@ plugins {
 }
 
 kotlin {
+    android {
+        namespace = "com.flaringapp.ligretto.feature.game.ui"
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":feature:game:domain"))
 
             implementation(libs.kotlinx.datetime)
 
-            implementation(compose.components.resources)
+            implementation(libs.compose.multiplatform.components.resources)
         }
     }
-}
-
-android {
-    namespace = "com.flaringapp.ligretto.feature.game.ui"
 }

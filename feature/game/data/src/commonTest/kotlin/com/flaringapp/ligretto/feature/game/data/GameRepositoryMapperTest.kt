@@ -12,10 +12,10 @@ import com.flaringapp.ligretto.feature.game.model.end.GameEndTimeCondition
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 class GameRepositoryMapperTest {
 

@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -15,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.flaringapp.ligretto.core.designsystem.AppFixedColorScheme
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.designsystem.fixedOrDynamicContentColorFor
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 internal fun GameEndConditionsScope.OptionPill(
     text: String,
@@ -36,7 +41,7 @@ internal fun GameEndConditionsScope.OptionPill(
     val colorScheme = MaterialTheme.colorScheme
     val selectedSurfaceColor = when {
         LocalContentColor.current == colorScheme.onSurfaceVariant -> {
-            AppFixedColorScheme.SecondaryFixedDim
+            colorScheme.secondaryFixedDim
         }
 
         else -> {
@@ -75,5 +80,64 @@ internal fun GameEndConditionsScope.OptionPill(
                 style = MaterialTheme.typography.labelLarge,
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewDeselected() {
+    AppTheme {
+        GameEndConditionsScope.OptionPill(
+            text = "100",
+            selected = false,
+            onClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSelected() {
+    AppTheme {
+        GameEndConditionsScope.OptionPill(
+            text = "30m",
+            selected = true,
+            onClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSelectedFixedColor() {
+    AppTheme {
+        Surface(
+            color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        ) {
+            GameEndConditionsScope.OptionPill(
+                text = "30m",
+                selected = true,
+                onClick = {},
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLeadingIcon() {
+    AppTheme {
+        GameEndConditionsScope.OptionPill(
+            text = "Score",
+            selected = true,
+            onClick = {},
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Rounded.Check,
+                    contentDescription = null,
+                )
+            },
+        )
     }
 }

@@ -29,10 +29,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartIntent
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartState
+import com.flaringapp.ligretto.feature.game.ui.lap.start.preview.GameLapStartStateProvider
 import ligretto_companion.core.ui.generated.resources.img_card_red
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.img_lap_start_go
@@ -261,3 +265,17 @@ private data class ScreenTransitionState(
     val showLapNumber: Boolean = false,
     val showGo: Boolean = false,
 )
+
+@Preview
+@Composable
+private fun Preview(
+    @PreviewParameter(GameLapStartStateProvider::class)
+    state: GameLapStartState,
+) {
+    AppTheme {
+        GameLapStartScreenContent(
+            state = state,
+            dispatch = {},
+        )
+    }
+}

@@ -14,12 +14,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             alias(libs.plugins.android.application)
-            alias(libs.plugins.kotlin.android)
         }
 
         extensions.configure<ApplicationExtension> {
             configureAndroid(this)
-            defaultConfig.targetSdk = 35
+            defaultConfig.targetSdk = 36
         }
 
         extensions.configure<KotlinAndroidProjectExtension> {

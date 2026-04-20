@@ -42,5 +42,5 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
 
-    implementation(compose.foundation)
+    implementation(libs.compose.multiplatform.foundation)
 }

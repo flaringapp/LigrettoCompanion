@@ -18,13 +18,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.components.FooterButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState
+import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndStateProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.game_end_close_button
 import org.jetbrains.compose.resources.stringResource
@@ -160,5 +164,19 @@ private fun OtherPlacesContent(
                 state = player,
             )
         }
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun Preview(
+    @PreviewParameter(GameEndStateProvider::class)
+    state: GameEndState,
+) {
+    AppTheme {
+        GameEndScreenContent(
+            state = state,
+            dispatch = {},
+        )
     }
 }

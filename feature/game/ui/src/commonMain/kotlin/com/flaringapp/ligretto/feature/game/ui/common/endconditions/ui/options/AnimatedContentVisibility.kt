@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.GameEndConditionsScope
 
+@Suppress("UnusedReceiverParameter")
 @Composable
 fun <T> GameEndConditionsScope.AnimatedContentVisibility(
     componentName: String,

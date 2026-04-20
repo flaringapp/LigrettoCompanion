@@ -1,6 +1,4 @@
-import com.android.build.gradle.LibraryExtension
 import com.flaringapp.ligretto.alias
-import com.flaringapp.ligretto.configureAndroid
 import com.flaringapp.ligretto.configureKotlinMultiplatform
 import com.flaringapp.ligretto.libs
 import org.gradle.api.Plugin
@@ -13,15 +11,11 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             alias(libs.plugins.kotlin.multiplatform)
-            alias(libs.plugins.android.library)
+            alias(libs.plugins.android.kotlin.multiplatform.library)
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
             configureKotlinMultiplatform(this)
-        }
-
-        extensions.configure<LibraryExtension> {
-            configureAndroid(this)
         }
     }
 }

@@ -19,10 +19,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
+import com.flaringapp.ligretto.feature.game.ui.score.preview.GameScorePlayerScoreProvider
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -161,4 +165,17 @@ private fun ScoreText(
         text = score.toString(),
         style = MaterialTheme.typography.headlineMedium,
     )
+}
+
+@Preview
+@Composable
+private fun Preview(
+    @PreviewParameter(GameScorePlayerScoreProvider::class)
+    state: PlayerScore,
+) {
+    AppTheme {
+        GameScorePlayer(
+            state = state,
+        )
+    }
 }
