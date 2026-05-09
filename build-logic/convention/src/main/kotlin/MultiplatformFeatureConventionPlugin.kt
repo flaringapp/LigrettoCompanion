@@ -11,7 +11,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply("ligretto.multiplatform.library")
             apply("ligretto.multiplatform.library.compose")
-            apply("ligretto.multiplatform.koin.ksp")
+            apply("ligretto.multiplatform.koin.compiler")
 
             // Required for type safe navigation
             alias(libs.plugins.kotlin.serialization)

@@ -1,7 +1,7 @@
 plugins {
     id("ligretto.multiplatform.library")
     id("ligretto.multiplatform.database")
-    id("ligretto.multiplatform.koin.ksp")
+    id("ligretto.multiplatform.koin.compiler")
 }
 
 kotlin {
