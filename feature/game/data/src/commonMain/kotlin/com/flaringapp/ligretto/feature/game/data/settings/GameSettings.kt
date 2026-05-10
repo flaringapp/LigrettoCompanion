@@ -17,7 +17,7 @@ internal interface GameSettings {
 
 @OptIn(ExperimentalSettingsApi::class)
 @Single
-class GameSettingsImpl(
+internal class GameSettingsImpl(
     private val settingsProvider: SettingsProvider,
 ) : GameSettings {
 
