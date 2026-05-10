@@ -7,4 +7,4 @@ import org.koin.core.annotation.Module
 @Module
 @ComponentScan
 @Configuration
-class GameUiModule
+internal class GameUiModule

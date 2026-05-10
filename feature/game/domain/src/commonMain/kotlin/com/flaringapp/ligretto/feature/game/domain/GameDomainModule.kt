@@ -9,7 +9,7 @@ import kotlin.time.Clock
 @Module
 @ComponentScan
 @Configuration
-class GameDomainModule {
+internal class GameDomainModule {
 
     @Factory
     fun clock(): Clock = Clock.System

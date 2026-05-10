@@ -7,10 +7,10 @@ import kotlinx.coroutines.runBlocking
 
 @Module(includes = [DatabasePlatformModule::class])
 @Configuration
-class DatabaseModule {
+internal class DatabaseModule {
 
     @Single
-    internal fun provideDatabase(driverFactory: DatabaseDriverFactory): Database {
+    fun provideDatabase(driverFactory: DatabaseDriverFactory): Database {
         return runBlocking {
             Database(
                 driver = driverFactory.provideDriver(
