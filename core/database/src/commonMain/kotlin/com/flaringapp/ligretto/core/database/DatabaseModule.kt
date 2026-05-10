@@ -21,6 +21,3 @@ class DatabaseModule {
         }
     }
 }
-
-@Module
-internal expect class DatabasePlatformModule

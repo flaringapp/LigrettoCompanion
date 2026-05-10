@@ -18,6 +18,3 @@ class SettingsModule {
         )
     }
 }
-
-@Module
-internal expect class SettingsPlatformModule
