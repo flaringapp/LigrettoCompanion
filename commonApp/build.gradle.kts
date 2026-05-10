@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("ligretto.multiplatform.library")
     id("ligretto.multiplatform.library.compose")
-    id("ligretto.multiplatform.koin.ksp")
+    id("ligretto.multiplatform.koin.compiler")
 }
 
 kotlin {
@@ -20,14 +20,10 @@ kotlin {
             implementation(project(":core:arch"))
             implementation(project(":core:database"))
             implementation(project(":core:settings"))
-            implementation(project(":feature:home:ui"))
-            implementation(project(":feature:home:di"))
-            implementation(project(":feature:game:ui"))
-            implementation(project(":feature:game:di"))
+            implementation(project(":feature:home"))
+            implementation(project(":feature:game"))
 
             implementation(libs.compose.multiplatform.navigation)
-
-            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.koin.test)
@@ -42,4 +38,8 @@ kotlin {
             linkerOpts.add("-lsqlite3")
         }
     }
+}
+
+koinCompiler {
+    compileSafety.set(true)
 }

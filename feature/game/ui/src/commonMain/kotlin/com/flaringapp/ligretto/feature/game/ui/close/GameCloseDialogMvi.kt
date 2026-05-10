@@ -5,7 +5,7 @@ import com.flaringapp.ligretto.core.arch.UiEffect
 import com.flaringapp.ligretto.core.arch.UiIntent
 import com.flaringapp.ligretto.core.arch.UiState
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 internal object GameCloseState : UiState
 

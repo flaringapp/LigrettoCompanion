@@ -8,19 +8,19 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 
-internal actual class DatabaseDriverFactory(
+internal class AndroidDatabaseDriverFactory(
     private val context: Context,
-    private val databaseName: String,
-) {
+) : DatabaseDriverFactory {
 
-    actual suspend fun provideDriver(
+    override suspend fun provideDriver(
         schema: SqlSchema<QueryResult.AsyncValue<Unit>>,
+        name: String,
     ): SqlDriver {
         val schemaValue = schema.synchronous()
         return AndroidSqliteDriver(
             schema = schemaValue,
             context = context,
-            name = databaseName,
+            name = name,
             callback = object : AndroidSqliteDriver.Callback(schemaValue) {
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     db.setForeignKeyConstraintsEnabled(true)

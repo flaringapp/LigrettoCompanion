@@ -11,7 +11,7 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndCondi
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsScoreReducer
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionsTimeReducer
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

@@ -6,7 +6,7 @@ import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.domain.usecase.EndGameUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel(binds = [])
 internal class GameEndViewModel(

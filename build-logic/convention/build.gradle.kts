@@ -22,7 +22,7 @@ kotlin {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.koin.compiler.gradlePlugin)
     compileOnly(libs.compose.multiplatform.gradlePlugin)
     compileOnly(libs.compose.multiplatform.compiler.gradlePlugin)
 
@@ -62,9 +62,9 @@ gradlePlugin {
             id = "ligretto.multiplatform.library.compose"
             implementationClass = "MultiplatformComposeLibraryConventionPlugin"
         }
-        register("multiplatformKoinKsp") {
-            id = "ligretto.multiplatform.koin.ksp"
-            implementationClass = "MultiplatformKoinKspConventionPlugin"
+        register("multiplatformKoinCompiler") {
+            id = "ligretto.multiplatform.koin.compiler"
+            implementationClass = "MultiplatformKoinCompilerConventionPlugin"
         }
         register("multiplatformDatabase") {
             id = "ligretto.multiplatform.database"
