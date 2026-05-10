@@ -30,16 +30,24 @@
 - `:core:database`: SQLDelight schema, queries, database drivers, and database DI.
 - `:core:settings`: multiplatform settings abstractions and platform factories.
 - `:core:di`: shared DI helpers and dispatcher qualifiers.
-- `:feature:home:*`: home screen/domain/DI for starting or resuming games.
-- `:feature:game:*`: game model, domain use cases, repository contracts/data, UI flow, and DI.
+- `:core:util:common`: small shared utilities used by feature modules.
+- `:core:database-test`, `:core:settings-test`, `:core:util:database-test`: test helpers and fixtures for common tests.
+- `:feature:home`: aggregate module exporting home UI/domain.
+- `:feature:home:ui` and `:feature:home:domain`: home screen and domain logic for starting or resuming games.
+- `:feature:game`: aggregate module exporting game UI/data/domain/contracts/model.
+- `:feature:game:*`: game model, domain use cases, repository contracts/data, and UI flow.
 - `:build-logic`: Gradle convention plugins; prefer these over repeating Gradle configuration in modules.
 
 ## Architecture Conventions
 - Keep shared business logic in `commonMain`; add platform-specific code only in `androidMain`, `appleMain`, or `nativeMain` when needed.
-- Follow the existing feature layering: `model` → `domain-contracts` → `data`/`domain` → `ui` → `di`, wired from `commonApp`.
+- Follow the existing feature layering: `model` → `domain-contracts` → `data`/`domain` → `ui`, exported by feature aggregate modules and consumed by `commonApp`.
 - UI screens use MVI: `State`, `Intent`, `Effect`, `ViewModel`, plus a route-level composable that collects lifecycle-aware state and delegates rendering to `screen/*Content`.
 - Navigation uses kotlinx-serializable destination objects/classes and feature-owned `*Navigation.kt` graph builders.
-- Koin uses annotations (`@Module`, `@ComponentScan`, `@Single`, `@Factory`, `@KoinViewModel`) with generated modules; add new modules through feature `di` aggregators and `commonApp` app modules.
+- Koin uses the Koin compiler plugin, not KSP. Apply `ligretto.multiplatform.koin.compiler` for modules that declare annotated definitions.
+- Koin modules use annotations (`@Module`, `@Configuration`, `@ComponentScan`, `@Single`, `@Factory`, `@KoinViewModel`) and are discovered through compiler-generated configuration hints.
+- App startup uses `@KoinApplication` on `LigrettoKoinApp` and `startKoin<LigrettoKoinApp>()` from platform DI entry points.
+- `commonApp` enables Koin compile safety; the convention plugin disables compile safety by default for lower modules because cross-module hint analysis is still limited.
+- Keep DI module files named after their module classes, for example `DatabaseModule.kt`, `DatabasePlatformModule.android.kt`, `SettingsModule.kt`, `HomeUiModule.kt`, and `GameDomainModule.kt`.
 - Database changes belong in SQLDelight `.sq` files under `core/database/src/commonMain/sqldelight`; update mappers/tests when schema or persisted models change.
 
 ## Style
@@ -52,11 +60,11 @@
 - Build Android debug APK: `./gradlew :androidApp:assembleDebug`
 - Clean rebuild Android: `./gradlew :androidApp:assembleDebug --rerun-tasks`
 - Run common/unit tests broadly: `./gradlew allTests`
-- Run Android unit tests: `./gradlew :androidApp:testDebugUnitTest`
+- Run Android-host/app unit tests: `./gradlew testAndroid testDebugUnitTest`
 - Run ktlint checks: `./gradlew ktlintCheck`
 - Format Kotlin: `./gradlew ktlintFormat`
 
 ## Validation Notes
 - There are existing common tests for database queries, settings, game model/domain, and game data.
-- There is an Android unit test checking Koin configuration in `commonApp`.
-- When touching DI, run a Koin-related test if possible; when touching SQLDelight, run database and mapper tests.
+- DI graph validation is primarily compile-time through the Koin compiler plugin; run `./gradlew :androidApp:assembleDebug` after touching DI.
+- When touching SQLDelight, run database and mapper tests where possible.
