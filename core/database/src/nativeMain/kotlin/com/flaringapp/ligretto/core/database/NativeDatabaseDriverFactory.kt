@@ -7,16 +7,15 @@ import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import co.touchlab.sqliter.DatabaseConfiguration
 
-internal actual class DatabaseDriverFactory(
-    private val databaseName: String,
-) {
+internal class NativeDatabaseDriverFactory : DatabaseDriverFactory {
 
-    actual suspend fun provideDriver(
+    override suspend fun provideDriver(
         schema: SqlSchema<QueryResult.AsyncValue<Unit>>,
+        name: String,
     ): SqlDriver {
         return NativeSqliteDriver(
             schema = schema.synchronous(),
-            name = databaseName,
+            name = name,
             onConfiguration = { config ->
                 config.copy(
                     extendedConfig = DatabaseConfiguration.Extended(foreignKeyConstraints = true),

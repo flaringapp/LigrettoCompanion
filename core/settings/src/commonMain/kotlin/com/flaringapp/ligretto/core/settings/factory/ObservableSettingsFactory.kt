@@ -1,11 +1,12 @@
 package com.flaringapp.ligretto.core.settings.factory
 
 import com.russhwolf.settings.ObservableSettings
+import com.russhwolf.settings.Settings
 
 /**
- * Inherits [com.russhwolf.settings.Settings.Factory], but returns [ObservableSettings].
+ * Inherits [Settings.Factory], but returns [ObservableSettings].
  */
-interface ObservableSettingsFactory {
+internal interface ObservableSettingsFactory : Settings.Factory {
 
-    fun create(name: String?): ObservableSettings
+    override fun create(name: String?): ObservableSettings
 }

@@ -10,7 +10,7 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsL
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 

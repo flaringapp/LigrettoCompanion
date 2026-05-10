@@ -4,7 +4,7 @@ import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Lap
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 

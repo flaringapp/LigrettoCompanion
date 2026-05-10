@@ -7,7 +7,7 @@ import com.flaringapp.ligretto.core.util.common.isRunning
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
