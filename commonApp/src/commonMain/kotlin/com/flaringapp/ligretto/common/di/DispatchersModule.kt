@@ -9,7 +9,7 @@ import kotlinx.coroutines.IO
 
 @Module
 @Configuration
-internal class DispatchersModule {
+class DispatchersModule {
 
     @Factory
     @DispatcherType.IO

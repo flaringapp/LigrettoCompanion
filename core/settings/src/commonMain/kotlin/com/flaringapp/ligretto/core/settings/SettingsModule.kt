@@ -9,10 +9,10 @@ import org.koin.core.annotation.Single
 
 @Module(includes = [SettingsPlatformModule::class])
 @Configuration
-class SettingsModule {
+internal class SettingsModule {
 
     @Single
-    internal fun provideSettingsProvider(factory: ObservableSettingsFactory): SettingsProvider {
+    fun provideSettingsProvider(factory: ObservableSettingsFactory): SettingsProvider {
         return SettingsProviderImpl(
             factory = factory,
         )

@@ -45,6 +45,7 @@
 - Navigation uses kotlinx-serializable destination objects/classes and feature-owned `*Navigation.kt` graph builders.
 - Koin uses the Koin compiler plugin, not KSP. Apply `ligretto.multiplatform.koin.compiler` for modules that declare annotated definitions.
 - Koin modules use annotations (`@Module`, `@Configuration`, `@ComponentScan`, `@Single`, `@Factory`, `@KoinViewModel`) and are discovered through compiler-generated configuration hints.
+- Keep Koin module classes internal by default. Only `commonApp` Koin module classes that are exposed through generated APIs during iOS framework export need to be public.
 - App startup uses `@KoinApplication` on `LigrettoKoinApp` and `startKoin<LigrettoKoinApp>()` from platform DI entry points.
 - `commonApp` enables Koin compile safety; the convention plugin disables compile safety by default for lower modules because cross-module hint analysis is still limited.
 - Keep DI module files named after their module classes, for example `DatabaseModule.kt`, `DatabasePlatformModule.android.kt`, `SettingsModule.kt`, `HomeUiModule.kt`, and `GameDomainModule.kt`.
