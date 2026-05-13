@@ -1,42 +1,29 @@
 package com.flaringapp.ligretto.feature.home.ui
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.dialog
-import androidx.navigation.navigation
-import com.flaringapp.ligretto.feature.home.ui.game_ended.GameEndedDestination
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.scene.DialogSceneStrategy
 import com.flaringapp.ligretto.feature.home.ui.game_ended.GameEndedDialog
 import com.flaringapp.ligretto.feature.home.ui.home.HomeScreen
-import com.flaringapp.ligretto.feature.home.ui.home.HomeScreenDestination
-import kotlinx.serialization.Serializable
 
-@Serializable
-data object HomeDestination
-
-fun NavGraphBuilder.homeGraph(
-    navController: NavController,
+fun EntryProviderScope<NavKey>.homeGraph(
+    backStack: NavBackStack<NavKey>,
     startGame: (restartLastGame: Boolean) -> Unit,
     resumeGame: (openLap: Boolean) -> Unit,
 ) {
-    navigation<HomeDestination>(
-        startDestination = HomeScreenDestination,
-    ) {
-        composable<HomeScreenDestination> {
-            HomeScreen(
-                openStartGame = startGame,
-                openResumeGame = resumeGame,
-                openActiveGameEnded = navController::openGameEnded,
-            )
-        }
-        dialog<GameEndedDestination> {
-            GameEndedDialog(
-                dismiss = navController::navigateUp,
-            )
-        }
+    entry<HomeScreenDestination> {
+        HomeScreen(
+            openStartGame = startGame,
+            openResumeGame = resumeGame,
+            openActiveGameEnded = { backStack.add(GameEndedDestination) },
+        )
     }
-}
-
-private fun NavController.openGameEnded() {
-    navigate(GameEndedDestination)
+    entry<GameEndedDestination>(
+        metadata = DialogSceneStrategy.dialog(),
+    ) {
+        GameEndedDialog(
+            dismiss = backStack::removeLastOrNull,
+        )
+    }
 }

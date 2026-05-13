@@ -10,10 +10,6 @@ import androidx.navigationevent.compose.rememberNavigationEventState
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.screen.GameLapCardsLeftScreenContent
 import org.koin.compose.viewmodel.koinViewModel
-import kotlinx.serialization.Serializable
-
-@Serializable
-internal data object GameLapCardsLeftDestination
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
