@@ -1,156 +1,132 @@
 package com.flaringapp.ligretto.feature.game.ui
 
 import androidx.compose.ui.window.DialogProperties
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptionsBuilder
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.dialog
-import androidx.navigation.navigation
-import androidx.navigation.toRoute
-import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDestination
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.scene.DialogSceneStrategy
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
-import com.flaringapp.ligretto.feature.game.ui.end.GameEndDestination
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndScreen
-import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftDestination
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftScreen
-import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableDestination
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableScreen
-import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartDestination
 import com.flaringapp.ligretto.feature.game.ui.lap.start.GameLapStartScreen
-import com.flaringapp.ligretto.feature.game.ui.score.GameScoreDestination
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
-import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDestination
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDialog
-import com.flaringapp.ligretto.feature.game.ui.start.GameStartDestination
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
-import kotlinx.serialization.Serializable
 
-@Serializable
-data class GameDestination(
-    val restartLastGame: Boolean,
-)
-
-fun NavGraphBuilder.gameGraph(navController: NavController) {
-    navigation<GameDestination>(
-        startDestination = GameStartDestination::class,
-    ) {
-        composable<GameStartDestination> {
-            GameStartScreen(
-                restartLastGame = it.toRoute<GameStartDestination>().restartLastGame,
-                openGame = navController::navigateGameLapStart,
-                openClose = navController::navigateGameClose,
-            )
-        }
-        composable<GameScoreDestination> {
-            GameScoreScreen(
-                openNextLap = navController::navigateGameLapStart,
-                openSettings = navController::navigateGameSettings,
-                openClose = navController::navigateGameClose,
-                openEnd = navController::navigateGameEnd,
-            )
-        }
-        composable<GameLapStartDestination> {
-            GameLapStartScreen(
-                openLap = navController::navigateGameLapCardsLeft,
-            )
-        }
-        composable<GameLapCardsLeftDestination> {
-            GameLapCardsLeftScreen(
-                openCardsOnTable = navController::navigateGameLapCardsOnTable,
-                openSettings = navController::navigateGameSettings,
-                openClose = navController::navigateGameClose,
-            )
-        }
-        composable<GameLapCardsOnTableDestination> {
-            GameLapCardsOnTableScreen(
-                navigateBack = navController::navigateUp,
-                openScores = navController::navigateGameScores,
-                openEnd = navController::navigateGameEnd,
-                openSettings = navController::navigateGameSettings,
-                openClose = navController::navigateGameClose,
-            )
-        }
-        dialog<GameSettingsDestination>(
+fun EntryProviderScope<NavKey>.gameGraph(backStack: NavBackStack<NavKey>) {
+    entry<GameStartDestination> { key ->
+        GameStartScreen(
+            restartLastGame = key.restartLastGame,
+            openGame = backStack::navigateGameLapStart,
+            openClose = backStack::navigateGameClose,
+        )
+    }
+    entry<GameScoreDestination> {
+        GameScoreScreen(
+            openNextLap = backStack::navigateGameLapStart,
+            openSettings = backStack::navigateGameSettings,
+            openClose = backStack::navigateGameClose,
+            openEnd = backStack::navigateGameEnd,
+        )
+    }
+    entry<GameLapStartDestination> {
+        GameLapStartScreen(
+            openLap = backStack::navigateGameLapCardsLeft,
+        )
+    }
+    entry<GameLapCardsLeftDestination> {
+        GameLapCardsLeftScreen(
+            openCardsOnTable = backStack::navigateGameLapCardsOnTable,
+            openSettings = backStack::navigateGameSettings,
+            openClose = backStack::navigateGameClose,
+        )
+    }
+    entry<GameLapCardsOnTableDestination> {
+        GameLapCardsOnTableScreen(
+            navigateBack = backStack::removeLastOrNull,
+            openScores = backStack::navigateGameScores,
+            openEnd = backStack::navigateGameEnd,
+            openSettings = backStack::navigateGameSettings,
+            openClose = backStack::navigateGameClose,
+        )
+    }
+    entry<GameSettingsDestination>(
+        metadata = DialogSceneStrategy.dialog(
             dialogProperties = DialogProperties(
                 dismissOnClickOutside = false,
             ),
-        ) {
-            GameSettingsDialog(
-                close = navController::navigateUp,
-            )
-        }
-        dialog<GameCloseDestination> {
-            GameCloseDialog(
-                openEnd = navController::navigateGameEnd,
-                closeGame = navController::navigateCloseGame,
-                dismiss = navController::navigateUp,
-            )
-        }
-        composable<GameEndDestination> {
-            GameEndScreen(
-                closeGame = navController::navigateCloseGame,
-            )
-        }
+        ),
+    ) {
+        GameSettingsDialog(
+            close = backStack::removeLastOrNull,
+        )
+    }
+    entry<GameCloseDestination>(
+        metadata = DialogSceneStrategy.dialog(),
+    ) {
+        GameCloseDialog(
+            openEnd = backStack::navigateGameEnd,
+            closeGame = backStack::closeGame,
+            dismiss = backStack::removeLastOrNull,
+        )
+    }
+    entry<GameEndDestination> {
+        GameEndScreen(
+            closeGame = backStack::closeGame,
+        )
     }
 }
 
-fun NavController.navigateNewGame(restartLastGame: Boolean) {
-    navigate(
-        GameDestination(restartLastGame = restartLastGame),
+fun NavBackStack<NavKey>.navigateNewGame(restartLastGame: Boolean) {
+    replaceGameScreen(
+        GameStartDestination(restartLastGame = restartLastGame),
     )
 }
 
-fun NavController.navigateResumeGame(openLap: Boolean) {
-    navigateNewGame(restartLastGame = false)
-
-    if (openLap) {
-        navigateGameLapCardsLeft()
-    } else {
-        navigateGameScores()
-    }
+fun NavBackStack<NavKey>.navigateResumeGame(openLap: Boolean) {
+    replaceGameScreen(
+        if (openLap) {
+            GameLapCardsLeftDestination
+        } else {
+            GameScoreDestination
+        },
+    )
 }
 
-private fun NavController.navigateGameScores() {
-    navigate(GameScoreDestination) {
-        closeGameScreens()
-    }
+private fun NavBackStack<NavKey>.navigateGameScores() {
+    replaceGameScreen(GameScoreDestination)
 }
 
-private fun NavController.navigateGameLapStart() {
-    navigate(GameLapStartDestination) {
-        closeGameScreens()
-    }
+private fun NavBackStack<NavKey>.navigateGameLapStart() {
+    replaceGameScreen(GameLapStartDestination)
 }
 
-private fun NavController.navigateGameLapCardsLeft() {
-    navigate(GameLapCardsLeftDestination) {
-        closeGameScreens()
-    }
+private fun NavBackStack<NavKey>.navigateGameLapCardsLeft() {
+    replaceGameScreen(GameLapCardsLeftDestination)
 }
 
-private fun NavController.navigateGameLapCardsOnTable() {
-    navigate(GameLapCardsOnTableDestination)
+private fun NavBackStack<NavKey>.navigateGameLapCardsOnTable() {
+    add(GameLapCardsOnTableDestination)
 }
 
-private fun NavController.navigateGameSettings() {
-    navigate(GameSettingsDestination)
+private fun NavBackStack<NavKey>.navigateGameSettings() {
+    add(GameSettingsDestination)
 }
 
-private fun NavController.navigateGameClose() {
-    navigate(GameCloseDestination)
+private fun NavBackStack<NavKey>.navigateGameClose() {
+    add(GameCloseDestination)
 }
 
-private fun NavController.navigateGameEnd() {
-    navigate(GameEndDestination) {
-        closeGameScreens()
-    }
+private fun NavBackStack<NavKey>.navigateGameEnd() {
+    replaceGameScreen(GameEndDestination)
 }
 
-private fun NavController.navigateCloseGame() {
-    popBackStack<GameDestination>(inclusive = true)
+private fun NavBackStack<NavKey>.replaceGameScreen(destination: GameNavDestination) {
+    closeGame()
+    add(destination)
 }
 
-private fun NavOptionsBuilder.closeGameScreens() {
-    popUpTo<GameDestination>()
+private fun NavBackStack<NavKey>.closeGame() {
+    removeAll { it is GameNavDestination }
 }
