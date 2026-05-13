@@ -8,7 +8,7 @@
 ## Project Summary
 - This is a Kotlin Multiplatform companion app for the Ligretto board game.
 - It targets Android via `:androidApp` and Apple/iOS via the shared `:commonApp` framework.
-- UI is Compose Multiplatform with Material 3, type-safe Compose Navigation, Koin DI, SQLDelight persistence, and multiplatform settings.
+- UI is Compose Multiplatform with Material 3, Navigation 3, Koin DI, SQLDelight persistence, and multiplatform settings.
 - The app tracks games, players, laps, scores, cards left/on-table, end conditions, game resume, settings, and game completion.
 
 ## Android CLI
@@ -42,7 +42,7 @@
 - Keep shared business logic in `commonMain`; add platform-specific code only in `androidMain`, `appleMain`, or `nativeMain` when needed.
 - Follow the existing feature layering: `model` → `domain-contracts` → `data`/`domain` → `ui`, exported by feature aggregate modules and consumed by `commonApp`.
 - UI screens use MVI: `State`, `Intent`, `Effect`, `ViewModel`, plus a route-level composable that collects lifecycle-aware state and delegates rendering to `screen/*Content`.
-- Navigation uses kotlinx-serializable destination objects/classes and feature-owned `*Navigation.kt` graph builders.
+- Navigation uses Navigation 3, kotlinx-serializable destination objects/classes, and feature-owned `*Navigation.kt` entry providers.
 - Koin uses the Koin compiler plugin, not KSP. Apply `ligretto.multiplatform.koin.compiler` for modules that declare annotated definitions.
 - Koin modules use annotations (`@Module`, `@Configuration`, `@ComponentScan`, `@Single`, `@Factory`, `@KoinViewModel`) and are discovered through compiler-generated configuration hints.
 - Keep Koin module classes internal by default. Only `commonApp` Koin module classes that are exposed through generated APIs during iOS framework export need to be public.
@@ -60,7 +60,7 @@
 ## Useful Commands
 - Build Android debug APK: `./gradlew :androidApp:assembleDebug`
 - Clean rebuild Android: `./gradlew :androidApp:assembleDebug --rerun-tasks`
-- Run common/unit tests broadly: `./gradlew allTests`
+- Compile shared iOS simulator app: `./gradlew :commonApp:compileKotlinIosSimulatorArm64`
 - Run Android-host/app unit tests: `./gradlew testAndroid testDebugUnitTest`
 - Run ktlint checks: `./gradlew ktlintCheck`
 - Format Kotlin: `./gradlew ktlintFormat`
