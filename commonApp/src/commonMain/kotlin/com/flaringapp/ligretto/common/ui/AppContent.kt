@@ -1,19 +1,27 @@
 package com.flaringapp.ligretto.common.ui
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.EaseInQuart
 import androidx.compose.animation.core.EaseOutQuart
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.scene.DialogSceneStrategy
+import androidx.navigation3.ui.NavDisplay
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.home.ui.HomeDestination
+import com.flaringapp.ligretto.feature.home.ui.HomeScreenDestination
 
 @Composable
 fun AppContent() {
@@ -26,49 +34,63 @@ fun AppContent() {
 private fun RootScreen(
     modifier: Modifier = Modifier,
 ) {
-    val navController = rememberNavController()
+    val backStack = rememberNavBackStack(
+        configuration = AppNavGraph.savedStateConfiguration,
+        HomeScreenDestination,
+    )
+    val dialogSceneStrategy = remember { DialogSceneStrategy<NavKey>() }
 
-    NavHost(
+    NavDisplay(
         modifier = modifier.background(MaterialTheme.colorScheme.surface),
-        navController = navController,
-        startDestination = HomeDestination,
-        enterTransition = {
+        backStack = backStack,
+        onBack = backStack::removeLastOrNull,
+        entryDecorators = listOf(
+            rememberSaveableStateHolderNavEntryDecorator(),
+            rememberViewModelStoreNavEntryDecorator(),
+        ),
+        sceneStrategies = listOf(dialogSceneStrategy),
+        entryProvider = entryProvider {
+            appNavGraph(backStack)
+        },
+        transitionSpec = {
             fadeIn(
                 animationSpec = enterAnimationSpec(),
-            ) + slideIntoContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Start,
+            ) + slideInHorizontally(
                 animationSpec = enterAnimationSpec(),
-                initialOffset = { it.slideFraction },
+                initialOffsetX = { it.slideFraction },
+            ) togetherWith fadeOut(
+                animationSpec = exitAnimationSpec(),
+            ) + slideOutHorizontally(
+                animationSpec = exitAnimationSpec(),
+                targetOffsetX = { -it.slideFraction },
             )
         },
-        exitTransition = {
-            fadeOut(
-                animationSpec = exitAnimationSpec(),
-            ) + slideOutOfContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Start,
-                animationSpec = exitAnimationSpec(),
-                targetOffset = { it.slideFraction },
-            )
-        },
-        popEnterTransition = {
+        popTransitionSpec = {
             fadeIn(
                 animationSpec = enterAnimationSpec(),
-            ) + slideIntoContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.End,
+            ) + slideInHorizontally(
                 animationSpec = enterAnimationSpec(),
-                initialOffset = { it.slideFraction },
+                initialOffsetX = { -it.slideFraction },
+            ) togetherWith fadeOut(
+                animationSpec = exitAnimationSpec(),
+            ) + slideOutHorizontally(
+                animationSpec = exitAnimationSpec(),
+                targetOffsetX = { it.slideFraction },
             )
         },
-        popExitTransition = {
-            fadeOut(
+        predictivePopTransitionSpec = {
+            fadeIn(
+                animationSpec = enterAnimationSpec(),
+            ) + slideInHorizontally(
+                animationSpec = enterAnimationSpec(),
+                initialOffsetX = { -it.slideFraction },
+            ) togetherWith fadeOut(
                 animationSpec = exitAnimationSpec(),
-            ) + slideOutOfContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.End,
+            ) + slideOutHorizontally(
                 animationSpec = exitAnimationSpec(),
-                targetOffset = { it.slideFraction },
+                targetOffsetX = { it.slideFraction },
             )
         },
-        builder = { appNavGraph(navController) },
     )
 }
 

@@ -12,11 +12,7 @@ import ligretto_companion.feature.home.ui.generated.resources.Res
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_message
 import ligretto_companion.feature.home.ui.generated.resources.game_ended_title
 import org.jetbrains.compose.resources.stringResource
-import kotlinx.serialization.Serializable
 import ligretto_companion.core.ui.generated.resources.Res as CoreRes
-
-@Serializable
-internal data object GameEndedDestination
 
 @Composable
 internal fun GameEndedDialog(

@@ -13,7 +13,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
             apply("ligretto.multiplatform.library.compose")
             apply("ligretto.multiplatform.koin.compiler")
 
-            // Required for type safe navigation
+            // Required for navigation3
             alias(libs.plugins.kotlin.serialization)
         }
 
@@ -27,14 +27,14 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
 
                     implementation(libs.kotlinx.coroutines.core)
 
-                    // Required for type safe navigation
-                    implementation(libs.kotlinx.serialization.json)
+                    // Required for navigation3
+                    implementation(libs.kotlinx.serialization.core)
 
                     implementation(libs.compose.multiplatform.components.resources)
 
                     implementation(libs.compose.multiplatform.lifecycle.runtime.compose)
 
-                    implementation(libs.compose.multiplatform.navigation)
+                    implementation(libs.compose.multiplatform.navigation3.ui)
                     implementation(libs.compose.multiplatform.navigationEvent)
 
                     implementation(libs.koin.compose.multiplatform)
