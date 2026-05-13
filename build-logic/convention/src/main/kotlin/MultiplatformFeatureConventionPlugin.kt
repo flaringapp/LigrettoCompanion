@@ -34,7 +34,7 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
 
                     implementation(libs.compose.multiplatform.lifecycle.runtime.compose)
 
-                    implementation(libs.compose.multiplatform.navigation)
+                    implementation(libs.compose.multiplatform.navigation3.ui)
                     implementation(libs.compose.multiplatform.navigationEvent)
 
                     implementation(libs.koin.compose.multiplatform)

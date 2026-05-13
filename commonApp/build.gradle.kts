@@ -23,7 +23,8 @@ kotlin {
             implementation(project(":feature:home"))
             implementation(project(":feature:game"))
 
-            implementation(libs.compose.multiplatform.navigation)
+            implementation(libs.compose.multiplatform.navigation3.ui)
+            implementation(libs.compose.multiplatform.lifecycle.viewModel.navigation3)
         }
         commonTest.dependencies {
             implementation(libs.koin.test)
