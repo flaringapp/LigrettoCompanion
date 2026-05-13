@@ -23,6 +23,9 @@ kotlin {
             implementation(project(":feature:home"))
             implementation(project(":feature:game"))
 
+            // Required for navigation3
+            implementation(libs.kotlinx.serialization.core)
+
             implementation(libs.compose.multiplatform.navigation3.ui)
             implementation(libs.compose.multiplatform.lifecycle.viewModel.navigation3)
         }

@@ -1,17 +1,10 @@
 package com.flaringapp.ligretto.feature.game.ui
 
 import androidx.navigation3.runtime.NavKey
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.modules.PolymorphicModuleBuilder
-
-@OptIn(ExperimentalSerializationApi::class)
-fun PolymorphicModuleBuilder<NavKey>.gameNavDestinations() {
-    subclassesOfSealed<GameNavDestination>()
-}
 
 @Serializable
-internal sealed interface GameNavDestination : NavKey
+sealed interface GameNavDestination : NavKey
 
 @Serializable
 internal data class GameStartDestination(
