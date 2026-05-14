@@ -50,6 +50,7 @@
 - App startup uses `@KoinApplication` on `LigrettoKoinApp` and `startKoin<LigrettoKoinApp>()` from platform DI entry points.
 - `commonApp` enables Koin compile safety; the convention plugin disables compile safety by default for lower modules because cross-module hint analysis is still limited.
 - Keep DI module files named after their module classes, for example `DatabaseModule.kt`, `DatabasePlatformModule.android.kt`, `SettingsModule.kt`, `HomeUiModule.kt`, and `GameDomainModule.kt`.
+- Keep project convention plugin IDs declared in `gradle/libs.versions.toml`; use `alias(libs.plugins.ligretto...)` in modules and catalog-backed IDs in `build-logic`.
 - Database changes belong in SQLDelight `.sq` files under `core/database/src/commonMain/sqldelight`; update mappers/tests when schema or persisted models change.
 
 ## Style

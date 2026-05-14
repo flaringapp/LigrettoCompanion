@@ -1,6 +1,6 @@
 plugins {
-    id("ligretto.android.application")
-    id("ligretto.android.application.compose")
+    alias(libs.plugins.ligretto.android.application)
+    alias(libs.plugins.ligretto.android.application.compose)
 }
 
 android {

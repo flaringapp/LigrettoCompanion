@@ -9,9 +9,9 @@ class MultiplatformFeatureConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply("ligretto.multiplatform.library")
-            apply("ligretto.multiplatform.library.compose")
-            apply("ligretto.multiplatform.koin.compiler")
+            alias(libs.plugins.ligretto.multiplatform.library)
+            alias(libs.plugins.ligretto.multiplatform.library.compose)
+            alias(libs.plugins.ligretto.multiplatform.koin.compiler)
 
             // Required for navigation3
             alias(libs.plugins.kotlin.serialization)
