@@ -1,10 +1,10 @@
 package com.flaringapp.ligretto.feature.home.ui
 
-import androidx.navigation3.runtime.NavKey
+import com.flaringapp.ligretto.core.navigation.LigrettoNavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface HomeNavDestination : NavKey
+sealed interface HomeNavDestination : LigrettoNavKey
 
 @Serializable
 data object HomeScreenDestination : HomeNavDestination

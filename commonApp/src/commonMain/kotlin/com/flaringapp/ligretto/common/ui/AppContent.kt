@@ -14,13 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
-import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
-import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.NavDisplay
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.navigation.LigrettoNavKey
+import com.flaringapp.ligretto.core.navigation.rememberLigrettoNavBackStack
 import com.flaringapp.ligretto.feature.home.ui.HomeScreenDestination
 
 @Composable
@@ -34,11 +34,11 @@ fun AppContent() {
 private fun RootScreen(
     modifier: Modifier = Modifier,
 ) {
-    val backStack = rememberNavBackStack(
+    val backStack = rememberLigrettoNavBackStack(
         configuration = AppNavGraph.savedStateConfiguration,
         HomeScreenDestination,
     )
-    val dialogSceneStrategy = remember { DialogSceneStrategy<NavKey>() }
+    val dialogSceneStrategy = remember { DialogSceneStrategy<LigrettoNavKey>() }
 
     NavDisplay(
         modifier = modifier.background(MaterialTheme.colorScheme.surface),
