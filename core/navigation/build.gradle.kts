@@ -1,6 +1,6 @@
 plugins {
-    id("ligretto.multiplatform.library")
-    id("ligretto.multiplatform.library.compose")
+    alias(libs.plugins.ligretto.multiplatform.library)
+    alias(libs.plugins.ligretto.multiplatform.library.compose)
 }
 
 kotlin {

@@ -92,3 +92,14 @@ compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMu
 compose-multiplatform-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 ktlintGradle = { id = "org.jlleitschuh.gradle.ktlint", version = "14.2.0" }
+
+# Plugins defined by this project (convention plugins)
+ligretto-android-application = { id = "ligretto.android.application" }
+ligretto-android-application-compose = { id = "ligretto.android.application.compose" }
+ligretto-android-library = { id = "ligretto.android.library" }
+ligretto-android-library-compose = { id = "ligretto.android.library.compose" }
+ligretto-multiplatform-feature = { id = "ligretto.multiplatform.feature" }
+ligretto-multiplatform-library = { id = "ligretto.multiplatform.library" }
+ligretto-multiplatform-library-compose = { id = "ligretto.multiplatform.library.compose" }
+ligretto-multiplatform-koin-compiler = { id = "ligretto.multiplatform.koin.compiler" }
+ligretto-multiplatform-database = { id = "ligretto.multiplatform.database" }

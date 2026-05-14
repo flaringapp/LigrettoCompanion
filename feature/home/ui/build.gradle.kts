@@ -1,5 +1,5 @@
 plugins {
-    id("ligretto.multiplatform.feature")
+    alias(libs.plugins.ligretto.multiplatform.feature)
 }
 
 kotlin {

@@ -35,39 +35,39 @@ dependencies {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = "ligretto.android.application"
+            id = libs.plugins.ligretto.android.application.asProvider().get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidApplicationCompose") {
-            id = "ligretto.android.application.compose"
+            id = libs.plugins.ligretto.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("androidLibrary") {
-            id = "ligretto.android.library"
+            id = libs.plugins.ligretto.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidLibraryCompose") {
-            id = "ligretto.android.library.compose"
+            id = libs.plugins.ligretto.android.library.compose.get().pluginId
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
         register("multiplatformFeature") {
-            id = "ligretto.multiplatform.feature"
+            id = libs.plugins.ligretto.multiplatform.feature.get().pluginId
             implementationClass = "MultiplatformFeatureConventionPlugin"
         }
         register("multiplatformLibrary") {
-            id = "ligretto.multiplatform.library"
+            id = libs.plugins.ligretto.multiplatform.library.asProvider().get().pluginId
             implementationClass = "MultiplatformLibraryConventionPlugin"
         }
         register("multiplatformComposeLibrary") {
-            id = "ligretto.multiplatform.library.compose"
+            id = libs.plugins.ligretto.multiplatform.library.compose.get().pluginId
             implementationClass = "MultiplatformComposeLibraryConventionPlugin"
         }
         register("multiplatformKoinCompiler") {
-            id = "ligretto.multiplatform.koin.compiler"
+            id = libs.plugins.ligretto.multiplatform.koin.compiler.get().pluginId
             implementationClass = "MultiplatformKoinCompilerConventionPlugin"
         }
         register("multiplatformDatabase") {
-            id = "ligretto.multiplatform.database"
+            id = libs.plugins.ligretto.multiplatform.database.get().pluginId
             implementationClass = "MultiplatformDatabaseConventionPlugin"
         }
     }
