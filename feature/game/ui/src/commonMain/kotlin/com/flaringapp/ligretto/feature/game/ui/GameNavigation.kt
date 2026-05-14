@@ -2,9 +2,9 @@ package com.flaringapp.ligretto.feature.game.ui
 
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation3.runtime.EntryProviderScope
-import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.DialogSceneStrategy
+import com.flaringapp.ligretto.core.navigation.LigrettoNavBackStack
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndScreen
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftScreen
@@ -14,7 +14,7 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDialog
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
 
-fun EntryProviderScope<NavKey>.gameGraph(backStack: NavBackStack<NavKey>) {
+fun EntryProviderScope<NavKey>.gameGraph(backStack: LigrettoNavBackStack) {
     entry<GameStartDestination> { key ->
         GameStartScreen(
             restartLastGame = key.restartLastGame,
@@ -78,13 +78,13 @@ fun EntryProviderScope<NavKey>.gameGraph(backStack: NavBackStack<NavKey>) {
     }
 }
 
-fun NavBackStack<NavKey>.navigateNewGame(restartLastGame: Boolean) {
+fun LigrettoNavBackStack.navigateNewGame(restartLastGame: Boolean) {
     replaceGameScreen(
         GameStartDestination(restartLastGame = restartLastGame),
     )
 }
 
-fun NavBackStack<NavKey>.navigateResumeGame(openLap: Boolean) {
+fun LigrettoNavBackStack.navigateResumeGame(openLap: Boolean) {
     replaceGameScreen(
         if (openLap) {
             GameLapCardsLeftDestination
@@ -94,39 +94,39 @@ fun NavBackStack<NavKey>.navigateResumeGame(openLap: Boolean) {
     )
 }
 
-private fun NavBackStack<NavKey>.navigateGameScores() {
+private fun LigrettoNavBackStack.navigateGameScores() {
     replaceGameScreen(GameScoreDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameLapStart() {
+private fun LigrettoNavBackStack.navigateGameLapStart() {
     replaceGameScreen(GameLapStartDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameLapCardsLeft() {
+private fun LigrettoNavBackStack.navigateGameLapCardsLeft() {
     replaceGameScreen(GameLapCardsLeftDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameLapCardsOnTable() {
+private fun LigrettoNavBackStack.navigateGameLapCardsOnTable() {
     add(GameLapCardsOnTableDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameSettings() {
+private fun LigrettoNavBackStack.navigateGameSettings() {
     add(GameSettingsDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameClose() {
+private fun LigrettoNavBackStack.navigateGameClose() {
     add(GameCloseDestination)
 }
 
-private fun NavBackStack<NavKey>.navigateGameEnd() {
+private fun LigrettoNavBackStack.navigateGameEnd() {
     replaceGameScreen(GameEndDestination)
 }
 
-private fun NavBackStack<NavKey>.replaceGameScreen(destination: GameNavDestination) {
+private fun LigrettoNavBackStack.replaceGameScreen(destination: GameNavDestination) {
     closeGame()
     add(destination)
 }
 
-private fun NavBackStack<NavKey>.closeGame() {
+private fun LigrettoNavBackStack.closeGame() {
     removeAll { it is GameNavDestination }
 }
