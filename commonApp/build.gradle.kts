@@ -17,6 +17,7 @@ kotlin {
             implementation(project(":core:di"))
             implementation(project(":core:designsystem"))
             implementation(project(":core:ui"))
+            implementation(project(":core:navigation"))
             implementation(project(":core:arch"))
             implementation(project(":core:database"))
             implementation(project(":core:settings"))

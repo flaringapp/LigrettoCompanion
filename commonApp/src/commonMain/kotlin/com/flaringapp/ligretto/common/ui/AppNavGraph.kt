@@ -1,9 +1,9 @@
 package com.flaringapp.ligretto.common.ui
 
 import androidx.navigation3.runtime.EntryProviderScope
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.flaringapp.ligretto.core.navigation.LigrettoNavBackStack
+import com.flaringapp.ligretto.core.navigation.LigrettoNavKey
 import com.flaringapp.ligretto.feature.game.ui.GameNavDestination
 import com.flaringapp.ligretto.feature.game.ui.gameGraph
 import com.flaringapp.ligretto.feature.game.ui.navigateNewGame
@@ -19,7 +19,7 @@ internal object AppNavGraph {
     @OptIn(ExperimentalSerializationApi::class)
     val savedStateConfiguration = SavedStateConfiguration {
         serializersModule = SerializersModule {
-            polymorphic(NavKey::class) {
+            polymorphic(LigrettoNavKey::class) {
                 subclassesOfSealed<HomeNavDestination>()
                 subclassesOfSealed<GameNavDestination>()
             }
@@ -27,7 +27,7 @@ internal object AppNavGraph {
     }
 }
 
-internal fun EntryProviderScope<NavKey>.appNavGraph(backStack: NavBackStack<NavKey>) {
+internal fun EntryProviderScope<LigrettoNavKey>.appNavGraph(backStack: LigrettoNavBackStack) {
     homeGraph(
         backStack = backStack,
         startGame = backStack::navigateNewGame,
