@@ -9,8 +9,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":feature:home:ui"))
-            api(project(":feature:home:domain"))
+            api(projects.feature.home.ui)
+            api(projects.feature.home.domain)
         }
     }
 }

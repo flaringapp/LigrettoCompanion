@@ -10,7 +10,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core:designsystem"))
+            api(projects.core.designsystem)
 
             api(libs.compose.multiplatform.runtime)
             api(libs.compose.multiplatform.ui)

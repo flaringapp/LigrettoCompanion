@@ -9,7 +9,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core:settings"))
+            api(projects.core.settings)
             api(libs.multiplatform.settings.test)
         }
     }

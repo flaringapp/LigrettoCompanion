@@ -9,8 +9,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core:database"))
-            api(project(":core:util:database-test"))
+            api(projects.core.database)
+            api(projects.core.util.databaseTest)
         }
     }
 }
