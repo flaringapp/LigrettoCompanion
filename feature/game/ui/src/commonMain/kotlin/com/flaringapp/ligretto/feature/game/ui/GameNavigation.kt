@@ -2,9 +2,9 @@ package com.flaringapp.ligretto.feature.game.ui
 
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation3.runtime.EntryProviderScope
-import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.DialogSceneStrategy
 import com.flaringapp.ligretto.core.navigation.LigrettoNavBackStack
+import com.flaringapp.ligretto.core.navigation.LigrettoNavKey
 import com.flaringapp.ligretto.feature.game.ui.close.GameCloseDialog
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndScreen
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftScreen
@@ -14,7 +14,7 @@ import com.flaringapp.ligretto.feature.game.ui.score.GameScoreScreen
 import com.flaringapp.ligretto.feature.game.ui.settings.GameSettingsDialog
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartScreen
 
-fun EntryProviderScope<NavKey>.gameGraph(backStack: LigrettoNavBackStack) {
+fun EntryProviderScope<LigrettoNavKey>.gameGraph(backStack: LigrettoNavBackStack) {
     entry<GameStartDestination> { key ->
         GameStartScreen(
             restartLastGame = key.restartLastGame,
