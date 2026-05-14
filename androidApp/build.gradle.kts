@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":commonApp"))
+    implementation(projects.commonApp)
 
     implementation(libs.androidx.core.splashScreen)
 

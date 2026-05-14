@@ -14,15 +14,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:di"))
-            implementation(project(":core:designsystem"))
-            implementation(project(":core:ui"))
-            implementation(project(":core:navigation"))
-            implementation(project(":core:arch"))
-            implementation(project(":core:database"))
-            implementation(project(":core:settings"))
-            implementation(project(":feature:home"))
-            implementation(project(":feature:game"))
+            implementation(projects.core.di)
+            implementation(projects.core.designsystem)
+            implementation(projects.core.ui)
+            implementation(projects.core.navigation)
+            implementation(projects.core.arch)
+            implementation(projects.core.database)
+            implementation(projects.core.settings)
+            implementation(projects.feature.home)
+            implementation(projects.feature.game)
 
             // Required for navigation3
             implementation(libs.kotlinx.serialization.core)

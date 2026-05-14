@@ -15,7 +15,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
-            implementation(project(":core:util:database-test"))
+            implementation(projects.core.util.databaseTest)
             implementation(libs.kotlinx.coroutines.test)
         }
     }

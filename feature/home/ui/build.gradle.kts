@@ -9,7 +9,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":feature:home:domain"))
+            implementation(projects.feature.home.domain)
 
             implementation(libs.compose.multiplatform.components.resources)
         }
