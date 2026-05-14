@@ -27,6 +27,7 @@
 - `:core:arch`: MVI primitives (`UiState`, `UiIntent`, `UiEffect`, `Store`, `Reducer`, `MviViewModel`) and Compose effect consumption.
 - `:core:designsystem`: app theme, color schemes, typography, fonts, and dynamic color platform hooks.
 - `:core:ui`: reusable Compose UI components and modifiers.
+- `:core:navigation`: shared app navigation primitives and helpers.
 - `:core:database`: SQLDelight schema, queries, database drivers, and database DI.
 - `:core:settings`: multiplatform settings abstractions and platform factories.
 - `:core:di`: shared DI helpers and dispatcher qualifiers.
