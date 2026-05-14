@@ -1,10 +1,10 @@
 package com.flaringapp.ligretto.feature.game.ui
 
-import androidx.navigation3.runtime.NavKey
+import com.flaringapp.ligretto.core.navigation.LigrettoNavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface GameNavDestination : NavKey
+sealed interface GameNavDestination : LigrettoNavKey
 
 @Serializable
 internal data class GameStartDestination(
