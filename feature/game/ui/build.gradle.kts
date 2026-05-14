@@ -9,7 +9,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":feature:game:domain"))
+            implementation(projects.feature.game.domain)
 
             implementation(libs.kotlinx.datetime)
 

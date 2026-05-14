@@ -10,8 +10,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":feature:game:model"))
-            implementation(project(":feature:game:domain-contracts"))
+            api(projects.feature.game.model)
+            implementation(projects.feature.game.domainContracts)
             implementation(libs.kotlinx.coroutines.core)
         }
     }
