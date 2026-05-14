@@ -9,11 +9,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":feature:game:ui"))
-            api(project(":feature:game:data"))
-            api(project(":feature:game:domain"))
-            api(project(":feature:game:domain-contracts"))
-            api(project(":feature:game:model"))
+            api(projects.feature.game.ui)
+            api(projects.feature.game.data)
+            api(projects.feature.game.domain)
+            api(projects.feature.game.domainContracts)
+            api(projects.feature.game.model)
         }
     }
 }

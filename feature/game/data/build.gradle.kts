@@ -10,16 +10,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:database"))
-            implementation(project(":core:settings"))
-            implementation(project(":feature:game:model"))
-            implementation(project(":feature:game:domain-contracts"))
+            implementation(projects.core.database)
+            implementation(projects.core.settings)
+            implementation(projects.feature.game.model)
+            implementation(projects.feature.game.domainContracts)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
-            implementation(project(":core:database-test"))
-            implementation(project(":core:settings-test"))
+            implementation(projects.core.databaseTest)
+            implementation(projects.core.settingsTest)
             implementation(libs.kotlinx.coroutines.test)
         }
     }

@@ -22,6 +22,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Ligretto_Companion"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":androidApp")
 include(":commonApp")
 include(":core:util:common")

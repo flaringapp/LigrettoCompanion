@@ -9,7 +9,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":feature:game:model"))
+            api(projects.feature.game.model)
             implementation(libs.kotlinx.coroutines.core)
         }
     }
