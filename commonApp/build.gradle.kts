@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    id("ligretto.multiplatform.library")
-    id("ligretto.multiplatform.library.compose")
-    id("ligretto.multiplatform.koin.compiler")
+    alias(libs.plugins.ligretto.multiplatform.library)
+    alias(libs.plugins.ligretto.multiplatform.library.compose)
+    alias(libs.plugins.ligretto.multiplatform.koin.compiler)
 }
 
 kotlin {
