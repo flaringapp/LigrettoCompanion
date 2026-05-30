@@ -17,6 +17,8 @@ kotlin {
             api(libs.compose.multiplatform.material3)
 
             implementation(libs.compose.multiplatform.components.resources)
+
+            implementation(libs.compose.slideToUnlock)
         }
     }
 }

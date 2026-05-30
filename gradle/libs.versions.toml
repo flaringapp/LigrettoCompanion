@@ -46,6 +46,8 @@ compose-multiplatform-lifecycle-runtime-compose = { group = "org.jetbrains.andro
 compose-multiplatform-lifecycle-viewModel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "multiplatformLifecycle" }
 compose-multiplatform-lifecycle-viewModel-navigation3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "multiplatformLifecycle" }
 
+compose-slideToUnlock = { group = "com.revenuecat.purchases", name = "slide-to-unlock", version = "1.1.0" }
+
 # Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
