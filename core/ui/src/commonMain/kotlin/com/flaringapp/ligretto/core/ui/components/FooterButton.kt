@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.core.ui.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
@@ -31,11 +32,36 @@ fun FooterButton(
         WindowInsets.screen.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom),
     content: @Composable RowScope.() -> Unit,
 ) {
+    FooterButtonContainer(
+        modifier = modifier,
+        horizontalPadding = horizontalPadding,
+        bottomPadding = bottomPadding,
+        minimumBottomSpacingToWindowInsets = minimumBottomSpacingToWindowInsets,
+        windowInsets = windowInsets,
+    ) {
+        Button(
+            onClick = onClick,
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
+            content = content,
+        )
+    }
+}
+
+@Composable
+inline fun FooterButtonContainer(
+    modifier: Modifier = Modifier,
+    horizontalPadding: Dp = 16.dp,
+    bottomPadding: Dp = 48.dp,
+    minimumBottomSpacingToWindowInsets: Dp = 16.dp,
+    windowInsets: WindowInsets =
+        WindowInsets.screen.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom),
+    button: @Composable () -> Unit,
+) {
     val windowInsetsPadding = windowInsets.asPaddingValues()
     val extraBottomPadding = (bottomPadding - windowInsetsPadding.calculateBottomPadding())
         .coerceAtLeast(minimumBottomSpacingToWindowInsets)
 
-    Button(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .padding(windowInsetsPadding)
@@ -45,10 +71,10 @@ fun FooterButton(
                 end = horizontalPadding,
             )
             .consumeWindowInsets(windowInsets),
-        onClick = onClick,
-        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
-        content = content,
-    )
+        propagateMinConstraints = true,
+    ) {
+        button()
+    }
 }
 
 @Preview
