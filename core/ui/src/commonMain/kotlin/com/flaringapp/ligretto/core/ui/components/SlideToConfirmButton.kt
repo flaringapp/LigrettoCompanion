@@ -163,36 +163,39 @@ private object SlideToConfirmColors : SlideToUnlockColors {
     @Composable
     override fun trackColor(slideFraction: Float): Color = lerp(
         fraction = slideFraction,
-        start = MaterialTheme.colorScheme.primaryContainer,
-        stop = MaterialTheme.colorScheme.primaryFixedDim,
+        start = MaterialTheme.colorScheme.primary,
+        stop = MaterialTheme.colorScheme.tertiary,
     )
 
     @Composable
     override fun trackBrush(slideFraction: Float): Brush? = null
 
     @Composable
-    override fun hintColor(slideFraction: Float): Color =
-        MaterialTheme.colorScheme.onSurfaceVariant.copy(
-            alpha = (1f - slideFraction * 2f).coerceAtLeast(0f),
-        )
+    override fun hintColor(slideFraction: Float): Color = lerp(
+        fraction = slideFraction,
+        start = MaterialTheme.colorScheme.onPrimary,
+        stop = MaterialTheme.colorScheme.onTertiary,
+    ).copy(
+        alpha = (1f - slideFraction * 2f).coerceAtLeast(0f),
+    )
 
     @Composable
-    override fun slidedHintColor(): Color = MaterialTheme.colorScheme.onSurfaceVariant
+    override fun slidedHintColor(): Color = MaterialTheme.colorScheme.onTertiary
 
     @Composable
-    override fun thumbColor(): Color = MaterialTheme.colorScheme.primary
+    override fun thumbColor(): Color = MaterialTheme.colorScheme.primaryContainer
 
     @Composable
     override fun thumbBrush(slideFraction: Float): Brush? = null
 
     @Composable
-    override fun thumbIconColor(): Color = MaterialTheme.colorScheme.onPrimary
+    override fun thumbIconColor(): Color = MaterialTheme.colorScheme.onPrimaryContainer
 
     @Composable
-    override fun progressColor(): Color = MaterialTheme.colorScheme.onPrimary
+    override fun progressColor(): Color = MaterialTheme.colorScheme.onPrimaryContainer
 
     @Composable
-    override fun successIconColor(): Color = MaterialTheme.colorScheme.onPrimary
+    override fun successIconColor(): Color = MaterialTheme.colorScheme.onPrimaryContainer
 }
 
 @Preview(showBackground = true)
