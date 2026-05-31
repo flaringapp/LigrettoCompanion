@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.components.FooterButtonInContainer
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.common.menu.GameInProgressTopBarOverflowIconWithMenu
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
@@ -107,7 +107,7 @@ private fun NextRoundButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    FooterButton(
+    FooterButtonInContainer(
         modifier = modifier,
         onClick = onClick,
     ) {

@@ -22,7 +22,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.screen
 
 @Composable
-fun FooterButton(
+fun FooterButtonInContainer(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     horizontalPadding: Dp = 16.dp,
@@ -39,12 +39,25 @@ fun FooterButton(
         minimumBottomSpacingToWindowInsets = minimumBottomSpacingToWindowInsets,
         windowInsets = windowInsets,
     ) {
-        Button(
+        FooterButton(
             onClick = onClick,
-            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
             content = content,
         )
     }
+}
+
+@Composable
+fun FooterButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit,
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
+        content = content,
+    )
 }
 
 @Composable
@@ -81,7 +94,7 @@ inline fun FooterButtonContainer(
 @Composable
 private fun Preview() {
     AppTheme {
-        FooterButton(
+        FooterButtonInContainer(
             onClick = {},
         ) {
             Text("Footer Button")

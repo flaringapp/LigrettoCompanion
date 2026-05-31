@@ -37,7 +37,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.components.FooterButtonInContainer
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.appendWhitespace
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
@@ -93,7 +93,7 @@ internal fun GenericGameLapContent(
             )
         },
         bottomBar = {
-            FooterButton(
+            FooterButtonInContainer(
                 onClick = onFooterButtonClick,
             ) {
                 Text(text = footerButtonText)

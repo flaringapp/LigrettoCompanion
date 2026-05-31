@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.components.FooterButtonInContainer
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndIntent
@@ -41,7 +41,7 @@ internal fun GameEndScreenContent(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            FooterButton(
+            FooterButtonInContainer(
                 onClick = { dispatch(GameEndIntent.Finish) },
             ) {
                 Text(

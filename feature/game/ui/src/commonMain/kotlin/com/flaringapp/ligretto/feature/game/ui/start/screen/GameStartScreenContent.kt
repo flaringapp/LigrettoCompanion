@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.components.FooterButtonInContainer
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartIntent
@@ -243,7 +243,7 @@ private fun NextStepButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    FooterButton(
+    FooterButtonInContainer(
         modifier = modifier,
         onClick = onClick,
     ) {
@@ -258,7 +258,7 @@ private fun StartGameButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    FooterButton(
+    FooterButtonInContainer(
         modifier = modifier,
         onClick = onClick,
     ) {
