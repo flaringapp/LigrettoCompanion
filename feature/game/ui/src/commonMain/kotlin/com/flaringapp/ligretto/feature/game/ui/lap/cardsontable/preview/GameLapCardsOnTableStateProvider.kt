@@ -32,15 +32,10 @@ internal class GameLapCardsOnTableStateProvider :
                 GameLapPlayerCardsStateProvider.positiveCards(8),
             ),
         )
-
-        fun endLapConfirmation() = morePlayers().copy(
-            showConfirmEndLap = true,
-        )
     }
 
     override val values: Sequence<GameLapCardsOnTableState> = sequenceOf(
         fewPlayers(),
         morePlayers(),
-        endLapConfirmation(),
     )
 }

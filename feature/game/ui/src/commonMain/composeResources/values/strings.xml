@@ -57,8 +57,6 @@
     <string name="lap_player_cards_count_increment">Increment</string>
     <string name="lap_cards_left_next">Next</string>
     <string name="lap_cards_on_table_finish_round">Finish Round</string>
-    <string name="lap_end_lap_confirmation_title">End lap</string>
-    <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
 
     <string name="game_settings_title">Change game settings</string>
     <string name="game_settings_score_end_condition_name">Play for a Set Score</string>

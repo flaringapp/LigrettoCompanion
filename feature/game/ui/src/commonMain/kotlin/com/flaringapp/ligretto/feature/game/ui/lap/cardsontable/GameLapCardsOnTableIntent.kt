@@ -20,6 +20,4 @@ internal sealed interface GameLapCardsOnTableIntent : UiIntent {
     ) : GameLapCardsOnTableIntent
 
     data object EndLap : GameLapCardsOnTableIntent
-    data object HideEndLapConfirmation : GameLapCardsOnTableIntent
-    data object EndLapConfirmed : GameLapCardsOnTableIntent
 }
