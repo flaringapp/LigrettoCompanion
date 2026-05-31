@@ -39,7 +39,8 @@
         <item quantity="one">%1$d minute</item>
         <item quantity="other">%1$d minutes</item>
     </plurals>
-    <string name="scores_start_next_lap">Round %1$d</string>
+    <string name="scores_start_next_lap_hint">Swipe to Round %1$d</string>
+    <string name="scores_start_next_lap_label">Start round %1$d</string>
 
     <string name="lap_start_round_label">Round</string>
     <string name="lap_start_go_text">Go</string>
