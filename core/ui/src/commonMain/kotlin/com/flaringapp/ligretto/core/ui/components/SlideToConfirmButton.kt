@@ -162,9 +162,9 @@ private object SlideToConfirmColors : SlideToUnlockColors {
 
     @Composable
     override fun trackColor(slideFraction: Float): Color = lerp(
-        fraction = 1f - slideFraction,
-        start = MaterialTheme.colorScheme.primaryFixedDim,
-        stop = MaterialTheme.colorScheme.primaryContainer,
+        fraction = slideFraction,
+        start = MaterialTheme.colorScheme.primaryContainer,
+        stop = MaterialTheme.colorScheme.primaryFixedDim,
     )
 
     @Composable
