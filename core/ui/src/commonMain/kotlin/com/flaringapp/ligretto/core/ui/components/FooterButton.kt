@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -47,16 +49,20 @@ fun FooterButtonInContainer(
 }
 
 @Composable
-fun FooterButton(
-    onClick: () -> Unit,
+inline fun FooterButton(
+    noinline onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
+    crossinline content: @Composable RowScope.() -> Unit,
 ) {
     Button(
         modifier = modifier,
         onClick = onClick,
         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
-        content = content,
+        content = {
+            ProvideTextStyle(MaterialTheme.typography.titleMedium) {
+                content()
+            }
+        },
     )
 }
 
