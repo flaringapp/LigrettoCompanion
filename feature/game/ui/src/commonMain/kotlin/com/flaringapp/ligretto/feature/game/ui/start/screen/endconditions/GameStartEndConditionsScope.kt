@@ -41,7 +41,7 @@ object GameStartEndConditionsScope : GameEndConditionsScope {
 }
 
 enum class GameStartEndConditionsElement {
-    DurationTitle,
+    ConditionsTitle,
     ScoreCard,
     TimeCard,
     ScoreTitle,

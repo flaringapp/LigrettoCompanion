@@ -34,7 +34,7 @@ fun GameStartEndConditionsScope.ConditionsSelectionExpanded(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         TitleText(
-            modifier = Modifier.elementSharedBounds(GameStartEndConditionsElement.DurationTitle),
+            modifier = Modifier.elementSharedBounds(GameStartEndConditionsElement.ConditionsTitle),
         )
 
         ScoreSelectorExpanded(

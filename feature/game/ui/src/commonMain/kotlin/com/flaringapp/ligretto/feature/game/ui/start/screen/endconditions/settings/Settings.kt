@@ -59,7 +59,7 @@ internal fun GameStartEndConditionsScope.Settings(
         LabeledOptionsCompact(
             modifier = Modifier.fillMaxWidth(),
             label = conditionsLabel,
-            labelSharedTransitionElement = GameStartEndConditionsElement.DurationTitle,
+            labelSharedTransitionElement = GameStartEndConditionsElement.ConditionsTitle,
             labelWidth = labelWidth,
         ) {
             ConditionsSelectionCompact(
