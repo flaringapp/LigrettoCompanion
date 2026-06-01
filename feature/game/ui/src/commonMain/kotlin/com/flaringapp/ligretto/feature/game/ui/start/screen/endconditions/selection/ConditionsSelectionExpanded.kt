@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsElement
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_end_conditions_expanded_label
@@ -32,16 +33,22 @@ fun GameStartEndConditionsScope.ConditionsSelectionExpanded(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        TitleText()
+        TitleText(
+            modifier = Modifier.elementSharedBounds(GameStartEndConditionsElement.ConditionsTitle),
+        )
 
         ScoreSelectorExpanded(
-            modifier = Modifier.padding(top = 24.dp),
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .elementSharedBounds(GameStartEndConditionsElement.ScoreCard),
             selected = scoreSelected,
             onSelectionChange = onScoreSelectionChange,
         )
 
         TimeSelectorExpanded(
-            modifier = Modifier.padding(top = 12.dp),
+            modifier = Modifier
+                .padding(top = 12.dp)
+                .elementSharedBounds(GameStartEndConditionsElement.TimeCard),
             selected = timeSelected,
             onSelectionChange = onTimeSelectionChange,
         )

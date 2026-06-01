@@ -40,6 +40,9 @@ internal data class GameStartState(
         val time: GameEndConditionTimeLimitState = GameEndConditionTimeLimitState(),
     ) : UiState {
 
+        val isNotStarted: Boolean
+            get() = !isExpandedConditionsCompleted && !isExpandedOptionsCompleted
+
         val isExpandedCompleted: Boolean
             get() = isExpandedConditionsCompleted && isExpandedOptionsCompleted
     }

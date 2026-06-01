@@ -19,6 +19,7 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionPill
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.OptionsRow
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsElement
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_score_end_condition_label
@@ -38,12 +39,14 @@ internal fun GameStartEndConditionsScope.ConditionsSelectionCompact(
         modifier = modifier,
     ) {
         ConditionFlag(
+            modifier = Modifier.elementSharedBounds(GameStartEndConditionsElement.ScoreCard),
             textRes = Res.string.start_score_end_condition_label,
             selected = scoreSelected,
             onClick = onScoreClick,
         )
 
         ConditionFlag(
+            modifier = Modifier.elementSharedBounds(GameStartEndConditionsElement.TimeCard),
             textRes = Res.string.start_time_end_condition_label,
             selected = timeSelected,
             onClick = onTimeClick,

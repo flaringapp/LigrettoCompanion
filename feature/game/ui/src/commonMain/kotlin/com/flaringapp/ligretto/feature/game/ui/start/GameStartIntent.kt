@@ -34,6 +34,8 @@ internal sealed interface GameStartEndConditionsIntent : GameStartIntent {
 
     data object SubmitStep : GameStartEndConditionsIntent
 
+    data object PreviousStep : GameStartEndConditionsIntent
+
     data class Score(
         val intent: GameEndConditionScoreIntent,
     ) : GameStartEndConditionsIntent

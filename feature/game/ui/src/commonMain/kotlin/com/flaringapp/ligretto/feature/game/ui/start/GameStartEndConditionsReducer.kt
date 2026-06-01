@@ -20,6 +20,10 @@ internal class GameStartEndConditionsReducer(
             state.submitStep()
         }
 
+        is GameStartEndConditionsIntent.PreviousStep -> {
+            state.previousStep()
+        }
+
         is GameStartEndConditionsIntent.Score -> {
             state.copy(
                 score = scoreReducer.reduce(
@@ -47,6 +51,17 @@ internal class GameStartEndConditionsReducer(
         return copy(
             isExpandedConditionsCompleted = true,
             isExpandedOptionsCompleted = !score.isEnabled && !time.isEnabled,
+        )
+    }
+
+    private fun EndConditions.previousStep(): EndConditions {
+        if (isExpandedOptionsCompleted && (score.isEnabled || time.isEnabled)) {
+            return copy(isExpandedOptionsCompleted = false)
+        }
+
+        return copy(
+            isExpandedConditionsCompleted = false,
+            isExpandedOptionsCompleted = false,
         )
     }
 }
