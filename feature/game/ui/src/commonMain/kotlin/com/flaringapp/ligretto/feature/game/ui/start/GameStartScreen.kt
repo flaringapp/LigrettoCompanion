@@ -35,6 +35,13 @@ internal fun GameStartScreen(
         openClose()
     }
 
+    NavigationBackHandler(
+        state = rememberNavigationEventState(NavigationEventInfo.None),
+        isBackEnabled = !state.endConditions.isNotStarted,
+    ) {
+        store.dispatch(GameStartEndConditionsIntent.PreviousStep)
+    }
+
     GameStartScreenContent(
         state = state,
         dispatch = store::dispatch,
