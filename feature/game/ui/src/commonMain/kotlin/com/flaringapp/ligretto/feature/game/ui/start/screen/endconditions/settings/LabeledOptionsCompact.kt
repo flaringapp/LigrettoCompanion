@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.isUnspecified
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsTimeLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.TimeOptions
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsElement
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
 internal object GameStartEndConditionLabeledOptionsCompactDefaults {
@@ -32,10 +33,10 @@ internal object GameStartEndConditionLabeledOptionsCompactDefaults {
         get() = MaterialTheme.typography.titleMedium
 }
 
-@Suppress("UnusedReceiverParameter")
 @Composable
 internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
     label: String,
+    labelSharedTransitionElement: GameStartEndConditionsElement?,
     modifier: Modifier = Modifier,
     labelWidth: Dp = Dp.Unspecified,
     optionsContent: @Composable () -> Unit,
@@ -49,6 +50,10 @@ internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
             modifier = Modifier.height(IntrinsicSize.Max),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            val labelSharedTransitionModifier = labelSharedTransitionElement?.let {
+                Modifier.elementSharedBounds(element = it)
+            } ?: Modifier
+
             val labelMinWidthModifier = labelWidth.let {
                 if (it.isUnspecified) {
                     return@let Modifier
@@ -59,6 +64,7 @@ internal fun GameStartEndConditionsScope.LabeledOptionsCompact(
             Text(
                 modifier = Modifier
                     .padding(start = 16.dp, end = 8.dp)
+                    .then(labelSharedTransitionModifier)
                     .then(labelMinWidthModifier),
                 text = label,
                 style = GameStartEndConditionLabeledOptionsCompactDefaults.LabelTextStyle,
@@ -80,6 +86,7 @@ private fun PreviewPadded() = with(GameStartEndConditionsScope) {
         LabeledOptionsCompact(
             modifier = Modifier.padding(16.dp),
             label = "Time",
+            labelSharedTransitionElement = null,
             labelWidth = run {
                 rememberTextMeasurer().measure("Time").size.width.let {
                     with(LocalDensity.current) { it.toDp() }

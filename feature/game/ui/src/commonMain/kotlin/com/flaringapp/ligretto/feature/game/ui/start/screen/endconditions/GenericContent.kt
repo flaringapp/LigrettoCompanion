@@ -8,11 +8,13 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.ext.LocalSharedTransitionAnimationScope
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
@@ -36,10 +38,14 @@ internal fun GameStartEndConditionsScope.GenericContent(
             fadeIn() togetherWith fadeOut() using SizeTransform(clip = false)
         },
     ) { currentState ->
-        ActualContent(
-            state = currentState,
-            dispatch = dispatch,
-        )
+        CompositionLocalProvider(
+            LocalSharedTransitionAnimationScope provides this,
+        ) {
+            ActualContent(
+                state = currentState,
+                dispatch = dispatch,
+            )
+        }
     }
 }
 

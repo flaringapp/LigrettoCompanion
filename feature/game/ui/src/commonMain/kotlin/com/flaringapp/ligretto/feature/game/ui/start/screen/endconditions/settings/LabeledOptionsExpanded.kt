@@ -14,12 +14,13 @@ import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.preview.GameEndConditionsScoreLimitStateProvider
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.ScoreOptions
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsElement
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 
-@Suppress("UnusedReceiverParameter")
 @Composable
 internal inline fun GameStartEndConditionsScope.LabeledOptionsExpanded(
     title: String,
+    titleSharedTransitionElement: GameStartEndConditionsElement?,
     message: String,
     modifier: Modifier = Modifier,
     optionsContent: @Composable () -> Unit,
@@ -28,7 +29,12 @@ internal inline fun GameStartEndConditionsScope.LabeledOptionsExpanded(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        val titleSharedTransitionModifier = titleSharedTransitionElement?.let {
+            Modifier.elementSharedBounds(element = it)
+        } ?: Modifier
+
         TitleText(
+            modifier = Modifier.then(titleSharedTransitionModifier),
             text = title,
         )
 
@@ -77,6 +83,7 @@ private fun Preview() = with(GameStartEndConditionsScope) {
     AppTheme {
         LabeledOptionsExpanded(
             title = "Set Score",
+            titleSharedTransitionElement = null,
             message = "Select the target score to win the game",
         ) {
             ScoreOptions(

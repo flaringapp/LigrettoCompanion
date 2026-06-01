@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.ext.LocalSharedTransitionAnimationScope
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.AnimatedContentVisibility
@@ -27,6 +29,7 @@ import com.flaringapp.ligretto.feature.game.ui.common.endconditions.ui.options.T
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartEndConditionsIntent
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.EndConditions
 import com.flaringapp.ligretto.feature.game.ui.start.preview.GameStartEndConditionsProvider
+import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsElement
 import com.flaringapp.ligretto.feature.game.ui.start.screen.endconditions.GameStartEndConditionsScope
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_end_conditions_label
@@ -56,6 +59,7 @@ internal fun GameStartEndConditionsScope.Settings(
         LabeledOptionsCompact(
             modifier = Modifier.fillMaxWidth(),
             label = conditionsLabel,
+            labelSharedTransitionElement = GameStartEndConditionsElement.DurationTitle,
             labelWidth = labelWidth,
         ) {
             ConditionsSelectionCompact(
@@ -80,13 +84,17 @@ internal fun GameStartEndConditionsScope.Settings(
                 fadeIn() togetherWith fadeOut() using SizeTransform(clip = false)
             },
         ) { currentState ->
-            OptionsContent(
-                state = currentState,
-                dispatch = dispatch,
-                scoreLabel = scoreLabel,
-                timeLabel = timeLabel,
-                labelWidth = labelWidth,
-            )
+            CompositionLocalProvider(
+                LocalSharedTransitionAnimationScope provides this,
+            ) {
+                OptionsContent(
+                    state = currentState,
+                    dispatch = dispatch,
+                    scoreLabel = scoreLabel,
+                    timeLabel = timeLabel,
+                    labelWidth = labelWidth,
+                )
+            }
         }
     }
 }
@@ -135,9 +143,13 @@ private fun GameStartEndConditionsScope.ExpandedOptions(
             LabeledOptionsExpanded(
                 modifier = Modifier.padding(top = 40.dp),
                 title = stringResource(Res.string.start_score_end_condition_expanded_title),
+                titleSharedTransitionElement = GameStartEndConditionsElement.ScoreTitle,
                 message = stringResource(Res.string.start_score_end_condition_expanded_message),
             ) {
                 ScoreOptions(
+                    modifier = Modifier.elementSharedContent(
+                        element = GameStartEndConditionsElement.ScoreOptions,
+                    ),
                     state = currentState,
                     dispatch = {
                         dispatch(GameStartEndConditionsIntent.Score(it))
@@ -154,9 +166,13 @@ private fun GameStartEndConditionsScope.ExpandedOptions(
             LabeledOptionsExpanded(
                 modifier = Modifier.padding(top = 40.dp),
                 title = stringResource(Res.string.start_time_end_condition_expanded_title),
+                titleSharedTransitionElement = GameStartEndConditionsElement.TimeTitle,
                 message = stringResource(Res.string.start_time_end_condition_expanded_message),
             ) {
                 TimeOptions(
+                    modifier = Modifier.elementSharedContent(
+                        element = GameStartEndConditionsElement.TimeOptions,
+                    ),
                     state = currentState,
                     dispatch = {
                         dispatch(GameStartEndConditionsIntent.Time(it))
@@ -190,9 +206,13 @@ private fun GameStartEndConditionsScope.CompactOptions(
                     .fillMaxWidth()
                     .padding(top = 8.dp),
                 label = scoreLabel,
+                labelSharedTransitionElement = GameStartEndConditionsElement.ScoreTitle,
                 labelWidth = labelWidth,
             ) {
                 ScoreOptions(
+                    modifier = Modifier.elementSharedContent(
+                        element = GameStartEndConditionsElement.ScoreOptions,
+                    ),
                     state = currentState,
                     dispatch = {
                         dispatch(GameStartEndConditionsIntent.Score(it))
@@ -211,9 +231,13 @@ private fun GameStartEndConditionsScope.CompactOptions(
                     .fillMaxWidth()
                     .padding(top = 8.dp),
                 label = timeLabel,
+                labelSharedTransitionElement = GameStartEndConditionsElement.TimeTitle,
                 labelWidth = labelWidth,
             ) {
                 TimeOptions(
+                    modifier = Modifier.elementSharedContent(
+                        element = GameStartEndConditionsElement.TimeOptions,
+                    ),
                     state = currentState,
                     dispatch = {
                         dispatch(GameStartEndConditionsIntent.Time(it))
