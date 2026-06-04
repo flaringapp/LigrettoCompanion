@@ -6,7 +6,6 @@ import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.core.util.common.isRunning
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCachedPreviousGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.StartGameUseCase
-import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
@@ -26,7 +25,6 @@ internal class GameStartViewModel(
     private val endConditionsReducer: GameStartEndConditionsReducer,
     private val getCachedPreviousGameUseCase: GetCachedPreviousGameUseCase,
     private val startGameUseCase: StartGameUseCase,
-    private val startLapUseCase: StartLapUseCase,
 ) : MviViewModel<GameStartState, GameStartIntent, GameStartEffect>(GameStartState()) {
 
     private var startGameJob: Job? = null
@@ -120,7 +118,6 @@ internal class GameStartViewModel(
         // TODO error handling
         startGameJob = viewModelScope.launch {
             startGameUseCase(config)
-            startLapUseCase()
 
             setEffect { GameStartEffect.StartGame }
         }

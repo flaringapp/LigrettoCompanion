@@ -1,5 +1,6 @@
 package com.flaringapp.ligretto.feature.game.domain.usecase
 
+import com.flaringapp.ligretto.feature.game.domain.contracts.GameRepository
 import org.koin.core.annotation.Single
 
 interface AdvanceToNextLapUseCase {
@@ -15,7 +16,7 @@ sealed interface AdvanceToNextLapResult {
 @Single
 internal class AdvanceToNextLapUseCaseImpl(
     private val endLapUseCase: EndLapUseCase,
-    private val startLapUseCase: StartLapUseCase,
+    private val repository: GameRepository,
 ) : AdvanceToNextLapUseCase {
 
     override suspend fun invoke(): AdvanceToNextLapResult {
@@ -24,7 +25,7 @@ internal class AdvanceToNextLapUseCaseImpl(
             return AdvanceToNextLapResult.GameEnded
         }
 
-        startLapUseCase()
+        repository.startNextLap()
         return AdvanceToNextLapResult.NextLapStarted
     }
 }
