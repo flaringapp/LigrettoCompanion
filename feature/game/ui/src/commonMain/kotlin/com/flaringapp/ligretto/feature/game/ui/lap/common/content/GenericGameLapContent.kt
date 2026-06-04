@@ -37,7 +37,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButtonInContainer
+import com.flaringapp.ligretto.core.ui.components.FooterButtonContainer
+import com.flaringapp.ligretto.core.ui.components.SlideToConfirmButton
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.appendWhitespace
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
@@ -65,7 +66,8 @@ internal fun GenericGameLapContent(
     topBarTitle: String,
     cardScoreDelta: Int,
     playerCards: UiList<GameLapPlayerCardsState>,
-    footerButtonText: String,
+    footerButtonHint: String,
+    footerButtonActionLabel: String,
     playerCardIncrement: (playerId: Long) -> Unit,
     playerCardDecrement: (playerId: Long) -> Unit,
     onFooterButtonClick: () -> Unit,
@@ -93,10 +95,12 @@ internal fun GenericGameLapContent(
             )
         },
         bottomBar = {
-            FooterButtonInContainer(
-                onClick = onFooterButtonClick,
-            ) {
-                Text(text = footerButtonText)
+            FooterButtonContainer {
+                SlideToConfirmButton(
+                    hint = footerButtonHint,
+                    actionLabel = footerButtonActionLabel,
+                    onConfirmed = onFooterButtonClick,
+                )
             }
         },
         content = { innerPadding ->
@@ -272,7 +276,8 @@ private fun Preview() {
                 GameLapPlayerCardsStateProvider.negativeCards(7),
                 GameLapPlayerCardsStateProvider.positiveCards(8),
             ),
-            footerButtonText = "Next",
+            footerButtonHint = "Swipe to Next",
+            footerButtonActionLabel = "Next",
             playerCardDecrement = {},
             playerCardIncrement = {},
             onFooterButtonClick = {},

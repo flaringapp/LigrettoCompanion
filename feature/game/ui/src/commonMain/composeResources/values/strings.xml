@@ -56,8 +56,10 @@
     <string name="lap_player_total_score">Total</string>
     <string name="lap_player_cards_count_decrement">Decrement</string>
     <string name="lap_player_cards_count_increment">Increment</string>
-    <string name="lap_cards_left_next">Next</string>
-    <string name="lap_cards_on_table_finish_round">Finish Round</string>
+    <string name="lap_cards_left_next_hint">Swipe to Next</string>
+    <string name="lap_cards_left_next_label">Next</string>
+    <string name="lap_cards_on_table_finish_round_hint">Swipe to Finish Round</string>
+    <string name="lap_cards_on_table_finish_round_label">Finish Round</string>
 
     <string name="game_settings_title">Change game settings</string>
     <string name="game_settings_score_end_condition_name">Play for a Set Score</string>

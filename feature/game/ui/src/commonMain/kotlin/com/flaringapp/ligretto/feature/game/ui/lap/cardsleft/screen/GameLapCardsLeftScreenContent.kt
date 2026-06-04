@@ -10,7 +10,8 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.GameLapCardsLeftSta
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsleft.preview.GameLapCardsLeftStateProvider
 import com.flaringapp.ligretto.feature.game.ui.lap.common.content.GenericGameLapContent
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.lap_cards_left_next
+import ligretto_companion.feature.game.ui.generated.resources.lap_cards_left_next_hint
+import ligretto_companion.feature.game.ui.generated.resources.lap_cards_left_next_label
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_left_title
 import org.jetbrains.compose.resources.stringResource
 
@@ -29,7 +30,8 @@ internal fun GameLapCardsLeftScreenContent(
         cardScoreDelta = -2,
         topBarTitle = stringResource(Res.string.lap_cards_left_title),
         playerCards = state.playerCards,
-        footerButtonText = stringResource(Res.string.lap_cards_left_next),
+        footerButtonHint = stringResource(Res.string.lap_cards_left_next_hint),
+        footerButtonActionLabel = stringResource(Res.string.lap_cards_left_next_label),
         playerCardIncrement = { dispatch(GameLapCardsLeftIntent.IncrementCards(it)) },
         playerCardDecrement = { dispatch(GameLapCardsLeftIntent.DecrementCards(it)) },
         onFooterButtonClick = { dispatch(GameLapCardsLeftIntent.OpenCardsOnTable) },
