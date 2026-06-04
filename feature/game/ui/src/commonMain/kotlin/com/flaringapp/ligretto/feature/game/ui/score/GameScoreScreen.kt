@@ -4,9 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigationevent.NavigationEventInfo
-import androidx.navigationevent.compose.NavigationBackHandler
-import androidx.navigationevent.compose.rememberNavigationEventState
 import com.flaringapp.ligretto.core.arch.ConsumeEffects
 import com.flaringapp.ligretto.feature.game.ui.score.screen.GameScoreScreenContent
 import org.koin.compose.viewmodel.koinViewModel
@@ -27,13 +24,6 @@ internal fun GameScoreScreen(
             GameScoreEffect.OpenNextLap -> openNextLap()
             GameScoreEffect.EndGame -> openEnd()
         }
-    }
-
-    NavigationBackHandler(
-        state = rememberNavigationEventState(NavigationEventInfo.None),
-        isBackEnabled = true,
-    ) {
-        openClose()
     }
 
     GameScoreScreenContent(
