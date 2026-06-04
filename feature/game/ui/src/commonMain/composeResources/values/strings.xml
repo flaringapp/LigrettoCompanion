@@ -39,7 +39,8 @@
         <item quantity="one">%1$d minute</item>
         <item quantity="other">%1$d minutes</item>
     </plurals>
-    <string name="scores_start_next_lap">Round %1$d</string>
+    <string name="scores_start_next_lap_hint">Swipe to Round %1$d</string>
+    <string name="scores_start_next_lap_label">Start round %1$d</string>
 
     <string name="lap_start_round_label">Round</string>
     <string name="lap_start_go_text">Go</string>
@@ -55,10 +56,10 @@
     <string name="lap_player_total_score">Total</string>
     <string name="lap_player_cards_count_decrement">Decrement</string>
     <string name="lap_player_cards_count_increment">Increment</string>
-    <string name="lap_cards_left_next">Next</string>
-    <string name="lap_cards_on_table_finish_round">Finish Round</string>
-    <string name="lap_end_lap_confirmation_title">End lap</string>
-    <string name="lap_end_lap_confirmation_message">Do you really want to end current lap?</string>
+    <string name="lap_cards_left_next_hint">Swipe to Next</string>
+    <string name="lap_cards_left_next_label">Next</string>
+    <string name="lap_cards_on_table_finish_round_hint">Swipe to Finish Round</string>
+    <string name="lap_cards_on_table_finish_round_label">Finish Round</string>
 
     <string name="game_settings_title">Change game settings</string>
     <string name="game_settings_score_end_condition_name">Play for a Set Score</string>

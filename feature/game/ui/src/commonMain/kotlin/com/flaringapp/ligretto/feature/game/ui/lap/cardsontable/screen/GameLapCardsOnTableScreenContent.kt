@@ -9,9 +9,9 @@ import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTa
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.GameLapCardsOnTableState
 import com.flaringapp.ligretto.feature.game.ui.lap.cardsontable.preview.GameLapCardsOnTableStateProvider
 import com.flaringapp.ligretto.feature.game.ui.lap.common.content.GenericGameLapContent
-import com.flaringapp.ligretto.feature.game.ui.lap.end.GameLapEndLapDialog
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_finish_round
+import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_finish_round_hint
+import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_finish_round_label
 import ligretto_companion.feature.game.ui.generated.resources.lap_cards_on_table_title
 import org.jetbrains.compose.resources.stringResource
 
@@ -31,7 +31,8 @@ internal fun GameLapCardsOnTableScreenContent(
         cardScoreDelta = 1,
         topBarTitle = stringResource(Res.string.lap_cards_on_table_title),
         playerCards = state.playerCards,
-        footerButtonText = stringResource(Res.string.lap_cards_on_table_finish_round),
+        footerButtonHint = stringResource(Res.string.lap_cards_on_table_finish_round_hint),
+        footerButtonActionLabel = stringResource(Res.string.lap_cards_on_table_finish_round_label),
         playerCardIncrement = { dispatch(GameLapCardsOnTableIntent.IncrementCards(it)) },
         playerCardDecrement = { dispatch(GameLapCardsOnTableIntent.DecrementCards(it)) },
         onFooterButtonClick = { dispatch(GameLapCardsOnTableIntent.EndLap) },
@@ -39,13 +40,6 @@ internal fun GameLapCardsOnTableScreenContent(
         onChangeSettingsClick = onChangeSettings,
         onFinishGameClick = onFinish,
     )
-
-    if (state.showConfirmEndLap) {
-        GameLapEndLapDialog(
-            onConfirm = { dispatch(GameLapCardsOnTableIntent.EndLapConfirmed) },
-            onDismiss = { dispatch(GameLapCardsOnTableIntent.HideEndLapConfirmation) },
-        )
-    }
 }
 
 @Preview

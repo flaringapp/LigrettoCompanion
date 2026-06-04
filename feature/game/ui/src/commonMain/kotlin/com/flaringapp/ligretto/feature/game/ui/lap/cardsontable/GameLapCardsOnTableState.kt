@@ -8,5 +8,4 @@ import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCa
 internal data class GameLapCardsOnTableState(
     val roundNumber: Int,
     val playerCards: UiList<GameLapPlayerCardsState> = emptyUiList(),
-    val showConfirmEndLap: Boolean = false,
 ) : UiState

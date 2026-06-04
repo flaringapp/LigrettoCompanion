@@ -45,8 +45,6 @@ internal class GameLapCardsOnTableViewModel(
         is GameLapCardsOnTableIntent.IncrementCards -> incrementCards(intent.playerId)
         is GameLapCardsOnTableIntent.DecrementCards -> decrementCards(intent.playerId)
         GameLapCardsOnTableIntent.EndLap -> endLap()
-        GameLapCardsOnTableIntent.HideEndLapConfirmation -> hideEndLapConfirmation()
-        GameLapCardsOnTableIntent.EndLapConfirmed -> endLapConfirmed()
     }
 
     private fun init() = state.also {
@@ -111,17 +109,7 @@ internal class GameLapCardsOnTableViewModel(
         }
     }
 
-    private fun endLap() = updateState {
-        if (endLapJob.isRunning) return@updateState this
-
-        copy(showConfirmEndLap = true)
-    }
-
-    private fun hideEndLapConfirmation() = updateState {
-        copy(showConfirmEndLap = false)
-    }
-
-    private fun endLapConfirmed() = hideEndLapConfirmation().also {
+    private fun endLap() = state.also {
         if (endLapJob.isRunning) return@also
 
         // TODO loading/disable button?

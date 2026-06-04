@@ -8,11 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowForward
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,14 +18,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.FooterButton
+import com.flaringapp.ligretto.core.ui.components.FooterButtonContainer
+import com.flaringapp.ligretto.core.ui.components.SlideToConfirmButton
 import com.flaringapp.ligretto.core.ui.ext.fadingEdges
 import com.flaringapp.ligretto.feature.game.ui.common.menu.GameInProgressTopBarOverflowIconWithMenu
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState
 import com.flaringapp.ligretto.feature.game.ui.score.preview.GameScoreStateProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
-import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap
+import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap_hint
+import ligretto_companion.feature.game.ui.generated.resources.scores_start_next_lap_label
 import ligretto_companion.feature.game.ui.generated.resources.scores_title
 import org.jetbrains.compose.resources.stringResource
 
@@ -107,18 +106,13 @@ private fun NextRoundButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    FooterButton(
+    FooterButtonContainer(
         modifier = modifier,
-        onClick = onClick,
     ) {
-        Text(
-            text = stringResource(Res.string.scores_start_next_lap, roundNumber),
-        )
-
-        Icon(
-            modifier = Modifier.padding(start = 8.dp),
-            imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
-            contentDescription = null,
+        SlideToConfirmButton(
+            hint = stringResource(Res.string.scores_start_next_lap_hint, roundNumber),
+            actionLabel = stringResource(Res.string.scores_start_next_lap_label, roundNumber),
+            onConfirmed = onClick,
         )
     }
 }
