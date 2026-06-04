@@ -4,8 +4,9 @@ import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.core.util.common.isRunning
-import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
-import com.flaringapp.ligretto.feature.game.domain.usecase.StartLapUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.AdvanceToNextLapResult
+import com.flaringapp.ligretto.feature.game.domain.usecase.AdvanceToNextLapUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.Job
@@ -14,8 +15,8 @@ import kotlinx.coroutines.launch
 
 @KoinViewModel(binds = [])
 internal class GameScoreViewModel(
-    private val getCurrentGameUseCase: GetCurrentGameUseCase,
-    private val startLapUseCase: StartLapUseCase,
+    private val getCurrentGameWithLapUseCase: GetCurrentGameWithLapUseCase,
+    private val advanceToNextLapUseCase: AdvanceToNextLapUseCase,
 ) : MviViewModel<GameScoreState, GameScoreIntent, GameScoreEffect>(GameScoreState()) {
 
     private var startLapJob: Job? = null
@@ -35,7 +36,7 @@ internal class GameScoreViewModel(
 
     private fun init() = state.also {
         viewModelScope.launch {
-            getCurrentGameUseCase()
+            getCurrentGameWithLapUseCase()
                 .filterNotNull()
                 .collect(::handleGameUpdated)
         }
@@ -88,17 +89,14 @@ internal class GameScoreViewModel(
     private fun startNewLap(): GameScoreState = state.also {
         if (startLapJob.isRunning) return@also
 
-        val game = getCurrentGameUseCase().value
-        if (game?.matchesEndConditions == true) {
-            setEffect { GameScoreEffect.EndGame }
-            return@also
-        }
-
         // TODO loading/disable button?
         // TODO error handling
         startLapJob = viewModelScope.launch {
-            startLapUseCase()
-            setEffect { GameScoreEffect.OpenNextLap }
+            val result = advanceToNextLapUseCase()
+            when (result) {
+                AdvanceToNextLapResult.NextLapStarted -> setEffect { GameScoreEffect.OpenNextLap }
+                AdvanceToNextLapResult.GameEnded -> setEffect { GameScoreEffect.EndGame }
+            }
         }
     }
 }

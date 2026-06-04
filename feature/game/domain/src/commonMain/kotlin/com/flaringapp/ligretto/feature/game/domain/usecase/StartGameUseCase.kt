@@ -16,5 +16,6 @@ internal class StartGameUseCaseImpl(
 
     override suspend fun invoke(config: GameConfig) {
         repository.startGame(config)
+        repository.startNextLap()
     }
 }

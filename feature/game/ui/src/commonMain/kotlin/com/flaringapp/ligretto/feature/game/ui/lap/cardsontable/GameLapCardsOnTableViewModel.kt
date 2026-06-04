@@ -4,7 +4,7 @@ import com.flaringapp.ligretto.core.arch.MviViewModel
 import com.flaringapp.ligretto.core.arch.dispatch
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.core.util.common.isRunning
-import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapUseCase
+import com.flaringapp.ligretto.feature.game.domain.usecase.EndLapIfEndConditionsMatchUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
@@ -23,7 +23,7 @@ internal class GameLapCardsOnTableViewModel(
     private val getCurrentGameUseCase: GetCurrentGameUseCase,
     private val getCurrentLapUseCase: GetCurrentLapUseCase,
     private val submitPlayerLapCardsOnTableUseCase: SubmitPlayerLapCardsOnTableUseCase,
-    private val endLapUseCase: EndLapUseCase,
+    private val endLapIfEndConditionsMatchUseCase: EndLapIfEndConditionsMatchUseCase,
 ) : MviViewModel<GameLapCardsOnTableState, GameLapCardsOnTableIntent, GameLapCardsOnTableEffect>(
     GameLapCardsOnTableState(
         roundNumber = getCurrentLapUseCase().value?.number ?: 0,
@@ -115,8 +115,8 @@ internal class GameLapCardsOnTableViewModel(
         // TODO loading/disable button?
         // TODO error handling
         endLapJob = viewModelScope.launch {
-            val game = endLapUseCase()
-            if (game?.matchesEndConditions == true) {
+            val result = endLapIfEndConditionsMatchUseCase()
+            if (result?.lapEnded == true) {
                 setEffect { GameLapCardsOnTableEffect.EndGame }
                 return@launch
             }

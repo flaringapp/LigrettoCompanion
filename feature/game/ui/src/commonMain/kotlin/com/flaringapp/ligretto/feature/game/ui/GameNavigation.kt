@@ -95,7 +95,7 @@ fun LigrettoNavBackStack.navigateResumeGame(openLap: Boolean) {
 }
 
 private fun LigrettoNavBackStack.navigateGameScores() {
-    replaceGameScreen(GameScoreDestination)
+    add(GameScoreDestination)
 }
 
 private fun LigrettoNavBackStack.navigateGameLapStart() {
