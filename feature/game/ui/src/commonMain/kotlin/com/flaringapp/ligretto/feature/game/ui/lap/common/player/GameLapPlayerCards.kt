@@ -203,6 +203,7 @@ private fun CardsCountChangeButton(
 
     HandleClickAndHold(
         interactionSource = interactionSource,
+        beginHoldThreshold = 400L,
         action = {
             onChange()
             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
