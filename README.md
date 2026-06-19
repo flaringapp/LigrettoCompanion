@@ -9,6 +9,8 @@
 
 A Kotlin Multiplatform scorekeeper for the Ligretto card game. Track laps, scores, and players — without pen and paper.
 
+[Project page](https://flaringapp.github.io/LigrettoCompanion/)
+
 ---
 
 <p align="center">
