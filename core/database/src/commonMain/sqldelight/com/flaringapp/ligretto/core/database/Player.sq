@@ -23,7 +23,7 @@ insert:
 INSERT INTO player(name, avatar)
 VALUES (?, ?);
 
-updateName:
+update:
 UPDATE player
-SET name = ?
+SET name = ?, avatar = ?
 WHERE id = ?;

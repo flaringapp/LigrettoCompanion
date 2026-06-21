@@ -48,9 +48,10 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
     }
 
     @Test
-    fun `Select player after updating its name returns up to date name`() = runTest {
+    fun `Select player after updating returns up to date data`() = runTest {
         val name = "Andreo"
         val updatedName = "AndreoUpdated"
+        val updatedAvatar = "scout"
 
         queries.insert(name = name, avatar = null)
 
@@ -58,9 +59,10 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
             .rowid()
             .awaitAsOne()
 
-        queries.updateName(
+        queries.update(
             id = id,
             name = updatedName,
+            avatar = updatedAvatar,
         )
 
         val actual = queries
@@ -70,5 +72,6 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
             .awaitAsOne()
 
         assertEquals(updatedName, actual.name)
+        assertEquals(updatedAvatar, actual.avatar)
     }
 }
