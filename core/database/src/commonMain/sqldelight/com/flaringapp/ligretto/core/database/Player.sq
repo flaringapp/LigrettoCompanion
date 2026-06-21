@@ -1,6 +1,7 @@
 CREATE TABLE player (
   id INTEGER PRIMARY KEY NOT NULL,
-  name TEXT NOT NULL UNIQUE
+  name TEXT NOT NULL UNIQUE,
+  avatar TEXT
 );
 
 rowid: SELECT last_insert_rowid();
