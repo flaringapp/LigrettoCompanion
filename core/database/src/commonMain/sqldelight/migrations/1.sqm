@@ -1,7 +1,19 @@
 ALTER TABLE player ADD COLUMN avatar TEXT;
-UPDATE player SET avatar = CASE (id % 4)
+UPDATE player SET avatar = CASE (id % 16)
     WHEN 0 THEN 'goober'
     WHEN 1 THEN 'scout'
     WHEN 2 THEN 'corky'
-    ELSE 'leo'
+    WHEN 3 THEN 'leo'
+    WHEN 4 THEN 'dax'
+    WHEN 5 THEN 'dot'
+    WHEN 6 THEN 'fluffy'
+    WHEN 7 THEN 'fritz'
+    WHEN 8 THEN 'benny'
+    WHEN 9 THEN 'coco'
+    WHEN 10 THEN 'patch'
+    WHEN 11 THEN 'rex'
+    WHEN 12 THEN 'earl'
+    WHEN 13 THEN 'rocky'
+    WHEN 14 THEN 'mop'
+    ELSE 'pip'
 END;
