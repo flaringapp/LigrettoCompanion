@@ -26,6 +26,8 @@ sqldelight {
         create("Database") {
             packageName.set("com.flaringapp.ligretto.core.database")
             generateAsync.set(true)
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight/databases"))
+            verifyMigrations.set(true)
         }
     }
 }
