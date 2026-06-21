@@ -69,82 +69,82 @@ sealed class UiPlayerAvatarType {
 
     data object Goober : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_goober
-        override val backgroundGradientColors = uiListOf(Color(0xFFFFD8B8), Color(0xFFFFB898))
+        override val backgroundGradientColors = uiListOf(Color(0xFFFFDDB0), Color(0xFFFF9050))
     }
 
     data object Scout : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_scout
-        override val backgroundGradientColors = uiListOf(Color(0xFFB5E5F0), Color(0xFF88CEE0))
+        override val backgroundGradientColors = uiListOf(Color(0xFFC8EEF8), Color(0xFF50B4D8))
     }
 
     data object Corky : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_corky
-        override val backgroundGradientColors = uiListOf(Color(0xFFD0BEE8), Color(0xFFB8A0D8))
+        override val backgroundGradientColors = uiListOf(Color(0xFFD8C4F4), Color(0xFFF098C0))
     }
 
     data object Leo : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_leo
-        override val backgroundGradientColors = uiListOf(Color(0xFFB8EAE8), Color(0xFF88D0CC))
+        override val backgroundGradientColors = uiListOf(Color(0xFFB8D8F0), Color(0xFFEE9070))
     }
 
     data object Dax : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_dax
-        override val backgroundGradientColors = uiListOf(Color(0xFFE8D8CC), Color(0xFFCCB8A8))
+        override val backgroundGradientColors = uiListOf(Color(0xFFEEDCC0), Color(0xFFBB8448))
     }
 
     data object Dot : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_dot
-        override val backgroundGradientColors = uiListOf(Color(0xFFD0E8E0), Color(0xFFAAD0C4))
+        override val backgroundGradientColors = uiListOf(Color(0xFFD0EEE4), Color(0xFF68BC9C))
     }
 
     data object Fluffy : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_fluffy
-        override val backgroundGradientColors = uiListOf(Color(0xFFF5C8D8), Color(0xFFE8A8C0))
+        override val backgroundGradientColors = uiListOf(Color(0xFFFAD4E0), Color(0xFFE85890))
     }
 
     data object Fritz : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_fritz
-        override val backgroundGradientColors = uiListOf(Color(0xFFC8D8EE), Color(0xFFA0BCD8))
+        override val backgroundGradientColors = uiListOf(Color(0xFFD4E0F4), Color(0xFF6898D4))
     }
 
     data object Benny : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_benny
-        override val backgroundGradientColors = uiListOf(Color(0xFFFFE0C0), Color(0xFFFFBE98))
+        override val backgroundGradientColors = uiListOf(Color(0xFFFFE0B8), Color(0xFFFF8C38))
     }
 
     data object Coco : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_coco
-        override val backgroundGradientColors = uiListOf(Color(0xFFFFF0C0), Color(0xFFFFD898))
+        override val backgroundGradientColors = uiListOf(Color(0xFFFFF4C0), Color(0xFFFFBE20))
     }
 
     data object Patch : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_patch
-        override val backgroundGradientColors = uiListOf(Color(0xFFAECCE8), Color(0xFFE8B8B8))
+        override val backgroundGradientColors = uiListOf(Color(0xFFB0D4F0), Color(0xFFEE9880))
     }
 
     data object Rex : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_rex
-        override val backgroundGradientColors = uiListOf(Color(0xFFCCD8E8), Color(0xFFA8BECE))
+        override val backgroundGradientColors = uiListOf(Color(0xFFD0DCF4), Color(0xFF7888C4))
     }
 
     data object Earl : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_earl
-        override val backgroundGradientColors = uiListOf(Color(0xFFFFE8C8), Color(0xFFFFCC98))
+        override val backgroundGradientColors = uiListOf(Color(0xFFFFECC8), Color(0xFFFF9C38))
     }
 
     data object Rocky : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_rocky
-        override val backgroundGradientColors = uiListOf(Color(0xFFEED0C8), Color(0xFFD8ACA0))
+        override val backgroundGradientColors = uiListOf(Color(0xFFEED8CC), Color(0xFFCC7060))
     }
 
     data object Mop : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_mop
-        override val backgroundGradientColors = uiListOf(Color(0xFFDDD0F0), Color(0xFFC0ACDE))
+        override val backgroundGradientColors = uiListOf(Color(0xFFE0D4F8), Color(0xFF8864D4))
     }
 
     data object Pip : UiPlayerAvatarType() {
         override val imageRes get() = Res.drawable.avatar_pip
-        override val backgroundGradientColors = uiListOf(Color(0xFFD0EED8), Color(0xFFAAD8B4))
+        override val backgroundGradientColors = uiListOf(Color(0xFFD4F4DC), Color(0xFF60C07C))
     }
 
     companion object {
