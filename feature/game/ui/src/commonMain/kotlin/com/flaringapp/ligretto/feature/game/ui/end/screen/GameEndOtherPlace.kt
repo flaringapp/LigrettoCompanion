@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
+import com.flaringapp.ligretto.core.ui.components.PlayerNameImage
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -35,7 +35,7 @@ internal fun GameEndOtherPlace(
             place = place,
         )
 
-        GamePlayerImage(
+        PlayerNameImage(
             modifier = Modifier.padding(start = 16.dp, end = 12.dp),
             name = state.name,
             size = 56.dp,

@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.feature.game.ui.common
+package com.flaringapp.ligretto.core.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
 @Composable
-fun GamePlayerImage(
+fun PlayerNameImage(
     name: String,
     size: Dp,
     modifier: Modifier = Modifier,
@@ -87,7 +87,7 @@ private fun BasePreview(
     modifier: Modifier = Modifier,
 ) {
     AppTheme {
-        GamePlayerImage(
+        PlayerNameImage(
             modifier = modifier,
             size = 40.dp,
             name = name,

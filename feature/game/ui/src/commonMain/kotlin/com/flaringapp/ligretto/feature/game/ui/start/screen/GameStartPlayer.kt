@@ -28,8 +28,8 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.PlayerNameImage
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_player_hint
 import ligretto_companion.feature.game.ui.generated.resources.start_player_remove
@@ -50,7 +50,7 @@ internal fun GameStartPlayer(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        GamePlayerImage(
+        PlayerNameImage(
             modifier = Modifier.padding(end = 8.dp),
             name = name,
             fallbackText = number.toString(),

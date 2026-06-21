@@ -33,9 +33,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.PlayerNameImage
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_decrement
 import ligretto_companion.feature.game.ui.generated.resources.lap_player_cards_count_increment
@@ -83,7 +83,7 @@ private fun HeaderContent(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            GamePlayerImage(
+            PlayerNameImage(
                 name = playerName,
                 size = 40.dp,
                 shape = RoundedCornerShape(bottomEnd = HeaderCornerSize),

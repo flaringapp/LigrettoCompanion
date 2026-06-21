@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
+import com.flaringapp.ligretto.core.ui.components.PlayerNameImage
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 import com.flaringapp.ligretto.feature.game.ui.score.preview.GameScorePlayerScoreProvider
@@ -64,7 +64,7 @@ private fun ActualContent(
             place = state.place,
         )
 
-        GamePlayerImage(
+        PlayerNameImage(
             modifier = Modifier.padding(horizontal = 12.dp),
             name = state.playerName,
             size = 56.dp,
