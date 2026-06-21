@@ -101,7 +101,7 @@ internal class GameStorageDataSourceTest {
             DatabaseGamePlayer(player_id = it.id, score = 0)
         }
         val expectedPlayers = gameConfig.players.map {
-            DatabasePlayer(id = it.id, name = it.name)
+            DatabasePlayer(id = it.id, name = it.name, avatar = null)
         }
 
         assertEquals(expectedTimeStarted, flowDto?.time_started)

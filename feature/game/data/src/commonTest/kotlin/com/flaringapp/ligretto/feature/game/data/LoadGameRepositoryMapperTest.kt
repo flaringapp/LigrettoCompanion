@@ -54,9 +54,9 @@ internal class LoadGameRepositoryMapperTest {
             duration_minutes = null,
         )
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Olenkka"),
-            DatabasePlayer(id = 3, name = "Alina"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = "scout"),
+            DatabasePlayer(id = 2, name = "Olenkka", avatar = null),
+            DatabasePlayer(id = 3, name = "Alina", avatar = "corky"),
         )
         val data = GameDataStorageDto(
             gamePlayers = listOf(
@@ -111,9 +111,9 @@ internal class LoadGameRepositoryMapperTest {
         )
 
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Alina"),
-            DatabasePlayer(id = 3, name = "Mario"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = null),
+            DatabasePlayer(id = 2, name = "Alina", avatar = "corky"),
+            DatabasePlayer(id = 3, name = "Mario", avatar = "leo"),
         )
 
         val data = GameDataStorageDto(
@@ -199,10 +199,10 @@ internal class LoadGameRepositoryMapperTest {
             duration_minutes = null,
         )
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Olenkka"),
-            DatabasePlayer(id = 3, name = "Alina"),
-            DatabasePlayer(id = 4, name = "Mario"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = "scout"),
+            DatabasePlayer(id = 2, name = "Olenkka", avatar = null),
+            DatabasePlayer(id = 3, name = "Alina", avatar = "goober"),
+            DatabasePlayer(id = 4, name = "Mario", avatar = null),
         )
         val data = GameDataStorageDto(
             gamePlayers = listOf(
