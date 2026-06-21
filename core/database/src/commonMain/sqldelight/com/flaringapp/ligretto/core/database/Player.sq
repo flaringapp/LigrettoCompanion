@@ -20,8 +20,8 @@ WHERE name = ?
 LIMIT 1;
 
 insert:
-INSERT INTO player(name)
-VALUES (?);
+INSERT INTO player(name, avatar)
+VALUES (?, ?);
 
 updateName:
 UPDATE player

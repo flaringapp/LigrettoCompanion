@@ -119,7 +119,10 @@ internal class GameStorageDataSourceImpl(
                     .awaitAsOneOrNull()
                     ?.let { return@map it }
 
-                database.playerQueries.insert(name = player.name)
+                database.playerQueries.insert(
+                    name = player.name,
+                    avatar = null, // TODO player.avatar?.id
+                )
                 database.playerQueries.rowid().awaitAsOne()
             }
 

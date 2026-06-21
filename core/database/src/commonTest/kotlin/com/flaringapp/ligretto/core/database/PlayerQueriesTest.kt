@@ -17,7 +17,7 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
         val expected = setOf("Andreo", "Olenkka", "Alina")
 
         expected.forEach {
-            queries.insert(it)
+            queries.insert(name = it, avatar = null)
         }
 
         val actual = queries
@@ -34,7 +34,7 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
     fun `Select id by name returns id of inserted player with given name`() = runTest {
         val name = "Andreo"
 
-        queries.insert(name)
+        queries.insert(name = name, avatar = null)
 
         val expectedId = queries
             .rowid()
@@ -52,7 +52,7 @@ internal class PlayerQueriesTest : QueriesTest<PlayerQueries>() {
         val name = "Andreo"
         val updatedName = "AndreoUpdated"
 
-        queries.insert(name)
+        queries.insert(name = name, avatar = null)
 
         val id = queries
             .rowid()
