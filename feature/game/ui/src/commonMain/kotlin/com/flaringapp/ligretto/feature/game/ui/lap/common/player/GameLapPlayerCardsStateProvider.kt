@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.lap.common.player
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 
 internal class GameLapPlayerCardsStateProvider : PreviewParameterProvider<GameLapPlayerCardsState> {
 
@@ -9,6 +10,7 @@ internal class GameLapPlayerCardsStateProvider : PreviewParameterProvider<GameLa
         fun zeroCards(playerId: Long = 0) = GameLapPlayerCardsState(
             playerId = playerId,
             playerName = "Andrew",
+            playerAvatar = null,
             totalScore = 0,
             cardsCount = 0,
         )
@@ -16,6 +18,7 @@ internal class GameLapPlayerCardsStateProvider : PreviewParameterProvider<GameLa
         fun positiveCards(playerId: Long = 0) = GameLapPlayerCardsState(
             playerId = playerId,
             playerName = "Olenkka",
+            playerAvatar = UiPlayerAvatarType.Fluffy,
             totalScore = 12,
             cardsCount = 3,
         )
@@ -23,6 +26,7 @@ internal class GameLapPlayerCardsStateProvider : PreviewParameterProvider<GameLa
         fun negativeCards(playerId: Long = 0) = GameLapPlayerCardsState(
             playerId = playerId,
             playerName = "MariAnchor",
+            playerAvatar = UiPlayerAvatarType.Scout,
             totalScore = -14,
             cardsCount = -2,
         )

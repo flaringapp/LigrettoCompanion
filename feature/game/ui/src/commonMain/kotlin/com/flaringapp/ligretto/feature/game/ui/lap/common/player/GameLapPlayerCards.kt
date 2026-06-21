@@ -33,7 +33,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerNameImage
+import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -58,6 +59,7 @@ internal fun GameLapPlayerCards(
     ) {
         HeaderContent(
             playerName = state.playerName,
+            playerAvatar = state.playerAvatar,
             totalScore = state.totalScore,
         )
 
@@ -72,6 +74,7 @@ internal fun GameLapPlayerCards(
 @Composable
 private fun HeaderContent(
     playerName: String,
+    playerAvatar: UiPlayerAvatarType?,
     totalScore: Int,
     modifier: Modifier = Modifier,
 ) {
@@ -83,7 +86,8 @@ private fun HeaderContent(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            PlayerNameImage(
+            PlayerAvatarOrNameImage(
+                avatar = playerAvatar,
                 name = playerName,
                 size = 40.dp,
                 shape = RoundedCornerShape(bottomEnd = HeaderCornerSize),
