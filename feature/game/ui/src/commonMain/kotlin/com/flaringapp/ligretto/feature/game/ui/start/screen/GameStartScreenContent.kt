@@ -160,6 +160,7 @@ private fun ActualContent(
                     .animateItem(),
                 name = player.name,
                 number = index + 1,
+                avatar = player.avatar,
                 canRemove = state.players.list.size > 1,
                 requestFocus = player.id == state.players.focusedPlayerId,
                 onNameChange = { name ->

@@ -38,7 +38,11 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
     private fun Players.addNewPlayer(): Players {
         val idValue = playersIdCounter + 1
         val id = GameStartState.PlayerId.New(idValue.toLong())
-        val newList = list + GameStartState.Player(id, "")
+        val newList = list + GameStartState.Player(
+            id = id,
+            name = "",
+            avatar = null,
+        )
         return copy(
             list = newList.asUiList(),
             playersIdCounter = idValue,
