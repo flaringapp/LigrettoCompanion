@@ -1,6 +1,8 @@
 package com.flaringapp.ligretto.feature.game.model
 
-enum class PlayerAvatar(val id: String) {
+enum class PlayerAvatar(
+    val id: String,
+) {
     Goober("goober"),
     Scout("scout"),
     Corky("corky"),
@@ -16,7 +18,8 @@ enum class PlayerAvatar(val id: String) {
     Earl("earl"),
     Rocky("rocky"),
     Mop("mop"),
-    Pip("pip");
+    Pip("pip"),
+    ;
 
     companion object {
         private val AvatarsById = entries.associateBy { it.id }
