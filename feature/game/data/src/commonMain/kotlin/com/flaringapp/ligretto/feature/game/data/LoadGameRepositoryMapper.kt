@@ -7,6 +7,7 @@ import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
@@ -80,6 +81,7 @@ internal class LoadGameRepositoryMapperImpl(
             val player = Player(
                 id = dto.id,
                 name = dto.name,
+                avatar = dto.avatar?.let(PlayerAvatar::fromId),
             )
             dto.id to player
         }

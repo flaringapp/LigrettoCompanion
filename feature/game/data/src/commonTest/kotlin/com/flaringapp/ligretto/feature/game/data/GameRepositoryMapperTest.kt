@@ -5,6 +5,7 @@ import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
@@ -44,9 +45,9 @@ class GameRepositoryMapperTest {
         val timeStarted = Instant.parse("2023-08-13T18:00:00.00Z")
 
         val players = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
+            Player(id = 1, name = "Andreo", avatar = PlayerAvatar.Scout),
+            Player(id = 2, name = "Olenkka", avatar = null),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Corky),
         )
         val gameConfig = GameConfig(
             players = players,
@@ -83,10 +84,10 @@ class GameRepositoryMapperTest {
         val timeStarted = Instant.parse("2023-08-13T18:00:00.00Z")
 
         val players = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
-            Player(id = 4, name = "Mario"),
+            Player(id = 1, name = "Andreo", avatar = null),
+            Player(id = 2, name = "Olenkka", avatar = PlayerAvatar.Leo),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Goober),
+            Player(id = 4, name = "Mario", avatar = null),
         )
         val gameConfig = GameConfig(
             players = players,

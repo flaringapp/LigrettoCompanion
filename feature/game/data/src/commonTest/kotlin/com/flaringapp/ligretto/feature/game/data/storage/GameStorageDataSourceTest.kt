@@ -7,6 +7,7 @@ import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -60,9 +61,9 @@ internal class GameStorageDataSourceTest {
     @Test
     fun `Get game data after starting one without end conditions`() = runTest {
         val players = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
+            Player(id = 1, name = "Andreo", avatar = PlayerAvatar.Scout),
+            Player(id = 2, name = "Olenkka", avatar = null),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Corky),
         )
         val gameConfig = GameConfig(
             players = players,
@@ -74,9 +75,9 @@ internal class GameStorageDataSourceTest {
     @Test
     fun `Get game data after starting one with end conditions`() = runTest {
         val players = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
+            Player(id = 1, name = "Andreo", avatar = null),
+            Player(id = 2, name = "Olenkka", avatar = PlayerAvatar.Goober),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Leo),
         )
         val gameConfig = GameConfig(
             players = players,
@@ -101,7 +102,7 @@ internal class GameStorageDataSourceTest {
             DatabaseGamePlayer(player_id = it.id, score = 0)
         }
         val expectedPlayers = gameConfig.players.map {
-            DatabasePlayer(id = it.id, name = it.name, avatar = null)
+            DatabasePlayer(id = it.id, name = it.name, avatar = it.avatar?.id)
         }
 
         assertEquals(expectedTimeStarted, flowDto?.time_started)
