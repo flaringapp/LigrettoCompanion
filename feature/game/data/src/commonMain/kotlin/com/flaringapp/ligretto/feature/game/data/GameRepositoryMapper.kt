@@ -6,7 +6,6 @@ import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameId
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
-import com.flaringapp.ligretto.feature.game.model.Player
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
@@ -40,10 +39,7 @@ internal class GameRepositoryMapperImpl(
 
     override fun mapNewGame(config: GameConfig, dto: StartGameStorageDto): Game {
         val players = config.players.mapIndexed { index, player ->
-            Player(
-                id = dto.playerIds[index],
-                name = player.name,
-            )
+            player.copy(id = dto.playerIds[index])
         }
 
         val endConditions = GameEndConditions(

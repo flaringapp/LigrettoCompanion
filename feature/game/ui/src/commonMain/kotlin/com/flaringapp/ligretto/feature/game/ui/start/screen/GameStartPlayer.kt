@@ -28,8 +28,9 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_player_hint
 import ligretto_companion.feature.game.ui.generated.resources.start_player_remove
@@ -39,6 +40,7 @@ import org.jetbrains.compose.resources.stringResource
 internal fun GameStartPlayer(
     name: String,
     number: Int,
+    avatar: UiPlayerAvatarType?,
     canRemove: Boolean,
     requestFocus: Boolean,
     onNameChange: (String) -> Unit,
@@ -50,8 +52,9 @@ internal fun GameStartPlayer(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        GamePlayerImage(
+        PlayerAvatarOrNameImage(
             modifier = Modifier.padding(end = 8.dp),
+            avatar = avatar,
             name = name,
             fallbackText = number.toString(),
             size = 56.dp,
@@ -170,6 +173,7 @@ private fun PreviewEmpty() {
         GameStartPlayer(
             name = "",
             number = 1,
+            avatar = null,
             canRemove = false,
             requestFocus = false,
             onNameChange = {},
@@ -186,6 +190,7 @@ private fun PreviewFilled() {
         GameStartPlayer(
             name = "Player",
             number = 4,
+            avatar = UiPlayerAvatarType.Scout,
             canRemove = true,
             requestFocus = true,
             onNameChange = {},

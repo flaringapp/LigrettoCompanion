@@ -11,6 +11,7 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.SubmitPlayerLapCardsOnTableUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.ui.common.toUiAvatar
 import com.flaringapp.ligretto.feature.game.ui.lap.common.player.GameLapPlayerCardsState
 import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.Job
@@ -61,6 +62,7 @@ internal class GameLapCardsOnTableViewModel(
             GameLapPlayerCardsState(
                 playerId = player.id,
                 playerName = player.name,
+                playerAvatar = player.avatar?.toUiAvatar(),
                 totalScore = game.scores[player]?.value ?: 0,
                 cardsCount = lap.cardsOnTable[player] ?: 0,
             )

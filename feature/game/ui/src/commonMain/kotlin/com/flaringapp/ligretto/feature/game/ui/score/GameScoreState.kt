@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.score
 
 import androidx.compose.runtime.Immutable
 import com.flaringapp.ligretto.core.arch.UiState
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.emptyUiList
 import kotlin.time.Clock
@@ -16,6 +17,7 @@ internal data class GameScoreState(
     data class PlayerScore(
         val place: Int,
         val playerName: String,
+        val playerAvatar: UiPlayerAvatarType?,
         val score: Int,
     )
 

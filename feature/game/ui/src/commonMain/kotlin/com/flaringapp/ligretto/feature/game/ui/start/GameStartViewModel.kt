@@ -12,6 +12,8 @@ import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeLimitState
+import com.flaringapp.ligretto.feature.game.ui.common.toDomainAvatar
+import com.flaringapp.ligretto.feature.game.ui.common.toUiAvatar
 import org.koin.core.annotation.InjectedParam
 import org.koin.core.annotation.KoinViewModel
 import kotlin.time.Duration
@@ -74,6 +76,7 @@ internal class GameStartViewModel(
             GameStartState.Player(
                 id = GameStartState.PlayerId.Existing(player.id),
                 name = player.name,
+                avatar = player.avatar?.toUiAvatar(),
             )
         }
         return GameStartState.Players(
@@ -135,6 +138,7 @@ internal class GameStartViewModel(
             Player(
                 id = id,
                 name = player.name,
+                avatar = player.avatar?.toDomainAvatar(),
             )
         }
 

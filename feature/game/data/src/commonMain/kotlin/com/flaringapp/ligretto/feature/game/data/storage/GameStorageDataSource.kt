@@ -113,13 +113,23 @@ internal class GameStorageDataSourceImpl(
             val gameId = database.gameQueries.rowid().awaitAsOne()
 
             val playerIds = gameConfig.players.map { player ->
-                // Find existing player
-                database.playerQueries
+                val existingId = database.playerQueries
                     .selectIdByName(player.name)
                     .awaitAsOneOrNull()
-                    ?.let { return@map it }
 
-                database.playerQueries.insert(name = player.name)
+                if (existingId != null) {
+                    database.playerQueries.update(
+                        id = existingId,
+                        name = player.name,
+                        avatar = player.avatar?.id,
+                    )
+                    return@map existingId
+                }
+
+                database.playerQueries.insert(
+                    name = player.name,
+                    avatar = player.avatar?.id,
+                )
                 database.playerQueries.rowid().awaitAsOne()
             }
 

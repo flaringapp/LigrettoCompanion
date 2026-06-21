@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.end.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 
 internal class GameEndPlayerResultProvider : PreviewParameterProvider<PlayerResult> {
@@ -8,6 +9,7 @@ internal class GameEndPlayerResultProvider : PreviewParameterProvider<PlayerResu
     companion object {
         fun default() = PlayerResult(
             name = "Andreo",
+            avatar = UiPlayerAvatarType.Scout,
             score = 102,
         )
 

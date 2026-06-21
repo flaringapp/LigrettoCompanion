@@ -7,6 +7,7 @@ import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Lap
 import com.flaringapp.ligretto.feature.game.model.LapId
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 import com.flaringapp.ligretto.feature.game.model.Score
 import com.flaringapp.ligretto.feature.game.model.end.GameEndConditions
 import com.flaringapp.ligretto.feature.game.model.end.GameEndScoreCondition
@@ -54,9 +55,9 @@ internal class LoadGameRepositoryMapperTest {
             duration_minutes = null,
         )
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Olenkka"),
-            DatabasePlayer(id = 3, name = "Alina"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = "scout"),
+            DatabasePlayer(id = 2, name = "Olenkka", avatar = null),
+            DatabasePlayer(id = 3, name = "Alina", avatar = "corky"),
         )
         val data = GameDataStorageDto(
             gamePlayers = listOf(
@@ -70,9 +71,9 @@ internal class LoadGameRepositoryMapperTest {
         )
 
         val expectedPlayers = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
+            Player(id = 1, name = "Andreo", avatar = PlayerAvatar.Scout),
+            Player(id = 2, name = "Olenkka", avatar = null),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Corky),
         )
         val expectedGame = Game(
             id = GameId(1),
@@ -111,9 +112,9 @@ internal class LoadGameRepositoryMapperTest {
         )
 
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Alina"),
-            DatabasePlayer(id = 3, name = "Mario"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = null),
+            DatabasePlayer(id = 2, name = "Alina", avatar = "corky"),
+            DatabasePlayer(id = 3, name = "Mario", avatar = "leo"),
         )
 
         val data = GameDataStorageDto(
@@ -135,9 +136,9 @@ internal class LoadGameRepositoryMapperTest {
         )
 
         val expectedPlayers = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Alina"),
-            Player(id = 3, name = "Mario"),
+            Player(id = 1, name = "Andreo", avatar = null),
+            Player(id = 2, name = "Alina", avatar = PlayerAvatar.Corky),
+            Player(id = 3, name = "Mario", avatar = PlayerAvatar.Leo),
         )
         val expectedGame = Game(
             id = GameId(1),
@@ -199,10 +200,10 @@ internal class LoadGameRepositoryMapperTest {
             duration_minutes = null,
         )
         val playersDto = listOf(
-            DatabasePlayer(id = 1, name = "Andreo"),
-            DatabasePlayer(id = 2, name = "Olenkka"),
-            DatabasePlayer(id = 3, name = "Alina"),
-            DatabasePlayer(id = 4, name = "Mario"),
+            DatabasePlayer(id = 1, name = "Andreo", avatar = "scout"),
+            DatabasePlayer(id = 2, name = "Olenkka", avatar = null),
+            DatabasePlayer(id = 3, name = "Alina", avatar = "goober"),
+            DatabasePlayer(id = 4, name = "Mario", avatar = null),
         )
         val data = GameDataStorageDto(
             gamePlayers = listOf(
@@ -237,10 +238,10 @@ internal class LoadGameRepositoryMapperTest {
         )
 
         val expectedPlayers = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
-            Player(id = 4, name = "Mario"),
+            Player(id = 1, name = "Andreo", avatar = PlayerAvatar.Scout),
+            Player(id = 2, name = "Olenkka", avatar = null),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Goober),
+            Player(id = 4, name = "Mario", avatar = null),
         )
         val expectedGame = Game(
             id = GameId(1),

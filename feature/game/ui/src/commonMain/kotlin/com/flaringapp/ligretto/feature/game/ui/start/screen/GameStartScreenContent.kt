@@ -160,6 +160,7 @@ private fun ActualContent(
                     .animateItem(),
                 name = player.name,
                 number = index + 1,
+                avatar = player.avatar,
                 canRemove = state.players.list.size > 1,
                 requestFocus = player.id == state.players.focusedPlayerId,
                 onNameChange = { name ->
@@ -180,7 +181,7 @@ private fun ActualContent(
                     .fillMaxWidth()
                     .padding(top = 24.dp, start = 16.dp, end = 16.dp)
                     .animateItem(),
-                onClick = { dispatch(GameStartPlayersIntent.AddNew) },
+                onClick = { dispatch(GameStartPlayersIntent.AddNew()) },
             )
         }
     }

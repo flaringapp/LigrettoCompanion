@@ -10,6 +10,7 @@ import com.flaringapp.ligretto.feature.game.data.storage.GameStorageDataSourceIm
 import com.flaringapp.ligretto.feature.game.model.GameConfig
 import com.flaringapp.ligretto.feature.game.model.GameSnapshot
 import com.flaringapp.ligretto.feature.game.model.Player
+import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 import com.flaringapp.ligretto.feature.game.model.Score
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -77,9 +78,9 @@ internal class GameRepositoryImplTest {
     @Test
     fun `Start game returns game model with data that matches config`() = runTest {
         val players = listOf(
-            Player(id = 1, name = "Andreo"),
-            Player(id = 2, name = "Olenkka"),
-            Player(id = 3, name = "Alina"),
+            Player(id = 1, name = "Andreo", avatar = PlayerAvatar.Scout),
+            Player(id = 2, name = "Olenkka", avatar = null),
+            Player(id = 3, name = "Alina", avatar = PlayerAvatar.Leo),
         )
         val gameConfig = GameConfig(
             players = players,

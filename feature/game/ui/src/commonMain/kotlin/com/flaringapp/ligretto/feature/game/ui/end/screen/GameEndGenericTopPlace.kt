@@ -18,7 +18,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerImage
+import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
@@ -42,6 +43,7 @@ internal fun GameEndGenericTopPlace(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         PlayerImageWithPlace(
+            playerAvatar = state.avatar,
             playerName = state.name,
             place = place,
             imageSize = imageSize,
@@ -63,6 +65,7 @@ internal fun GameEndGenericTopPlace(
 
 @Composable
 private fun PlayerImageWithPlace(
+    playerAvatar: UiPlayerAvatarType?,
     playerName: String,
     place: Int,
     imageSize: Dp,
@@ -73,7 +76,8 @@ private fun PlayerImageWithPlace(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy((-4).dp),
     ) {
-        GamePlayerImage(
+        PlayerAvatarOrNameImage(
+            avatar = playerAvatar,
             name = playerName,
             size = imageSize,
         )

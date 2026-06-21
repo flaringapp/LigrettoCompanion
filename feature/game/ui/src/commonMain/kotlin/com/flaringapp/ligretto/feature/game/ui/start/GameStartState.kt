@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.UiState
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UiList
 import com.flaringapp.ligretto.core.ui.ext.emptyUiList
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreLimitState
@@ -20,6 +21,7 @@ internal data class GameStartState(
     data class Player(
         val id: PlayerId,
         val name: String,
+        val avatar: UiPlayerAvatarType?,
     )
 
     sealed class PlayerId {
