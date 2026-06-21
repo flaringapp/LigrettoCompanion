@@ -146,6 +146,14 @@ sealed class UiPlayerAvatarType {
         override val imageRes get() = Res.drawable.avatar_pip
         override val backgroundGradientColors = uiListOf(Color(0xFFD0EED8), Color(0xFFAAD8B4))
     }
+
+    companion object {
+
+        val entries: UiList<UiPlayerAvatarType> = uiListOf(
+            Goober, Scout, Corky, Leo, Dax, Dot, Fluffy, Fritz,
+            Benny, Coco, Patch, Rex, Earl, Rocky, Mop, Pip,
+        )
+    }
 }
 
 @Preview
