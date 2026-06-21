@@ -1,6 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.end
 
 import com.flaringapp.ligretto.core.arch.UiState
+import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UiList
 
 internal data class GameEndState(
@@ -9,6 +10,7 @@ internal data class GameEndState(
 
     data class PlayerResult(
         val name: String,
+        val avatar: UiPlayerAvatarType?,
         val score: Int,
     )
 }
