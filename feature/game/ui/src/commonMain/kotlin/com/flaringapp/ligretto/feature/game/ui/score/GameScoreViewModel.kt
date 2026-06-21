@@ -8,6 +8,7 @@ import com.flaringapp.ligretto.feature.game.domain.usecase.AdvanceToNextLapResul
 import com.flaringapp.ligretto.feature.game.domain.usecase.AdvanceToNextLapUseCase
 import com.flaringapp.ligretto.feature.game.domain.usecase.GetCurrentGameWithLapUseCase
 import com.flaringapp.ligretto.feature.game.model.Game
+import com.flaringapp.ligretto.feature.game.ui.common.toUiAvatar
 import org.koin.core.annotation.KoinViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.filterNotNull
@@ -64,6 +65,7 @@ internal class GameScoreViewModel(
                 GameScoreState.PlayerScore(
                     place = place + 1,
                     playerName = player.name,
+                    playerAvatar = player.avatar?.toUiAvatar(),
                     score = game.scores[player]?.value ?: 0,
                 )
             }
