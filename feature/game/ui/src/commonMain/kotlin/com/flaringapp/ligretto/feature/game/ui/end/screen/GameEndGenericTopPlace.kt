@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,9 +78,9 @@ private fun PlayerImageWithPlace(
         verticalArrangement = Arrangement.spacedBy((-4).dp),
     ) {
         PlayerAvatarOrNameImage(
+            modifier = Modifier.size(imageSize),
             avatar = playerAvatar,
             name = playerName,
-            size = imageSize,
         )
 
         GamePlayerPlaceIcon.resolve(place)?.let {

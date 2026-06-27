@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.end.screen
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,10 +37,11 @@ internal fun GameEndOtherPlace(
         )
 
         PlayerAvatarOrNameImage(
-            modifier = Modifier.padding(start = 16.dp, end = 12.dp),
+            modifier = Modifier
+                .padding(start = 16.dp, end = 12.dp)
+                .size(56.dp),
             avatar = state.avatar,
             name = state.name,
-            size = 56.dp,
         )
 
         PlayerNameText(

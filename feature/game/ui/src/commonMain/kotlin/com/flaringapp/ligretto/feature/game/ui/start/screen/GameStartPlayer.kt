@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.RemoveCircleOutline
@@ -97,6 +98,7 @@ private fun PlayerMutableAvatar(
 
     PlayerAvatarOrNameImage(
         modifier = modifier
+            .size(56.dp)
             .clip(PlayerImageDefaults.Shape)
             .clickable(
                 onClick = { showPicker = true },
@@ -106,7 +108,6 @@ private fun PlayerMutableAvatar(
         avatar = avatar,
         name = name,
         fallbackText = number.toString(),
-        size = 56.dp,
     )
 }
 

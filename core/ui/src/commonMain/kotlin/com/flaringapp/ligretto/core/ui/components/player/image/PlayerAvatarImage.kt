@@ -3,6 +3,8 @@ package com.flaringapp.ligretto.core.ui.components.player.image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -13,7 +15,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UiList
@@ -41,7 +42,6 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun PlayerAvatarImage(
     avatar: UiPlayerAvatarType,
-    size: Dp,
     modifier: Modifier = Modifier,
     shape: Shape = PlayerImageDefaults.Shape,
 ) {
@@ -49,7 +49,11 @@ fun PlayerAvatarImage(
 
     Box(
         modifier = modifier
-            .size(size)
+            .defaultMinSize(
+                minWidth = PlayerImageDefaults.DefaultSize,
+                minHeight = PlayerImageDefaults.DefaultSize,
+            )
+            .aspectRatio(1f)
             .clip(shape)
             .background(gradient),
         contentAlignment = Alignment.Center,
@@ -160,8 +164,8 @@ sealed class UiPlayerAvatarType {
 private fun PreviewGoober() {
     AppTheme {
         PlayerAvatarImage(
+            modifier = Modifier.size(64.dp),
             avatar = UiPlayerAvatarType.Goober,
-            size = 64.dp,
         )
     }
 }
@@ -171,8 +175,8 @@ private fun PreviewGoober() {
 private fun PreviewScout() {
     AppTheme {
         PlayerAvatarImage(
+            modifier = Modifier.size(64.dp),
             avatar = UiPlayerAvatarType.Scout,
-            size = 64.dp,
         )
     }
 }
