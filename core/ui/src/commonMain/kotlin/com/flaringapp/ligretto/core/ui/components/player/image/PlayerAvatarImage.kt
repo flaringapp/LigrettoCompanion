@@ -154,10 +154,16 @@ sealed class UiPlayerAvatarType {
 
     companion object {
 
-        val entries: UiList<UiPlayerAvatarType> = uiListOf(
-            Goober, Scout, Corky, Leo, Dax, Dot, Fluffy, Fritz,
-            Benny, Coco, Patch, Rex, Earl, Rocky, Mop, Pip,
-        )
+        // Lazy on purpose: building this eagerly runs during the sealed class's <clinit>.
+        // If a data object (e.g. Goober) is touched first, its init recursively triggers
+        // this list, which then reads that still-initializing object as null. Deferring
+        // avoids the init-order trap so entries never contains nulls.
+        val entries: UiList<UiPlayerAvatarType> by lazy {
+            uiListOf(
+                Goober, Scout, Corky, Leo, Dax, Dot, Fluffy, Fritz,
+                Benny, Coco, Patch, Rex, Earl, Rocky, Mop, Pip,
+            )
+        }
     }
 }
 
