@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -66,6 +67,7 @@ fun PlayerAvatarImage(
     }
 }
 
+@Immutable
 sealed class UiPlayerAvatarType {
     abstract val imageRes: DrawableResource
     abstract val backgroundGradientColors: UiList<Color>

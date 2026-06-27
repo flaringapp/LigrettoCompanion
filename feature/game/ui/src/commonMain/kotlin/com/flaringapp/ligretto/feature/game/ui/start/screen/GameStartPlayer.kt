@@ -109,6 +109,19 @@ private fun PlayerMutableAvatar(
         name = name,
         fallbackText = number.toString(),
     )
+
+    if (showPicker) {
+        AvatarPickerDialog(
+            currentAvatar = avatar,
+            playerName = name,
+            playerNameFallback = number.toString(),
+            onSelect = {
+                onAvatarChange(it)
+                showPicker = false
+            },
+            onDismiss = { showPicker = false },
+        )
+    }
 }
 
 @Composable
