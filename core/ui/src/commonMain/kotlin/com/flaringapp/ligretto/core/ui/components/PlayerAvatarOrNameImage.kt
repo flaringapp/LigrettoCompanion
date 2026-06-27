@@ -1,6 +1,5 @@
 package com.flaringapp.ligretto.core.ui.components
 
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -16,7 +15,7 @@ fun PlayerAvatarOrNameImage(
     size: Dp,
     modifier: Modifier = Modifier,
     fallbackText: String = "?",
-    shape: Shape = CircleShape,
+    shape: Shape = PlayerAvatarDefaults.Shape,
 ) {
     if (avatar != null) {
         PlayerAvatarImage(
