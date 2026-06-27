@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.UiIntent
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 

@@ -34,9 +34,9 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarDefaults
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerImageDefaults
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import ligretto_companion.feature.game.ui.generated.resources.Res
 import ligretto_companion.feature.game.ui.generated.resources.start_player_change_avatar
@@ -97,7 +97,7 @@ private fun PlayerMutableAvatar(
 
     PlayerAvatarOrNameImage(
         modifier = modifier
-            .clip(PlayerAvatarDefaults.Shape)
+            .clip(PlayerImageDefaults.Shape)
             .clickable(
                 onClick = { showPicker = true },
                 onClickLabel = stringResource(Res.string.start_player_change_avatar),

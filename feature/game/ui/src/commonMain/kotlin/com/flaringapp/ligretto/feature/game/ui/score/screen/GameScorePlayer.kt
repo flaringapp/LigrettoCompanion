@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 import com.flaringapp.ligretto.feature.game.ui.score.preview.GameScorePlayerScoreProvider

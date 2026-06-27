@@ -33,8 +33,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import ligretto_companion.feature.game.ui.generated.resources.Res

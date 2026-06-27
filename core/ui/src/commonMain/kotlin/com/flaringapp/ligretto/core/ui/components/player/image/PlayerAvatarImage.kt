@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.core.ui.components
+package com.flaringapp.ligretto.core.ui.components.player.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,7 +43,7 @@ fun PlayerAvatarImage(
     avatar: UiPlayerAvatarType,
     size: Dp,
     modifier: Modifier = Modifier,
-    shape: Shape = PlayerAvatarDefaults.Shape,
+    shape: Shape = PlayerImageDefaults.Shape,
 ) {
     val gradient = Brush.verticalGradient(avatar.backgroundGradientColors)
 

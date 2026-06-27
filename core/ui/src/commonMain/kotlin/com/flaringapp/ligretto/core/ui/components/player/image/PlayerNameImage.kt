@@ -1,4 +1,4 @@
-package com.flaringapp.ligretto.core.ui.components
+package com.flaringapp.ligretto.core.ui.components.player.image
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -23,7 +23,7 @@ fun PlayerNameImage(
     size: Dp,
     modifier: Modifier = Modifier,
     fallbackText: String = "?",
-    shape: Shape = PlayerAvatarDefaults.Shape,
+    shape: Shape = PlayerImageDefaults.Shape,
 ) {
     val initials = remember(name, fallbackText) {
         if (name.isEmpty()) {
