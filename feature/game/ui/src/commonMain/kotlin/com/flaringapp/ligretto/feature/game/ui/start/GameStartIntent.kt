@@ -23,6 +23,11 @@ internal sealed interface GameStartPlayersIntent : GameStartIntent {
         val name: String,
     ) : GameStartPlayersIntent
 
+    data class ChangeAvatar(
+        val id: GameStartState.PlayerId,
+        val avatar: UiPlayerAvatarType?,
+    ) : GameStartPlayersIntent
+
     data class FocusChanged(
         val id: GameStartState.PlayerId,
         val isFocused: Boolean,

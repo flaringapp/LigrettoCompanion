@@ -22,6 +22,13 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
             )
         }
 
+        is GameStartPlayersIntent.ChangeAvatar -> {
+            state.changePlayerAvatar(
+                id = intent.id,
+                avatar = intent.avatar,
+            )
+        }
+
         is GameStartPlayersIntent.FocusChanged -> {
             state.handlePlayerFocusChanged(
                 id = intent.id,
@@ -60,6 +67,17 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
         val newList = list.map { player ->
             if (player.id != id) return@map player
             player.copy(name = name)
+        }
+        return copy(list = newList.asUiList())
+    }
+
+    private fun Players.changePlayerAvatar(
+        id: GameStartState.PlayerId,
+        avatar: UiPlayerAvatarType?,
+    ): Players {
+        val newList = list.map { player ->
+            if (player.id != id) return@map player
+            player.copy(avatar = avatar)
         }
         return copy(list = newList.asUiList())
     }
