@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -17,21 +18,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
+import com.flaringapp.ligretto.core.ui.components.PlayerAvatarDefaults
 import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
 import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import ligretto_companion.feature.game.ui.generated.resources.Res
+import ligretto_companion.feature.game.ui.generated.resources.start_player_change_avatar
 import ligretto_companion.feature.game.ui.generated.resources.start_player_hint
 import ligretto_companion.feature.game.ui.generated.resources.start_player_remove
 import org.jetbrains.compose.resources.stringResource
@@ -44,6 +52,7 @@ internal fun GameStartPlayer(
     canRemove: Boolean,
     requestFocus: Boolean,
     onNameChange: (String) -> Unit,
+    onAvatarChange: (UiPlayerAvatarType?) -> Unit,
     onFocusChanged: (Boolean) -> Unit,
     onRemoveClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -52,12 +61,12 @@ internal fun GameStartPlayer(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        PlayerAvatarOrNameImage(
+        PlayerMutableAvatar(
             modifier = Modifier.padding(end = 8.dp),
             avatar = avatar,
+            onAvatarChange = onAvatarChange,
             name = name,
-            fallbackText = number.toString(),
-            size = 56.dp,
+            number = number,
         )
 
         PlayerNameTextField(
@@ -74,6 +83,31 @@ internal fun GameStartPlayer(
             onClick = onRemoveClick,
         )
     }
+}
+
+@Composable
+private fun PlayerMutableAvatar(
+    avatar: UiPlayerAvatarType?,
+    onAvatarChange: (UiPlayerAvatarType?) -> Unit,
+    name: String,
+    number: Int,
+    modifier: Modifier = Modifier,
+) {
+    var showPicker by remember { mutableStateOf(false) }
+
+    PlayerAvatarOrNameImage(
+        modifier = modifier
+            .clip(PlayerAvatarDefaults.Shape)
+            .clickable(
+                onClick = { showPicker = true },
+                onClickLabel = stringResource(Res.string.start_player_change_avatar),
+                role = Role.Button,
+            ),
+        avatar = avatar,
+        name = name,
+        fallbackText = number.toString(),
+        size = 56.dp,
+    )
 }
 
 @Composable
@@ -177,6 +211,7 @@ private fun PreviewEmpty() {
             canRemove = false,
             requestFocus = false,
             onNameChange = {},
+            onAvatarChange = {},
             onFocusChanged = {},
             onRemoveClick = {},
         )
@@ -194,6 +229,7 @@ private fun PreviewFilled() {
             canRemove = true,
             requestFocus = true,
             onNameChange = {},
+            onAvatarChange = {},
             onFocusChanged = {},
             onRemoveClick = {},
         )
