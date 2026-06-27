@@ -106,7 +106,9 @@ private fun Header(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Close,
-                    contentDescription = stringResource(Res.string.start_player_avatar_picker_close),
+                    contentDescription = stringResource(
+                        Res.string.start_player_avatar_picker_close,
+                    ),
                 )
             }
         }
