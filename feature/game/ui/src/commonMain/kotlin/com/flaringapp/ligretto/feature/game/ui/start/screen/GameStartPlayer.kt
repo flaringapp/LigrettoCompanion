@@ -1,7 +1,10 @@
 package com.flaringapp.ligretto.feature.game.ui.start.screen
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
@@ -96,19 +99,32 @@ private fun PlayerMutableAvatar(
 ) {
     var showPicker by remember { mutableStateOf(false) }
 
-    PlayerAvatarOrNameImage(
-        modifier = modifier
-            .size(56.dp)
-            .clip(PlayerImageDefaults.Shape)
-            .clickable(
-                onClick = { showPicker = true },
-                onClickLabel = stringResource(Res.string.start_player_change_avatar),
-                role = Role.Button,
-            ),
-        avatar = avatar,
-        name = name,
-        fallbackText = number.toString(),
-    )
+    AnimatedContent(
+        modifier = modifier,
+        label = "PlayerImageAnimation",
+        targetState = avatar,
+        transitionSpec = {
+            fadeIn(
+                animationSpec = spring(),
+            ) togetherWith fadeOut(
+                animationSpec = spring(),
+            ) using null
+        },
+    ) { currentAvatar ->
+        PlayerAvatarOrNameImage(
+            modifier = Modifier
+                .size(56.dp)
+                .clip(PlayerImageDefaults.Shape)
+                .clickable(
+                    onClick = { showPicker = true },
+                    onClickLabel = stringResource(Res.string.start_player_change_avatar),
+                    role = Role.Button,
+                ),
+            avatar = currentAvatar,
+            name = name,
+            fallbackText = number.toString(),
+        )
+    }
 
     if (showPicker) {
         AvatarPickerDialog(
