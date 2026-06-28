@@ -1,12 +1,14 @@
-package com.flaringapp.ligretto.core.ui.components
+package com.flaringapp.ligretto.core.ui.components.player.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,7 +16,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 import com.flaringapp.ligretto.core.ui.ext.UiList
@@ -42,15 +43,18 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun PlayerAvatarImage(
     avatar: UiPlayerAvatarType,
-    size: Dp,
     modifier: Modifier = Modifier,
-    shape: Shape = CircleShape,
+    shape: Shape = PlayerImageDefaults.Shape,
 ) {
     val gradient = Brush.verticalGradient(avatar.backgroundGradientColors)
 
     Box(
         modifier = modifier
-            .size(size)
+            .defaultMinSize(
+                minWidth = PlayerImageDefaults.DefaultSize,
+                minHeight = PlayerImageDefaults.DefaultSize,
+            )
+            .aspectRatio(1f)
             .clip(shape)
             .background(gradient),
         contentAlignment = Alignment.Center,
@@ -63,6 +67,7 @@ fun PlayerAvatarImage(
     }
 }
 
+@Immutable
 sealed class UiPlayerAvatarType {
     abstract val imageRes: DrawableResource
     abstract val backgroundGradientColors: UiList<Color>
@@ -149,10 +154,16 @@ sealed class UiPlayerAvatarType {
 
     companion object {
 
-        val entries: UiList<UiPlayerAvatarType> = uiListOf(
-            Goober, Scout, Corky, Leo, Dax, Dot, Fluffy, Fritz,
-            Benny, Coco, Patch, Rex, Earl, Rocky, Mop, Pip,
-        )
+        // Lazy on purpose: building this eagerly runs during the sealed class's <clinit>.
+        // If a data object (e.g. Goober) is touched first, its init recursively triggers
+        // this list, which then reads that still-initializing object as null. Deferring
+        // avoids the init-order trap so entries never contains nulls.
+        val entries: UiList<UiPlayerAvatarType> by lazy {
+            uiListOf(
+                Goober, Scout, Corky, Leo, Dax, Dot, Fluffy, Fritz,
+                Benny, Coco, Patch, Rex, Earl, Rocky, Mop, Pip,
+            )
+        }
     }
 }
 
@@ -161,8 +172,8 @@ sealed class UiPlayerAvatarType {
 private fun PreviewGoober() {
     AppTheme {
         PlayerAvatarImage(
+            modifier = Modifier.size(64.dp),
             avatar = UiPlayerAvatarType.Goober,
-            size = 64.dp,
         )
     }
 }
@@ -172,8 +183,8 @@ private fun PreviewGoober() {
 private fun PreviewScout() {
     AppTheme {
         PlayerAvatarImage(
+            modifier = Modifier.size(64.dp),
             avatar = UiPlayerAvatarType.Scout,
-            size = 64.dp,
         )
     }
 }

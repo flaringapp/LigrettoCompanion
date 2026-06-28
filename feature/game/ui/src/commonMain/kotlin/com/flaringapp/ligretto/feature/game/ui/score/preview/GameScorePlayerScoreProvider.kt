@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.score.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.score.GameScoreState.PlayerScore
 
 internal class GameScorePlayerScoreProvider : PreviewParameterProvider<PlayerScore> {

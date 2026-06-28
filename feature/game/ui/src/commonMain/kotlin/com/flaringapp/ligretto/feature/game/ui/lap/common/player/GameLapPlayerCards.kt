@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -33,8 +34,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.HandleClickAndHold
 import com.flaringapp.ligretto.core.ui.ext.UnboundedPaddingLayout
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -87,9 +88,9 @@ private fun HeaderContent(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             PlayerAvatarOrNameImage(
+                modifier = Modifier.size(40.dp),
                 avatar = playerAvatar,
                 name = playerName,
-                size = 40.dp,
                 shape = RoundedCornerShape(bottomEnd = HeaderCornerSize),
             )
 

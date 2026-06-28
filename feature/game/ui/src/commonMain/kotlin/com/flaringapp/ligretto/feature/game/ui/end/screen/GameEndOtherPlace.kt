@@ -2,6 +2,7 @@ package com.flaringapp.ligretto.feature.game.ui.end.screen
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
 import ligretto_companion.feature.game.ui.generated.resources.Res
@@ -36,10 +37,11 @@ internal fun GameEndOtherPlace(
         )
 
         PlayerAvatarOrNameImage(
-            modifier = Modifier.padding(start = 16.dp, end = 12.dp),
+            modifier = Modifier
+                .padding(start = 16.dp, end = 12.dp)
+                .size(56.dp),
             avatar = state.avatar,
             name = state.name,
-            size = 56.dp,
         )
 
         PlayerNameText(
