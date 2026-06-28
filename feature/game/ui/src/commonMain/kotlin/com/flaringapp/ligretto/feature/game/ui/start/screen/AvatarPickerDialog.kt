@@ -24,6 +24,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,6 +63,14 @@ internal fun AvatarPickerDialog(
     onSelect: (UiPlayerAvatarType?) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    var newSelection: AvatarSelection? by remember { mutableStateOf(null) }
+
+    newSelection?.let {
+        LaunchedEffect(Unit) {
+            onSelect(it.avatar)
+        }
+    }
+
     BasicAlertDialog(onDismissRequest = onDismiss) {
         Surface(
             shape = AlertDialogDefaults.shape,
@@ -73,10 +86,14 @@ internal fun AvatarPickerDialog(
                 )
 
                 AvatarPickerGrid(
-                    currentAvatar = currentAvatar,
+                    currentAvatar = if (newSelection != null) {
+                        newSelection?.avatar
+                    } else {
+                        currentAvatar
+                    },
                     playerName = playerName,
                     playerNameFallback = playerNameFallback,
-                    onSelect = onSelect,
+                    onSelect = { newSelection = AvatarSelection(it) },
                 )
             }
         }
@@ -196,6 +213,10 @@ private fun SelectableAvatar(
         avatar()
     }
 }
+
+private data class AvatarSelection(
+    val avatar: UiPlayerAvatarType?,
+)
 
 @Preview
 @Composable
