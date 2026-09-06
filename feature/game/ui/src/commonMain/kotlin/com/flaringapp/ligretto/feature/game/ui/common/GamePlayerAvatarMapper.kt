@@ -1,6 +1,6 @@
 package com.flaringapp.ligretto.feature.game.ui.common
 
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.model.PlayerAvatar
 
 internal fun PlayerAvatar.toUiAvatar(): UiPlayerAvatarType = when (this) {

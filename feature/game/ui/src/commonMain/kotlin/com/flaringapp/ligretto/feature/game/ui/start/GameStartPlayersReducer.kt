@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.Reducer
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.core.ui.ext.asUiList
 import com.flaringapp.ligretto.feature.game.ui.start.GameStartState.Players
 
@@ -19,6 +19,13 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
             state.changePlayerName(
                 id = intent.id,
                 name = intent.name,
+            )
+        }
+
+        is GameStartPlayersIntent.ChangeAvatar -> {
+            state.changePlayerAvatar(
+                id = intent.id,
+                avatar = intent.avatar,
             )
         }
 
@@ -60,6 +67,17 @@ internal object GameStartPlayersReducer : Reducer<Players, GameStartPlayersInten
         val newList = list.map { player ->
             if (player.id != id) return@map player
             player.copy(name = name)
+        }
+        return copy(list = newList.asUiList())
+    }
+
+    private fun Players.changePlayerAvatar(
+        id: GameStartState.PlayerId,
+        avatar: UiPlayerAvatarType?,
+    ): Players {
+        val newList = list.map { player ->
+            if (player.id != id) return@map player
+            player.copy(avatar = avatar)
         }
         return copy(list = newList.asUiList())
     }

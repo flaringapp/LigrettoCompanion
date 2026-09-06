@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.end.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 
 internal class GameEndPlayerResultProvider : PreviewParameterProvider<PlayerResult> {

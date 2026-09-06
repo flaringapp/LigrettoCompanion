@@ -166,6 +166,9 @@ private fun ActualContent(
                 onNameChange = { name ->
                     dispatch(GameStartPlayersIntent.ChangeName(player.id, name))
                 },
+                onAvatarChange = { avatar ->
+                    dispatch(GameStartPlayersIntent.ChangeAvatar(player.id, avatar))
+                },
                 onFocusChanged = { isFocused ->
                     dispatch(GameStartPlayersIntent.FocusChanged(player.id, isFocused))
                 },

@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,8 +19,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
-import com.flaringapp.ligretto.core.ui.components.PlayerAvatarOrNameImage
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.PlayerAvatarOrNameImage
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.common.GamePlayerPlaceIcon
 import com.flaringapp.ligretto.feature.game.ui.end.GameEndState.PlayerResult
 import com.flaringapp.ligretto.feature.game.ui.end.preview.GameEndPlayerResultProvider
@@ -77,9 +78,9 @@ private fun PlayerImageWithPlace(
         verticalArrangement = Arrangement.spacedBy((-4).dp),
     ) {
         PlayerAvatarOrNameImage(
+            modifier = Modifier.size(imageSize),
             avatar = playerAvatar,
             name = playerName,
-            size = imageSize,
         )
 
         GamePlayerPlaceIcon.resolve(place)?.let {

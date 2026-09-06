@@ -1,7 +1,7 @@
 package com.flaringapp.ligretto.feature.game.ui.start
 
 import com.flaringapp.ligretto.core.arch.UiIntent
-import com.flaringapp.ligretto.core.ui.components.UiPlayerAvatarType
+import com.flaringapp.ligretto.core.ui.components.player.image.UiPlayerAvatarType
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionScoreIntent
 import com.flaringapp.ligretto.feature.game.ui.common.endconditions.GameEndConditionTimeIntent
 
@@ -21,6 +21,11 @@ internal sealed interface GameStartPlayersIntent : GameStartIntent {
     data class ChangeName(
         val id: GameStartState.PlayerId,
         val name: String,
+    ) : GameStartPlayersIntent
+
+    data class ChangeAvatar(
+        val id: GameStartState.PlayerId,
+        val avatar: UiPlayerAvatarType?,
     ) : GameStartPlayersIntent
 
     data class FocusChanged(

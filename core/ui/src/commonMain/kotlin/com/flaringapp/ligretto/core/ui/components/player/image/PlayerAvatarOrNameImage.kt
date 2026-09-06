@@ -1,11 +1,10 @@
-package com.flaringapp.ligretto.core.ui.components
+package com.flaringapp.ligretto.core.ui.components.player.image
 
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.flaringapp.ligretto.core.designsystem.AppTheme
 
@@ -13,16 +12,14 @@ import com.flaringapp.ligretto.core.designsystem.AppTheme
 fun PlayerAvatarOrNameImage(
     avatar: UiPlayerAvatarType?,
     name: String,
-    size: Dp,
     modifier: Modifier = Modifier,
     fallbackText: String = "?",
-    shape: Shape = CircleShape,
+    shape: Shape = PlayerImageDefaults.Shape,
 ) {
     if (avatar != null) {
         PlayerAvatarImage(
             modifier = modifier,
             avatar = avatar,
-            size = size,
             shape = shape,
         )
     } else {
@@ -30,7 +27,6 @@ fun PlayerAvatarOrNameImage(
             modifier = modifier,
             name = name,
             fallbackText = fallbackText,
-            size = size,
             shape = shape,
         )
     }
@@ -41,9 +37,9 @@ fun PlayerAvatarOrNameImage(
 private fun PreviewWithAvatar() {
     AppTheme {
         PlayerAvatarOrNameImage(
+            modifier = Modifier.size(64.dp),
             avatar = UiPlayerAvatarType.Scout,
             name = "Andreo",
-            size = 64.dp,
         )
     }
 }
@@ -53,9 +49,9 @@ private fun PreviewWithAvatar() {
 private fun PreviewWithName() {
     AppTheme {
         PlayerAvatarOrNameImage(
+            modifier = Modifier.size(64.dp),
             avatar = null,
             name = "Andreo",
-            size = 64.dp,
         )
     }
 }
